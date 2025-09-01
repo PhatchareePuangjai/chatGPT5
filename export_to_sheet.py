@@ -80,7 +80,7 @@ def post(row, cache):
         log(f"เกิดข้อผิดพลาดในการส่งข้อมูล: {str(e)}")
         return False
 
-def main(path="./chatgpt-export/conversations-28-09-2025.json"):
+def main(path="./chatgpt-export/conversations-30-09-2025.json"):
     log(f"เริ่มการทำงาน: กำลังอ่านไฟล์ {path}")
     
     # โหลดแคชสำหรับตรวจสอบการส่งข้อมูลซ้ำ
