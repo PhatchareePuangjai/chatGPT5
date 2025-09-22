@@ -1,112 +1,580 @@
 {
-  "449ca7eb0007af81c67887dbb663e15c": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:22:16.680878+07:00"
-  },
-  "346ef91db4c421a65df1f48d7bc997ec": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:22:22.305204+07:00"
-  },
-  "054a49fbc611c76cef859120e1fe1a54": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:22:30.745466+07:00"
-  },
-  "7b5481dcf6cf265ee40729e0bbbad9f9": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:22:36.538748+07:00"
-  },
-  "4184b9d50031a5817e95cf14496bfbe8": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:22:43.111136+07:00"
-  },
-  "f511b62d5a6164163ac49f0b0960939d": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:22:50.001256+07:00"
-  },
-  "c514242a9b82b8a6422c06a1e68de964": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:22:57.761797+07:00"
-  },
-  "8dc59c561830c8fc8b3a76e3cfe2e079": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:23:05.548191+07:00"
-  },
-  "865d06d575be5e87bceb225eada83e71": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:23:08.246837+07:00"
-  },
-  "9e81e552cc730cf4477845eebeaf1840": {
-    "timestamp": "2025-08-28T22:17:22.506926+07:00",
-    "session_id": "68b072b2-2fc8-832f-b48f-929a36f7",
-    "sent_at": "2025-08-28T23:23:14.661273+07:00"
-  },
   "f2892d122c00b0f04cb14e4074585a44": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:04:53.202151+07:00"
+    "sent_at": "2025-09-21T08:44:46.065682+07:00"
   },
   "ea9c74da59285240c49b130ee6e902dd": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:04:57.806904+07:00"
+    "sent_at": "2025-09-21T08:44:49.542467+07:00"
   },
   "a78da622edaad1803bd24088631ba5fb": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:05:01.262135+07:00"
+    "sent_at": "2025-09-21T08:44:53.864556+07:00"
   },
   "1cff1e904deaeb0cfb3aa093d99cd2a8": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:05:04.259877+07:00"
+    "sent_at": "2025-09-21T08:44:57.930240+07:00"
   },
   "beedd6fc0098d605b13e58fb2f337a74": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:05:07.363534+07:00"
+    "sent_at": "2025-09-21T08:45:00.303084+07:00"
   },
   "7cfaeb249d43531fae7e7eb2af705fa9": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:43:57.015626+07:00"
+    "sent_at": "2025-09-21T08:45:03.899353+07:00"
   },
   "36f9adc5d03c938ecf35a91b45c7c0d6": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:43:59.888139+07:00"
+    "sent_at": "2025-09-21T08:45:08.052561+07:00"
   },
   "91c9c8b99d651a0759c2100902a8fc85": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:44:02.737699+07:00"
+    "sent_at": "2025-09-21T08:45:12.112894+07:00"
   },
   "de0073c526adc79fe603d6fcb902c7f4": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:44:05.980111+07:00"
+    "sent_at": "2025-09-21T08:45:16.216145+07:00"
   },
   "ee8368db0d5cf184c681f79712616927": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:44:08.690560+07:00"
+    "sent_at": "2025-09-21T08:45:19.741788+07:00"
   },
   "bb9d91613e7c7c75415d218fd6647742": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:44:11.692456+07:00"
+    "sent_at": "2025-09-21T08:45:24.058053+07:00"
   },
   "541301e2f53c8fba6b24bab50a632fbe": {
     "timestamp": "2025-08-30T08:49:31.739733+07:00",
     "session_id": "68b258a9-08b4-8324-839f-7ea80cf2",
-    "sent_at": "2025-08-30T10:44:14.855207+07:00"
+    "sent_at": "2025-09-21T08:45:28.334667+07:00"
+  },
+  "4ee854ab215f808b3f7c11220b57ba67": {
+    "timestamp": "2025-08-30T08:49:28.118000+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: นี่คือโปรแกรมเกม เกมเป่ายิ้งฉุบ (Rock-Paper-Scissors) ที่ได้ review zip ไฟล์ สำหรับเกมนี้ แล้วพัฒนาให้ดีขึ้นกว่าเดิม เพิ่ม UX/UI\n        AI: เยี่ยมมาก! ผมเปิดดูโปรเจกต์ใน zip แล้ว (Vite + React + Tailwind, TypeScript) พบว่าตัวเกมทำมาครบถ้วนตาม **Requirements/Baseline** ที่คุณให้ไว้ เช่น เลือกท่า ชนะ–แพ้–เสมอ, เลือก Best of 3/5/7, แสดงผลและ\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 263,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: นี่คือโปรแกรมเกม เกมเป่ายิ้งฉุบ (Rock-Paper-Scissors) ที่ได้ review zip ไฟล์ สำหรับเกมนี้ แล้วพัฒนาให้ดีขึ้นกว่าเดิม เพิ่ม UX/UI\n        - AI response: เยี่ยมมาก! ผมเปิดดูโปรเจกต์ใน zip แล้ว (Vite + React + Tailwind, TypeScript) พบว่าตัวเกมทำมาครบถ้วนตาม **Requirements/Baseline** ที่คุณให้ไว้ เช่น เลือกท่า ชนะ–แพ้–เสมอ, เลือก Best of 3/5/7, แสดงผลและ\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 312,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.013307984790874524,
+        "efficiency_enhanced": 0.013461538461538462
+      }
+    }
+  },
+  "c2343dbabfba343cdfcf6951ab1ffa12": {
+    "timestamp": "2025-08-30T09:54:34.780000+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: ทำเป็น zip file version ใหม่มาให้หน่อย\n        AI: # This script unpacks the user's original project zip, applies the UX/UI upgrades\r\n# (adds Confetti and useLocalStorage, replaces App.tsx, tweaks tailwind.config.js and index.html),\r\n# then re-zips th\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 102,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: ทำเป็น zip file version ใหม่มาให้หน่อย\n        - AI response: # This script unpacks the user's original project zip, applies the UX/UI upgrades\r\n# (adds Confetti and useLocalStorage, replaces App.tsx, tweaks tailwind.config.js and index.html),\r\n# then re-zips th\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 151,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.03431372549019608,
+        "efficiency_enhanced": 0.027814569536423844
+      }
+    }
+  },
+  "f04a9b4cf6aadbb05df2d658dc49ba11": {
+    "timestamp": "2025-08-30T08:49:31.739733+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: \n        AI: import os, zipfile, io, re, json, shutil, textwrap, pathlib\r\n\r\nBASE_ZIP = \"/mnt/data/rps-app-vite-tailwind.zip\"\r\nWORKDIR = \"/mnt/data/rps-app-vite-tailwind-upgraded\"\r\nOUT_ZIP = \"/mnt/data/rps-app-vite\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 94,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": []
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: \n        - AI response: import os, zipfile, io, re, json, shutil, textwrap, pathlib\r\n\r\nBASE_ZIP = \"/mnt/data/rps-app-vite-tailwind.zip\"\r\nWORKDIR = \"/mnt/data/rps-app-vite-tailwind-upgraded\"\r\nOUT_ZIP = \"/mnt/data/rps-app-vite\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 143,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.03723404255319149,
+        "efficiency_enhanced": 0.029370629370629373
+      }
+    }
+  },
+  "586677f529223fb1e8e914d88f60c2b6": {
+    "timestamp": "2025-08-30T08:49:31.739733+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: \n        AI: # Re-run cleanly. Create upgraded zip from original with correct code.\r\nimport os, zipfile, re, shutil\r\nfrom pathlib import Path\r\n\r\nBASE_ZIP = \"/mnt/data/rps-app-vite-tailwind.zip\"\r\nWORKDIR = \"/mnt/da\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 82,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": []
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: \n        - AI response: # Re-run cleanly. Create upgraded zip from original with correct code.\r\nimport os, zipfile, re, shutil\r\nfrom pathlib import Path\r\n\r\nBASE_ZIP = \"/mnt/data/rps-app-vite-tailwind.zip\"\r\nWORKDIR = \"/mnt/da\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 131,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.042682926829268296,
+        "efficiency_enhanced": 0.03206106870229008
+      }
+    }
+  },
+  "2a8ebf33d50c04a34cb84e5eb13cfffc": {
+    "timestamp": "2025-08-30T08:49:31.739733+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: \n        AI: เรียบร้อย! นี่คือไฟล์ **ZIP เวอร์ชันใหม่** ที่อัปเกรด UX/UI ตามที่สรุปไว้:\n\n[ดาวน์โหลด rps-app-vite-tailwind-ux-upgrade.zip](sandbox:/mnt/data/rps-app-vite-tailwind-ux-upgrade.zip)\n\nไฮไลต์ที่รวมไว้:\n-\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 146,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: \n        - AI response: เรียบร้อย! นี่คือไฟล์ **ZIP เวอร์ชันใหม่** ที่อัปเกรด UX/UI ตามที่สรุปไว้:\n\n[ดาวน์โหลด rps-app-vite-tailwind-ux-upgrade.zip](sandbox:/mnt/data/rps-app-vite-tailwind-ux-upgrade.zip)\n\nไฮไลต์ที่รวมไว้:\n-\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 195,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.023972602739726026,
+        "efficiency_enhanced": 0.02153846153846154
+      }
+    }
+  },
+  "271f9bd34355ef27add311be3db9b180": {
+    "timestamp": "2025-08-30T10:07:55.053000+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: (venv) toy@Macbook-TOY rps-app 2 % npm run dev\n\n> rps-app@0.0.0 dev\n> vite\n\nfailed to load config from /Users/toy/Desktop/learn/chat_gsheet_logger_python/codes/68b258a9-08b4-8324-839f-7ea80cf2/rps-app\n        AI: ปัญหานี้ตรงตัวเลย: โปรเจกต์เรียกใช้ `@vitejs/plugin-react` ใน `vite.config.ts` แต่แพ็กเกจนี้ยังไม่ได้ติดตั้งในเครื่องคุณ เลยขึ้น `ERR_MODULE_NOT_FOUND`.\n\nทำตามลำดับนี้ครับ (อยู่ในโฟลเดอร์โปรเจกต์):\n\n1\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 261,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: (venv) toy@Macbook-TOY rps-app 2 % npm run dev\n\n> rps-app@0.0.0 dev\n> vite\n\nfailed to load config from /Users/toy/Desktop/learn/chat_gsheet_logger_python/codes/68b258a9-08b4-8324-839f-7ea80cf2/rps-app\n        - AI response: ปัญหานี้ตรงตัวเลย: โปรเจกต์เรียกใช้ `@vitejs/plugin-react` ใน `vite.config.ts` แต่แพ็กเกจนี้ยังไม่ได้ติดตั้งในเครื่องคุณ เลยขึ้น `ERR_MODULE_NOT_FOUND`.\n\nทำตามลำดับนี้ครับ (อยู่ในโฟลเดอร์โปรเจกต์):\n\n1\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 310,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.013409961685823755,
+        "efficiency_enhanced": 0.013548387096774195
+      }
+    }
+  },
+  "944a43ca5a4fa731ce1b536ddc52a23a": {
+    "timestamp": "2025-08-30T10:18:24.536000+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: จากผลลัพธ์ที่ได้ เมื่อเริ่มเกมใหม่ ไม่ clear states\n        AI: ได้เลย—เจอที่มาของบั๊กแล้วครับ\n\nอาการ: ตอนกด **“เริ่มเกมใหม่”** แล้ว confetti ยังค้าง (เป็นภาพนิ่งบนแคนวาส) และบาง state ดูไม่ถูกรีเซ็ต  \nสาเหตุหลักมี 2 จุด:\n1) ใน `reset(false)` ยังไม่ได้ปิด `fireCon\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 227,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: จากผลลัพธ์ที่ได้ เมื่อเริ่มเกมใหม่ ไม่ clear states\n        - AI response: ได้เลย—เจอที่มาของบั๊กแล้วครับ\n\nอาการ: ตอนกด **“เริ่มเกมใหม่”** แล้ว confetti ยังค้าง (เป็นภาพนิ่งบนแคนวาส) และบาง state ดูไม่ถูกรีเซ็ต  \nสาเหตุหลักมี 2 จุด:\n1) ใน `reset(false)` ยังไม่ได้ปิด `fireCon\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 276,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.015418502202643172,
+        "efficiency_enhanced": 0.015217391304347827
+      }
+    }
+  },
+  "d504d3c07334e23a9fce126ac9910bba": {
+    "timestamp": "2025-08-30T10:22:18.462000+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: โอเค สร้าง zip ไฟล์ใหม่ ระวังเรื่อง ที่ install และ error เพราะ npm i -D typescript @types/react @types/react-dom ด้วย และการเติม cless ของ taiwind ด้วยให้มันปิด ให้ถูก format\n        AI: # Patch the project to fix reset/confetti behavior, ensure package.json dev deps,\r\n# and re-pack into a new ZIP for download.\r\n\r\nimport os, json, re, zipfile, shutil\r\nfrom pathlib import Path\r\n\r\nWORKD\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 179,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: โอเค สร้าง zip ไฟล์ใหม่ ระวังเรื่อง ที่ install และ error เพราะ npm i -D typescript @types/react @types/react-dom ด้วย และการเติม cless ของ taiwind ด้วยให้มันปิด ให้ถูก format\n        - AI response: # Patch the project to fix reset/confetti behavior, ensure package.json dev deps,\r\n# and re-pack into a new ZIP for download.\r\n\r\nimport os, json, re, zipfile, shutil\r\nfrom pathlib import Path\r\n\r\nWORKD\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 228,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.019553072625698324,
+        "efficiency_enhanced": 0.01842105263157895
+      }
+    }
+  },
+  "d75fa5d56b476c280c9e861c449fce5b": {
+    "timestamp": "2025-08-30T08:49:31.739733+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: \n        AI: # Re-run the patch cell (previous state was reset)\r\nimport os, json, re, zipfile, shutil\r\nfrom pathlib import Path\r\n\r\nWORKDIR = \"/mnt/data/rps-app-vite-tailwind-upgraded\"\r\nPROJ = None\r\n\r\nfor dirpath, \n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 84,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": []
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: \n        - AI response: # Re-run the patch cell (previous state was reset)\r\nimport os, json, re, zipfile, shutil\r\nfrom pathlib import Path\r\n\r\nWORKDIR = \"/mnt/data/rps-app-vite-tailwind-upgraded\"\r\nPROJ = None\r\n\r\nfor dirpath, \n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 133,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.041666666666666664,
+        "efficiency_enhanced": 0.031578947368421054
+      }
+    }
+  },
+  "99ec7f67eae4f1e6da7241d117b00835": {
+    "timestamp": "2025-08-30T08:49:31.739733+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: \n        AI: # Create v2 by extracting the previous upgraded zip, patching, and re-zipping.\r\nimport os, zipfile, json, re, shutil\r\nfrom pathlib import Path\r\n\r\nSRC_ZIP = \"/mnt/data/rps-app-vite-tailwind-ux-upgrade.\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 84,
+          "components": {
+            "task": "AI: # Create v2 by extracting the previous upgraded zip, patching, and re-zipping.",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": []
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: \n        - AI response: # Create v2 by extracting the previous upgraded zip, patching, and re-zipping.\r\nimport os, zipfile, json, re, shutil\r\nfrom pathlib import Path\r\n\r\nSRC_ZIP = \"/mnt/data/rps-app-vite-tailwind-ux-upgrade.\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 133,
+          "components": {
+            "task": "- AI response: # Create v2 by extracting the previous upgraded zip, patching, and re-zipping.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.041666666666666664,
+        "efficiency_enhanced": 0.031578947368421054
+      }
+    }
+  },
+  "03c478e6aa663402860071f3aae67f05": {
+    "timestamp": "2025-08-30T08:49:31.739733+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: \n        AI: # Build a fresh upgraded v2 ZIP from the original project with all fixes and devDeps.\r\nimport os, zipfile, re, json, shutil\r\nfrom pathlib import Path\r\n\r\nBASE_ZIP = \"/mnt/data/rps-app-vite-tailwind.zip\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 82,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": []
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: \n        - AI response: # Build a fresh upgraded v2 ZIP from the original project with all fixes and devDeps.\r\nimport os, zipfile, re, json, shutil\r\nfrom pathlib import Path\r\n\r\nBASE_ZIP = \"/mnt/data/rps-app-vite-tailwind.zip\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 131,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.042682926829268296,
+        "efficiency_enhanced": 0.03206106870229008
+      }
+    }
+  },
+  "f4c02c312e78a3b0f9409b5c983cd147": {
+    "timestamp": "2025-08-30T08:49:31.739733+07:00",
+    "session_id": "68b258a9-08b4-8324-839f-7ea80cf2e7f9",
+    "atomic_analysis": {
+      "atomic_prompt": {
+        "prompt": "Analyze conversation quality:\n        User: \n        AI: จัดให้ตามที่สั่งแล้วครับ — ผมสร้าง **ZIP เวอร์ชันใหม่ (v2)** พร้อมแพตช์เคลียร์ state และกัน error ตอนติดตั้งแพ็กเกจ\n\n[ดาวน์โหลด rps-app-vite-tailwind-ux-upgrade-v2.zip](sandbox:/mnt/data/rps-app-vite-\n        Output: sentiment|clarity|usefulness (1-5 each)\n    ",
+        "analysis": {
+          "token_count": 156,
+          "components": {
+            "task": "Analyze conversation quality:",
+            "constraints": "",
+            "output_format": "Output: sentiment|clarity|usefulness (1-5 each)"
+          },
+          "atomic_score": 0.7,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 3.5
+      },
+      "enhanced_prompt": {
+        "prompt": "\n        Task: Analyze conversation quality and user satisfaction.\n        Input:\n        - User message: \n        - AI response: จัดให้ตามที่สั่งแล้วครับ — ผมสร้าง **ZIP เวอร์ชันใหม่ (v2)** พร้อมแพตช์เคลียร์ state และกัน error ตอนติดตั้งแพ็กเกจ\n\n[ดาวน์โหลด rps-app-vite-tailwind-ux-upgrade-v2.zip](sandbox:/mnt/data/rps-app-vite-\n\n        Constraints:\n        - Rate each dimension 1-5 only\n        - Focus on helpfulness and clarity\n\n        Output format:\n        {\"sentiment\": X, \"clarity\": X, \"usefulness\": X, \"overall\": X}\n    ",
+        "analysis": {
+          "token_count": 205,
+          "components": {
+            "task": "Task: Analyze conversation quality and user satisfaction.",
+            "constraints": "- Rate each dimension 1-5 only",
+            "output_format": "Output format:"
+          },
+          "atomic_score": 1.0,
+          "optimization_suggestions": [
+            "ลดความยาว prompt - ใช้คำสั้นๆ ชัดเจน"
+          ]
+        },
+        "quality": 4.2
+      },
+      "comparison": {
+        "token_savings": 49,
+        "quality_improvement": 0.7000000000000002,
+        "efficiency_atomic": 0.022435897435897436,
+        "efficiency_enhanced": 0.02048780487804878
+      }
+    }
   }
 }
