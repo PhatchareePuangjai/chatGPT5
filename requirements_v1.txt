@@ -1,5 +1,0 @@
-# requirements_v1.txt
-# Dependencies for Chat Logger v1.0 with Atomic Prompting
-requests
-python-dotenv
-tiktoken
