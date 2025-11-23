@@ -1,5 +1,6 @@
 # Node modules
 node_modules/
+**/node_modules/
 
 # Python virtual environment
 venv/
@@ -48,4 +49,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # ChatGPT export data
-chatgpt-export/**/*.json
+**/chatgpt-export/**
+
+# Generated artifacts
+**/*.tsbuildinfo
