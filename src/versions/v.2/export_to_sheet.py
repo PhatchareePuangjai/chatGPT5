@@ -19,7 +19,12 @@ CACHE_FILE = os.getenv("CACHE_FILE", ".export_cache.json")
 
 
 def count_tokens(text, model="gpt-3.5-turbo"):
-
+    if text is None:
+        return 0
+    if not isinstance(text, str):
+        text = str(text)
+    if not text:
+        return 0
     try:
         encoding = tiktoken.encoding_for_model(model)
     except KeyError:
