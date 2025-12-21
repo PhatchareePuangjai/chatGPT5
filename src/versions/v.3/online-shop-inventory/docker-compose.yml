@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: shop_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shopdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./backend/sql:/docker-entrypoint-initdb.d
+
+  backend:
+    image: node:20
+    container_name: shop_backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgres://postgres:postgres@db:5432/shopdb
+      LOW_STOCK_THRESHOLD: 5
+    depends_on:
+      - db
+    ports:
+      - "3001:3001"
+    command: sh -c "npm install && npm start"
+
+  frontend:
+    image: node:20
+    container_name: shop_frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    environment:
+      VITE_API_BASE: http://localhost:3001
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev"
+
+volumes:
+  db_data:
