@@ -13,6 +13,10 @@ app.get("/health", (req, res) => res.json({ ok: true }));
 app.use("/api", routes);
 
 const port = Number(process.env.PORT || 3001);
-app.listen(port, () => {
-  console.log(`Backend running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Backend running on http://localhost:${port}`);
+  });
+}
+
+module.exports = app;
