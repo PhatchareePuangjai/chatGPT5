@@ -24,7 +24,6 @@ services:
       - sonarnet
     volumes:
       - ../:/usr/src
-    entrypoint: /bin/sh
 
 volumes:
   sonarqube_data:
