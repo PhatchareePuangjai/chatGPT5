@@ -90,3 +90,5 @@ docker compose up
 
 ## Fix note (Dec 2025)
 If you previously saw an error like `productId must be a positive integer`, it was caused by the database returning BIGINT IDs as strings. This version accepts numeric strings and also converts IDs in the frontend.
+
+<!-- Trigger CI -->
