@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: promo-db
+    environment:
+      - POSTGRES_DB=promo_shop
+      - POSTGRES_USER=promo
+      - POSTGRES_PASSWORD=promo
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U promo -d promo_shop"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    ports:
+      - "5435:5432"
+
+  backend:
+    build: ./backend
+    container_name: promo-backend
+    environment:
+      - PORT=4000
+      - DATABASE_URL=postgres://promo:promo@db:5432/promo_shop
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build: ./frontend
+    container_name: promo-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  db-data:
