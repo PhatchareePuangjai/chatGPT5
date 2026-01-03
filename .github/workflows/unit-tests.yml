@@ -1,0 +1,57 @@
+name: Unit Tests
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'src/versions/v.3/**'
+      - 'src/versions/v.4/**'
+      - 'src/versions/v.5/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'src/versions/v.3/**'
+      - 'src/versions/v.4/**'
+      - 'src/versions/v.5/**'
+
+jobs:
+  test:
+    name: Test ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - version: v.3
+            path: src/versions/v.3/online-shop-inventory/backend
+          - version: v.4
+            path: src/versions/v.4/shopping-cart-app/backend
+          - version: v.5
+            path: src/versions/v.5/promo-shop-plug-and-play/backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ใช้ paths-filter เพื่อเช็คว่ามีการแก้ไขในโฟลเดอร์ของ version นั้นๆ หรือไม่
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - '${{ matrix.path }}/**'
+
+      - name: Setup Node.js
+        if: steps.changes.outputs.src == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        if: steps.changes.outputs.src == 'true'
+        working-directory: ${{ matrix.path }}
+        run: npm ci
+
+      - name: Run Tests
+        if: steps.changes.outputs.src == 'true'
+        working-directory: ${{ matrix.path }}
+        run: npm test

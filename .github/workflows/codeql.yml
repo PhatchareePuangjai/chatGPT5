@@ -1,0 +1,48 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'src/versions/v.3/**'
+      - 'src/versions/v.4/**'
+      - 'src/versions/v.5/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'src/versions/v.3/**'
+      - 'src/versions/v.4/**'
+      - 'src/versions/v.5/**'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        # หากต้องการ scan เฉพาะโฟลเดอร์ สามารถเพิ่ม config file ได้
+        # แต่โดยปกติ CodeQL จะ scan ทั้ง repo ซึ่งครอบคลุมทุก version อยู่แล้ว
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{ matrix.language }}"
