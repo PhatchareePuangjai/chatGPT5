@@ -1,33 +1,48 @@
 #!/bin/bash
 
-# Usage: ./scan.sh <relative_path_to_project> <sonar_token>
-# Example: ./scan.sh src/versions/v.2/inventory_full_version sqp_...
+# Usage: ./scan.sh <path_to_project> <sonar_token>
+# Example: ./scan.sh ../src/versions/v.6/inventory-system sqp_...
 
 if [ -z "$1" ]; then
-  echo "Usage: ./scan.sh <relative_path_to_project> [sonar_token]"
-  echo "Example: ./scan.sh src/versions/v.2/inventory_full_version my_token"
+  echo "Usage: ./scan.sh <path_to_project> [sonar_token]"
   exit 1
 fi
 
-PROJECT_PATH=$1
-PROJECT_NAME=$(basename "$PROJECT_PATH")
-# Replace slashes with underscores for a unique key if needed, or just use basename
+# Resolve absolute paths to handle relative paths like ../ correctly
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WORKSPACE_ROOT="$(dirname "$SCRIPT_DIR")"
+
+TARGET_DIR="$1"
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "Error: Directory $TARGET_DIR does not exist."
+    exit 1
+fi
+
+ABS_TARGET_DIR="$(cd "$TARGET_DIR" && pwd)"
+
+# Check if target is inside workspace
+if [[ "$ABS_TARGET_DIR" != "$WORKSPACE_ROOT"* ]]; then
+    echo "Error: Target directory must be inside the workspace: $WORKSPACE_ROOT"
+    exit 1
+fi
+
+# Get relative path from workspace root (e.g., src/versions/v.6/inventory-system)
+RELATIVE_PATH="${ABS_TARGET_DIR#$WORKSPACE_ROOT/}"
+
+PROJECT_NAME=$(basename "$RELATIVE_PATH")
 PROJECT_KEY="project_${PROJECT_NAME}"
-TOKEN=${2:-admin} # Default to admin if not provided (will likely fail if password changed)
-PASSWORD=${3:-admin}
 
-echo "Scanning $PROJECT_PATH with key $PROJECT_KEY..."
+echo "Scanning $RELATIVE_PATH with key $PROJECT_KEY..."
 
-# Check if token is likely a token (starts with sqp_ or similar) or username/password combo
-# For simplicity, we'll assume if only 2 args, it's a token. If 3, it's user/pass.
-# But standard way is token.
+# Base arguments
+ARGS="-Dsonar.projectKey=$PROJECT_KEY -Dsonar.sources=/usr/src/$RELATIVE_PATH -Dsonar.host.url=http://sonarqube:9000"
 
-ARGS="-Dsonar.projectKey=$PROJECT_KEY -Dsonar.sources=/usr/src/$PROJECT_PATH -Dsonar.host.url=http://sonarqube:9000"
-
+# Auth handling
 if [ -n "$2" ]; then
-    ARGS="$ARGS -Dsonar.login=$2"
+    # Assuming $2 is a token
+    ARGS="$ARGS -Dsonar.token=$2"
 else
-    # Default fallback (might not work after first login)
+    # Default fallback to admin/admin
     ARGS="$ARGS -Dsonar.login=admin -Dsonar.password=admin"
 fi
 

@@ -7,12 +7,14 @@ on:
       - 'src/versions/v.3/**'
       - 'src/versions/v.4/**'
       - 'src/versions/v.5/**'
+      - 'src/versions/v.6/**'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'src/versions/v.3/**'
       - 'src/versions/v.4/**'
       - 'src/versions/v.5/**'
+      - 'src/versions/v.6/**'
 
 jobs:
   test:
@@ -28,6 +30,8 @@ jobs:
             path: src/versions/v.4/shopping-cart-app/backend
           - version: v.5
             path: src/versions/v.5/promo-shop-plug-and-play/backend
+          - version: v.6
+            path: src/versions/v.6/inventory-system/backend
 
     steps:
       - uses: actions/checkout@v4
