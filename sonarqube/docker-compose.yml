@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   sonarqube:
     image: sonarqube:community
@@ -17,6 +15,7 @@ services:
 
   sonar-scanner:
     image: sonarsource/sonar-scanner-cli
+    platform: linux/amd64
     container_name: sonar-scanner
     depends_on:
       - sonarqube
