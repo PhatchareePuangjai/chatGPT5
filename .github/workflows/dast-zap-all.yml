@@ -58,7 +58,7 @@ jobs:
         working-directory: ./${{ matrix.path }}
         run: |
           # ส่งผ่าน environment variables ปัจจุบันเข้าไปใน docker-compose
-          docker-compose up -d --build
+          docker compose up -d --build
           echo "Waiting for application to initialize..."
           sleep 60 # รอ 60 วินาทีเพื่อให้แน่ใจว่า DB และ App พร้อมทำงานจริงๆ
 
@@ -73,4 +73,4 @@ jobs:
       - name: Stop Application
         if: always()
         working-directory: ./${{ matrix.path }}
-        run: docker-compose down
+        run: docker compose down
