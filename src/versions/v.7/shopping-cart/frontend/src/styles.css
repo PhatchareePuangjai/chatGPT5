@@ -1,0 +1,85 @@
+:root {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color: #111;
+  background: #f7f7fb;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.container { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+.header { margin-bottom: 16px; }
+.muted { color: #666; }
+.tiny { font-size: 12px; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono"; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 16px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e7e7ef;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { border-bottom: 1px solid #eee; padding: 10px 8px; text-align: left; vertical-align: top; }
+.table th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #555; }
+
+.btn {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn:hover { background: #f2f2f7; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn.small { padding: 6px 8px; border-radius: 8px; }
+.btn.secondary { border-color: #cfd3ff; }
+.btn.primary { border-color: #6c7bff; background: #6c7bff; color: #fff; }
+.btn.primary:hover { background: #5b6bf5; }
+.btn.danger { border-color: #ffd0d0; background: #fff5f5; }
+
+.input {
+  width: 60px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.qty { display: flex; align-items: center; gap: 8px; }
+
+.totals {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+  margin: 12px 0 16px;
+  padding: 12px;
+  border: 1px dashed #e3e3ef;
+  border-radius: 12px;
+  background: #fbfbff;
+}
+.big { font-size: 22px; font-weight: 700; }
+.checkout { display: flex; justify-content: flex-end; }
+
+.alert {
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 10px 0;
+  border: 1px solid #eee;
+}
+.alert.error { background: #fff3f3; border-color: #ffd0d0; }
+.alert.ok { background: #f3fff4; border-color: #c7f5cc; }
+
+@media (max-width: 980px) {
+  .grid { grid-template-columns: 1fr; }
+}
