@@ -10,6 +10,10 @@ jobs:
   zap_scan:
     name: Scan ${{ matrix.version }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     strategy:
       fail-fast: false # ถ้าเวอร์ชันหนึ่งพัง ให้เวอร์ชันอื่นรันต่อ
       matrix:
