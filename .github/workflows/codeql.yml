@@ -19,6 +19,7 @@ on:
       - 'src/versions/v.6/**'
       - 'src/versions/v.7/**'
       - 'src/versions/v.8/**'
+  workflow_dispatch:
 
 jobs:
   analyze:
