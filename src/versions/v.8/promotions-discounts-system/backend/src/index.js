@@ -24,6 +24,10 @@ app.use("/api", apiRoutes);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Backend listening on :${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Backend listening on :${PORT}`);
+  });
+}
+
+module.exports = app;
