@@ -15,26 +15,27 @@ jobs:
       issues: write
       pull-requests: write
     strategy:
-      fail-fast: false # ถ้าเวอร์ชันหนึ่งพัง ให้เวอร์ชันอื่นรันต่อ
+      fail-fast: false
       matrix:
         include:
-          - version: 'v.3'
+          # เปลี่ยนชื่อจาก v.3 เป็น v3 เพื่อเลี่ยงปัญหาชื่อ Artifact
+          - version: 'v3'
             path: 'src/versions/v.3/online-shop-inventory'
             port: '5173'
             
-          - version: 'v.4'
+          - version: 'v4'
             path: 'src/versions/v.4/shopping-cart-app'
             port: '5173'
 
-          - version: 'v.5'
+          - version: 'v5'
             path: 'src/versions/v.5/promo-shop-plug-and-play'
             port: '8080'
 
-          - version: 'v.6'
+          - version: 'v6'
             path: 'src/versions/v.6/inventory-system'
-            port: '3000' # ใช้ port 3000 สำหรับ Web ตาม Env variables ด้านล่าง
+            port: '3000'
 
-          - version: 'v.7'
+          - version: 'v7'
             path: 'src/versions/v.7/shopping-cart-bundle'
             port: '8080'
 
@@ -42,11 +43,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # (เฉพาะ v.6) สร้างไฟล์ .env เพราะ docker-compose.yml ของ v.6 มีการอ้างถึง env_file: .env
       - name: Create .env file for v.6
-        if: matrix.version == 'v.6'
+        if: matrix.version == 'v6'
         run: |
-          echo "Creating .env file for v.6"
           cat <<EOF > src/versions/v.6/inventory-system/.env
           DB_USER=test
           DB_PASSWORD=test
@@ -61,29 +60,22 @@ jobs:
           EOF
 
       - name: Start Application (${{ matrix.version }})
-        working-directory: ./${{ matrix.path }}
+        # แก้ไข: ระบุ path ตรงๆ จาก matrix โดยไม่ต้องมี ./ นำหน้า
+        working-directory: ${{ matrix.path }}
         run: |
-          # ส่งผ่าน environment variables ปัจจุบันเข้าไปใน docker-compose
           docker compose up -d --build
           echo "Waiting for application to initialize..."
-          sleep 60 # รอ 60 วินาทีเพื่อให้แน่ใจว่า DB และ App พร้อมทำงานจริงๆ
-
-      - name: Prepare Artifact Name
-        run: |
-          VERSION="${{ matrix.version }}"
-          # แทนที่จุด . ด้วยขีด - เพื่อความปลอดภัยของชื่อ artifact
-          SAFE_VERSION=${VERSION//./-}
-          echo "ARTIFACT_NAME=zap-report-$SAFE_VERSION" >> $GITHUB_ENV
+          sleep 60 
 
       - name: ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
           target: 'http://localhost:${{ matrix.port }}'
-          fail_action: false # เปลี่ยนเป็น true ถ้าอยากให้ build fail เมื่อเจอ issue
-          artifact_name: ${{ env.ARTIFACT_NAME }}
-          # cmd_options: '-a' # Uncomment หากต้องการรวม AJAX Spider (สแกนลึกขึ้นแต่ช้าลง)
+          fail_action: false
+          # แก้ไข: ใช้ชื่อจาก matrix.version ที่เราเอาจุดออกแล้ว
+          artifact_name: 'zap-report-${{ matrix.version }}'
 
       - name: Stop Application
         if: always()
-        working-directory: ./${{ matrix.path }}
+        working-directory: ${{ matrix.path }}
         run: docker compose down
