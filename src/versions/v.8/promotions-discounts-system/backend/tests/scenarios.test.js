@@ -44,27 +44,52 @@ function resetMockData(yesterday) {
 // Implement Query Logic
 db.query.mockImplementation(async (text, params = []) => {
   const sql = text.trim();
-  const upperSql = sql.toUpperCase(); // Basic normalization
+  const upperSql = sql.replace(/\s+/g, ' ').toUpperCase(); // Normalize whitespace and case
 
-  // Keep alive check
-  if (upperSql.includes("SELECT 1")) return { rowCount: 1, rows: [{ k: 1 }] };
+  // Specific Checks FIRST (to avoid generic 'SELECT 1' matching 'SELECT 1 FROM ...')
+  
+  // Check Usage History
+  if ((upperSql.includes("FROM USER_COUPON_HISTORY") || upperSql.includes("FROM COUPON_USAGES")) && upperSql.includes("SELECT")) {
+    const userId = params[0];
+    const couponId = params[1];
+    const found = mockHistory.some(h => h.user_id === userId && h.coupon_id === couponId);
+    return { rows: found ? [1] : [], rowCount: found ? 1 : 0 };
+  }
+
+  // Get Order
+  if (upperSql.includes("FROM ORDERS") && upperSql.includes("SELECT")) {
+    const id = params[0];
+    const order = mockOrders.find(o => o.id === id);
+    return { rows: order ? [order] : [], rowCount: order ? 1 : 0 }; 
+  }
+
+  // Get Coupon
+  if (upperSql.includes("FROM COUPONS") && upperSql.includes("SELECT")) {
+    const code = params[0] ? params[0].toString().toUpperCase() : "";
+    const coupon = mockCoupons.find(c => c.code === code);
+    return { rows: coupon ? [coupon] : [], rowCount: coupon ? 1 : 0 };
+  }
+
+  // Keep alive check (Generic)
+  if (upperSql === "SELECT 1" || upperSql === "SELECT 1;" || upperSql === "SELECT 1 AS OK") {
+     return { rowCount: 1, rows: [{ k: 1 }] };
+  }
   
   // Transaction control
   if (upperSql.match(/^(BEGIN|COMMIT|ROLLBACK)/)) return { rowCount: 0 };
   
-  // Truncate (Called in beforeEach, but we handle state reset manually in beforeEach hook too)
+  // Truncate
   if (upperSql.startsWith("TRUNCATE")) {
     return { rowCount: 0 };
   }
 
-  // Insert Coupons (Called in beforeEach)
-  if (upperSql.includes("INSERT INTO coupons")) {
-     // We pre-seeded in beforeEach
+  // Insert Coupons
+  if (upperSql.includes("INSERT INTO COUPONS")) {
      return { rowCount: 5 };
   }
 
   // Create Order
-  if (upperSql.includes("INSERT INTO orders")) {
+  if (upperSql.includes("INSERT INTO ORDERS")) {
     const userId = params[0];
     const total = params[1];
     const id = `00000000-0000-0000-0000-00000000${orderIdCounter++}`;
@@ -81,34 +106,9 @@ db.query.mockImplementation(async (text, params = []) => {
     mockOrders.push(newOrder);
     return { rows: [newOrder], rowCount: 1 };
   }
-  
-  // Get Order
-  if (upperSql.includes("FROM orders") && upperSql.includes("SELECT")) {
-    const id = params[0];
-    const order = mockOrders.find(o => o.id === id);
-    return { rows: order ? [order] : [], rowCount: order ? 1 : 0 }; 
-  }
-
-  // Get Coupon (Exact code match)
-  if (upperSql.includes("FROM coupons") && upperSql.includes("SELECT")) {
-    const code = params[0] ? params[0].toString().toUpperCase() : "";
-    const coupon = mockCoupons.find(c => c.code === code);
-    return { rows: coupon ? [coupon] : [], rowCount: coupon ? 1 : 0 };
-  }
-
-  // Check Usage History
-  if ((upperSql.includes("FROM user_coupon_history") || upperSql.includes("FROM coupon_usages")) && upperSql.includes("SELECT")) {
-    const userId = params[0];
-    const couponId = params[1];
-    const found = mockHistory.some(h => h.user_id === userId && h.coupon_id === couponId);
-    return { rows: found ? [1] : [], rowCount: found ? 1 : 0 };
-  }
 
   // Update Order
-  if (upperSql.startsWith("UPDATE orders")) {
-    // Params: percentDiscount, fixedApplied, grandTotal, coupon.id, orderId (from code structure)
-    // Indexes: $1, $2, $3, $4, $5
-    // params array is 0-indexed.
+  if (upperSql.startsWith("UPDATE ORDERS")) {
     const orderId = params[4];
     const idx = mockOrders.findIndex(o => o.id === orderId);
     if (idx !== -1) {
@@ -127,7 +127,7 @@ db.query.mockImplementation(async (text, params = []) => {
   }
 
   // Insert History
-  if (upperSql.includes("INSERT INTO user_coupon_history")) {
+  if (upperSql.includes("INSERT INTO USER_COUPON_HISTORY")) {
     mockHistory.push({ user_id: params[0], coupon_id: params[1], order_id: params[2] });
     return { rowCount: 1 };
   }
