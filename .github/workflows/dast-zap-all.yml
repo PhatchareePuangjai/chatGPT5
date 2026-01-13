@@ -36,8 +36,12 @@ jobs:
             port: '3000'
 
           - version: 'v7'
-            path: 'src/versions/v.7/shopping-cart-bundle'
+            path: 'src/versions/v.7/shopping-cart'
             port: '8080'
+
+          - version: 'v8'
+            path: 'src/versions/v.8/promotions-discounts-system'
+            port: '5173'
 
     steps:
       - name: Checkout Code

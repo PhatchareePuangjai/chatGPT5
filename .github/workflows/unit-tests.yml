@@ -8,6 +8,8 @@ on:
       - 'src/versions/v.4/**'
       - 'src/versions/v.5/**'
       - 'src/versions/v.6/**'
+      - 'src/versions/v.7/**'
+      - 'src/versions/v.8/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -15,6 +17,8 @@ on:
       - 'src/versions/v.4/**'
       - 'src/versions/v.5/**'
       - 'src/versions/v.6/**'
+      - 'src/versions/v.7/**'
+      - 'src/versions/v.8/**'
 
 jobs:
   test:
@@ -32,6 +36,10 @@ jobs:
             path: src/versions/v.5/promo-shop-plug-and-play/backend
           - version: v.6
             path: src/versions/v.6/inventory-system/backend
+          - version: v.7
+            path: src/versions/v.7/shopping-cart/backend
+          - version: v.8
+            path: src/versions/v.8/promotions-discounts-system/backend
 
     steps:
       - uses: actions/checkout@v4
