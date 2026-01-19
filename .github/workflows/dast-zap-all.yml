@@ -71,13 +71,27 @@ jobs:
           echo "Waiting for application to initialize..."
           sleep 60 
 
+      - name: Compute safe artifact name
+        id: artifact
+        shell: bash
+        run: |
+          raw="zap-report-${{ matrix.version }}"
+          safe="$(printf '%s' "$raw" | tr -cd 'A-Za-z0-9_-')"
+          if [[ -z "$safe" ]]; then
+            echo "Sanitized artifact name is empty (raw: [$raw])" >&2
+            exit 1
+          fi
+          echo "raw_artifact_name=$raw" >> "$GITHUB_STEP_SUMMARY"
+          echo "safe_artifact_name=$safe" >> "$GITHUB_STEP_SUMMARY"
+          echo "name=$safe" >> "$GITHUB_OUTPUT"
+
       - name: ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
           target: 'http://localhost:${{ matrix.port }}'
           fail_action: false
           # แก้ไข: ใช้ชื่อจาก matrix.version ที่เราเอาจุดออกแล้ว
-          artifact_name: 'zap-report-${{ matrix.version }}'
+          artifact_name: ${{ steps.artifact.outputs.name }}
 
       - name: Stop Application
         if: always()
