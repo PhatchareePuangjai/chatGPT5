@@ -1,0 +1,53 @@
+# Speckit Tasks — Shopping Cart Scenarios (v.4 shopping-cart-app)
+
+## Scope & References
+- **Spec:** `speckit.specify` (FR1–FR5)
+- **Plan:** `speckit.plan`
+- **Codebase:** `src/versions/v.4/shopping-cart-app`
+- **Stacks:** React 18.3.1 + Vite 5.4.8 frontend, Node.js (ESM) + Express 4.19.2 backend, Postgres via `pg` 8.12.0, validation with Zod 3.23.8.
+
+## Backend Tasks (Node.js / Express / pg / Zod)
+1. **Cart Domain Audit**
+   - Review `backend/db` schema & migrations to confirm fields for `status`, `quantity`, `unit_price_cents`, and stock availability are present.
+   - Update Zod schemas in `backend/src` to align with FR1–FR5 inputs/outputs (quantity updates, save flags, localization-ready errors).
+2. **Quantity Update Endpoint (FR1)**
+   - Ensure `PATCH /api/cart/items/:productId` recalculates `line_total_cents` and cart totals atomically using transactions and row-level locking.
+   - Add optimistic-lock safeguards (e.g., `updated_at` checks) and emit structured logs/events for each update.
+3. **Merge + Stock Validation (FR2 & FR4)**
+   - Refactor `POST /api/cart/items` so duplicate SKUs reuse the update logic (no duplicate rows).
+   - Implement `(current_qty + delta) ≤ stock_available` guard with localized `"สินค้าไม่เพียงพอ"` error payloads; persist rejection audits.
+4. **Save for Later Workflow (FR3)**
+   - Implement `POST /api/cart/items/:productId/save` toggle to flip `status` without deleting rows; totals recalc excluding saved items.
+   - Guarantee saved items retain historical price/qty and can be restored with the same stock validation path.
+5. **Money Precision Utilities (FR5)**
+   - Centralize cent-based helpers (add, multiply, format) and replace floating math in services/controllers.
+   - Cover operations like `1999 * 3 = 5997` via dedicated unit tests.
+6. **Automated Tests**
+   - Add Jest + Supertest suites for FR1–FR5 (success + edge cases, including stock rejection and decimal math).
+   - Seed deterministic fixtures in `backend/tests` mirroring `scenarios_cart.md`.
+
+## Frontend Tasks (React 18 + Vite)
+1. **Cart State Manager**
+   - Build/use a centralized hook or context to sync cart data, totals, and saved items with backend responses; handle optimistic UI with rollback on failure.
+   - Ensure React Query/fetch utilities respect ESM setup and handle concurrency (latest-write-wins).
+2. **Quantity & Merge UI (Scenario 6.1/6.2)**
+   - Update item components to show live quantity, line total, and subtotal recalculations after every mutation.
+   - Prevent duplicate rows when re-adding products by reusing server-calculated data; disable controls during pending requests.
+3. **Save for Later Experience (Scenario 6.3)**
+   - Implement “Save for Later” + “Move to Cart” actions with clear state transitions (active vs saved sections) and accessibility cues.
+4. **Error & Localization Handling (Edge 7.1)**
+   - Surface stock rejections inline using translated strings from the i18n layer; ensure focus management for screen readers.
+5. **Decimal Precision Display (Edge 7.2)**
+   - Format cents to two-decimal strings consistently; add unit tests for formatter utilities (e.g., `5997 → 59.97`).
+6. **Frontend Tests**
+   - Write component tests (React Testing Library) for cart item interactions and save-for-later flow.
+   - Add Cypress/Playwright E2E specs covering the acceptance and edge-case scenarios end-to-end against the Express API.
+
+## Cross-Cutting Tasks
+1. **Performance & Observability**
+   - Instrument key endpoints and React interactions (Web Vitals) to assert 150 ms median / 300 ms p95 targets.
+   - Forward logs/metrics to the monitoring stack with correlation IDs for each cart mutation.
+2. **CI/CD Guardrails**
+   - Ensure lint, type-check (if TS used), Jest, integration, E2E, and performance smoke tests run in the pipeline and block on failure.
+3. **Documentation & Runbooks**
+   - Update `src/versions/v.4/shopping-cart-app/README.md` (or module-specific docs) with API contracts, error payload formats, and troubleshooting steps for cart flows.

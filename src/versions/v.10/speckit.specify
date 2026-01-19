@@ -1,0 +1,59 @@
+# Speckit Specification — Shopping Cart State Management
+
+## 1. Context
+- **Module:** Shopping Cart (v.10 scenarios)
+- **Goal:** Guarantee consistent cart state transitions, mathematical accuracy, and user-visible feedback for quantity updates, duplicates, save-for-later, stock validation, and decimal calculations.
+- **Actors:** Authenticated shopper, cart service, product inventory service, saved-items list.
+
+## 2. Data & State
+- **Cart Item:** `{sku, name, unit_price, quantity, stock_available, status}` where `status ∈ {active, saved}`.
+- **Cart Totals:** `line_total = unit_price * quantity`, `grand_total = Σ line_total (active only)`.
+- **Inventory Rule:** `requested_qty ≤ stock_available`.
+- **Saved Items:** Items moved from cart with preserved quantity and price snapshot.
+
+## 3. Functional Requirements
+
+### FR1 — Update Item Quantity (Scenario 6.1)
+1. Given an active cart item with known unit price and quantity, when the user adjusts quantity, the system recalculates `line_total` and `grand_total` synchronously.
+2. Quantity updates must be atomic; concurrent requests resolve using optimistic locking with latest inventory counts.
+3. UI reflects the committed quantity, line total, and cart total immediately; stale states are never shown.
+
+### FR2 — Merge Duplicate Additions (Scenario 6.2)
+1. When "Add to Cart" is triggered for an SKU already present, the backend must merge into the existing cart line instead of creating a duplicate row.
+2. The resulting quantity equals `current_qty + new_qty`; validation ensures the sum does not exceed stock.
+3. If stock would be exceeded, return an actionable error, keep quantity unchanged, and display the cart with original values.
+
+### FR3 — Save for Later (Scenario 6.3)
+1. Triggering "Save for Later" moves the item from `status=active` to `status=saved` without deleting the record.
+2. Grand total recalculates excluding the saved item; the UI must show the item inside the Saved Items list with previous quantity and price.
+3. Saved items can be restored later with stock validation identical to FR2.
+
+### FR4 — Stock Enforcement (Edge Case 7.1)
+1. Before applying a quantity change, evaluate `current_cart_qty + requested_addition ≤ stock_available`.
+2. If the rule fails, reject the change, keep stored quantity untouched, and emit the localized message "สินค้าไม่เพียงพอ".
+3. Log each rejection with SKU, requested amount, and available stock for monitoring.
+
+### FR5 — Monetary Precision (Edge Case 7.2)
+1. Monetary calculations must produce decimal-safe results: use integer cents or a money library to avoid floating-point drift.
+2. Display values with two decimal places by default; serialization preserves exact numeric values (no binary rounding artifacts).
+3. Regression tests cover multiplication and aggregation scenarios (e.g., `19.99 * 3 = 59.97`) to prevent future regressions.
+
+## 4. Non-Functional Requirements
+- **Performance:** Quantity updates should complete within 150 ms median / 300 ms p95 with real-time total updates.
+- **Usability:** Every state change (success or failure) provides inline feedback; no silent failures.
+- **Localization:** All user-facing strings pass through the i18n layer; Thai copy provided for validation errors.
+- **Observability:** Emit events for quantity changes, save-for-later actions, and stock rejections with correlation IDs for replay.
+
+## 5. Test Coverage Expectations
+- **Unit Tests:** Validate merge logic, stock guard, and monetary calculations using deterministic data.
+- **Integration Tests:** Cover FR1–FR3 via API-level Given/When/Then flows mirroring scenarios_cart.md tables 6–7.
+- **UI/End-to-End:** Ensure state transitions (active ↔ saved) and real-time totals render correctly in supported browsers/devices.
+
+## 6. Acceptance Criteria Traceability
+- Scenario 6.1 → FR1
+- Scenario 6.2 → FR2
+- Scenario 6.3 → FR3
+- Edge Case 7.1 → FR4
+- Edge Case 7.2 → FR5
+
+This document constitutes the Speckit specification for the Shopping Cart scenarios in `scenarios_cart.md`.

@@ -1,0 +1,163 @@
+openapi: 3.0.3
+info:
+  title: Inventory Stock Integrity API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+paths:
+  /inventory/{sku}:
+    get:
+      summary: Get inventory for a SKU
+      parameters:
+        - in: path
+          name: sku
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Inventory details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InventoryItem"
+  /inventory/{sku}/deduct:
+    post:
+      summary: Deduct stock after a successful purchase
+      parameters:
+        - in: path
+          name: sku
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StockChangeRequest"
+      responses:
+        "200":
+          description: Stock deducted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StockChangeResponse"
+        "409":
+          description: Insufficient stock
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /inventory/{sku}/restore:
+    post:
+      summary: Restore stock after cancellation/expiration
+      parameters:
+        - in: path
+          name: sku
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StockRestoreRequest"
+      responses:
+        "200":
+          description: Stock restored successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StockChangeResponse"
+  /inventory/{sku}/alerts:
+    get:
+      summary: List low-stock alerts for a SKU
+      parameters:
+        - in: path
+          name: sku
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Alert list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StockAlert"
+components:
+  schemas:
+    InventoryItem:
+      type: object
+      properties:
+        sku:
+          type: string
+        quantity:
+          type: integer
+        low_stock_threshold:
+          type: integer
+        updated_at:
+          type: string
+          format: date-time
+      required: [sku, quantity, low_stock_threshold]
+    StockChangeRequest:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          minimum: 1
+        order_id:
+          type: string
+      required: [quantity, order_id]
+    StockRestoreRequest:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          minimum: 1
+        order_id:
+          type: string
+        reason:
+          type: string
+          enum: [canceled, expired]
+      required: [quantity, order_id, reason]
+    StockChangeResponse:
+      type: object
+      properties:
+        sku:
+          type: string
+        new_quantity:
+          type: integer
+        log_id:
+          type: string
+      required: [sku, new_quantity, log_id]
+    StockAlert:
+      type: object
+      properties:
+        id:
+          type: string
+        sku:
+          type: string
+        threshold:
+          type: integer
+        quantity:
+          type: integer
+        status:
+          type: string
+          enum: [OPEN, ACKED]
+        created_at:
+          type: string
+          format: date-time
+      required: [id, sku, threshold, quantity, status, created_at]
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required: [error, message]

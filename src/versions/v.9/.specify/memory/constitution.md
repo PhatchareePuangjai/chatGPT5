@@ -1,50 +1,64 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: template -> 1.0.0
+- Modified principles: N/A (initial definition)
+- Added sections: Core Principles, Quality Gates, Development Workflow, Governance
+- Removed sections: N/A
+- Templates requiring updates:
+  - ✅ /Users/toy/Desktop/learn/AI/chat_gsheet_logger_python/src/versions/v.9/.specify/templates/plan-template.md
+  - ✅ /Users/toy/Desktop/learn/AI/chat_gsheet_logger_python/src/versions/v.9/.specify/templates/spec-template.md
+  - ✅ /Users/toy/Desktop/learn/AI/chat_gsheet_logger_python/src/versions/v.9/.specify/templates/tasks-template.md
+- Follow-up TODOs:
+  - TODO(RATIFICATION_DATE): initial adoption date unknown
+-->
+# Chat GSheet Logger (Python) Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality Is Non-Negotiable
+All production code MUST meet lint/format rules, follow existing architecture
+boundaries, and keep functions/modules small and readable. Public interfaces MUST
+be documented, and any complexity MUST be justified in code review.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Testing Standards Are Mandatory
+Every behavior change MUST include automated tests that prove correctness and
+guard against regression. Use unit tests for business logic, integration tests
+for boundaries (I/O, APIs, storage), and edge-case coverage for failure modes.
+Tests MUST be deterministic and pass in CI before merge.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. User Experience Consistency
+User-facing outputs (CLI messages, logs, API responses, docs) MUST follow the
+established patterns for wording, formatting, and error handling. New flows MUST
+avoid breaking existing user expectations and MUST update documentation when
+behavior changes.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Performance Requirements Are Explicit
+Performance budgets (latency, throughput, memory) MUST be defined for
+user-facing or batch workflows. Any change with performance impact MUST include
+measurements or benchmarks that show it meets the stated budget.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Quality Gates
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- Linting, formatting, and type checks MUST pass before merge.
+- Tests required by the Testing Standards principle MUST be included.
+- Code review MUST verify architecture boundaries, UX consistency, and
+  performance impact.
+- Documentation updates are REQUIRED when behavior or workflows change.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Development Workflow
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Feature specs MUST include UX consistency notes and performance targets when
+  applicable.
+- Plans MUST surface required test coverage and quality gates.
+- Tasks MUST include explicit test work and any performance validation steps.
+- Releases MUST include a brief validation note covering tests and performance.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- This constitution supersedes local conventions and templates.
+- Amendments require a written rationale, version bump, and updated templates.
+- Versioning follows semantic versioning: MAJOR for breaking governance changes,
+  MINOR for new or expanded principles, PATCH for clarifications.
+- Compliance is reviewed in planning, code review, and release validation.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): initial adoption date unknown | **Last Amended**: 2026-01-19

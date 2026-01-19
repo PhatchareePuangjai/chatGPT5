@@ -95,13 +95,6 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
-### Non-Functional Requirements
-
-- **NFR-001**: UX consistency MUST follow existing patterns for wording,
-  formatting, and error handling across user-facing outputs.
-- **NFR-002**: Performance budgets MUST be defined and measurable (latency,
-  throughput, memory) for user-facing or batch workflows.
-
 ### Key Entities *(include if feature involves data)*
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]

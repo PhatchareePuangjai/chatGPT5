@@ -1,0 +1,29 @@
+# Speckit Constitution — Quality & Experience Charter
+
+## 1. Code Quality
+- Write modular, single-responsibility components with explicit contracts for inputs, outputs, and failure states.
+- Adhere to project formatting/lint rules; unformatted or lint-breaking code never merges.
+- Prefer self-documenting code, but annotate non-obvious domain logic and edge-case handling with concise comments.
+- Enforce code review gates: every change requires at least one reviewer to validate correctness, security, and readability.
+- Maintain automated static analysis (linting, type checks, dependency audits) in CI; builds fail on any warning escalation.
+
+## 2. Testing Standards
+- Every feature or bug fix ships with automated tests covering the happy path, dominant edge cases, and failure handling.
+- Maintain >85% branch coverage for critical modules and ensure new code does not reduce coverage without explicit approval.
+- Favor deterministic tests; mock external dependencies and seed randomness to make runs reproducible.
+- Define smoke, regression, and performance test suites with clear entry criteria; CI blocks releases when any suite fails.
+- Document test data fixtures and keep them version-controlled to ensure traceability and repeatability.
+
+## 3. User Experience Consistency
+- Follow a shared design system (components, typography, spacing, interaction patterns); deviations require UX approval.
+- Deliver consistent states (loading, empty, error, success) with accessible feedback, never leaving users without context.
+- Maintain WCAG 2.1 AA compliance as a baseline, including keyboard navigation, contrast ratios, and screen-reader labels.
+- Localize copy and formatting rules through a centralized i18n layer; never hard-code user-facing strings.
+- Instrument user flows to capture usability metrics (drop-off, latency, accessibility issues) and feed them back into planning.
+
+## 4. Performance Requirements
+- Set quantitative SLOs (e.g., p95 API latency <300 ms, page interactive <2 s on 3G, memory <500 MB per service) and monitor them continuously.
+- Budget performance per feature—measure before/after changes and include results in PRs affecting critical paths.
+- Use lazy loading, pagination, and caching strategies to avoid unnecessary computation or network transfer.
+- Profile regularly (CPU, memory, network) in staging environments that mirror production scale; remediate regressions before release.
+- Automate performance tests within release pipelines and block deployments when metrics exceed defined guardrails.

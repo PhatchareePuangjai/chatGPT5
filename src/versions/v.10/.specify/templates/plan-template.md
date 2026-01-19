@@ -31,10 +31,7 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-- Code quality gate: lint/format/type checks planned and enforceable.
-- Testing gate: required unit/integration coverage identified per feature area.
-- UX consistency gate: user-facing outputs align with existing conventions.
-- Performance gate: measurable targets and validation method defined.
+[Gates determined based on constitution file]
 
 ## Project Structure
 

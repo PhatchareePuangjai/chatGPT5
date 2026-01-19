@@ -1,0 +1,45 @@
+# Speckit Implementation Plan — Shopping Cart Scenarios
+
+## Milestone 1 — Backend State Management
+1. **Design Cart Domain Updates**
+   - Review existing cart schema; ensure fields for `status`, `stock_available`, and precise money representation.
+   - Document optimistic-locking approach for quantity updates.
+2. **Implement Quantity Update API (FR1)**
+   - Update cart service to recalc `line_total`/`grand_total` atomically.
+   - Emit observability events for success/failure.
+3. **Merge Logic & Stock Guardrails (FR2 & FR4)**
+   - Unify "add to cart" path with quantity update logic.
+   - Enforce `(current_qty + delta) ≤ stock`; localize rejection message.
+4. **Money Precision Layer (FR5)**
+   - Introduce shared money utility or cents-based storage.
+   - Refactor calculations and serialization to use the utility.
+5. **Unit Tests**
+   - Cover update, merge, stock rejection, and money math.
+
+## Milestone 2 — Saved Items Workflow
+1. **Data & API Extensions (FR3)**
+   - Add endpoints/actions for `Save for Later` and `Move to Cart`.
+   - Ensure grand total recalculates excluding saved items.
+2. **Persistence & Audit**
+   - Preserve quantity/price snapshot in saved-items list.
+   - Log state transitions for analytics.
+3. **Integration Tests**
+   - API-level tests for active↔saved flows and totals.
+
+## Milestone 3 — Frontend & UX Consistency
+1. **UI State Synchronization**
+   - Hook UI to backend events for immediate updates to quantity, totals, and saved items list.
+   - Ensure loading/error states align with UX guidelines.
+2. **Localization & Accessibility**
+   - Pipe validation strings through i18n; verify Thai copy for stock errors.
+   - Confirm WCAG-compliant announcements for updates/errors.
+3. **E2E Tests**
+   - Browser tests validating scenarios from tables 6–7 (quantity update, merge, save-for-later, stock error, decimal precision display).
+
+## Milestone 4 — Performance & Observability
+1. **Performance Budgeting**
+   - Instrument quantity update and save-for-later endpoints; verify 150 ms median/300 ms p95.
+2. **Monitoring Dashboards**
+   - Surface cart actions (quantity change, save, rejection) with correlation IDs.
+3. **Regression Gates**
+   - Wire unit, integration, E2E, and performance tests into CI with blocking thresholds.

@@ -1,0 +1,60 @@
+# Speckit Implementation Guide — Shopping Cart Scenarios (v.4)
+
+## 1. Preparation
+1. Checkout `src/versions/v.4/shopping-cart-app`.
+2. Copy environment templates (`cp backend/.env.example backend/.env`, same for frontend if needed) and run `npm install` in both `backend` and `frontend`.
+3. Start Postgres via `docker compose up -d db` (from the app root) and run `npm run db:migrate` + `npm run db:seed` in `backend`.
+
+## 2. Backend Execution (Node.js, Express, pg, Zod)
+1. **Schema & Models**
+   - Inspect `backend/db/migrations` to confirm `cart_items` has `status`, `quantity`, `unit_price_cents`, `saved` indicators.
+   - Add missing columns/migrations if necessary (run migrate + seed after changes).
+2. **Domain Utilities**
+   - Create `backend/src/lib/money.js` with helpers (`toCents`, `fromCents`, `multiply`, `sum`), using integers only.
+   - Implement stock guard helper (`assertStockAvailable(currentQty, delta, stockAvailable)`).
+3. **Validation Layer**
+   - Extend Zod schemas in `backend/src/schemas/cart.js` (or analogous file) for add/update/save payloads with constraints (`qty` positive integer, `saved` boolean).
+4. **Repositories / Services**
+   - Centralize cart mutations in a service (e.g., `backend/src/services/cartService.js`) that:
+     - Wraps `pg` queries in a transaction (`BEGIN … COMMIT`) with `FOR UPDATE` row locks.
+     - Recalculates `line_total_cents` and totals using money helpers.
+     - Emits structured logs/events (`logger.info({ sku, action, correlationId })`).
+5. **Routes / Controllers**
+   - `POST /api/cart/items` uses the service to merge duplicates; returns updated cart snapshot.
+   - `PATCH /api/cart/items/:productId` updates quantity; if stock guard fails, throw error with message `"สินค้าไม่เพียงพอ"`.
+   - `POST /api/cart/items/:productId/save` toggles status (`active`↔`saved`) and recalculates totals excluding saved items.
+6. **Error Handling**
+   - Normalize errors via middleware (status codes, localized messages, `errorCode` fields).
+7. **Tests**
+   - Add Jest unit tests for money utilities and stock guard.
+   - Add Supertest integration suites under `backend/tests/cart.test.js` covering scenarios 6.1–6.3 + edge cases 7.1–7.2.
+
+## 3. Frontend Execution (React 18, Vite)
+1. **State Management**
+   - Create `frontend/src/hooks/useCart.js` (or context) that fetches `/api/cart`, exposes mutations for add/update/save using fetch or React Query; handle optimistic state + rollback on failure.
+2. **Components**
+   - Update cart item component to display quantity controls, line total, and status badges.
+   - Create Saved Items section listing `status === "saved"` entries with "Move to Cart" button.
+3. **Mutations**
+   - Wire UI buttons to backend endpoints; disable controls while pending, show inline spinners.
+   - For stock errors, render message returned from backend (Thai copy) and focus the alert for accessibility.
+4. **Formatting**
+   - Add `frontend/src/utils/money.ts` (or `.js`) mirroring backend cents helpers; ensure `5997 -> "59.97"`.
+5. **Tests**
+   - Component tests via React Testing Library for quantity adjustment and save transitions.
+   - E2E tests (Cypress or Playwright) simulating the acceptance scenarios; run against local backend using seeded data.
+
+## 4. Performance & Observability
+1. Add instrumentation (e.g., `performance.mark`) in frontend for cart actions; report to console or telemetry client.
+2. On backend, capture latency metrics per endpoint (use middleware) and log correlation IDs.
+3. Verify latency targets (150 ms median / 300 ms p95) with `autocannon` or similar against the dev server; document results in PR.
+
+## 5. CI/CD Integration
+1. Ensure `backend/package.json` runs `npm test` (Jest) and `frontend` has `npm run test` if using Vitest/RTL.
+2. Update pipeline (GitHub Actions or similar) to execute: lint → tests → integration → E2E (headless) → performance smoke.
+3. Block merges when coverage drops below agreed threshold (>85% for cart modules).
+
+## 6. Documentation & Handoff
+1. Update `shopping-cart-app/README.md` with API payload examples, error formats, and instructions for running new tests.
+2. Add troubleshooting guide for stock errors and money precision to `docs/` or README appendix.
+3. Capture release notes summarizing features and quality gates satisfied; link to `speckit.specify`, `speckit.plan`, and `speckit.tasks` for traceability.
