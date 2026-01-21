@@ -1,0 +1,12 @@
+.git/
+node_modules/
+**/node_modules/
+dist/
+build/
+coverage/
+.env*
+*.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

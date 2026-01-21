@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shopping_cart
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/shopping_cart
+      PORT: 4000
+      DEBUG_ERRORS: "false"
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    command: sh -c "npm run db:migrate && npm run db:seed && npm run dev"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    environment:
+      VITE_API_URL: http://localhost:4000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

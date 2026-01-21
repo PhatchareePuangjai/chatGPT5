@@ -1,7 +1,7 @@
-# Speckit Implementation Guide — Shopping Cart Scenarios (v.4)
+# Speckit Implementation Guide — Shopping Cart Scenarios (v.10)
 
 ## 1. Preparation
-1. Checkout `src/versions/v.4/shopping-cart-app`.
+1. Use the target shopping cart app for this version (`src/versions/v.10` is the spec bundle; apply changes in your app repo).
 2. Copy environment templates (`cp backend/.env.example backend/.env`, same for frontend if needed) and run `npm install` in both `backend` and `frontend`.
 3. Start Postgres via `docker compose up -d db` (from the app root) and run `npm run db:migrate` + `npm run db:seed` in `backend`.
 

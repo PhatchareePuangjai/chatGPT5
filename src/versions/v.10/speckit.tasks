@@ -1,10 +1,10 @@
-# Speckit Tasks — Shopping Cart Scenarios (v.4 shopping-cart-app)
+# Speckit Tasks — Shopping Cart Scenarios (v.10)
 
 ## Scope & References
 - **Spec:** `speckit.specify` (FR1–FR5)
 - **Plan:** `speckit.plan`
-- **Codebase:** `src/versions/v.4/shopping-cart-app`
-- **Stacks:** React 18.3.1 + Vite 5.4.8 frontend, Node.js (ESM) + Express 4.19.2 backend, Postgres via `pg` 8.12.0, validation with Zod 3.23.8.
+- **Codebase:** Apply to the target shopping cart app for this version; `src/versions/v.10` contains the spec bundle.
+- **Stacks:** Match the actual stack in the target app (do not assume React/Express unless already used).
 
 ## Backend Tasks (Node.js / Express / pg / Zod)
 1. **Cart Domain Audit**
