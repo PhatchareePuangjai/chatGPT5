@@ -1,0 +1,65 @@
+# Speckit Specification — Promotions & Discounts Engine
+
+## 1. Context
+- **Module:** Checkout promotion service (v.11 scenarios).
+- **Goal:** Ensure coupons and order-level discounts apply with correct eligibility checks, sequencing, and guardrails against misuse.
+- **Actors:** Shopper, checkout UI, promotion service, coupon catalog, order history service.
+
+## 2. Data & State
+- **Cart Summary:** `{subtotal, discount_lines[], grand_total}` with `grand_total = max(0, subtotal - Σ discount_lines.apply_value)`.
+- **Coupon:** `{code, type ∈ {fixed, percent}, value, min_subtotal, start_at, end_at, usage_limit_per_user}`.
+- **Usage Record:** `{user_id, code, times_used}` stored per finalized order to enforce limits.
+- **Audit Events:** `promotion_event` emitted for each apply/reject with `{code, reason, delta_amount}`.
+
+## 3. Functional Requirements
+
+### FR1 — Coupon Validation (Scenario 8.1)
+1. When a shopper submits `code=SAVE100`, verify `cart.subtotal ≥ coupon.min_subtotal`; reject immediately if the minimum is not satisfied.
+2. On pass, apply a fixed discount of 100 THB, recompute `grand_total = subtotal - 100`, and persist the discount line.
+3. Surface the success banner "ใช้คูปองสำเร็จ" and expose the reduced totals to downstream payment steps.
+
+### FR2 — Cart Total Percentage Discount (Scenario 8.2)
+1. Percentage promotions compute `discount = round_to_currency(subtotal * percent)` using monetary-safe math (no floating drift).
+2. Show the percentage discount as its own line item and update `grand_total = subtotal - discount` while keeping subtotal intact.
+3. Calculations must be synchronous during checkout so the review page shows 2,000 → 1,800 THB for a 10 % promo before payment authorization.
+
+### FR3 — Coupon Expiration Enforcement (Scenario 8.3)
+1. Reject coupon codes whose `current_date > coupon.end_at`; do not mutate cart totals.
+2. Present the localized error "คูปองหมดอายุ" and include `reason=expired` in audit logs for traceability.
+3. Expired attempts must not count toward redemption metrics or throttle legitimate codes.
+
+### FR4 — Usage Limit Guard (Edge Case 9.1)
+1. Before approving a coupon, look up the shopper's usage record; enforce `times_used < usage_limit_per_user`.
+2. When the limit is exceeded, block the discount, keep the subtotal and existing lines unchanged, and display "คุณใช้สิทธิ์ครบแล้ว".
+3. Record rejection events with user, code, and offending order ID to support fraud review.
+
+### FR5 — Discount Order of Operations (Edge Case 9.2)
+1. Apply percentage-based promotions before fixed-amount promotions unless a campaign overrides the priority.
+2. Example: subtotal 1,000 THB with 10 % then 100 THB fixed → `(1,000 - 10%) - 100 = 800` should be enforced deterministically for backend and UI.
+3. Provide deterministic ordering metadata in discount lines so downstream systems never reorder or recompute incorrectly.
+
+### FR6 — Negative Total Protection (Edge Case 9.3)
+1. After aggregating all discounts, clamp `grand_total = max(0, calculated_total)`; carts can be rejected earlier if business rules forbid > subtotal coupons.
+2. Show a validation error or final total of 0 THB instead of producing negative amounts which would break payment APIs.
+3. Regression tests must cover single-line items cheaper than fixed coupons to confirm the guard stays active.
+
+## 4. Non-Functional Requirements
+- **Performance:** Coupon validation (eligibility + calculation) should complete within 100 ms median / 200 ms p95 to maintain responsive checkout.
+- **Reliability:** All promotion writes are idempotent; retries never double-apply.
+- **Observability:** Promotion apply and reject paths emit structured events with `code`, `user_id`, `reason`, and amount deltas for monitoring.
+- **Localization:** All user-facing strings (success + failure) route through the i18n layer to keep Thai copy consistent.
+
+## 5. Test Coverage Expectations
+- **Unit Tests:** Validate min-spend logic, percent/fixed math, ordering enforcement, and the `max(0, total)` guard.
+- **Integration Tests:** Cover Given/When/Then flows for scenarios 8.1–8.3 using cart totals, coupon metadata, and clock controls.
+- **Edge Tests:** Simulate per-user usage exhaustion, combined discounts, and oversized coupons to ensure error messaging and guards behave as specified.
+
+## 6. Acceptance Criteria Traceability
+- Scenario 8.1 → FR1
+- Scenario 8.2 → FR2
+- Scenario 8.3 → FR3
+- Edge Case 9.1 → FR4
+- Edge Case 9.2 → FR5
+- Edge Case 9.3 → FR6
+
+This document is the Speckit specification derived from `scenarios_promotions.md`.

@@ -1,0 +1,76 @@
+# Speckit Implementation Guide — Promotions & Discounts (v.11)
+
+## 1. Preparation
+1. Use the target promotions-enabled checkout app for this version (`src/versions/v.11` contains the documentation bundle; apply code changes in the actual app repo).
+2. Copy environment templates (`cp backend/.env.example backend/.env`, same for frontend) and install dependencies (`npm install` or stack-equivalent).
+3. Start required services (e.g., Postgres/Redis) via `docker compose up -d` and run migrations + seeds covering coupons and usage history tables.
+
+## 2. Database Setup
+1. **Migrations**
+   - Create migrations for `coupons` (code, type, value_cents, min_subtotal_cents, start_at, end_at, usage_limit_per_user, priority_override).
+   - Add a `coupon_usages` table keyed by `{user_id, coupon_code}` with `times_used`, unique index, and audit timestamps; use row-level locking for updates.
+   - Extend `cart_totals` (or equivalent) with `discount_lines` JSONB plus denormalized `grand_total_cents`.
+2. **Seed Data**
+   - Seed representative coupons for scenarios: `SAVE100`, 10 % cart discount, `EXPIRED`, and `WELCOME` with usage limit = 1.
+   - Seed usage records to simulate exhausted coupons for Edge Case 9.1.
+3. **Database Access Layer**
+   - Implement repositories for coupons, coupon usages, and discount lines with parameterized queries.
+   - Add views/materialized views if analytics need aggregated promotion data.
+
+## 3. Backend Execution (Promotion Service)
+1. **Schema & Data Layer**
+   - Verify coupon catalog tables include fields for `min_subtotal`, `start_at`, `end_at`, `usage_limit_per_user`, `type`, `value`, and priority overrides.
+   - Add/adjust migrations so carts store `discount_lines` (JSON or child table) with `{code, type, value_cents, priority, reason}`.
+2. **Monetary Utilities**
+   - Create/reuse a cents-based money helper (`roundPercent`, `applyFixed`, `clampZero`) to avoid float drift (FR2, FR6).
+   - Unit-test combos such as `2000 * 10% = 200` and `(1000 - 10%) - 100 = 800`.
+3. **Eligibility Service (FR1–FR3)**
+   - Implement a pure function or class taking `{cart, coupon, user}` returning `{ok, reason}` with reasons (`min_spend_failed`, `expired`, `not_started`).
+   - Hook into `POST /checkout/coupons` (or equivalent) before any cart mutation; bail out early on failure.
+4. **Usage Limit Guard (FR4)**
+   - Query a usage repository (order history or coupon redemptions) with row-level locks; enforce `< usage_limit_per_user`.
+   - Expose rejection payload `"คุณใช้สิทธิ์ครบแล้ว"` via i18n; log audit events with `reason=usage_limit`.
+5. **Discount Sequencer (FR5)**
+   - Implement deterministic ordering: percentage discounts first, then fixed, unless coupon metadata overrides.
+   - Persist ordering info and ensure service outputs a fully ordered `discount_lines` array for UI/payment systems.
+6. **Negative Total Protection (FR6)**
+   - Centralize `grand_total = max(0, subtotal - Σ discount_lines.value)`; add guard rails to optionally reject oversized coupons before apply.
+7. **API & Controllers**
+   - Update coupon apply endpoint to return updated cart totals and discount lines; ensure success banner copy comes from the localization layer.
+   - Reject paths must keep cart totals untouched and avoid incrementing redemption counters.
+8. **Audit & Observability**
+   - Emit `promotion_event` logs/metrics for every apply/reject with `{code, user_id, reason, delta_amount}`; ship to logging stack.
+9. **Automated Tests**
+   - Unit tests for eligibility, usage guard, sequencing, and clamp logic.
+   - Integration tests replay Scenarios 8.1–8.3 and Edge Cases 9.1–9.3 with seeded data and frozen clocks.
+
+## 4. Frontend / Checkout UI Execution
+1. **Coupon Entry Flow**
+   - Build or enhance coupon input component that calls the backend endpoint, disables submit during requests, and shows banner "ใช้คูปองสำเร็จ" on success.
+   - Re-render discount summary + totals immediately with backend response to avoid client-side drift.
+2. **Error Handling & Localization**
+   - Map backend `reason` codes to localized messages (`คูปองหมดอายุ`, `คุณใช้สิทธิ์ครบแล้ว`, `ยอดซื้อไม่ถึงขั้นต่ำ`); ensure screen-reader alerts.
+3. **Discount Summary Component**
+   - Render ordered discount lines (percent first, then fixed) and show grand total clamped to zero when applicable.
+   - Display explicit 0 THB states when oversized coupons are accepted but clamped.
+4. **Client-side Tests**
+   - Component tests for coupon form, error banners, and discount summary ordering.
+   - E2E tests covering acceptance + edge scenarios against the real promotion API.
+
+## 5. Performance & Observability
+1. **Backend Metrics**
+   - Instrument promotion endpoints with latency histogram (target 100 ms median / 200 ms p95) and log correlation IDs.
+2. **Frontend Metrics**
+   - Measure coupon submission interactions (e.g., `performance.mark`, Web Vitals) to ensure UI stays responsive.
+3. **Load/Regression Testing**
+   - Run load tests (autocannon/k6) for coupon apply endpoint, ensuring throughput and guard logic hold under concurrency.
+
+## 6. CI/CD Integration
+1. Add promotion-focused unit/integration suites to CI; block merges when they fail.
+2. Include E2E coupon scenarios in nightly/regression pipelines.
+3. Enforce lint/type-check gates if the stack uses TS; publish coverage reports for promotion modules.
+
+## 7. Documentation & Handoff
+1. Update module README or runbook with coupon eligibility rules, API payloads, error codes, and monitoring dashboards.
+2. Document troubleshooting steps for common failures (expired, limit, sequencing drift) and how to inspect audit events.
+3. Capture release notes referencing `speckit.specify`, `speckit.plan`, and `speckit.tasks` to maintain traceability.

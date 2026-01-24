@@ -1,0 +1,45 @@
+# Speckit Implementation Plan — Promotions & Discounts (v.11)
+
+## Milestone 1 — Promotion Domain Foundations
+1. **Data Model Audit**
+   - Review coupon catalog schema for `min_subtotal`, `start_at/end_at`, and `usage_limit_per_user`.
+   - Extend cart summary to store `discount_lines[]` with sequencing metadata needed for FR5.
+2. **Monetary Utilities**
+   - Introduce or reuse a currency-safe math helper (`round_to_currency`, cents storage) used by all promotion calculations.
+   - Add regression tests for percent and fixed math combos (FR2, FR5).
+3. **Audit & Event Contract**
+   - Define `promotion_event` payloads (apply + reject) including `code`, `user_id`, `reason`, `delta_amount`.
+   - Ensure events integrate with existing observability pipeline.
+
+## Milestone 2 — Coupon Validation & Expiration Flow (FR1–FR3)
+1. **Eligibility Service**
+   - Implement min-spend validation and expiration checks before any discount mutates cart totals.
+   - Return structured errors (`expired`, `min_spend_failed`) consumed by UI and analytics.
+2. **Apply Coupon Command**
+   - Apply fixed discounts, recalc `grand_total = subtotal - value`, clamp to >= 0 preliminarily.
+   - Persist discount line + audit event; surface "ใช้คูปองสำเร็จ" from i18n catalog.
+3. **Reject Path Handling**
+   - Ensure rejected coupons leave cart state untouched and do not increment redemption counters.
+   - Unit + integration tests covering Scenario 8.1 and 8.3 flows.
+
+## Milestone 3 — Usage Limits & Sequencing Guards (FR4–FR5)
+1. **Usage History Lookup**
+   - Add repository/service to fetch per-user coupon usage; enforce `< usage_limit_per_user`.
+   - Emit "คุณใช้สิทธิ์ครบแล้ว" and capture rejection reason for monitoring.
+2. **Discount Sequencer**
+   - Implement deterministic ordering engine applying percent promotions before fixed values unless overridden.
+   - Persist ordering metadata with discount lines so downstream services can render the same sequence.
+3. **Combined Discount Tests**
+   - Cover Edge Case 9.2 verifying `(subtotal - percent) - fixed` behavior.
+   - Include concurrency tests ensuring sequencing remains deterministic across retries.
+
+## Milestone 4 — Negative Total Guardrails & UX Polish (FR6 + Non-Functional)
+1. **Grand Total Clamp**
+   - Centralize `grand_total = max(0, subtotal - Σ discounts)` guard; assert payment API never sees negative numbers.
+   - Add alerting if coupons exceed subtotal more than allowed thresholds.
+2. **Localization & UI Messaging**
+   - Route success/error strings through i18n; confirm Thai copy for the three main errors (expired, limit, min-spend).
+   - Update checkout UI to reflect discount lines, totals, and banners immediately after validation completes.
+3. **Performance & Observability Verification**
+   - Instrument promotion endpoints; validate 100 ms median / 200 ms p95 service-level target.
+   - Dashboard promotion events to verify apply/reject counts and anomalies.

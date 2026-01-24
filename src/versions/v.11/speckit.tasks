@@ -1,0 +1,53 @@
+# Speckit Tasks — Promotions & Discounts (v.11)
+
+## Scope & References
+- **Spec:** `speckit.specify` (FR1–FR6)
+- **Plan:** `speckit.plan`
+- **Codebase:** Promotion service + checkout UI for this version (`src/versions/v.11` target app).
+- **Stacks:** Align with the actual implementation stack (e.g., Node/Express + React, or equivalent) before coding; reuse shared libraries where possible.
+
+## Backend Tasks
+1. **Promotion Schema & Repository Updates**
+   - Ensure coupon/catalog tables expose `min_subtotal`, `start_at`, `end_at`, `usage_limit_per_user`, and type/value metadata.
+   - Extend cart summary storage with `discount_lines[]` (ordered list with type, value, priority) and audit event persistence.
+2. **Eligibility Service (FR1–FR3)**
+   - Build a dedicated validation module that takes `{cart, coupon, user}` and returns pass/fail plus structured reasons (`min_spend_failed`, `expired`, etc.).
+   - Wire the service into the `POST /checkout/coupons` (or equivalent) endpoint and keep cart totals untouched on failure.
+3. **Usage Limit Enforcement (FR4)**
+   - Implement repository call to fetch/update per-user coupon usages; enforce `< usage_limit_per_user`.
+   - Reject over-limit attempts with localized `"คุณใช้สิทธิ์ครบแล้ว"` message and log `reason=usage_limit`.
+4. **Discount Sequencer & Calculator (FR2, FR5)**
+   - Introduce deterministic sequencing: apply percentage promotions before fixed ones unless an override flag is set.
+   - Use integer-cents math helpers for percent/fixed calculations; persist the resulting discount lines with priority metadata.
+5. **Negative Total Guard (FR6)**
+   - Centralize `grand_total = max(0, subtotal - Σ discount_values)` guard; never send negative totals downstream.
+   - Add safeguards so oversized coupons can optionally be rejected earlier per business rule.
+6. **Audit & Observability**
+   - Emit `promotion_event` logs for every apply/reject with `{code, user_id, reason, delta_amount}`.
+   - Hook metrics to existing monitoring dashboards.
+7. **Automated Tests**
+   - Unit tests for eligibility combinations, usage limit rejections, sequencing math, and `max(0, total)` guard.
+   - Integration/API tests replay Scenarios 8.1–8.3 and Edge Cases 9.1–9.3 using deterministic fixtures and clock controls.
+
+## Frontend / Checkout UI Tasks
+1. **Coupon Entry Flow**
+   - Implement UI form to submit coupon codes, disable controls during validation, and render success banner "ใช้คูปองสำเร็จ".
+   - Reflect discount lines and recalculated grand total immediately on success.
+2. **Error Messaging & Localization**
+   - Surface distinct error states for expired, min-spend, and usage-limit scenarios; pipe through the i18n layer with Thai copy.
+   - Ensure focus/ARIA announcements for errors to meet accessibility standards.
+3. **Discount Summary Component**
+   - Render ordered discount lines (percent before fixed) so UI mirrors backend sequencing.
+   - Clamp displayed totals to `>= 0` and explicitly show zero-total states when coupons exceed subtotal.
+4. **Client-side Tests**
+   - Component tests verifying coupon form states, error banners, and discount-line rendering.
+   - E2E tests (e.g., Cypress/Playwright) covering the main scenarios and edge cases end-to-end against the promotion API.
+
+## Cross-Cutting Tasks
+1. **Performance Validation**
+   - Instrument promotion API calls to confirm 100 ms median / 200 ms p95 latency goals; add alerts if thresholds exceed.
+   - Capture frontend interaction timings to ensure responsive checkout.
+2. **CI/CD Guardrails**
+   - Add promotion-focused unit, integration, and E2E suites to the pipeline; require passing status before deploys.
+3. **Documentation & Runbooks**
+   - Update module README or ops runbook with coupon eligibility rules, error payloads, and troubleshooting steps for apply/reject failures.

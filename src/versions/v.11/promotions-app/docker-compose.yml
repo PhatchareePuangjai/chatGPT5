@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: promotions
+      POSTGRES_USER: promo
+      POSTGRES_PASSWORD: promo
+    ports:
+      - '5434:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgres://promo:promo@db:5432/promotions
+    ports:
+      - '4000:4000'
+    command: sh -c "npm run db:migrate && npm run db:seed && npm start"
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    environment:
+      VITE_API_BASE: http://backend:4000
+    ports:
+      - '5173:5173'
+volumes:
+  db_data:
