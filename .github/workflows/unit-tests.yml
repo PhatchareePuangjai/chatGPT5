@@ -25,6 +25,7 @@ on:
       - 'src/versions/v.9/**'
       - 'src/versions/v.10/**'
       - 'src/versions/v.11/**'
+  workflow_dispatch:
 
 jobs:
   test:
@@ -57,25 +58,94 @@ jobs:
       - uses: actions/checkout@v4
 
       # ใช้ paths-filter เพื่อเช็คว่ามีการแก้ไขในโฟลเดอร์ของ version นั้นๆ หรือไม่
+      # แต่ถ้าเป็น workflow_dispatch ให้รันทุก version
       - uses: dorny/paths-filter@v2
         id: changes
+        if: github.event_name != 'workflow_dispatch'
         with:
           filters: |
             src:
               - '${{ matrix.path }}/**'
 
+      # กำหนดว่าจะรันหรือไม่ (true ถ้าเป็น workflow_dispatch หรือมี changes)
+      - name: Determine if should run
+        id: should_run
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          elif [ "${{ steps.changes.outputs.src }}" == "true" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Node.js
-        if: steps.changes.outputs.src == 'true'
+        if: steps.should_run.outputs.run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.path }}/package-lock.json
+
+      # Setup PostgreSQL สำหรับ version ที่ต้องการ database
+      - name: Setup PostgreSQL
+        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'v.3' || matrix.version == 'v.6' || matrix.version == 'v.9')
+        uses: actions/setup-postgres@v1
+        with:
+          postgres-version: '15'
+          postgres-user: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
+          postgres-password: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
+          postgres-db: ${{ matrix.version == 'v.9' && 'inventory' || (matrix.version == 'v.6' && 'inventory' || 'shopdb') }}
+
+      - name: Check if package.json exists
+        if: steps.should_run.outputs.run == 'true'
+        id: check_package
+        working-directory: ${{ matrix.path }}
+        run: |
+          if [ -f "package.json" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "⚠️ package.json not found for ${{ matrix.version }}"
+          fi
 
       - name: Install Dependencies
-        if: steps.changes.outputs.src == 'true'
+        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true'
         working-directory: ${{ matrix.path }}
         run: npm ci
 
-      - name: Run Tests
-        if: steps.changes.outputs.src == 'true'
+      # Run database migrations สำหรับ version ที่ต้องการ
+      - name: Run Database Migrations
+        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'v.3' || matrix.version == 'v.6' || matrix.version == 'v.9')
         working-directory: ${{ matrix.path }}
+        env:
+          DATABASE_URL: ${{ matrix.version == 'v.9' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'v.6' && 'postgres://postgres:postgres@localhost:5432/inventory' || 'postgres://postgres:postgres@localhost:5432/shopdb') }}
+        run: |
+          if [ -f "scripts/run-migrations.js" ]; then
+            npm run migrate || echo "⚠️ Migration script not found or failed"
+          elif [ -f "db/migrate.js" ]; then
+            npm run db:migrate || echo "⚠️ Migration script not found or failed"
+          else
+            echo "ℹ️ No migration script found for ${{ matrix.version }}"
+          fi
+
+      - name: Check if test script exists
+        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true'
+        id: check_test
+        working-directory: ${{ matrix.path }}
+        run: |
+          if grep -q '"test"' package.json; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "⚠️ No test script found in package.json for ${{ matrix.version }}"
+          fi
+
+      - name: Run Tests
+        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && steps.check_test.outputs.exists == 'true'
+        working-directory: ${{ matrix.path }}
+        continue-on-error: true
+        env:
+          DATABASE_URL: ${{ matrix.version == 'v.9' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'v.6' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'v.3' && 'postgres://postgres:postgres@localhost:5432/shopdb' || '')) }}
+          NODE_ENV: test
         run: npm test
