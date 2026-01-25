@@ -4,27 +4,13 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'src/versions/v.3/**'
-      - 'src/versions/v.4/**'
-      - 'src/versions/v.5/**'
-      - 'src/versions/v.6/**'
-      - 'src/versions/v.7/**'
-      - 'src/versions/v.8/**'
-      - 'src/versions/v.9/**'
-      - 'src/versions/v.10/**'
-      - 'src/versions/v.11/**'
+      - 'src/versions/**'
+      - '.github/workflows/codeql.yml'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'src/versions/v.3/**'
-      - 'src/versions/v.4/**'
-      - 'src/versions/v.5/**'
-      - 'src/versions/v.6/**'
-      - 'src/versions/v.7/**'
-      - 'src/versions/v.8/**'
-      - 'src/versions/v.9/**'
-      - 'src/versions/v.10/**'
-      - 'src/versions/v.11/**'
+      - 'src/versions/**'
+      - '.github/workflows/codeql.yml'
   workflow_dispatch:
 
 jobs:
