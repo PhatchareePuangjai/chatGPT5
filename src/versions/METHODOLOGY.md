@@ -1,0 +1,88 @@
+# Research Methodology: Evaluating AI-Generated Code Quality
+
+## Overview
+
+This study employs a multi-dimensional approach to evaluate the quality of AI-generated code across three distinct interaction strategies. The methodology is designed to provide objective, reproducible metrics while also capturing architectural quality through structured rubrics.
+
+## 1. Experimental Design
+
+### Interaction Strategies (Independent Variables)
+We compared three levels of human-AI interaction complexity:
+
+1.  **Basic Prompting:** Direct, unstructured requests for features (e.g., "Create a shopping cart with these features...").
+2.  **Context Engineering:** Providing operational context, database schemas, and existing constraints (e.g., "Here is the existing inventory table schema...") before requesting code.
+3.  **Specification-Driven Development (SDD):** A rigorous process involving multi-file specifications (Constitution, Plans, Specs) prior to implementation.
+
+### Testbed
+The domain chosen is a **controlled e-commerce system**, specifically focusing on inventory management, shopping carts, and promotion systems. This domain was selected for its requirement of complex business logic, concurrency handling, and financial precision.
+
+## 2. Measurement Standards (Dependent Variables)
+
+Code quality is evaluated using three independent measurement standards to ensure objectivity.
+
+### Standard A: Functional Correctness Evaluation
+**Tool:** Automated Acceptance Tests (Jest)
+
+We implemented a rigorous testing suite covering:
+*   **Standard Scenarios:** Basic CRUD operations, cart management, checkout flows.
+*   **Edge Case Scenarios:**
+    *   **Race Conditions:** Concurrent stock deduction requests (e.g., 5 simultaneous requests for 1 item).
+    *   **Transaction Atomicity:** Verifying rollbacks on database failure.
+    *   **Boundary Values:** Overselling prevention, negative stock checks.
+    *   **Precision:** Floating-point financial calculations (e.g., handling $19.99 * 3).
+
+**Metric:** Pass/Fail rate on automated test suites defined in `scenarios_*.md`.
+
+### Standard B: Static Code Analysis (SonarQube)
+**Tool:** SonarQube Community Edition
+
+We utilized industry-standard static analysis to measure:
+*   **Security:** Number of vulnerabilities (Injection, Auth breakage).
+*   **Reliability:** Number of bugs and potential logic errors.
+*   **Maintainability:** Count of "code smells" and technical debt.
+*   **Code Duplications:** Percentage of duplicated blocks across the codebase.
+*   **Security Hotspots:** Areas requiring manual security review.
+
+### Standard C: Advanced Security Analysis (CodeQL)
+**Tool:** GitHub CodeQL
+
+A deep semantic code analysis engine used to identify complex security vulnerabilities that standard linters might miss (e.g., SQL injection, unsafe deserialization).
+
+**Metric:** Presence/Absence of critical security alerts.
+
+## 3. Qualitative Assessment: Rubric-Based Quality Score
+
+To assess architectural quality (which automated tools often miss), we employed a structured scoring rubric.
+
+**Methodology:**
+*   **Single Rater Assessment:** Reviewed by a domain expert.
+*   **Retrospective Application:** Applied consistently across all generated versions.
+*   **Scoring Scale:** 0-3 points per dimension.
+
+### Scoring Rubric (Total: 12 Points)
+
+| Dimension | 0 Points | 1 Point | 2 Points | 3 Points |
+|-----------|----------|---------|----------|----------|
+| **1. Architecture** | Monolithic, no separation | Basic structure, some organization | Service Layer or clear separation | Clean Architecture (Repository + Service Pattern) |
+| **2. Features** | No validation, basic error handling | Basic validation/error handling | Good validation + error handling | Comprehensive (Zod, Error Factory, Money utils, Tests) |
+| **3. Code Organization** | >30% Duplication | 10-30% Duplication | <10% Duplication | 0% Duplication, excellent structure |
+| **4. Best Practices** | None | Some | Good | Comprehensive (patterns, utils, structured errors) |
+
+### Penalty Rules
+*   **Security Penalty:** If Security Vulnerabilities > 0, Max Score is capped at 4/12 (approx 2 stars).
+*   **Duplication Penalty:**
+    *   If Duplication > 50%: Architecture dimension capped at 1 point.
+    *   If Duplication > 30%: Code Organization dimension capped at 1 point.
+
+### Star Rating Mapping
+*   **⭐ (1/5):** 0-3 points (Poor - Not production-ready)
+*   **⭐⭐ (2/5):** 4-6 points (Basic - Missing critical features)
+*   **⭐⭐⭐ (3/5):** 7-9 points (Acceptable - Basic structure)
+*   **⭐⭐⭐⭐ (4/5):** 10-11 points (Good - Service Layer, good practices)
+*   **⭐⭐⭐⭐⭐ (5/5):** 12 points (Excellent - Clean Architecture)
+
+## 4. Limitations
+
+*   **Single Rater Bias:** The Quality Score was assessed by a single reviewer without inter-rater reliability checks (no Cohen's Kappa or ICC metrics).
+*   **Test Coverage Gap:** While functional tests were run externally, internal unit test coverage generated by AI was reported as 0.0% in most cases, highlighting a specific weakness in current LLM generation capabilities regarding test scaffolding.
+*   **Scope:** Results are specific to the Javascript/Node.js ecosystem and e-commerce domain.
