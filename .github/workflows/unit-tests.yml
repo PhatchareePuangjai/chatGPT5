@@ -90,12 +90,11 @@ jobs:
       # Setup PostgreSQL สำหรับ version ที่ต้องการ database
       - name: Setup PostgreSQL
         if: steps.should_run.outputs.run == 'true' && (matrix.version == 'v.3' || matrix.version == 'v.6' || matrix.version == 'v.9')
-        uses: actions/setup-postgres@v1
+        uses: ikalnytskyi/action-setup-postgres@v5
         with:
-          postgres-version: '15'
-          postgres-user: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
-          postgres-password: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
-          postgres-db: ${{ matrix.version == 'v.9' && 'inventory' || (matrix.version == 'v.6' && 'inventory' || 'shopdb') }}
+          username: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
+          password: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
+          database: ${{ matrix.version == 'v.9' && 'inventory' || (matrix.version == 'v.6' && 'inventory' || 'shopdb') }}
 
       - name: Check if package.json exists
         if: steps.should_run.outputs.run == 'true'
