@@ -10,6 +10,9 @@ on:
       - 'src/versions/v.6/**'
       - 'src/versions/v.7/**'
       - 'src/versions/v.8/**'
+      - 'src/versions/v.9/**'
+      - 'src/versions/v.10/**'
+      - 'src/versions/v.11/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -19,6 +22,9 @@ on:
       - 'src/versions/v.6/**'
       - 'src/versions/v.7/**'
       - 'src/versions/v.8/**'
+      - 'src/versions/v.9/**'
+      - 'src/versions/v.10/**'
+      - 'src/versions/v.11/**'
 
 jobs:
   test:
@@ -40,6 +46,12 @@ jobs:
             path: src/versions/v.7/shopping-cart/backend
           - version: v.8
             path: src/versions/v.8/promotions-discounts-system/backend
+          - version: v.9
+            path: src/versions/v.9/backend
+          - version: v.10
+            path: src/versions/v.10/shopping-cart-app/backend
+          - version: v.11
+            path: src/versions/v.11/promotions-app/backend
 
     steps:
       - uses: actions/checkout@v4

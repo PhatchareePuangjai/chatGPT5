@@ -42,6 +42,18 @@ jobs:
           - version: 'v8'
             path: 'src/versions/v.8/promotions-discounts-system'
             port: '5173'
+            
+          - version: 'v9'
+            path: 'src/versions/v.9'
+            port: '5173'
+            
+          - version: 'v10'
+            path: 'src/versions/v.10/shopping-cart-app'
+            port: '5173'
+            
+          - version: 'v11'
+            path: 'src/versions/v.11/promotions-app'
+            port: '5173'
 
     steps:
       - name: Checkout Code
