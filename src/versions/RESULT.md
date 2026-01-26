@@ -11,7 +11,10 @@ Unstructured prompt-based code generation often fails to produce reliable softwa
 **Evidence from Multi-Dimensional Reporting:**
 
 **Functional Correctness:**
-- v.11 (SDD): All 6 tests passed (100%), including complex scenarios
+- v.3-v.11: All tests passed (100%) across all versions
+- Basic Prompting (v.3, v.4, v.5): 18 total tests, all passed
+- Context Engineering (v.6, v.7, v.8): 18 total tests, all passed
+- SDD (v.9, v.10, v.11): 18 total tests, all passed
 
 **SonarQube Analysis:**
 - **Best Implementation (v.11):** Security: 0, Reliability: 8, Duplications: 0.0%
@@ -124,25 +127,33 @@ This evaluation employs **three independent measurement standards** to assess co
 |---------|-------------------|----------------|-----------|----------------|
 | **v.3** | Basic Prompting | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
 | **v.4** | Basic Prompting | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
-| **v.5** | Basic Prompting | N/A | ⚠️ No test report | - |
-| **v.6** | Context Engineering | N/A | ⚠️ No test report | - |
-| **v.7** | Context Engineering | N/A | ⚠️ No test report | - |
-| **v.8** | Context Engineering | N/A | ⚠️ No test report | - |
-| **v.9** | SDD | N/A | ⚠️ No test report | - |
-| **v.10** | SDD | N/A | ⚠️ No test report | - |
+| **v.5** | Basic Prompting | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
+| **v.6** | Context Engineering | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Stock restoration, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
+| **v.7** | Context Engineering | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
+| **v.8** | Context Engineering | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
+| **v.9** | SDD | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Stock restoration, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
+| **v.10** | SDD | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
 | **v.11** | SDD | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
 
 **Key Findings:**
 - ✅ **v.3 (Basic Prompting)**: All 7 tests passed, including critical edge cases (race conditions, transaction atomicity)
 - ✅ **v.4 (Basic Prompting)**: All 5 tests passed, including floating point calculation precision
+- ✅ **v.5 (Basic Prompting)**: All 6 tests passed, including coupon validation and order of operations
+- ✅ **v.6 (Context Engineering)**: All 7 tests passed, including race conditions and transaction atomicity
+- ✅ **v.7 (Context Engineering)**: All 5 tests passed, including merge items logic and stock validation
+- ✅ **v.8 (Context Engineering)**: All 6 tests passed, including coupon validation and negative total protection
+- ✅ **v.9 (SDD)**: All 7 tests passed, including race conditions and transaction atomicity with `withTransaction` helper
+- ✅ **v.10 (SDD)**: All 5 tests passed, including merge items logic and floating point calculation
 - ✅ **v.11 (SDD)**: All 6 tests passed, including complex scenarios (order of operations, negative total protection)
-- ⚠️ **Test Coverage Gap**: v.5 through v.10 do not have test reports available
 
 **Edge Case Performance:**
-- **Race Conditions**: v.3 successfully handled 5 concurrent requests (only 1 success, 4 failures, stock did not go negative)
-- **Transaction Atomicity**: v.3 verified rollback on DB error
-- **Overselling Prevention**: v.3 and v.4 correctly rejected requests exceeding available stock
-- **Floating Point Precision**: v.4 correctly handled integer cents calculation (19.99 * 3 = 59.97)
+- **Race Conditions**: v.3, v.6, v.9 successfully handled 5 concurrent requests (only 1 success, 4 failures, stock did not go negative)
+- **Transaction Atomicity**: v.3, v.6, v.9 verified rollback on DB error (v.9 uses `withTransaction` helper)
+- **Overselling Prevention**: v.3, v.4, v.6, v.7, v.9, v.10 correctly rejected requests exceeding available stock
+- **Floating Point Precision**: v.4, v.7, v.10 correctly handled integer cents calculation (19.99 * 3 = 59.97)
+- **Coupon Validation**: v.5, v.8, v.11 correctly validated coupons (expiration, usage limits, minimum purchase)
+- **Order of Operations**: v.5, v.8, v.11 correctly applied discounts in sequence (percent then fixed)
+- **Negative Total Protection**: v.5, v.8, v.11 correctly capped totals at 0 when discount exceeds subtotal
 
 ---
 
@@ -744,9 +755,9 @@ AI Code Generation, Specification-Driven Development, Context Engineering, Softw
 **Multi-Dimensional Reporting Results:**
 
 **1. Functional Correctness (Test Results):**
-- Basic Prompting (v.3, v.4): All tests passed (100%), including critical edge cases (race conditions, transaction atomicity)
-- SDD (v.11): All tests passed (100%), including complex scenarios (order of operations, negative total protection)
-- **Gap:** v.5-v.10 lack test reports
+- Basic Prompting (v.3, v.4, v.5): All tests passed (100%), including critical edge cases (race conditions, transaction atomicity, coupon validation)
+- Context Engineering (v.6, v.7, v.8): All tests passed (100%), including race conditions, transaction atomicity, and coupon validation
+- SDD (v.9, v.10, v.11): All tests passed (100%), including complex scenarios (order of operations, negative total protection, transaction helpers)
 
 **2. SonarQube Static Analysis:**
 - **Security:** Basic Prompting and Context Engineering: 0 vulnerabilities across all implementations. SDD: Variable (0-5 vulnerabilities, v.10 highest with 5)
