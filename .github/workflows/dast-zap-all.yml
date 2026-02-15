@@ -18,51 +18,50 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # เปลี่ยนชื่อจาก v.3 เป็น v3 เพื่อเลี่ยงปัญหาชื่อ Artifact
-          - version: 'v3'
-            path: 'src/versions/v.3/online-shop-inventory'
+          - version: 'IMBP01'
+            path: 'src/versions/IMBP01/online-shop-inventory'
             port: '5173'
             
-          - version: 'v4'
-            path: 'src/versions/v.4/shopping-cart-app'
+          - version: 'SCBP01'
+            path: 'src/versions/SCBP01/shopping-cart-app'
             port: '5173'
 
-          - version: 'v5'
-            path: 'src/versions/v.5/promo-shop-plug-and-play'
+          - version: 'PDBP01'
+            path: 'src/versions/PDBP01/promo-shop-plug-and-play'
             port: '8080'
 
-          - version: 'v6'
-            path: 'src/versions/v.6/inventory-system'
+          - version: 'IMBP02'
+            path: 'src/versions/IMBP02/inventory-system'
             port: '3000'
 
-          - version: 'v7'
-            path: 'src/versions/v.7/shopping-cart'
+          - version: 'SCBP02'
+            path: 'src/versions/SCBP02/shopping-cart'
             port: '8080'
 
-          - version: 'v8'
-            path: 'src/versions/v.8/promotions-discounts-system'
+          - version: 'PDBP02'
+            path: 'src/versions/PDBP02/promotions-discounts-system'
             port: '5173'
             
-          - version: 'v9'
-            path: 'src/versions/v.9'
+          - version: 'IMBP03'
+            path: 'src/versions/IMBP03'
             port: '5173'
             
-          - version: 'v10'
-            path: 'src/versions/v.10/shopping-cart-app'
+          - version: 'SCBP03'
+            path: 'src/versions/SCBP03/shopping-cart-app'
             port: '5173'
             
-          - version: 'v11'
-            path: 'src/versions/v.11/promotions-app'
+          - version: 'PDBP03'
+            path: 'src/versions/PDBP03/promotions-app'
             port: '5173'
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Create .env file for v.6
-        if: matrix.version == 'v6'
+      - name: Create .env file for IMBP02
+        if: matrix.version == 'IMBP02'
         run: |
-          cat <<EOF > src/versions/v.6/inventory-system/.env
+          cat <<EOF > src/versions/IMBP02/inventory-system/.env
           DB_USER=test
           DB_PASSWORD=test
           DB_NAME=testdb

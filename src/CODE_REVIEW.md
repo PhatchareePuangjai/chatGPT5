@@ -6,32 +6,7 @@
 
 ---
 
-## v.1
-**สถานะ:** ไฟล์ว่างเปล่า (มีแค่ `.export_cache.json`)
-
----
-
-## v.2 (inventory_full_version)
-**Tech Stack:**
-- Frontend: TypeScript + React + Vite
-- Backend: Node.js (CommonJS) + Express
-- Database: PostgreSQL
-
-**คุณภาพโค้ด: ⭐⭐☆☆☆**
-
-**จุดเด่น:**
-- แยกโครงสร้างเป็น `services/`, `controllers/`, `routes/` ชัดเจน
-- มี `stockService.js` ที่จัดการ stock operations
-
-**จุดที่ควรปรับปรุง:**
-- ไม่มี Docker setup
-- ไม่มี error handling middleware
-- ไม่มี validation library
-- โครงสร้างยังไม่สมบูรณ์
-
----
-
-## v.3 (online-shop-inventory)
+## IMBP01 (online-shop-inventory)
 **Tech Stack:**
 - Frontend: JavaScript + React 18.3.1 + Vite 5.4.8
 - Backend: Node.js (CommonJS) + Express 4.19.2
@@ -64,7 +39,7 @@ backend/
 
 ---
 
-## v.4 (shopping-cart-app)
+## SCBP01 (shopping-cart-app)
 **Tech Stack:**
 - Frontend: JavaScript + React 18.3.1 + Vite 5.4.8
 - Backend: Node.js (ES Modules) + Express 4.19.2
@@ -126,7 +101,7 @@ const productRes = await client.query(
 
 ---
 
-## v.5 (promo-shop-plug-and-play)
+## PDBP01 (promo-shop-plug-and-play)
 **Tech Stack:**
 - Frontend: **TypeScript 5.6.3** + React 18.3.1 + Vite 5.4.10
 - Backend: Node.js (CommonJS) + Express 4.19.2
@@ -145,11 +120,11 @@ const productRes = await client.query(
 **จุดที่ควรปรับปรุง:**
 - ❌ Backend ยังใช้ CommonJS (ควรเป็น ES Modules)
 - ❌ ไม่มี Zod validation
-- ❌ Error handling ยังไม่ดีเท่า v.4
+- ❌ Error handling ยังไม่ดีเท่า SCBP01
 
 ---
 
-## v.6 (inventory-system)
+## IMBP02 (inventory-system)
 **Tech Stack:**
 - Frontend: React 18 + Vite + **Tailwind CSS**
 - Backend: Node.js (CommonJS) + Express
@@ -187,7 +162,7 @@ await client.query("COMMIT");
 
 ---
 
-## v.7 (shopping-cart)
+## SCBP02 (shopping-cart)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js + Express
@@ -207,7 +182,7 @@ await client.query("COMMIT");
 
 ---
 
-## v.8 (promotions-discounts-system)
+## PDBP02 (promotions-discounts-system)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js + Express
@@ -243,7 +218,7 @@ backend/
 
 ---
 
-## v.9 (inventory-system)
+## IMBP03 (inventory-system)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js + Express
@@ -275,7 +250,7 @@ backend/
 
 ---
 
-## v.10 (shopping-cart-app)
+## SCBP03 (shopping-cart-app)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js (ES Modules) + Express
@@ -291,11 +266,11 @@ backend/
 - ✅ Error handler ที่ดี
 
 **จุดที่ควรปรับปรุง:**
-- ❌ ยังไม่มีการแยก service layer ชัดเจนเท่า v.11
+- ❌ ยังไม่มีการแยก service layer ชัดเจนเท่า PDBP03
 
 ---
 
-## v.11 (promotions-app) ⭐ **Best Version**
+## PDBP03 (promotions-app) ⭐ **Best Version**
 **Tech Stack:**
 - Frontend: React 18 (Vite)
 - Backend: Node.js 20 + Express 4 + **Zod 3.23.8**
@@ -389,48 +364,47 @@ async function getCartByUserId(userId) {
 
 | Version | Language | Validation | Transactions | Error Handling | Architecture | Overall |
 |---------|----------|------------|--------------|----------------|--------------|---------|
-| v.2 | JS/TS | ❌ | ⚠️ | ❌ | ⭐⭐ | ⭐⭐ |
-| v.3 | JS | ❌ | ⚠️ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
-| v.4 | JS (ESM) | ✅ Zod | ✅ FOR UPDATE | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| v.5 | TS/JS | ❌ | ⚠️ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
-| v.6 | JS | ❌ | ✅ FOR UPDATE | ⚠️ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| v.7 | JS | ❌ | ✅ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
-| v.8 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| v.9 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| v.10 | JS (ESM) | ✅ Zod | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| v.11 | JS | ✅ Zod | ✅ | ✅ Factory | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| IMBP01 | JS | ❌ | ⚠️ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
+| SCBP01 | JS (ESM) | ✅ Zod | ✅ FOR UPDATE | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| PDBP01 | TS/JS | ❌ | ⚠️ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
+| IMBP02 | JS | ❌ | ✅ FOR UPDATE | ⚠️ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| SCBP02 | JS | ❌ | ✅ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
+| PDBP02 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| IMBP03 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| SCBP03 | JS (ESM) | ✅ Zod | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| PDBP03 | JS | ✅ Zod | ✅ | ✅ Factory | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 
 ---
 
 ## แนวโน้มการพัฒนา
 
 ### 1. **Architecture Evolution**
-- v.2-v.3: Monolithic structure
-- v.4: Service layer separation
-- v.11: **Repository + Service pattern** (Clean Architecture)
+- IMBP01: Monolithic structure
+- SCBP01: Service layer separation
+- PDBP03: **Repository + Service pattern** (Clean Architecture)
 
 ### 2. **Type Safety**
-- v.2, v.5: TypeScript (frontend only)
-- v.4, v.10, v.11: **Zod validation** (runtime type checking)
+- PDBP01: TypeScript (frontend only)
+- SCBP01, SCBP03, PDBP03: **Zod validation** (runtime type checking)
 
 ### 3. **Concurrency Safety**
-- v.3-v.4: Basic transactions
-- v.6+: **`SELECT ... FOR UPDATE`** row locking
+- IMBP01-SCBP01: Basic transactions
+- IMBP02+: **`SELECT ... FOR UPDATE`** row locking
 
 ### 4. **Error Handling**
-- v.3-v.4: Basic error handler
-- v.8-v.9: Error handler middleware
-- v.11: **Error factory pattern** + structured responses
+- IMBP01-SCBP01: Basic error handler
+- PDBP02-IMBP03: Error handler middleware
+- PDBP03: **Error factory pattern** + structured responses
 
 ### 5. **Money Handling**
-- v.4+: **Integer cents math** (แก้ floating point errors)
-- v.8+: **Integer satang math** (THB*100)
+- SCBP01+: **Integer cents math** (แก้ floating point errors)
+- PDBP02+: **Integer satang math** (THB*100)
 
 ---
 
 ## คำแนะนำสำหรับการพัฒนาต่อ
 
-### Best Practices จาก v.11:
+### Best Practices จาก PDBP03:
 1. ✅ ใช้ **Repository pattern** - แยก data access
 2. ใช้ **Service layer** - แยก business logic
 3. ใช้ **Error factory** - structured error handling
@@ -438,7 +412,7 @@ async function getCartByUserId(userId) {
 5. ใช้ **Money utilities** - แก้ปัญหา precision
 
 ### สิ่งที่ควรเพิ่ม:
-1. ⚠️ **ES Modules** แทน CommonJS (v.11 ยังใช้ CommonJS)
+1. ⚠️ **ES Modules** แทน CommonJS (PDBP03 ยังใช้ CommonJS)
 2. ⚠️ **Structured logging** (Winston, Pino)
 3. ⚠️ **API documentation** (OpenAPI/Swagger)
 4. ⚠️ **Rate limiting** middleware
@@ -448,7 +422,7 @@ async function getCartByUserId(userId) {
 
 ## สรุป
 
-**เวอร์ชันที่ดีที่สุด: v.11** 🏆
+**เวอร์ชันที่ดีที่สุด: PDBP03** 🏆
 - มี architecture ที่ดีที่สุด (Repository + Service pattern)
 - มี error handling ที่เป็นระบบ
 - มี validation ที่ดี (Zod)
@@ -456,9 +430,9 @@ async function getCartByUserId(userId) {
 - โครงสร้างโค้ดสะอาดและ maintainable
 
 **เวอร์ชันที่แนะนำสำหรับเรียนรู้:**
-- **v.4**: เริ่มต้นด้วย ES Modules + Zod + Transactions
-- **v.6**: เรียนรู้ concurrency safety
-- **v.11**: เรียนรู้ Clean Architecture
+- **SCBP01**: เริ่มต้นด้วย ES Modules + Zod + Transactions
+- **IMBP02**: เรียนรู้ concurrency safety
+- **PDBP03**: เรียนรู้ Clean Architecture
 
 ---
 

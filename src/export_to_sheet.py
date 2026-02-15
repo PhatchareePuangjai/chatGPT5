@@ -5,7 +5,7 @@
 # 2. รันคำสั่ง: python export_to_sheet.py <path_to_conversations.json>
 #
 # ตัวอย่าง:
-# python export_to_sheet.py ./versions/v.3/chatgpt-export/xxx/conversations.json
+# python export_to_sheet.py ./versions/IMBP01/chatgpt-export/xxx/conversations.json
 #
 # หากไม่ระบุไฟล์ จะใช้ค่าเริ่มต้นเป็น ./chatgpt-export/conversations.json
 

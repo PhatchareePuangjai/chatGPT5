@@ -2,7 +2,7 @@
 
 ## เกี่ยวกับ Notebook นี้
 
-Notebook `version_analysis.ipynb` นี้สร้างขึ้นเพื่อวิเคราะห์และแสดงภาพการพัฒนาของโค้ดในแต่ละเวอร์ชัน (v.1 - v.11) ผ่านกราฟและ visualization ต่างๆ
+Notebook `version_analysis.ipynb` นี้สร้างขึ้นเพื่อวิเคราะห์และแสดงภาพการพัฒนาของโค้ดในแต่ละเวอร์ชัน (IMBP01 - PDBP03) ผ่านกราฟและ visualization ต่างๆ
 
 ## 📋 เนื้อหาใน Notebook
 

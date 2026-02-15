@@ -41,18 +41,18 @@ Use the provided `scan.sh` script to analyze code. You need to run this from the
 
 **Scan Version 2 (Inventory Full):**
 ```bash
-./scan.sh ../src/versions/v.2/inventory_full_version sqp_YOUR_GENERATED_TOKEN
+./scan.sh ../src/versions/IMBP01/online-shop-inventory sqp_YOUR_GENERATED_TOKEN
 ```
 
 **Scan Version 3 (Online Shop):**
 *Note: Use quotes if the path contains spaces.*
 ```bash
-./scan.sh "../src/versions/v.3/online-shop-inventory 2" sqp_YOUR_GENERATED_TOKEN
+./scan.sh "../src/versions/IMBP01/online-shop-inventory 2" sqp_YOUR_GENERATED_TOKEN
 ```
 
 **Scan Version 4 (Shopping Cart):**
 ```bash
-./scan.sh ../src/versions/v.4/shopping-cart-app sqp_YOUR_GENERATED_TOKEN
+./scan.sh ../src/versions/SCBP01/shopping-cart-app sqp_YOUR_GENERATED_TOKEN
 ```
 
 ## 4. View Results

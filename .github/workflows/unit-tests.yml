@@ -4,27 +4,27 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'src/versions/v.3/**'
-      - 'src/versions/v.4/**'
-      - 'src/versions/v.5/**'
-      - 'src/versions/v.6/**'
-      - 'src/versions/v.7/**'
-      - 'src/versions/v.8/**'
-      - 'src/versions/v.9/**'
-      - 'src/versions/v.10/**'
-      - 'src/versions/v.11/**'
+      - 'src/versions/IMBP01/**'
+      - 'src/versions/SCBP01/**'
+      - 'src/versions/PDBP01/**'
+      - 'src/versions/IMBP02/**'
+      - 'src/versions/SCBP02/**'
+      - 'src/versions/PDBP02/**'
+      - 'src/versions/IMBP03/**'
+      - 'src/versions/SCBP03/**'
+      - 'src/versions/PDBP03/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'src/versions/v.3/**'
-      - 'src/versions/v.4/**'
-      - 'src/versions/v.5/**'
-      - 'src/versions/v.6/**'
-      - 'src/versions/v.7/**'
-      - 'src/versions/v.8/**'
-      - 'src/versions/v.9/**'
-      - 'src/versions/v.10/**'
-      - 'src/versions/v.11/**'
+      - 'src/versions/IMBP01/**'
+      - 'src/versions/SCBP01/**'
+      - 'src/versions/PDBP01/**'
+      - 'src/versions/IMBP02/**'
+      - 'src/versions/SCBP02/**'
+      - 'src/versions/PDBP02/**'
+      - 'src/versions/IMBP03/**'
+      - 'src/versions/SCBP03/**'
+      - 'src/versions/PDBP03/**'
   workflow_dispatch:
 
 jobs:
@@ -35,24 +35,24 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - version: v.3
-            path: src/versions/v.3/online-shop-inventory/backend
-          - version: v.4
-            path: src/versions/v.4/shopping-cart-app/backend
-          - version: v.5
-            path: src/versions/v.5/promo-shop-plug-and-play/backend
-          - version: v.6
-            path: src/versions/v.6/inventory-system/backend
-          - version: v.7
-            path: src/versions/v.7/shopping-cart/backend
-          - version: v.8
-            path: src/versions/v.8/promotions-discounts-system/backend
-          - version: v.9
-            path: src/versions/v.9/backend
-          - version: v.10
-            path: src/versions/v.10/shopping-cart-app/backend
-          - version: v.11
-            path: src/versions/v.11/promotions-app/backend
+          - version: IMBP01
+            path: src/versions/IMBP01/online-shop-inventory/backend
+          - version: SCBP01
+            path: src/versions/SCBP01/shopping-cart-app/backend
+          - version: PDBP01
+            path: src/versions/PDBP01/promo-shop-plug-and-play/backend
+          - version: IMBP02
+            path: src/versions/IMBP02/inventory-system/backend
+          - version: SCBP02
+            path: src/versions/SCBP02/shopping-cart/backend
+          - version: PDBP02
+            path: src/versions/PDBP02/promotions-discounts-system/backend
+          - version: IMBP03
+            path: src/versions/IMBP03/backend
+          - version: SCBP03
+            path: src/versions/SCBP03/shopping-cart-app/backend
+          - version: PDBP03
+            path: src/versions/PDBP03/promotions-app/backend
 
     steps:
       - uses: actions/checkout@v4
@@ -89,12 +89,12 @@ jobs:
 
       # Setup PostgreSQL สำหรับ version ที่ต้องการ database
       - name: Setup PostgreSQL
-        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'v.3' || matrix.version == 'v.6' || matrix.version == 'v.9')
+        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMBP02' || matrix.version == 'IMBP03')
         uses: ikalnytskyi/action-setup-postgres@v5
         with:
-          username: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
-          password: ${{ matrix.version == 'v.9' && 'inventory' || 'postgres' }}
-          database: ${{ matrix.version == 'v.9' && 'inventory' || (matrix.version == 'v.6' && 'inventory' || 'shopdb') }}
+          username: ${{ matrix.version == 'IMBP03' && 'inventory' || 'postgres' }}
+          password: ${{ matrix.version == 'IMBP03' && 'inventory' || 'postgres' }}
+          database: ${{ matrix.version == 'IMBP03' && 'inventory' || (matrix.version == 'IMBP02' && 'inventory' || 'shopdb') }}
 
       - name: Check if package.json exists
         if: steps.should_run.outputs.run == 'true'
@@ -115,10 +115,10 @@ jobs:
 
       # Run database migrations สำหรับ version ที่ต้องการ
       - name: Run Database Migrations
-        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'v.3' || matrix.version == 'v.6' || matrix.version == 'v.9')
+        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMBP02' || matrix.version == 'IMBP03')
         working-directory: ${{ matrix.path }}
         env:
-          DATABASE_URL: ${{ matrix.version == 'v.9' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'v.6' && 'postgres://postgres:postgres@localhost:5432/inventory' || 'postgres://postgres:postgres@localhost:5432/shopdb') }}
+          DATABASE_URL: ${{ matrix.version == 'IMBP03' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMBP02' && 'postgres://postgres:postgres@localhost:5432/inventory' || 'postgres://postgres:postgres@localhost:5432/shopdb') }}
         run: |
           if [ -f "scripts/run-migrations.js" ]; then
             npm run migrate || echo "⚠️ Migration script not found or failed"
@@ -145,6 +145,6 @@ jobs:
         working-directory: ${{ matrix.path }}
         continue-on-error: true
         env:
-          DATABASE_URL: ${{ matrix.version == 'v.9' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'v.6' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'v.3' && 'postgres://postgres:postgres@localhost:5432/shopdb' || '')) }}
+          DATABASE_URL: ${{ matrix.version == 'IMBP03' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMBP02' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'IMBP01' && 'postgres://postgres:postgres@localhost:5432/shopdb' || '')) }}
           NODE_ENV: test
         run: npm test
