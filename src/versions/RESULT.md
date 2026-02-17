@@ -11,22 +11,22 @@ Unstructured prompt-based code generation often fails to produce reliable softwa
 **Evidence from Multi-Dimensional Reporting:**
 
 **Functional Correctness:**
-- IMBP01-PDBP03: All tests passed (100%) across all versions
+- IMBP01-PDSD01: All tests passed (100%) across all versions
 - Basic Prompting (IMBP01, SCBP01, PDBP01): 18 total tests, all passed
-- Context Engineering (IMBP02, SCBP02, PDBP02): 18 total tests, all passed
-- SDD (IMBP03, SCBP03, PDBP03): 18 total tests, all passed
+- Context Engineering (IMCE01, SCCE01, PDCE01): 18 total tests, all passed
+- SDD (IMSD01, SCSD01, PDSD01): 18 total tests, all passed
 
 **SonarQube Analysis:**
-- **Best Implementation (PDBP03):** Security: 0, Reliability: 8, Duplications: 0.0%
-- **Worst Implementation (SCBP03):** Security: 5 (highest), Duplications: 34.8%
+- **Best Implementation (PDSD01):** Security: 0, Reliability: 8, Duplications: 0.0%
+- **Worst Implementation (SCSD01):** Security: 5 (highest), Duplications: 34.8%
 - **Average Security:** 2.0 vulnerabilities per SDD implementation (0-5 range)
 - **Average Reliability:** 13 issues per SDD implementation
-- **Average Duplications:** 12.6% (PDBP03: 0.0%, IMBP03: 3.1%, SCBP03: 34.8%)
+- **Average Duplications:** 12.6% (PDSD01: 0.0%, IMSD01: 3.1%, SCSD01: 34.8%)
 
 **CodeQL Analysis:**
-- IMBP03-PDBP03: CodeQL reports not available
+- IMSD01-PDSD01: CodeQL reports not available
 
-**Key Observation:** SDD shows the highest variability - best implementation (PDBP03) achieves excellent metrics, but worst (SCBP03) has the highest security vulnerabilities across all evaluated versions.
+**Key Observation:** SDD shows the highest variability - best implementation (PDSD01) achieves excellent metrics, but worst (SCSD01) has the highest security vulnerabilities across all evaluated versions.
 
 **Characteristics:**
 - Specifications act as a single source of truth
@@ -47,13 +47,13 @@ Unstructured prompt-based code generation often fails to produce reliable softwa
 **Evidence from Multi-Dimensional Reporting:**
 
 **SonarQube Analysis:**
-- **Security:** 0 vulnerabilities across all implementations (IMBP02, SCBP02, PDBP02) ✅
-- **Code Duplications:** Average 4.5% (PDBP02: 0.0% ✅, SCBP02: 4.3%, IMBP02: 9.3%)
-- **Reliability:** Variable (SCBP02: 9, IMBP02: 19, PDBP02: 17)
-- **Maintainability:** Variable (SCBP02: 12, IMBP02: 26, PDBP02: 20)
+- **Security:** 0 vulnerabilities across all implementations (IMCE01, SCCE01, PDCE01) ✅
+- **Code Duplications:** Average 4.5% (PDCE01: 0.0% ✅, SCCE01: 4.3%, IMCE01: 9.3%)
+- **Reliability:** Variable (SCCE01: 9, IMCE01: 19, PDCE01: 17)
+- **Maintainability:** Variable (SCCE01: 12, IMCE01: 26, PDCE01: 20)
 
 **CodeQL Analysis:**
-- IMBP02, SCBP02, PDBP02: No critical security issues reported ✅
+- IMCE01, SCCE01, PDCE01: No critical security issues reported ✅
 
 **Key Observation:** Context Engineering consistently achieves zero security vulnerabilities and significantly reduces code duplications compared to Basic Prompting.
 
@@ -128,32 +128,32 @@ This evaluation employs **three independent measurement standards** to assess co
 | **IMBP01** | Basic Prompting | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
 | **SCBP01** | Basic Prompting | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
 | **PDBP01** | Basic Prompting | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
-| **IMBP02** | Context Engineering | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Stock restoration, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
-| **SCBP02** | Context Engineering | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
-| **PDBP02** | Context Engineering | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
-| **IMBP03** | SDD | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Stock restoration, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
-| **SCBP03** | SDD | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
-| **PDBP03** | SDD | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
+| **IMCE01** | Context Engineering | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Stock restoration, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
+| **SCCE01** | Context Engineering | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
+| **PDCE01** | Context Engineering | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
+| **IMSD01** | SDD | 7 tests | ✅ 100% (7/7) | Stock deduction, Low stock alert, Stock restoration, Race condition, Transaction atomicity, Overselling prevention, Boundary values |
+| **SCSD01** | SDD | 5 tests | ✅ 100% (5/5) | Update quantity, Merge items, Save for later, Add more than stock, Floating point calculation |
+| **PDSD01** | SDD | 6 tests | ✅ 100% (6/6) | Coupon validation, Cart total discount %, Expiration check, Usage limit, Order of operations, Negative total protection |
 
 **Key Findings:**
 - ✅ **IMBP01 (Basic Prompting)**: All 7 tests passed, including critical edge cases (race conditions, transaction atomicity)
 - ✅ **SCBP01 (Basic Prompting)**: All 5 tests passed, including floating point calculation precision
 - ✅ **PDBP01 (Basic Prompting)**: All 6 tests passed, including coupon validation and order of operations
-- ✅ **IMBP02 (Context Engineering)**: All 7 tests passed, including race conditions and transaction atomicity
-- ✅ **SCBP02 (Context Engineering)**: All 5 tests passed, including merge items logic and stock validation
-- ✅ **PDBP02 (Context Engineering)**: All 6 tests passed, including coupon validation and negative total protection
-- ✅ **IMBP03 (SDD)**: All 7 tests passed, including race conditions and transaction atomicity with `withTransaction` helper
-- ✅ **SCBP03 (SDD)**: All 5 tests passed, including merge items logic and floating point calculation
-- ✅ **PDBP03 (SDD)**: All 6 tests passed, including complex scenarios (order of operations, negative total protection)
+- ✅ **IMCE01 (Context Engineering)**: All 7 tests passed, including race conditions and transaction atomicity
+- ✅ **SCCE01 (Context Engineering)**: All 5 tests passed, including merge items logic and stock validation
+- ✅ **PDCE01 (Context Engineering)**: All 6 tests passed, including coupon validation and negative total protection
+- ✅ **IMSD01 (SDD)**: All 7 tests passed, including race conditions and transaction atomicity with `withTransaction` helper
+- ✅ **SCSD01 (SDD)**: All 5 tests passed, including merge items logic and floating point calculation
+- ✅ **PDSD01 (SDD)**: All 6 tests passed, including complex scenarios (order of operations, negative total protection)
 
 **Edge Case Performance:**
-- **Race Conditions**: IMBP01, IMBP02, IMBP03 successfully handled 5 concurrent requests (only 1 success, 4 failures, stock did not go negative)
-- **Transaction Atomicity**: IMBP01, IMBP02, IMBP03 verified rollback on DB error (IMBP03 uses `withTransaction` helper)
-- **Overselling Prevention**: IMBP01, SCBP01, IMBP02, SCBP02, IMBP03, SCBP03 correctly rejected requests exceeding available stock
-- **Floating Point Precision**: SCBP01, SCBP02, SCBP03 correctly handled integer cents calculation (19.99 * 3 = 59.97)
-- **Coupon Validation**: PDBP01, PDBP02, PDBP03 correctly validated coupons (expiration, usage limits, minimum purchase)
-- **Order of Operations**: PDBP01, PDBP02, PDBP03 correctly applied discounts in sequence (percent then fixed)
-- **Negative Total Protection**: PDBP01, PDBP02, PDBP03 correctly capped totals at 0 when discount exceeds subtotal
+- **Race Conditions**: IMBP01, IMCE01, IMSD01 successfully handled 5 concurrent requests (only 1 success, 4 failures, stock did not go negative)
+- **Transaction Atomicity**: IMBP01, IMCE01, IMSD01 verified rollback on DB error (IMSD01 uses `withTransaction` helper)
+- **Overselling Prevention**: IMBP01, SCBP01, IMCE01, SCCE01, IMSD01, SCSD01 correctly rejected requests exceeding available stock
+- **Floating Point Precision**: SCBP01, SCCE01, SCSD01 correctly handled integer cents calculation (19.99 * 3 = 59.97)
+- **Coupon Validation**: PDBP01, PDCE01, PDSD01 correctly validated coupons (expiration, usage limits, minimum purchase)
+- **Order of Operations**: PDBP01, PDCE01, PDSD01 correctly applied discounts in sequence (percent then fixed)
+- **Negative Total Protection**: PDBP01, PDCE01, PDSD01 correctly capped totals at 0 when discount exceeds subtotal
 
 ---
 
@@ -177,12 +177,12 @@ This evaluation employs **three independent measurement standards** to assess co
 | **IMBP01** | Basic Prompting | 717 | 0 ✅ | 3 ✅ | 7 ✅ | 2 ✅ | 0.0% ❌ | 24.2% ⚠️ |
 | **SCBP01** | Basic Prompting | 753 | 0 ✅ | 9 ⚠️ | 18 ⚠️ | 4 ⚠️ | 0.0% ❌ | **65.5%** ❌ |
 | **PDBP01** | Basic Prompting | 1,161 | 0 ✅ | **1** ✅ | 10 ✅ | 5 ⚠️ | 0.0% ❌ | 1.4% ✅ |
-| **IMBP02** | Context Engineering | 1,351 | 0 ✅ | 19 ⚠️ | **26** ⚠️ | 7 ⚠️ | 0.0% ❌ | 9.3% ✅ |
-| **SCBP02** | Context Engineering | 834 | 0 ✅ | 9 ⚠️ | 12 ⚠️ | 3 ✅ | 0.0% ❌ | 4.3% ✅ |
-| **PDBP02** | Context Engineering | 644 | 0 ✅ | 17 ⚠️ | 20 ⚠️ | 5 ⚠️ | 0.0% ❌ | **0.0%** ✅ |
-| **IMBP03** | SDD | 952 | 1 ⚠️ | **22** ❌ | 18 ⚠️ | 4 ⚠️ | 0.0% ❌ | 3.1% ✅ |
-| **SCBP03** | SDD | 826 | **5** ❌ | 9 ⚠️ | 12 ⚠️ | 4 ⚠️ | 0.0% ❌ | 34.8% ⚠️ |
-| **PDBP03** | SDD | 808 | 0 ✅ | 8 ✅ | 17 ⚠️ | 6 ⚠️ | 0.0% ❌ | **0.0%** ✅ |
+| **IMCE01** | Context Engineering | 1,351 | 0 ✅ | 19 ⚠️ | **26** ⚠️ | 7 ⚠️ | 0.0% ❌ | 9.3% ✅ |
+| **SCCE01** | Context Engineering | 834 | 0 ✅ | 9 ⚠️ | 12 ⚠️ | 3 ✅ | 0.0% ❌ | 4.3% ✅ |
+| **PDCE01** | Context Engineering | 644 | 0 ✅ | 17 ⚠️ | 20 ⚠️ | 5 ⚠️ | 0.0% ❌ | **0.0%** ✅ |
+| **IMSD01** | SDD | 952 | 1 ⚠️ | **22** ❌ | 18 ⚠️ | 4 ⚠️ | 0.0% ❌ | 3.1% ✅ |
+| **SCSD01** | SDD | 826 | **5** ❌ | 9 ⚠️ | 12 ⚠️ | 4 ⚠️ | 0.0% ❌ | 34.8% ⚠️ |
+| **PDSD01** | SDD | 808 | 0 ✅ | 8 ✅ | 17 ⚠️ | 6 ⚠️ | 0.0% ❌ | **0.0%** ✅ |
 
 **Key Findings by Development Method:**
 
@@ -193,26 +193,26 @@ This evaluation employs **three independent measurement standards** to assess co
 - **Best:** PDBP01 (Reliability: 1, Duplications: 1.4%)
 - **Worst:** SCBP01 (Duplications: 65.5%)
 
-**Context Engineering (IMBP02, SCBP02, PDBP02):**
+**Context Engineering (IMCE01, SCCE01, PDCE01):**
 - **Security:** 0 vulnerabilities across all implementations ✅
-- **Reliability:** Variable (SCBP02: 9, IMBP02: 19, PDBP02: 17)
-- **Code Duplications:** Improved (PDBP02: 0.0% ✅, SCBP02: 4.3%, IMBP02: 9.3%)
-- **Best:** PDBP02 (Duplications: 0.0%, Security: 0)
-- **Worst:** IMBP02 (Reliability: 19, Maintainability: 26)
+- **Reliability:** Variable (SCCE01: 9, IMCE01: 19, PDCE01: 17)
+- **Code Duplications:** Improved (PDCE01: 0.0% ✅, SCCE01: 4.3%, IMCE01: 9.3%)
+- **Best:** PDCE01 (Duplications: 0.0%, Security: 0)
+- **Worst:** IMCE01 (Reliability: 19, Maintainability: 26)
 
-**Specification-Driven Development (IMBP03, SCBP03, PDBP03):**
-- **Security:** Variable (PDBP03: 0 ✅, IMBP03: 1 ⚠️, SCBP03: 5 ❌)
-- **Reliability:** Variable (PDBP03: 8 ✅, SCBP03: 9, IMBP03: 22 ❌)
-- **Code Duplications:** Best (PDBP03: 0.0% ✅, IMBP03: 3.1%, SCBP03: 34.8% ⚠️)
-- **Best:** PDBP03 (Security: 0, Duplications: 0.0%, Reliability: 8)
-- **Worst:** SCBP03 (Security: 5, Duplications: 34.8%), IMBP03 (Reliability: 22)
+**Specification-Driven Development (IMSD01, SCSD01, PDSD01):**
+- **Security:** Variable (PDSD01: 0 ✅, IMSD01: 1 ⚠️, SCSD01: 5 ❌)
+- **Reliability:** Variable (PDSD01: 8 ✅, SCSD01: 9, IMSD01: 22 ❌)
+- **Code Duplications:** Best (PDSD01: 0.0% ✅, IMSD01: 3.1%, SCSD01: 34.8% ⚠️)
+- **Best:** PDSD01 (Security: 0, Duplications: 0.0%, Reliability: 8)
+- **Worst:** SCSD01 (Security: 5, Duplications: 34.8%), IMSD01 (Reliability: 22)
 
 **Critical Issues Identified:**
 - ❌ **Test Coverage:** 0.0% across ALL versions
-- ❌ **SCBP03:** 5 security vulnerabilities (highest)
-- ❌ **IMBP03:** 22 reliability issues (highest)
+- ❌ **SCSD01:** 5 security vulnerabilities (highest)
+- ❌ **IMSD01:** 22 reliability issues (highest)
 - ❌ **SCBP01:** 65.5% code duplications (highest)
-- ❌ **IMBP02:** 26 maintainability issues (highest)
+- ❌ **IMCE01:** 26 maintainability issues (highest)
 
 ---
 
@@ -227,17 +227,17 @@ This evaluation employs **three independent measurement standards** to assess co
 | **IMBP01** | Basic Prompting | Analysis performed | ✅ No critical issues reported |
 | **SCBP01** | Basic Prompting | Analysis performed | ✅ No critical issues reported |
 | **PDBP01** | Basic Prompting | Analysis performed | ✅ No critical issues reported |
-| **IMBP02** | Context Engineering | Analysis performed | ✅ No critical issues reported |
-| **SCBP02** | Context Engineering | Analysis performed | ✅ No critical issues reported |
-| **PDBP02** | Context Engineering | Analysis performed | ✅ No critical issues reported |
-| **IMBP03** | SDD | ⚠️ No CodeQL report | - |
-| **SCBP03** | SDD | ⚠️ No CodeQL report | - |
-| **PDBP03** | SDD | ⚠️ No CodeQL report | - |
+| **IMCE01** | Context Engineering | Analysis performed | ✅ No critical issues reported |
+| **SCCE01** | Context Engineering | Analysis performed | ✅ No critical issues reported |
+| **PDCE01** | Context Engineering | Analysis performed | ✅ No critical issues reported |
+| **IMSD01** | SDD | ⚠️ No CodeQL report | - |
+| **SCSD01** | SDD | ⚠️ No CodeQL report | - |
+| **PDSD01** | SDD | ⚠️ No CodeQL report | - |
 
 **Key Findings:**
-- ✅ **IMBP01-PDBP02:** CodeQL analysis performed, no critical security issues reported
-- ⚠️ **IMBP03-PDBP03:** CodeQL reports not available
-- **Note:** CodeQL results align with SonarQube security findings for IMBP01-PDBP02 (0 vulnerabilities)
+- ✅ **IMBP01-PDCE01:** CodeQL analysis performed, no critical security issues reported
+- ⚠️ **IMSD01-PDSD01:** CodeQL reports not available
+- **Note:** CodeQL results align with SonarQube security findings for IMBP01-PDCE01 (0 vulnerabilities)
 
 ---
 
@@ -251,7 +251,7 @@ This evaluation employs **three independent measurement standards** to assess co
 | **Context Engineering** | 3.67⭐ | 4.5% | 0 (all implementations) ✅ | 9 issues | Better Structure |
 | **Specification-Driven Development** | 4.33⭐ | 12.6% | 0-5 (avg: 2.0) ⚠️ | 8 issues | Clean Architecture ✅ |
 
-**Note on Security:** While Basic Prompting and Context Engineering achieved 0 vulnerabilities across all implementations, SDD shows variability: best implementation (PDBP03) has 0, but worst implementation (SCBP03) has 5 vulnerabilities (highest across all evaluated versions).
+**Note on Security:** While Basic Prompting and Context Engineering achieved 0 vulnerabilities across all implementations, SDD shows variability: best implementation (PDSD01) has 0, but worst implementation (SCSD01) has 5 vulnerabilities (highest across all evaluated versions).
 
 ### Rubric-Based Quality Score Methodology
 
@@ -294,22 +294,22 @@ Each dimension is scored independently on a 0-3 scale, then aggregated to produc
 | IMBP01 | 1 | 1 | 1 | 1 | 4 | ⭐⭐ (2/5) | ⭐⭐⭐ (3/5) | Basic Prompting |
 | SCBP01 | 2 | 2 | 0* | 2 | 6 | ⭐⭐ (2/5)* | ⭐⭐⭐⭐ (4/5) | Basic Prompting |
 | PDBP01 | 1 | 1 | 2 | 1 | 5 | ⭐⭐ (2/5) | ⭐⭐⭐ (3/5) | Basic Prompting |
-| IMBP02 | 2 | 2 | 1 | 2 | 7 | ⭐⭐⭐ (3/5) | ⭐⭐⭐⭐ (4/5) | Context Engineering |
-| SCBP02 | 1 | 1 | 1 | 1 | 4 | ⭐⭐ (2/5) | ⭐⭐⭐ (3/5) | Context Engineering |
-| PDBP02 | 2 | 2 | 3 | 2 | 9 | ⭐⭐⭐ (3/5) | ⭐⭐⭐⭐ (4/5) | Context Engineering |
-| IMBP03 | 2 | 2 | 2 | 2 | 8 | ⭐⭐⭐ (3/5) | ⭐⭐⭐⭐ (4/5) | SDD |
-| SCBP03 | 2 | 2 | 1* | 2 | 7 | ⭐⭐⭐ (3/5)* | ⭐⭐⭐⭐ (4/5) | SDD |
-| PDBP03 | 3 | 3 | 3 | 3 | 12 | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐⭐⭐⭐ (5/5) | SDD |
+| IMCE01 | 2 | 2 | 1 | 2 | 7 | ⭐⭐⭐ (3/5) | ⭐⭐⭐⭐ (4/5) | Context Engineering |
+| SCCE01 | 1 | 1 | 1 | 1 | 4 | ⭐⭐ (2/5) | ⭐⭐⭐ (3/5) | Context Engineering |
+| PDCE01 | 2 | 2 | 3 | 2 | 9 | ⭐⭐⭐ (3/5) | ⭐⭐⭐⭐ (4/5) | Context Engineering |
+| IMSD01 | 2 | 2 | 2 | 2 | 8 | ⭐⭐⭐ (3/5) | ⭐⭐⭐⭐ (4/5) | SDD |
+| SCSD01 | 2 | 2 | 1* | 2 | 7 | ⭐⭐⭐ (3/5)* | ⭐⭐⭐⭐ (4/5) | SDD |
+| PDSD01 | 3 | 3 | 3 | 3 | 12 | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐⭐⭐⭐ (5/5) | SDD |
 
-*Note: SCBP01 and SCBP03 have high code duplications (>30%), so Organization dimension is penalized per rubric rules.
+*Note: SCBP01 and SCSD01 have high code duplications (>30%), so Organization dimension is penalized per rubric rules.
 
 **Explanation of Rating Differences:**
 - **Original Ratings**: Holistic expert assessment based on overall impression
 - **Rubric-Based Ratings**: Systematic scoring using predefined criteria
 - **Discrepancy Analysis**: 
   - SCBP01: Original 4⭐ (high features) vs Rubric 2⭐ (penalized for 65.5% duplications)
-  - IMBP02, PDBP02, IMBP03, SCBP03: Original 4⭐ (good overall) vs Rubric 3⭐ (systematic assessment)
-  - PDBP03: Consistent 5⭐ (excellent in all dimensions)
+  - IMCE01, PDCE01, IMSD01, SCSD01: Original 4⭐ (good overall) vs Rubric 3⭐ (systematic assessment)
+  - PDSD01: Consistent 5⭐ (excellent in all dimensions)
 
 **Average Quality Score:**
 - **Original Holistic Ratings:**
@@ -394,7 +394,7 @@ Each dimension is scored independently on a 0-3 scale, then aggregated to produc
    - SonarQube: High duplications (65.5%) due to copy-paste patterns
    - **Interpretation**: Good architecture and features, but poor code reuse
 
-4. **Example: PDBP03 (5⭐ Quality Score, 0 vulnerabilities)**
+4. **Example: PDSD01 (5⭐ Quality Score, 0 vulnerabilities)**
    - Quality Score: 5⭐ because it has Clean Architecture, Error Factory, Repository Pattern
    - SonarQube: 0 vulnerabilities, 0% duplications
    - **Interpretation**: Excellent alignment between structural quality and quantitative metrics
@@ -420,7 +420,7 @@ Each dimension is scored independently on a 0-3 scale, then aggregated to produc
    - โครงสร้างโค้ด (Code structure)
    - การแยกความรับผิดชอบ (Separation of concerns)
    - Design patterns ที่ใช้ (Repository Pattern, Service Layer, Clean Architecture)
-   - ตัวอย่าง: PDBP03 ได้ 5⭐ เพราะใช้ Clean Architecture (Repository + Service Pattern)
+   - ตัวอย่าง: PDSD01 ได้ 5⭐ เพราะใช้ Clean Architecture (Repository + Service Pattern)
 
 2. **คุณสมบัติและ Features (Features & Best Practices)**
    - การใช้ validation library (เช่น Zod)
@@ -434,20 +434,20 @@ Each dimension is scored independently on a 0-3 scale, then aggregated to produc
    - Modularity และ reusability
    - Maintainability
    - Code duplications
-   - ตัวอย่าง: PDBP02 ได้ 4⭐ เพราะ Code Duplications = 0.0%
+   - ตัวอย่าง: PDCE01 ได้ 4⭐ เพราะ Code Duplications = 0.0%
 
 4. **มาตรฐานและ Best Practices (Standards & Best Practices)**
    - การใช้ ES Modules vs CommonJS
    - Type safety (TypeScript, Zod)
    - Money handling (Integer cents/satang math)
    - Structured logging
-   - ตัวอย่าง: PDBP03 ได้ 5⭐ เพราะมี Error Factory, Repository Pattern, Structured logging
+   - ตัวอย่าง: PDSD01 ได้ 5⭐ เพราะมี Error Factory, Repository Pattern, Structured logging
 
 #### ระดับคะแนน (Scoring Scale)
 
 - **⭐⭐⭐⭐⭐ (5/5)**: Clean Architecture, Best practices ครบถ้วน, Code organization ดีเยี่ยม
-  - ตัวอย่าง: PDBP03 - Repository Pattern, Error Factory, Clean Architecture
-  - **การประเมินตามเกณฑ์ 4 ด้าน (PDBP03):**
+  - ตัวอย่าง: PDSD01 - Repository Pattern, Error Factory, Clean Architecture
+  - **การประเมินตามเกณฑ์ 4 ด้าน (PDSD01):**
     
     **1. Architecture (5/5) - ดีเยี่ยม**
     - ✅ **Clean Architecture**: แยก layers ชัดเจน (Repository + Service + Controller)
@@ -479,19 +479,19 @@ Each dimension is scored independently on a 0-3 scale, then aggregated to produc
     - ✅ **Type Safety**: Zod validation สำหรับ runtime type checking
     - ✅ **Comprehensive Testing**: มี test coverage สำหรับ scenarios, services, และ utilities
     
-  - **สรุป**: PDBP03 ได้ 5⭐ เพราะผ่านเกณฑ์ทั้ง 4 ด้านในระดับดีเยี่ยม (5/5) ในทุกด้าน
-  - **หมายเหตุ**: แม้ PDBP03 ยังใช้ CommonJS (ควรเป็น ES Modules) แต่จุดเด่นในด้านอื่นๆ ครอบคลุมมากจนได้ 5⭐ โดยเฉพาะ Clean Architecture และ Code Duplications = 0.0%
+  - **สรุป**: PDSD01 ได้ 5⭐ เพราะผ่านเกณฑ์ทั้ง 4 ด้านในระดับดีเยี่ยม (5/5) ในทุกด้าน
+  - **หมายเหตุ**: แม้ PDSD01 ยังใช้ CommonJS (ควรเป็น ES Modules) แต่จุดเด่นในด้านอื่นๆ ครอบคลุมมากจนได้ 5⭐ โดยเฉพาะ Clean Architecture และ Code Duplications = 0.0%
 
 - **⭐⭐⭐⭐☆ (4/5)**: มี Service Layer, Best practices ดี, แต่ยังไม่ถึง Clean Architecture
-  - ตัวอย่าง: SCBP01, IMBP02, PDBP02, IMBP03, SCBP03 - มี features ดี แต่ยังมีจุดที่ควรปรับปรุง
+  - ตัวอย่าง: SCBP01, IMCE01, PDCE01, IMSD01, SCSD01 - มี features ดี แต่ยังมีจุดที่ควรปรับปรุง
   - **การประเมินตามเกณฑ์ 4 ด้าน:**
     - ⚠️ **Architecture (4/5)**: มี Service Layer แต่ยังไม่มี Repository Pattern (Clean Architecture)
-    - ✅ **Features (4/5)**: มี features ดี แต่ยังไม่ครบถ้วน (เช่น SCBP01, SCBP03 มี Zod แต่ IMBP02, SCBP02, PDBP02, IMBP03 ยังไม่มี)
-    - ⚠️ **Code Organization (4/5)**: โครงสร้างดี แต่ยังมี Code Duplications (SCBP01: 65.5%, SCBP03: 34.8%)
-    - ⚠️ **Best Practices (4/5)**: มี Best practices แต่ยังไม่ครบ (เช่น PDBP02 มี Error Middleware แต่ยังไม่มี Error Factory)
+    - ✅ **Features (4/5)**: มี features ดี แต่ยังไม่ครบถ้วน (เช่น SCBP01, SCSD01 มี Zod แต่ IMCE01, SCCE01, PDCE01, IMSD01 ยังไม่มี)
+    - ⚠️ **Code Organization (4/5)**: โครงสร้างดี แต่ยังมี Code Duplications (SCBP01: 65.5%, SCSD01: 34.8%)
+    - ⚠️ **Best Practices (4/5)**: มี Best practices แต่ยังไม่ครบ (เช่น PDCE01 มี Error Middleware แต่ยังไม่มี Error Factory)
 
 - **⭐⭐⭐☆☆ (3/5)**: มีโครงสร้างพื้นฐาน, Features พื้นฐาน, แต่ยังขาด Best practices
-  - ตัวอย่าง: IMBP01, PDBP01, SCBP02 - เริ่มต้นได้ดี แต่ยังไม่มี validation หรือ error handling ที่เป็นระบบ
+  - ตัวอย่าง: IMBP01, PDBP01, SCCE01 - เริ่มต้นได้ดี แต่ยังไม่มี validation หรือ error handling ที่เป็นระบบ
   - **การประเมินตามเกณฑ์ 4 ด้าน:**
     - ⚠️ **Architecture (3/5)**: Monolithic หรือโครงสร้างพื้นฐาน, ยังไม่มี Service Layer หรือ Clean Architecture
     - ⚠️ **Features (3/5)**: มี features พื้นฐาน (Docker, Tests) แต่ยังไม่มี validation, error handling ที่เป็นระบบ
@@ -512,16 +512,16 @@ Each dimension is scored independently on a 0-3 scale, then aggregated to produc
 - PDBP01: 3⭐ (TypeScript Frontend แต่ Backend ยังใช้ CommonJS)
 - **ค่าเฉลี่ย: (3 + 4 + 3) / 3 = 3.33⭐**
 
-**Context Engineering (IMBP02, SCBP02, PDBP02):**
-- IMBP02: 4⭐ (Concurrency Safety, Atomic Transactions)
-- SCBP02: 3⭐ (Stock Guard, Integer Cents Math)
-- PDBP02: 4⭐ (Error Middleware, Money Utils, Code Duplications = 0.0%)
+**Context Engineering (IMCE01, SCCE01, PDCE01):**
+- IMCE01: 4⭐ (Concurrency Safety, Atomic Transactions)
+- SCCE01: 3⭐ (Stock Guard, Integer Cents Math)
+- PDCE01: 4⭐ (Error Middleware, Money Utils, Code Duplications = 0.0%)
 - **ค่าเฉลี่ย: (4 + 3 + 4) / 3 = 3.67⭐**
 
-**Specification-Driven Development (IMBP03, SCBP03, PDBP03):**
-- IMBP03: 4⭐ (API Endpoints, Alerts, Service Layer)
-- SCBP03: 4⭐ (Zod, ES Modules, Service Layer)
-- PDBP03: 5⭐ (Repository Pattern, Error Factory, Clean Architecture)
+**Specification-Driven Development (IMSD01, SCSD01, PDSD01):**
+- IMSD01: 4⭐ (API Endpoints, Alerts, Service Layer)
+- SCSD01: 4⭐ (Zod, ES Modules, Service Layer)
+- PDSD01: 5⭐ (Repository Pattern, Error Factory, Clean Architecture)
 - **ค่าเฉลี่ย: (4 + 4 + 5) / 3 = 4.33⭐**
 
 #### ข้อสังเกตสำคัญ
@@ -686,8 +686,8 @@ Each dimension is scored independently on a 0-3 scale, then aggregated to produc
 - ⚠️ Security hotspots require review
 
 **Specification-Driven Development:**
-- ✅ Best implementation achieved 0 vulnerabilities (PDBP03)
-- ⚠️ Some implementations have vulnerabilities: IMBP03 (1), SCBP03 (5 - highest across all versions)
+- ✅ Best implementation achieved 0 vulnerabilities (PDSD01)
+- ⚠️ Some implementations have vulnerabilities: IMSD01 (1), SCSD01 (5 - highest across all versions)
 - ⚠️ Average security vulnerabilities: 2.0 per SDD implementation
 - **Note:** While the best SDD implementation achieves zero vulnerabilities, the method does not guarantee security by itself - one SDD implementation had the highest vulnerability count (5) across all evaluated versions
 
@@ -754,23 +754,23 @@ AI Code Generation, Specification-Driven Development, Context Engineering, Softw
 
 **1. Functional Correctness (Test Results):**
 - Basic Prompting (IMBP01, SCBP01, PDBP01): All tests passed (100%), including critical edge cases (race conditions, transaction atomicity, coupon validation)
-- Context Engineering (IMBP02, SCBP02, PDBP02): All tests passed (100%), including race conditions, transaction atomicity, and coupon validation
-- SDD (IMBP03, SCBP03, PDBP03): All tests passed (100%), including complex scenarios (order of operations, negative total protection, transaction helpers)
+- Context Engineering (IMCE01, SCCE01, PDCE01): All tests passed (100%), including race conditions, transaction atomicity, and coupon validation
+- SDD (IMSD01, SCSD01, PDSD01): All tests passed (100%), including complex scenarios (order of operations, negative total protection, transaction helpers)
 
 **2. SonarQube Static Analysis:**
-- **Security:** Basic Prompting and Context Engineering: 0 vulnerabilities across all implementations. SDD: Variable (0-5 vulnerabilities, SCBP03 highest with 5)
-- **Reliability:** Best: PDBP01 (1 issue). Worst: IMBP03 (22 issues). SDD average: 13 issues per implementation
-- **Code Duplications:** Best: PDBP02 and PDBP03 (0.0%). Worst: SCBP01 (65.5%). Context Engineering average: 4.5%, SDD average: 12.6%
+- **Security:** Basic Prompting and Context Engineering: 0 vulnerabilities across all implementations. SDD: Variable (0-5 vulnerabilities, SCSD01 highest with 5)
+- **Reliability:** Best: PDBP01 (1 issue). Worst: IMSD01 (22 issues). SDD average: 13 issues per implementation
+- **Code Duplications:** Best: PDCE01 and PDSD01 (0.0%). Worst: SCBP01 (65.5%). Context Engineering average: 4.5%, SDD average: 12.6%
 - **Critical Issue:** Test Coverage = 0.0% across ALL versions
 
 **3. CodeQL Security Analysis:**
-- IMBP01-PDBP02: No critical security issues reported (aligns with SonarQube findings)
-- IMBP03-PDBP03: CodeQL reports not available
+- IMBP01-PDCE01: No critical security issues reported (aligns with SonarQube findings)
+- IMSD01-PDSD01: CodeQL reports not available
 
 **Key Findings:**
 - Basic Prompting can satisfy functional requirements (100% test pass rate) but shows high code duplications (up to 65.5%)
 - Context Engineering achieves zero security vulnerabilities and significantly reduces code duplications (best: 0.0%)
-- SDD shows variability: best implementation (PDBP03) achieves 0 vulnerabilities and 0% duplications, but worst (SCBP03) has 5 vulnerabilities
+- SDD shows variability: best implementation (PDSD01) achieves 0 vulnerabilities and 0% duplications, but worst (SCSD01) has 5 vulnerabilities
 - **Universal Issue:** Test coverage remains 0.0% across all methods, highlighting the need for systematic automated testing
 
 These findings emphasize that structured specification-driven contexts can improve code quality, but security and test coverage must be explicitly addressed in the development process.
@@ -803,7 +803,7 @@ This study employs **three independent measurement standards** to assess code qu
 **3. CodeQL Security Analysis**
 - **Method:** Automated security vulnerability detection
 - **Metrics:** Critical security issues (presence/absence)
-- **Coverage:** IMBP01-PDBP02 (IMBP03-PDBP03 reports not available)
+- **Coverage:** IMBP01-PDCE01 (IMSD01-PDSD01 reports not available)
 
 ### Note on Subjective Assessments
 

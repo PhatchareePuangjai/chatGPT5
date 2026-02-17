@@ -2,23 +2,23 @@
 
 ## 🎯 บทสรุปผู้บริหาร (Executive Summary)
 
-งานวิจัยนี้ทำการวิเคราะห์คุณภาพโค้ดของโปรเจกต์ e-commerce/inventory system ที่มี 9 เวอร์ชัน (IMBP01 - PDBP03) โดยใช้ 3 วิธีการวิเคราะห์:
+งานวิจัยนี้ทำการวิเคราะห์คุณภาพโค้ดของโปรเจกต์ e-commerce/inventory system ที่มี 9 เวอร์ชัน (IMBP01 - PDSD01) โดยใช้ 3 วิธีการวิเคราะห์:
 
 1. **Code Review Analysis** - การทบทวนโค้ดแบบละเอียด (Architecture, Patterns, Features)
 2. **SonarQube Analysis** - การวิเคราะห์อัตโนมัติ (Security, Reliability, Maintainability, Duplications)
 3. **Version Analysis** - การวิเคราะห์ด้วยกราฟและสถิติ (Trends, Evolution, Comparisons)
 
 **ผลการวิจัยหลัก:**
-- ✅ คุณภาพโค้ดพัฒนาขึ้นอย่างต่อเนื่อง: IMBP01 (3⭐) → PDBP03 (5⭐)
-- ✅ PDBP03 เป็นเวอร์ชันที่ดีที่สุดทั้ง 3 วิธีการวิเคราะห์
+- ✅ คุณภาพโค้ดพัฒนาขึ้นอย่างต่อเนื่อง: IMBP01 (3⭐) → PDSD01 (5⭐)
+- ✅ PDSD01 เป็นเวอร์ชันที่ดีที่สุดทั้ง 3 วิธีการวิเคราะห์
 - ⚠️ พบปัญหาสำคัญ: Test Coverage = 0.0% ทุกเวอร์ชัน
-- ⚠️ SCBP01 และ SCBP03 มี Code Duplications สูงมาก (65.5%, 34.8%)
-- ⚠️ SCBP03 มี Security vulnerabilities สูงสุด (5 จุด)
+- ⚠️ SCBP01 และ SCSD01 มี Code Duplications สูงมาก (65.5%, 34.8%)
+- ⚠️ SCSD01 มี Security vulnerabilities สูงสุด (5 จุด)
 
 **วิธีการพัฒนา (Development Methods):**
 - **IMBP01, SCBP01, PDBP01:** Basic Prompt (การพัฒนาแบบพื้นฐาน)
-- **IMBP02, SCBP02, PDBP02:** Context Engineering (การพัฒนาโดยใช้ context ที่ดีขึ้น)
-- **IMBP03, SCBP03, PDBP03:** SDD - Spec-Driven Development (การพัฒนาตาม specification)
+- **IMCE01, SCCE01, PDCE01:** Context Engineering (การพัฒนาโดยใช้ context ที่ดีขึ้น)
+- **IMSD01, SCSD01, PDSD01:** SDD - Spec-Driven Development (การพัฒนาตาม specification)
 
 ---
 
@@ -45,22 +45,22 @@
 | IMBP01 | ⭐⭐⭐☆☆ (3/5) | Docker, Tests | Monolithic | Basic Prompt |
 | SCBP01 | ⭐⭐⭐⭐☆ (4/5) | Zod, ES Modules, Row Locking | Service Layer | Basic Prompt |
 | PDBP01 | ⭐⭐⭐☆☆ (3/5) | TypeScript (Frontend) | Monolithic | Basic Prompt |
-| IMBP02 | ⭐⭐⭐⭐☆ (4/5) | Concurrency Safety | Service Layer | Context Engineering |
-| SCBP02 | ⭐⭐⭐☆☆ (3/5) | Stock Guard | Basic | Context Engineering |
-| PDBP02 | ⭐⭐⭐⭐☆ (4/5) | Error Middleware, Money Utils | Service Layer | Context Engineering |
-| IMBP03 | ⭐⭐⭐⭐☆ (4/5) | API Endpoints, Alerts | Service Layer | SDD (Spec-Driven) |
-| SCBP03 | ⭐⭐⭐⭐☆ (4/5) | Zod, ES Modules | Service Layer | SDD (Spec-Driven) |
-| PDBP03 | ⭐⭐⭐⭐⭐ (5/5) | Repository Pattern, Error Factory | Clean Architecture | SDD (Spec-Driven) |
+| IMCE01 | ⭐⭐⭐⭐☆ (4/5) | Concurrency Safety | Service Layer | Context Engineering |
+| SCCE01 | ⭐⭐⭐☆☆ (3/5) | Stock Guard | Basic | Context Engineering |
+| PDCE01 | ⭐⭐⭐⭐☆ (4/5) | Error Middleware, Money Utils | Service Layer | Context Engineering |
+| IMSD01 | ⭐⭐⭐⭐☆ (4/5) | API Endpoints, Alerts | Service Layer | SDD (Spec-Driven) |
+| SCSD01 | ⭐⭐⭐⭐☆ (4/5) | Zod, ES Modules | Service Layer | SDD (Spec-Driven) |
+| PDSD01 | ⭐⭐⭐⭐⭐ (5/5) | Repository Pattern, Error Factory | Clean Architecture | SDD (Spec-Driven) |
 
 **จุดเด่น:**
 - SCBP01 เป็นจุดเปลี่ยนสำคัญ: เพิ่ม Zod validation, ES Modules, Row Locking (Basic Prompt)
-- IMBP02-PDBP02: ใช้ Context Engineering - คุณภาพดีขึ้น (Concurrency Safety, Error Middleware)
-- IMBP03-PDBP03: ใช้ SDD (Spec-Driven Development) - คุณภาพดีที่สุด (PDBP03: 5⭐)
+- IMCE01-PDCE01: ใช้ Context Engineering - คุณภาพดีขึ้น (Concurrency Safety, Error Middleware)
+- IMSD01-PDSD01: ใช้ SDD (Spec-Driven Development) - คุณภาพดีที่สุด (PDSD01: 5⭐)
 
 **จุดที่ควรปรับปรุง:**
 - IMBP01: ยังไม่มี Validation และ Error Handling ที่เป็นระบบ (Basic Prompt)
 - PDBP01: Backend ยังใช้ CommonJS (ควรเป็น ES Modules) (Basic Prompt)
-- IMBP02: SonarQube พบ Reliability และ Maintainability issues สูง (Context Engineering)
+- IMCE01: SonarQube พบ Reliability และ Maintainability issues สูง (Context Engineering)
 
 ---
 
@@ -87,24 +87,24 @@
 | IMBP01 | 0 ✅ | 3 ✅ | 7 ✅ | 24.2% ⚠️ | Basic Prompt | Maintainability: 7 (ดีที่สุด) |
 | SCBP01 | 0 ✅ | 9 ⚠️ | 18 ⚠️ | **65.5%** ❌ | Basic Prompt | - |
 | PDBP01 | 0 ✅ | **1** ✅ | 10 ✅ | **1.4%** ✅ | Basic Prompt | Reliability: 1 (ดีที่สุด) |
-| IMBP02 | 0 ✅ | 19 ⚠️ | **26** ⚠️ | 9.3% ✅ | Context Engineering | - |
-| SCBP02 | 0 ✅ | 9 ⚠️ | 12 ⚠️ | 4.3% ✅ | Context Engineering | - |
-| PDBP02 | 0 ✅ | 17 ⚠️ | 20 ⚠️ | **0.0%** ✅ | Context Engineering | Duplications: 0.0% |
-| IMBP03 | 1 ⚠️ | **22** ❌ | 18 ⚠️ | 3.1% ✅ | SDD | - |
-| SCBP03 | **5** ❌ | 9 ⚠️ | 12 ⚠️ | 34.8% ❌ | SDD | - |
-| PDBP03 | 0 ✅ | 8 ✅ | 17 ⚠️ | **0.0%** ✅ | SDD | Best Overall |
+| IMCE01 | 0 ✅ | 19 ⚠️ | **26** ⚠️ | 9.3% ✅ | Context Engineering | - |
+| SCCE01 | 0 ✅ | 9 ⚠️ | 12 ⚠️ | 4.3% ✅ | Context Engineering | - |
+| PDCE01 | 0 ✅ | 17 ⚠️ | 20 ⚠️ | **0.0%** ✅ | Context Engineering | Duplications: 0.0% |
+| IMSD01 | 1 ⚠️ | **22** ❌ | 18 ⚠️ | 3.1% ✅ | SDD | - |
+| SCSD01 | **5** ❌ | 9 ⚠️ | 12 ⚠️ | 34.8% ❌ | SDD | - |
+| PDSD01 | 0 ✅ | 8 ✅ | 17 ⚠️ | **0.0%** ✅ | SDD | Best Overall |
 
 **จุดเด่น:**
-- PDBP03: Security = 0, Duplications = 0.0%, Reliability = 8
+- PDSD01: Security = 0, Duplications = 0.0%, Reliability = 8
 - PDBP01: Reliability = 1 (ดีที่สุด), Duplications = 1.4%
-- PDBP02: Duplications = 0.0%
+- PDCE01: Duplications = 0.0%
 - IMBP01: Maintainability = 7 (ดีที่สุด)
 
 **จุดที่ต้องแก้ไข:**
-- SCBP03: Security = 5 (สูงสุด), Duplications = 34.8%
+- SCSD01: Security = 5 (สูงสุด), Duplications = 34.8%
 - SCBP01: Duplications = 65.5% (สูงสุด)
-- IMBP03: Reliability = 22 (สูงสุด), Security = 1
-- IMBP02: Maintainability = 26 (สูงสุด), Reliability = 19
+- IMSD01: Reliability = 22 (สูงสุด), Security = 1
+- IMCE01: Maintainability = 26 (สูงสุด), Reliability = 19
 
 ---
 
@@ -115,31 +115,31 @@
 **ผลการวิเคราะห์:**
 
 **คุณภาพโค้ด:**
-- Average Quality Score: 3.60⭐ (IMBP01-PDBP03)
-- Quality Improvement: 2 stars (IMBP01: 3⭐ → PDBP03: 5⭐)
-- Best Version: PDBP03 (5⭐, 10 features)
+- Average Quality Score: 3.60⭐ (IMBP01-PDSD01)
+- Quality Improvement: 2 stars (IMBP01: 3⭐ → PDSD01: 5⭐)
+- Best Version: PDSD01 (5⭐, 10 features)
 
 **Features Evolution:**
 - IMBP01: 3 features (เริ่มต้น)
 - SCBP01: 9 features (กระโดดใหญ่ - Basic Prompt)
-- PDBP03: 10 features (มากที่สุด - SDD)
+- PDSD01: 10 features (มากที่สุด - SDD)
 
 **Architecture Evolution:**
 - IMBP01: Monolithic (Basic Prompt)
-- SCBP01-SCBP03: Service Layer (Basic Prompt → Context Engineering → SDD)
-- PDBP03: Repository + Service Pattern (Clean Architecture - SDD)
+- SCBP01-SCSD01: Service Layer (Basic Prompt → Context Engineering → SDD)
+- PDSD01: Repository + Service Pattern (Clean Architecture - SDD)
 
 **Development Method Impact:**
 - **Basic Prompt (IMBP01-PDBP01):** คุณภาพ 3-4⭐, มี features ดี แต่ Code Duplications สูง (SCBP01: 65.5%)
-- **Context Engineering (IMBP02-PDBP02):** คุณภาพ 3-4⭐, Code Duplications ลดลง (PDBP02: 0.0%)
-- **SDD (IMBP03-PDBP03):** คุณภาพ 4-5⭐, Architecture ดีขึ้น (PDBP03: Clean Architecture)
+- **Context Engineering (IMCE01-PDCE01):** คุณภาพ 3-4⭐, Code Duplications ลดลง (PDCE01: 0.0%)
+- **SDD (IMSD01-PDSD01):** คุณภาพ 4-5⭐, Architecture ดีขึ้น (PDSD01: Clean Architecture)
 
 **Tech Stack Adoption:**
-- ES Modules: SCBP01, SCBP03
+- ES Modules: SCBP01, SCSD01
 - TypeScript: PDBP01 (Frontend only)
-- Zod Validation: SCBP01, SCBP03, PDBP03
+- Zod Validation: SCBP01, SCSD01, PDSD01
 - Docker: IMBP01+ (ทุกเวอร์ชัน)
-- Tests: IMBP01, SCBP01, PDBP01, IMBP02, PDBP02, SCBP03, PDBP03
+- Tests: IMBP01, SCBP01, PDBP01, IMCE01, PDCE01, SCSD01, PDSD01
 
 ---
 
@@ -167,7 +167,7 @@
 - แต่ Code Duplications สูงมากใน SCBP01 (65.5%)
 - PDBP01 มี metrics ดีมาก แต่ Backend ยังใช้ CommonJS
 
-#### 🧠 Context Engineering (IMBP02, SCBP02, PDBP02)
+#### 🧠 Context Engineering (IMCE01, SCCE01, PDCE01)
 
 **ลักษณะ:**
 - ใช้ context ที่ดีขึ้นในการพัฒนา
@@ -175,17 +175,17 @@
 - เน้นการแก้ไขปัญหาที่พบในเวอร์ชันก่อนหน้า
 
 **ผลลัพธ์:**
-- ✅ IMBP02: คุณภาพ 4⭐, มี Concurrency Safety (FOR UPDATE)
-- ⚠️ IMBP02: SonarQube พบ Reliability (19) และ Maintainability (26) สูง
-- ✅ SCBP02: คุณภาพ 3⭐, Code Duplications ต่ำ (4.3%)
-- ✅ PDBP02: Code Duplications = 0.0% (ดีที่สุด), Error Middleware
+- ✅ IMCE01: คุณภาพ 4⭐, มี Concurrency Safety (FOR UPDATE)
+- ⚠️ IMCE01: SonarQube พบ Reliability (19) และ Maintainability (26) สูง
+- ✅ SCCE01: คุณภาพ 3⭐, Code Duplications ต่ำ (4.3%)
+- ✅ PDCE01: Code Duplications = 0.0% (ดีที่สุด), Error Middleware
 
 **ข้อสังเกต:**
-- Code Duplications ลดลงอย่างชัดเจน (SCBP01: 65.5% → PDBP02: 0.0%)
-- แต่ SonarQube พบ issues สูงใน IMBP02 (Reliability: 19, Maintainability: 26)
-- PDBP02 มี Code Duplications = 0.0% - เป็นตัวอย่างที่ดี
+- Code Duplications ลดลงอย่างชัดเจน (SCBP01: 65.5% → PDCE01: 0.0%)
+- แต่ SonarQube พบ issues สูงใน IMCE01 (Reliability: 19, Maintainability: 26)
+- PDCE01 มี Code Duplications = 0.0% - เป็นตัวอย่างที่ดี
 
-#### 📋 SDD - Spec-Driven Development (IMBP03, SCBP03, PDBP03)
+#### 📋 SDD - Spec-Driven Development (IMSD01, SCSD01, PDSD01)
 
 **ลักษณะ:**
 - พัฒนาตาม specification ที่ละเอียด
@@ -193,26 +193,26 @@
 - เน้น Clean Architecture และ Best Practices
 
 **ผลลัพธ์:**
-- ⚠️ IMBP03: คุณภาพ 4⭐, แต่ Reliability issues สูง (22 จุด), Security (1 จุด)
-- ⚠️ SCBP03: คุณภาพ 4⭐, แต่ Security vulnerabilities สูงสุด (5 จุด), Duplications (34.8%)
-- ✅ PDBP03: คุณภาพ 5⭐ (ดีที่สุด), Security = 0, Duplications = 0.0%, Clean Architecture
+- ⚠️ IMSD01: คุณภาพ 4⭐, แต่ Reliability issues สูง (22 จุด), Security (1 จุด)
+- ⚠️ SCSD01: คุณภาพ 4⭐, แต่ Security vulnerabilities สูงสุด (5 จุด), Duplications (34.8%)
+- ✅ PDSD01: คุณภาพ 5⭐ (ดีที่สุด), Security = 0, Duplications = 0.0%, Clean Architecture
 
 **ข้อสังเกต:**
-- คุณภาพดีขึ้นอย่างต่อเนื่อง (IMBP03: 4⭐ → PDBP03: 5⭐)
-- PDBP03 เป็นเวอร์ชันที่ดีที่สุดทั้ง 3 วิธีการวิเคราะห์
-- แต่ IMBP03 และ SCBP03 ยังมี issues ที่ต้องแก้ไข
+- คุณภาพดีขึ้นอย่างต่อเนื่อง (IMSD01: 4⭐ → PDSD01: 5⭐)
+- PDSD01 เป็นเวอร์ชันที่ดีที่สุดทั้ง 3 วิธีการวิเคราะห์
+- แต่ IMSD01 และ SCSD01 ยังมี issues ที่ต้องแก้ไข
 
 ### 2.2 เปรียบเทียบผลกระทบของวิธีการพัฒนา
 
 | Development Method | Versions | Avg Quality | Avg Duplications | Best Version | Issues |
 |-------------------|----------|-------------|------------------|--------------|--------|
 | **Basic Prompt** | IMBP01-PDBP01 | 3.33⭐ | 30.4% | PDBP01 (Reliability: 1) | SCBP01: Duplications 65.5% |
-| **Context Engineering** | IMBP02-PDBP02 | 3.67⭐ | 4.5% | PDBP02 (Duplications: 0.0%) | IMBP02: Reliability 19, Maintainability 26 |
-| **SDD** | IMBP03-PDBP03 | 4.33⭐ | 12.6% | PDBP03 (5⭐, Best Overall) | IMBP03: Reliability 22, SCBP03: Security 5 |
+| **Context Engineering** | IMCE01-PDCE01 | 3.67⭐ | 4.5% | PDCE01 (Duplications: 0.0%) | IMCE01: Reliability 19, Maintainability 26 |
+| **SDD** | IMSD01-PDSD01 | 4.33⭐ | 12.6% | PDSD01 (5⭐, Best Overall) | IMSD01: Reliability 22, SCSD01: Security 5 |
 
 **สรุป:**
-- **SDD ให้ผลลัพธ์ดีที่สุด** - Average Quality 4.33⭐, Best Version (PDBP03)
-- **Context Engineering ลด Code Duplications ได้ดี** - Average 4.5% (PDBP02: 0.0%)
+- **SDD ให้ผลลัพธ์ดีที่สุด** - Average Quality 4.33⭐, Best Version (PDSD01)
+- **Context Engineering ลด Code Duplications ได้ดี** - Average 4.5% (PDCE01: 0.0%)
 - **Basic Prompt เริ่มต้นได้ดี** - แต่ Code Duplications สูง (SCBP01: 65.5%)
 
 ---
@@ -223,12 +223,12 @@
 
 | Version | Code Review | SonarQube | Version Analysis | Dev Method | สรุป |
 |---------|-------------|-----------|------------------|------------|------|
-| **PDBP03** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | SDD | ✅ **สอดคล้องกัน - ดีที่สุด** |
+| **PDSD01** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | SDD | ✅ **สอดคล้องกัน - ดีที่สุด** |
 | **PDBP01** | ⭐⭐⭐☆☆ | ⭐⭐⭐⭐ | ⭐⭐⭐☆☆ | Basic Prompt | ⚠️ SonarQube ดีกว่า (Reliability: 1) |
 | **SCBP01** | ⭐⭐⭐⭐☆ | ⭐⭐ | ⭐⭐⭐⭐☆ | Basic Prompt | ⚠️ Code Review ดีกว่า แต่ Duplications สูง |
-| **IMBP02** | ⭐⭐⭐⭐☆ | ⭐⭐ | ⭐⭐⭐⭐☆ | Context Engineering | ⚠️ Code Review ดีกว่า แต่ SonarQube พบ issues สูง |
-| **PDBP02** | ⭐⭐⭐⭐☆ | ⭐⭐⭐ | ⭐⭐⭐⭐☆ | Context Engineering | ✅ Code Duplications = 0.0% |
-| **SCBP03** | ⭐⭐⭐⭐☆ | ⭐ | ⭐⭐⭐⭐☆ | SDD | ❌ SonarQube แย่กว่า (Security: 5) |
+| **IMCE01** | ⭐⭐⭐⭐☆ | ⭐⭐ | ⭐⭐⭐⭐☆ | Context Engineering | ⚠️ Code Review ดีกว่า แต่ SonarQube พบ issues สูง |
+| **PDCE01** | ⭐⭐⭐⭐☆ | ⭐⭐⭐ | ⭐⭐⭐⭐☆ | Context Engineering | ✅ Code Duplications = 0.0% |
+| **SCSD01** | ⭐⭐⭐⭐☆ | ⭐ | ⭐⭐⭐⭐☆ | SDD | ❌ SonarQube แย่กว่า (Security: 5) |
 | **IMBP01** | ⭐⭐⭐☆☆ | ⭐⭐⭐⭐ | ⭐⭐⭐☆☆ | Basic Prompt | ✅ SonarQube ดีกว่า (Maintainability: 7) |
 
 ### 2.2 การวิเคราะห์ความแตกต่าง
@@ -239,11 +239,11 @@
    - **สาเหตุ:** มี features ดี (Zod, ES Modules, Row Locking) แต่มี Code Duplications สูงมาก
    - **คำแนะนำ:** ควร refactor เพื่อลด Code Duplications
 
-2. **IMBP02 (Code Review: 4⭐, SonarQube: Reliability 19, Maintainability 26)**
+2. **IMCE01 (Code Review: 4⭐, SonarQube: Reliability 19, Maintainability 26)**
    - **สาเหตุ:** มี Concurrency Safety (FOR UPDATE) แต่ SonarQube พบ bugs และ code smells สูง
    - **คำแนะนำ:** ควรแก้ไข bugs และ refactor code smells
 
-3. **SCBP03 (Code Review: 4⭐, SonarQube: Security 5, Duplications 34.8%)**
+3. **SCSD01 (Code Review: 4⭐, SonarQube: Security 5, Duplications 34.8%)**
    - **สาเหตุ:** มี Zod, ES Modules แต่มี Security vulnerabilities และ Code Duplications สูง
    - **คำแนะนำ:** ต้องแก้ไข Security issues เร่งด่วน
 
@@ -263,61 +263,61 @@
 IMBP01 (3⭐) [Basic Prompt] 
   → SCBP01 (4⭐) [Basic Prompt] 
   → PDBP01 (3⭐) [Basic Prompt]
-  → IMBP02 (4⭐) [Context Engineering]
-  → SCBP02 (3⭐) [Context Engineering]
-  → PDBP02 (4⭐) [Context Engineering]
-  → IMBP03 (4⭐) [SDD]
-  → SCBP03 (4⭐) [SDD]
-  → PDBP03 (5⭐) [SDD]
+  → IMCE01 (4⭐) [Context Engineering]
+  → SCCE01 (3⭐) [Context Engineering]
+  → PDCE01 (4⭐) [Context Engineering]
+  → IMSD01 (4⭐) [SDD]
+  → SCSD01 (4⭐) [SDD]
+  → PDSD01 (5⭐) [SDD]
 ```
 
 **จุดเปลี่ยนสำคัญ:**
 - **IMBP01 → SCBP01:** กระโดดจาก 3⭐ → 4⭐ (Basic Prompt - เพิ่ม Zod, ES Modules, Row Locking)
-- **PDBP01 → IMBP02:** เปลี่ยนเป็น Context Engineering - คุณภาพ 4⭐, Code Duplications ลดลง
-- **PDBP02 → IMBP03:** เปลี่ยนเป็น SDD - คุณภาพคงที่ 4⭐ แต่ Architecture ดีขึ้น
-- **SCBP03 → PDBP03:** กระโดดจาก 4⭐ → 5⭐ (SDD - เพิ่ม Repository Pattern, Clean Architecture)
+- **PDBP01 → IMCE01:** เปลี่ยนเป็น Context Engineering - คุณภาพ 4⭐, Code Duplications ลดลง
+- **PDCE01 → IMSD01:** เปลี่ยนเป็น SDD - คุณภาพคงที่ 4⭐ แต่ Architecture ดีขึ้น
+- **SCSD01 → PDSD01:** กระโดดจาก 4⭐ → 5⭐ (SDD - เพิ่ม Repository Pattern, Clean Architecture)
 
 ### 4.2 Architecture Evolution
 
 ```
 Monolithic (IMBP01) [Basic Prompt]
     ↓
-Service Layer (SCBP01-SCBP03) [Basic Prompt → Context Engineering → SDD]
+Service Layer (SCBP01-SCSD01) [Basic Prompt → Context Engineering → SDD]
     ↓
-Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
+Repository + Service Pattern (PDSD01) [SDD] ← Clean Architecture
 ```
 
 **ความสัมพันธ์กับ Development Method:**
 - **Basic Prompt:** Monolithic → Service Layer (IMBP01-PDBP01)
-- **Context Engineering:** Service Layer (IMBP02-PDBP02)
-- **SDD:** Service Layer → Clean Architecture (IMBP03-PDBP03)
+- **Context Engineering:** Service Layer (IMCE01-PDCE01)
+- **SDD:** Service Layer → Clean Architecture (IMSD01-PDSD01)
 
 ### 4.3 Features Evolution
 
 **Type Safety:**
 - IMBP01: ไม่มี validation
-- SCBP01, SCBP03, PDBP03: Zod validation
+- SCBP01, SCSD01, PDSD01: Zod validation
 - PDBP01: TypeScript (Frontend only)
 
 **Concurrency Safety:**
 - IMBP01-SCBP01: Basic transactions
 - SCBP01+: Row Locking (FOR UPDATE)
-- IMBP02+: Atomic transactions
+- IMCE01+: Atomic transactions
 
 **Error Handling:**
 - IMBP01-SCBP01: Basic error handler
-- PDBP02-IMBP03: Error handler middleware
-- PDBP03: Error factory pattern
+- PDCE01-IMSD01: Error handler middleware
+- PDSD01: Error factory pattern
 
 **Money Handling:**
 - SCBP01+: Integer cents math
-- PDBP02+: Integer satang math (THB*100)
+- PDCE01+: Integer satang math (THB*100)
 
 ---
 
 ## 🏆 5. เวอร์ชันที่ดีที่สุด
 
-### 5.1 PDBP03 (promotions-app) ⭐⭐⭐⭐⭐ - SDD
+### 5.1 PDSD01 (promotions-app) ⭐⭐⭐⭐⭐ - SDD
 
 **Code Review:** ⭐⭐⭐⭐⭐
 - Repository Pattern
@@ -338,12 +338,12 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 - Features: 10/10
 - Architecture: Clean Architecture
 
-**สรุป:** PDBP03 เป็นเวอร์ชันที่ดีที่สุดทั้ง 3 วิธีการวิเคราะห์ ✅  
+**สรุป:** PDSD01 เป็นเวอร์ชันที่ดีที่สุดทั้ง 3 วิธีการวิเคราะห์ ✅  
 **Development Method:** SDD (Spec-Driven Development) - แสดงให้เห็นว่า SDD ให้ผลลัพธ์ดีที่สุด
 
 ### 5.2 เวอร์ชันอื่นที่น่าสนใจ
 
-**PDBP02 (promotions-discounts-system) - Context Engineering:**
+**PDCE01 (promotions-discounts-system) - Context Engineering:**
 - SonarQube: Duplications = 0.0%, Security = 0
 - Code Review: 4⭐ (Error Middleware, Money Utils)
 - **Development Method:** Context Engineering - แสดงให้เห็นว่า Context Engineering ลด Code Duplications ได้ดี
@@ -362,7 +362,7 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 - SonarQube: Reliability = 1 (ดีที่สุด), Duplications = 1.4%
 - Code Review: 3⭐ (Backend ยังใช้ CommonJS)
 
-**PDBP02 (promotions-discounts-system):**
+**PDCE01 (promotions-discounts-system):**
 - SonarQube: Duplications = 0.0%, Security = 0
 - Code Review: 4⭐ (Error Middleware, Money Utils)
 
@@ -385,7 +385,7 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 
 **คำแนะนำ:**
 - เพิ่ม Unit Tests สำหรับทุกเวอร์ชัน (เป้าหมาย: 70-80%)
-- เริ่มจาก PDBP03, SCBP01, IMBP02 ที่มี test files อยู่แล้ว
+- เริ่มจาก PDSD01, SCBP01, IMCE01 ที่มี test files อยู่แล้ว
 - เพิ่ม Integration Tests
 
 #### 2. Code Duplications สูง
@@ -394,20 +394,20 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 - สูงที่สุดในทุกเวอร์ชัน
 - ต้อง refactor เร่งด่วน
 
-**SCBP03: 34.8%** ❌
+**SCSD01: 34.8%** ❌
 - สูงมาก ต้อง refactor
 
 **คำแนะนำ:**
-- ใช้ PDBP03 และ PDBP02 เป็น reference (Duplications = 0.0%)
+- ใช้ PDSD01 และ PDCE01 เป็น reference (Duplications = 0.0%)
 - Extract common functions/utilities
 - ใช้ DRY (Don't Repeat Yourself) principle
 
 #### 3. Security Vulnerabilities
 
-**SCBP03: 5 จุด** ❌ (สูงสุด)
+**SCSD01: 5 จุด** ❌ (สูงสุด)
 - ต้องแก้ไขเร่งด่วน
 
-**IMBP03: 1 จุด** ⚠️
+**IMSD01: 1 จุด** ⚠️
 - ต้องแก้ไข
 
 **คำแนะนำ:**
@@ -417,18 +417,18 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 
 #### 4. Reliability Issues
 
-**IMBP03: 22 จุด** ❌ (สูงสุด)
-**IMBP02: 19 จุด** ⚠️
+**IMSD01: 22 จุด** ❌ (สูงสุด)
+**IMCE01: 19 จุด** ⚠️
 
 **คำแนะนำ:**
-- แก้ไข bugs โดยเฉพาะ IMBP03 และ IMBP02
+- แก้ไข bugs โดยเฉพาะ IMSD01 และ IMCE01
 - เพิ่ม error handling
 - เพิ่ม input validation
 
 #### 5. Maintainability Issues
 
-**IMBP02: 26 จุด** ❌ (สูงสุด)
-**PDBP02: 20 จุด** ⚠️
+**IMCE01: 26 จุด** ❌ (สูงสุด)
+**PDCE01: 20 จุด** ⚠️
 
 **คำแนะนำ:**
 - Refactor code smells
@@ -442,32 +442,32 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 #### 🔴 เร่งด่วน (High Priority)
 
 1. **แก้ไข Security vulnerabilities**
-   - SCBP03: 5 จุด
-   - IMBP03: 1 จุด
+   - SCSD01: 5 จุด
+   - IMSD01: 1 จุด
 
 2. **Refactor Code Duplications**
    - SCBP01: 65.5% → <10%
-   - SCBP03: 34.8% → <10%
+   - SCSD01: 34.8% → <10%
 
 #### 🟡 สำคัญ (Medium Priority)
 
 1. **แก้ไข Reliability issues**
-   - IMBP03: 22 จุด → <10
-   - IMBP02: 19 จุด → <10
+   - IMSD01: 22 จุด → <10
+   - IMCE01: 19 จุด → <10
 
 2. **ลด Maintainability issues**
-   - IMBP02: 26 จุด → <15
-   - PDBP02: 20 จุด → <15
+   - IMCE01: 26 จุด → <15
+   - PDCE01: 20 จุด → <15
 
 3. **ตรวจสอบ Security Hotspots**
    - ทั้งหมด 44 จุด
-   - โดยเฉพาะ IMBP02 (7 จุด) และ PDBP03 (6 จุด)
+   - โดยเฉพาะ IMCE01 (7 จุด) และ PDSD01 (6 จุด)
 
 #### 🟢 ควรทำ (Low Priority)
 
 1. **เพิ่ม Test Coverage**
    - เป้าหมาย: 70-80%
-   - เริ่มจาก PDBP03, SCBP01, IMBP02
+   - เริ่มจาก PDSD01, SCBP01, IMCE01
 
 2. **ปรับปรุง Maintainability**
    - ทุกเวอร์ชัน
@@ -477,7 +477,7 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 
 ## 💡 7. Best Practices ที่เรียนรู้ได้
 
-### 7.1 จาก PDBP03 (Best Version - SDD)
+### 7.1 จาก PDSD01 (Best Version - SDD)
 
 1. **Repository Pattern**
    ```javascript
@@ -541,7 +541,7 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
    const price_cents = 1999; // $19.99
    ```
 
-### 7.3 จาก IMBP02 (Concurrency Safety - Context Engineering)
+### 7.3 จาก IMCE01 (Concurrency Safety - Context Engineering)
 
 1. **Atomic Transactions**
    ```javascript
@@ -567,13 +567,13 @@ Repository + Service Pattern (PDBP03) [SDD] ← Clean Architecture
 ส่วนนี้วิเคราะห์การพัฒนาของโค้ดในแต่ละกลุ่ม scenario ที่เหมือนกัน โดยเปรียบเทียบระหว่าง 3 วิธีการพัฒนา:
 
 **กลุ่ม Scenario:**
-1. **Inventory Management** (IMBP01, IMBP02, IMBP03) - `scenarios_inventory.md`
-2. **Shopping Cart** (SCBP01, SCBP02, SCBP03) - `scenarios_cart.md`
-3. **Promotions & Discounts** (PDBP01, PDBP02, PDBP03) - `scenarios_promotions.md`
+1. **Inventory Management** (IMBP01, IMCE01, IMSD01) - `scenarios_inventory.md`
+2. **Shopping Cart** (SCBP01, SCCE01, SCSD01) - `scenarios_cart.md`
+3. **Promotions & Discounts** (PDBP01, PDCE01, PDSD01) - `scenarios_promotions.md`
 
 ---
 
-### 8.2 Inventory Management System (IMBP01, IMBP02, IMBP03)
+### 8.2 Inventory Management System (IMBP01, IMCE01, IMSD01)
 
 #### Scenario: Stock Deduction (การตัดสต็อก)
 
@@ -621,7 +621,7 @@ async function purchase(req, res) {
 
 ---
 
-**IMBP02 (Context Engineering) - `app.js`**
+**IMCE01 (Context Engineering) - `app.js`**
 
 ```javascript
 app.post("/api/purchase", async (req, res) => {
@@ -692,7 +692,7 @@ app.post("/api/purchase", async (req, res) => {
 
 ---
 
-**IMBP03 (SDD) - `stockService.js`**
+**IMSD01 (SDD) - `stockService.js`**
 
 ```javascript
 const { withTransaction } = require('../db');
@@ -760,7 +760,7 @@ const deductStock = async ({ sku, quantity, orderId }) =>
   });
 ```
 
-**การปรับปรุงจาก IMBP02:**
+**การปรับปรุงจาก IMCE01:**
 - ✅ **Repository Pattern** - แยก data access layer
 - ✅ **Service Layer** - แยก business logic
 - ✅ **Structured Error Codes** - `sku_not_found`, `insufficient_stock`
@@ -778,7 +778,7 @@ const deductStock = async ({ sku, quantity, orderId }) =>
 
 #### 📊 สรุปเปรียบเทียบ Inventory Management
 
-| Feature | IMBP01 (Basic Prompt) | IMBP02 (Context Engineering) | IMBP03 (SDD) |
+| Feature | IMBP01 (Basic Prompt) | IMCE01 (Context Engineering) | IMSD01 (SDD) |
 |---------|-------------------|---------------------------|-----------|
 | **Row Locking** | ✅ FOR UPDATE | ✅ FOR UPDATE | ✅ FOR UPDATE (via Repository) |
 | **Transaction** | ✅ Manual | ✅ Manual | ✅ Helper (`withTransaction`) |
@@ -789,13 +789,13 @@ const deductStock = async ({ sku, quantity, orderId }) =>
 | **Code Organization** | ❌ All in controller | ❌ All in route handler | ✅ Separated (Repository, Service, Controller) |
 
 **จุดที่น่าสนใจ:**
-1. **IMBP01 → IMBP02:** Low stock alert ย้ายเข้า transaction (Atomic!) ⭐
-2. **IMBP02 → IMBP03:** Architecture ดีขึ้นมาก (Repository Pattern) ⭐
-3. **IMBP03:** มี structured error codes และ logging ⭐
+1. **IMBP01 → IMCE01:** Low stock alert ย้ายเข้า transaction (Atomic!) ⭐
+2. **IMCE01 → IMSD01:** Architecture ดีขึ้นมาก (Repository Pattern) ⭐
+3. **IMSD01:** มี structured error codes และ logging ⭐
 
 ---
 
-### 8.3 Shopping Cart System (SCBP01, SCBP02, SCBP03)
+### 8.3 Shopping Cart System (SCBP01, SCCE01, SCSD01)
 
 #### Scenario: Add to Cart (เพิ่มสินค้าลงตะกร้า)
 
@@ -845,7 +845,7 @@ export async function addToCart(productId, qty) {
 
 ---
 
-**SCBP02 (Context Engineering) - `server.js`**
+**SCCE01 (Context Engineering) - `server.js`**
 
 ```javascript
 app.post("/api/cart/items", async (req, res) => {
@@ -921,7 +921,7 @@ app.post("/api/cart/items", async (req, res) => {
 
 ---
 
-**SCBP03 (SDD) - `cartService.js`**
+**SCSD01 (SDD) - `cartService.js`**
 
 ```javascript
 export async function addToCart(productId, qty) {
@@ -965,21 +965,21 @@ function assertStockAvailable(desiredQty, stock) {
 }
 ```
 
-**การปรับปรุงจาก SCBP02:**
+**การปรับปรุงจาก SCCE01:**
 - ✅ **Service Layer** - กลับมาใช้ service layer (เหมือน SCBP01)
 - ✅ **Transaction Helper** - ใช้ `withTx()` (เหมือน SCBP01)
 - ✅ **Extracted Functions** - `assertStockAvailable()` - DRY principle
 - ✅ **Cleaner Code** - โค้ดสั้นและอ่านง่ายขึ้น
 
 **จุดเด่น:**
-- ✅ รวมจุดดีของ SCBP01 (Service Layer, Transaction Helper) กับ SCBP02 (Better error handling)
+- ✅ รวมจุดดีของ SCBP01 (Service Layer, Transaction Helper) กับ SCCE01 (Better error handling)
 - ✅ โค้ดสะอาดและ maintainable
 
 ---
 
 #### 📊 สรุปเปรียบเทียบ Shopping Cart
 
-| Feature | SCBP01 (Basic Prompt) | SCBP02 (Context Engineering) | SCBP03 (SDD) |
+| Feature | SCBP01 (Basic Prompt) | SCCE01 (Context Engineering) | SCSD01 (SDD) |
 |---------|-------------------|---------------------------|------------|
 | **Service Layer** | ✅ Yes | ❌ No | ✅ Yes |
 | **Transaction Helper** | ✅ `withTx()` | ❌ Manual | ✅ `withTx()` |
@@ -991,13 +991,13 @@ function assertStockAvailable(desiredQty, stock) {
 | **Extracted Functions** | ❌ No | ❌ No | ✅ `assertStockAvailable()` |
 
 **จุดที่น่าสนใจ:**
-1. **SCBP01 → SCBP02:** เพิ่ม structured error handling แต่เสีย Service Layer
-2. **SCBP02 → SCBP03:** กลับมาใช้ Service Layer + Transaction Helper + Extracted Functions
-3. **SCBP03:** รวมจุดดีของ SCBP01 และ SCBP02 ⭐
+1. **SCBP01 → SCCE01:** เพิ่ม structured error handling แต่เสีย Service Layer
+2. **SCCE01 → SCSD01:** กลับมาใช้ Service Layer + Transaction Helper + Extracted Functions
+3. **SCSD01:** รวมจุดดีของ SCBP01 และ SCCE01 ⭐
 
 ---
 
-### 8.4 Promotions & Discounts System (PDBP01, PDBP02, PDBP03)
+### 8.4 Promotions & Discounts System (PDBP01, PDCE01, PDSD01)
 
 #### Scenario: Apply Coupon (ใช้คูปอง)
 
@@ -1057,7 +1057,7 @@ async function buildQuote(client, { userId, items, couponCode }, { consumeOnConf
 
 ---
 
-**PDBP02 (Context Engineering) - `applyCouponController.js`**
+**PDCE01 (Context Engineering) - `applyCouponController.js`**
 
 ```javascript
 async function applyCoupon(req, res, next) {
@@ -1151,7 +1151,7 @@ async function applyCoupon(req, res, next) {
 
 ---
 
-**PDBP03 (SDD) - `promotionService.js`**
+**PDSD01 (SDD) - `promotionService.js`**
 
 ```javascript
 const couponRepository = require('../repositories/couponRepository');
@@ -1257,7 +1257,7 @@ async function applyCoupon({ userId, couponCode }) {
 }
 ```
 
-**การปรับปรุงจาก PDBP02:**
+**การปรับปรุงจาก PDCE01:**
 - ✅ **Repository Pattern** - แยก data access layer
 - ✅ **Service Layer** - แยก business logic
 - ✅ **Error Factory** - `errorFactory.expired()`, `errorFactory.minSpend()`
@@ -1276,7 +1276,7 @@ async function applyCoupon({ userId, couponCode }) {
 
 #### 📊 สรุปเปรียบเทียบ Promotions & Discounts
 
-| Feature | PDBP01 (Basic Prompt) | PDBP02 (Context Engineering) | PDBP03 (SDD) |
+| Feature | PDBP01 (Basic Prompt) | PDCE01 (Context Engineering) | PDSD01 (SDD) |
 |---------|-------------------|---------------------------|------------|
 | **Service Layer** | ❌ No | ❌ No | ✅ Yes |
 | **Repository Pattern** | ❌ No | ❌ No | ✅ Yes |
@@ -1289,9 +1289,9 @@ async function applyCoupon({ userId, couponCode }) {
 | **Transaction** | ⚠️ Partial | ✅ Yes | ✅ Yes (via Repository) |
 
 **จุดที่น่าสนใจ:**
-1. **PDBP01 → PDBP02:** เพิ่ม structured error codes และ better organization
-2. **PDBP02 → PDBP03:** เพิ่ม Repository Pattern, Error Factory, Extracted Functions
-3. **PDBP03:** Clean Architecture - โค้ดสะอาดและ maintainable มากที่สุด ⭐
+1. **PDBP01 → PDCE01:** เพิ่ม structured error codes และ better organization
+2. **PDCE01 → PDSD01:** เพิ่ม Repository Pattern, Error Factory, Extracted Functions
+3. **PDSD01:** Clean Architecture - โค้ดสะอาดและ maintainable มากที่สุด ⭐
 
 ---
 
@@ -1304,140 +1304,140 @@ async function applyCoupon({ userId, couponCode }) {
 ```
 Monolithic/All-in-one (IMBP01, SCBP01, PDBP01)
     ↓
-Better Structure (IMBP02, SCBP02, PDBP02)
+Better Structure (IMCE01, SCCE01, PDCE01)
     ↓
-Clean Architecture (IMBP03, SCBP03, PDBP03) ✅
+Clean Architecture (IMSD01, SCSD01, PDSD01) ✅
 ```
 
 **ตัวอย่าง:**
 - **IMBP01:** All in controller
-- **IMBP02:** Better structure แต่ยังไม่มี service layer
-- **IMBP03:** Repository + Service Pattern ✅
+- **IMCE01:** Better structure แต่ยังไม่มี service layer
+- **IMSD01:** Repository + Service Pattern ✅
 
 **2. Error Handling Evolution**
 
 ```
 console.error / errors.push (IMBP01, PDBP01)
     ↓
-Structured error codes (IMBP02, SCBP02, PDBP02)
+Structured error codes (IMCE01, SCCE01, PDCE01)
     ↓
-Error Factory Pattern (IMBP03, PDBP03) ✅
+Error Factory Pattern (IMSD01, PDSD01) ✅
 ```
 
 **ตัวอย่าง:**
 - **IMBP01:** `console.error("purchase:", e)`
-- **PDBP02:** `error: "COUPON_EXPIRED", message: "Coupon has expired"`
-- **PDBP03:** `throw errorFactory.expired()` ✅
+- **PDCE01:** `error: "COUPON_EXPIRED", message: "Coupon has expired"`
+- **PDSD01:** `throw errorFactory.expired()` ✅
 
 **3. Code Organization Evolution**
 
 ```
 Long functions (all-in-one) (PDBP01)
     ↓
-Better comments and steps (PDBP02)
+Better comments and steps (PDCE01)
     ↓
-Extracted Functions (SCBP03, PDBP03) ✅
+Extracted Functions (SCSD01, PDSD01) ✅
 ```
 
 **ตัวอย่าง:**
 - **PDBP01:** `buildQuote()` function ยาวมาก (all-in-one)
-- **PDBP02:** แบ่งเป็น steps (1-7) แต่ยังอยู่ใน function เดียว
-- **PDBP03:** `validateDateWindow()`, `validateMinimum()`, `validateUsage()` - Extracted Functions ✅
+- **PDCE01:** แบ่งเป็น steps (1-7) แต่ยังอยู่ใน function เดียว
+- **PDSD01:** `validateDateWindow()`, `validateMinimum()`, `validateUsage()` - Extracted Functions ✅
 
 **4. Transaction & Atomicity**
 
 ```
 Manual transaction + Alert outside (IMBP01) ❌
     ↓
-Manual transaction + Alert inside (IMBP02) ✅
+Manual transaction + Alert inside (IMCE01) ✅
     ↓
-Transaction Helper + Repository (IMBP03, PDBP03) ✅
+Transaction Helper + Repository (IMSD01, PDSD01) ✅
 ```
 
 **ตัวอย่าง:**
 - **IMBP01:** Low stock alert อยู่นอก transaction ❌
-- **IMBP02:** Low stock alert อยู่ใน transaction ✅
-- **IMBP03:** Transaction Helper (`withTransaction`) + Repository Pattern ✅
+- **IMCE01:** Low stock alert อยู่ใน transaction ✅
+- **IMSD01:** Transaction Helper (`withTransaction`) + Repository Pattern ✅
 
 **5. Data Access Layer**
 
 ```
 Direct SQL queries (IMBP01, SCBP01, PDBP01)
     ↓
-Better SQL organization (IMBP02, SCBP02, PDBP02)
+Better SQL organization (IMCE01, SCCE01, PDCE01)
     ↓
-Repository Pattern (IMBP03, PDBP03) ✅
+Repository Pattern (IMSD01, PDSD01) ✅
 ```
 
 ---
 
 #### 8.5.2 จุดที่น่าสนใจเป็นพิเศษ
 
-**🔍 Group 1: Inventory Management (IMBP01, IMBP02, IMBP03)**
+**🔍 Group 1: Inventory Management (IMBP01, IMCE01, IMSD01)**
 
 1. **Low Stock Alert - Atomicity**
    - **IMBP01:** อยู่นอก transaction (ไม่ atomic) ❌
-   - **IMBP02:** อยู่ใน transaction (atomic) ✅
-   - **IMBP03:** อยู่ใน transaction + Repository Pattern ✅
+   - **IMCE01:** อยู่ใน transaction (atomic) ✅
+   - **IMSD01:** อยู่ใน transaction + Repository Pattern ✅
 
 2. **Error Handling**
    - **IMBP01:** `console.error()` ❌
-   - **IMBP02:** Better error messages
-   - **IMBP03:** Structured error codes (`sku_not_found`, `insufficient_stock`) ✅
+   - **IMCE01:** Better error messages
+   - **IMSD01:** Structured error codes (`sku_not_found`, `insufficient_stock`) ✅
 
 3. **Architecture**
    - **IMBP01:** Monolithic
-   - **IMBP02:** Better structure
-   - **IMBP03:** Repository + Service Pattern (Clean Architecture) ✅
+   - **IMCE01:** Better structure
+   - **IMSD01:** Repository + Service Pattern (Clean Architecture) ✅
 
-**สรุป:** IMBP03 ดีขึ้นชัดเจนในทุกด้าน - Architecture, Error Handling, Atomicity
+**สรุป:** IMSD01 ดีขึ้นชัดเจนในทุกด้าน - Architecture, Error Handling, Atomicity
 
 ---
 
-**🔍 Group 2: Shopping Cart (SCBP01, SCBP02, SCBP03)**
+**🔍 Group 2: Shopping Cart (SCBP01, SCCE01, SCSD01)**
 
 1. **Service Layer**
    - **SCBP01:** มี Service Layer ✅
-   - **SCBP02:** ไม่มี Service Layer (โค้ดอยู่ใน route handler) ❌
-   - **SCBP03:** กลับมาใช้ Service Layer ✅
+   - **SCCE01:** ไม่มี Service Layer (โค้ดอยู่ใน route handler) ❌
+   - **SCSD01:** กลับมาใช้ Service Layer ✅
 
 2. **Error Handling**
    - **SCBP01:** Basic error handling
-   - **SCBP02:** Structured error codes (`BAD_REQUEST`, `INSUFFICIENT_STOCK`) + Helpful details ✅
-   - **SCBP03:** Basic error handling แต่มี Zod validation
+   - **SCCE01:** Structured error codes (`BAD_REQUEST`, `INSUFFICIENT_STOCK`) + Helpful details ✅
+   - **SCSD01:** Basic error handling แต่มี Zod validation
 
 3. **Code Organization**
    - **SCBP01:** Service Layer แต่ยังไม่มี extracted functions
-   - **SCBP02:** Better error handling แต่ไม่มี service layer
-   - **SCBP03:** Service Layer + Extracted Functions (`assertStockAvailable()`) ✅
+   - **SCCE01:** Better error handling แต่ไม่มี service layer
+   - **SCSD01:** Service Layer + Extracted Functions (`assertStockAvailable()`) ✅
 
-**สรุป:** SCBP03 รวมจุดดีของ SCBP01 (Service Layer) และ SCBP02 (Better error handling) + Extracted Functions
+**สรุป:** SCSD01 รวมจุดดีของ SCBP01 (Service Layer) และ SCCE01 (Better error handling) + Extracted Functions
 
 ---
 
-**🔍 Group 3: Promotions & Discounts (PDBP01, PDBP02, PDBP03)**
+**🔍 Group 3: Promotions & Discounts (PDBP01, PDCE01, PDSD01)**
 
 1. **Code Organization**
    - **PDBP01:** All-in-one function (`buildQuote()` ยาวมาก) ❌
-   - **PDBP02:** แบ่งเป็น steps (1-7) แต่ยังอยู่ใน function เดียว
-   - **PDBP03:** Extracted Functions (`validateDateWindow()`, `validateMinimum()`, `validateUsage()`) ✅
+   - **PDCE01:** แบ่งเป็น steps (1-7) แต่ยังอยู่ใน function เดียว
+   - **PDSD01:** Extracted Functions (`validateDateWindow()`, `validateMinimum()`, `validateUsage()`) ✅
 
 2. **Error Handling**
    - **PDBP01:** Error array (`errors.push()`) ❌
-   - **PDBP02:** Structured error codes (`COUPON_EXPIRED`, `MIN_PURCHASE_NOT_MET`) ✅
-   - **PDBP03:** Error Factory Pattern (`errorFactory.expired()`, `errorFactory.minSpend()`) ✅
+   - **PDCE01:** Structured error codes (`COUPON_EXPIRED`, `MIN_PURCHASE_NOT_MET`) ✅
+   - **PDSD01:** Error Factory Pattern (`errorFactory.expired()`, `errorFactory.minSpend()`) ✅
 
 3. **Architecture**
    - **PDBP01:** Monolithic (all-in-one)
-   - **PDBP02:** Better structure แต่ยังไม่มี service layer
-   - **PDBP03:** Repository + Service Pattern (Clean Architecture) ✅
+   - **PDCE01:** Better structure แต่ยังไม่มี service layer
+   - **PDSD01:** Repository + Service Pattern (Clean Architecture) ✅
 
 4. **Event Logging**
    - **PDBP01:** ไม่มี
-   - **PDBP02:** ไม่มี
-   - **PDBP03:** `eventRepository.logEvent()` สำหรับ audit trail ✅
+   - **PDCE01:** ไม่มี
+   - **PDSD01:** `eventRepository.logEvent()` สำหรับ audit trail ✅
 
-**สรุป:** PDBP03 ดีขึ้นชัดเจนในทุกด้าน - Architecture, Error Handling, Code Organization, Event Logging
+**สรุป:** PDSD01 ดีขึ้นชัดเจนในทุกด้าน - Architecture, Error Handling, Code Organization, Event Logging
 
 ---
 
@@ -1460,18 +1460,18 @@ Repository Pattern (IMBP03, PDBP03) ✅
 **1. SDD ให้ผลลัพธ์ดีที่สุด**
 
 **หลักฐาน:**
-- **IMBP03 (SDD):** Repository + Service Pattern, Structured error codes, Structured logging
-- **SCBP03 (SDD):** Service Layer + Extracted Functions
-- **PDBP03 (SDD):** Clean Architecture, Error Factory, Event Logging
+- **IMSD01 (SDD):** Repository + Service Pattern, Structured error codes, Structured logging
+- **SCSD01 (SDD):** Service Layer + Extracted Functions
+- **PDSD01 (SDD):** Clean Architecture, Error Factory, Event Logging
 
 **สรุป:** SDD ให้โค้ดที่สะอาด maintainable และมี architecture ที่ดีที่สุด
 
 **2. Context Engineering ช่วยปรับปรุง Error Handling**
 
 **หลักฐาน:**
-- **IMBP02:** Better error messages, Atomic transactions
-- **SCBP02:** Structured error codes (`BAD_REQUEST`, `INSUFFICIENT_STOCK`)
-- **PDBP02:** Structured error codes (`COUPON_EXPIRED`, `MIN_PURCHASE_NOT_MET`)
+- **IMCE01:** Better error messages, Atomic transactions
+- **SCCE01:** Structured error codes (`BAD_REQUEST`, `INSUFFICIENT_STOCK`)
+- **PDCE01:** Structured error codes (`COUPON_EXPIRED`, `MIN_PURCHASE_NOT_MET`)
 
 **สรุป:** Context Engineering ช่วยให้ error handling ดีขึ้น แต่ยังไม่มี Clean Architecture
 
@@ -1490,26 +1490,26 @@ Repository Pattern (IMBP03, PDBP03) ✅
 
 ### 8.1 คุณภาพโค้ด
 
-- **Average Quality Score:** 3.60⭐ (IMBP01-PDBP03)
-- **Quality Improvement:** 2 stars (IMBP01: 3⭐ → PDBP03: 5⭐)
-- **Best Version:** PDBP03 (5⭐) - SDD
+- **Average Quality Score:** 3.60⭐ (IMBP01-PDSD01)
+- **Quality Improvement:** 2 stars (IMBP01: 3⭐ → PDSD01: 5⭐)
+- **Best Version:** PDSD01 (5⭐) - SDD
 - **Worst Version:** IMBP01 (3⭐) - Basic Prompt (เริ่มต้น)
 
 ### 8.2 Features
 
-- **Average Features:** 5.2 features per version (IMBP01-PDBP03)
-- **Most Features:** PDBP03 (10 features) - SDD
+- **Average Features:** 5.2 features per version (IMBP01-PDSD01)
+- **Most Features:** PDSD01 (10 features) - SDD
 - **Least Features:** IMBP01 (3 features) - Basic Prompt
 
 ### 8.3 SonarQube Metrics
 
-- **Best Security:** IMBP01, SCBP01, PDBP01, IMBP02, SCBP02, PDBP02, PDBP03 (0)
-- **Worst Security:** SCBP03 (5)
+- **Best Security:** IMBP01, SCBP01, PDBP01, IMCE01, SCCE01, PDCE01, PDSD01 (0)
+- **Worst Security:** SCSD01 (5)
 - **Best Reliability:** PDBP01 (1)
-- **Worst Reliability:** IMBP03 (22)
+- **Worst Reliability:** IMSD01 (22)
 - **Best Maintainability:** IMBP01 (7)
-- **Worst Maintainability:** IMBP02 (26)
-- **Best Duplications:** PDBP02, PDBP03 (0.0%)
+- **Worst Maintainability:** IMCE01 (26)
+- **Best Duplications:** PDCE01, PDSD01 (0.0%)
 - **Worst Duplications:** SCBP01 (65.5%)
 
 ---
@@ -1518,12 +1518,12 @@ Repository Pattern (IMBP03, PDBP03) ✅
 
 ### 10.1 สรุป
 
-1. **คุณภาพโค้ดพัฒนาขึ้นอย่างต่อเนื่อง** - จาก IMBP01 (3⭐) ไปถึง PDBP03 (5⭐)
-2. **PDBP03 เป็นเวอร์ชันที่ดีที่สุด** - สอดคล้องกันทั้ง 3 วิธีการวิเคราะห์ (SDD)
+1. **คุณภาพโค้ดพัฒนาขึ้นอย่างต่อเนื่อง** - จาก IMBP01 (3⭐) ไปถึง PDSD01 (5⭐)
+2. **PDSD01 เป็นเวอร์ชันที่ดีที่สุด** - สอดคล้องกันทั้ง 3 วิธีการวิเคราะห์ (SDD)
 3. **SCBP01 เป็นจุดเปลี่ยนสำคัญ** - เพิ่ม Zod, ES Modules, Row Locking (Basic Prompt)
-4. **SDD ให้ผลลัพธ์ดีที่สุด** - Average Quality 4.33⭐, Best Version (PDBP03: 5⭐)
-5. **Context Engineering ลด Code Duplications ได้ดี** - PDBP02: 0.0% (ดีที่สุด)
-6. **พบปัญหาสำคัญ:** Test Coverage = 0.0%, Code Duplications สูง (SCBP01: 65.5%), Security vulnerabilities (SCBP03: 5 จุด)
+4. **SDD ให้ผลลัพธ์ดีที่สุด** - Average Quality 4.33⭐, Best Version (PDSD01: 5⭐)
+5. **Context Engineering ลด Code Duplications ได้ดี** - PDCE01: 0.0% (ดีที่สุด)
+6. **พบปัญหาสำคัญ:** Test Coverage = 0.0%, Code Duplications สูง (SCBP01: 65.5%), Security vulnerabilities (SCSD01: 5 จุด)
 
 ### 10.2 ข้อเสนอแนะ
 
@@ -1531,11 +1531,11 @@ Repository Pattern (IMBP03, PDBP03) ✅
 
 1. **ใช้ SDD สำหรับโปรเจกต์ใหม่**
    - ให้ผลลัพธ์ดีที่สุด (Average Quality 4.33⭐)
-   - PDBP03 เป็นตัวอย่างที่ดี (5⭐, Clean Architecture)
+   - PDSD01 เป็นตัวอย่างที่ดี (5⭐, Clean Architecture)
    - ควรมี specification ที่ละเอียดก่อนพัฒนา
 
 2. **ใช้ Context Engineering เพื่อลด Code Duplications**
-   - PDBP02 แสดงให้เห็นว่า Context Engineering ลด Duplications ได้ดี (0.0%)
+   - PDCE01 แสดงให้เห็นว่า Context Engineering ลด Duplications ได้ดี (0.0%)
    - ควรให้ context ที่ดีเกี่ยวกับ requirements และ best practices
 
 3. **Basic Prompt ใช้ได้ แต่ต้องระวัง**
@@ -1546,31 +1546,31 @@ Repository Pattern (IMBP03, PDBP03) ✅
 
 #### สำหรับ Developer
 
-1. **ใช้ PDBP03 เป็น reference** - Clean Architecture, Best Practices
+1. **ใช้ PDSD01 เป็น reference** - Clean Architecture, Best Practices
 2. **เรียนรู้จาก SCBP01** - ES Modules + Zod + Transactions
-3. **ศึกษา IMBP02** - Concurrency Safety
-4. **หลีกเลี่ยงปัญหาใน SCBP01, SCBP03** - Code Duplications สูง
+3. **ศึกษา IMCE01** - Concurrency Safety
+4. **หลีกเลี่ยงปัญหาใน SCBP01, SCSD01** - Code Duplications สูง
 
 #### สำหรับ Project Manager
 
 1. **เลือก Development Method ตามความต้องการ**
-   - **SDD:** สำหรับโปรเจกต์ที่ต้องการคุณภาพสูง (PDBP03: 5⭐)
-   - **Context Engineering:** สำหรับลด Code Duplications (PDBP02: 0.0%)
+   - **SDD:** สำหรับโปรเจกต์ที่ต้องการคุณภาพสูง (PDSD01: 5⭐)
+   - **Context Engineering:** สำหรับลด Code Duplications (PDCE01: 0.0%)
    - **Basic Prompt:** สำหรับโปรเจกต์ที่ต้องการความเร็ว แต่ต้องมี code review
 
 2. **ตั้งเป้า Test Coverage 70-80%** - ปัจจุบัน 0.0%
-3. **แก้ไข Security vulnerabilities** - โดยเฉพาะ SCBP03 (5 จุด)
+3. **แก้ไข Security vulnerabilities** - โดยเฉพาะ SCSD01 (5 จุด)
 4. **Refactor Code Duplications** - โดยเฉพาะ SCBP01 (65.5%)
-5. **ใช้ PDBP03 เป็น baseline** - สำหรับเวอร์ชันใหม่
+5. **ใช้ PDSD01 เป็น baseline** - สำหรับเวอร์ชันใหม่
 
 1. **ตั้งเป้า Test Coverage 70-80%** - ปัจจุบัน 0.0%
-2. **แก้ไข Security vulnerabilities** - โดยเฉพาะ SCBP03 (5 จุด)
+2. **แก้ไข Security vulnerabilities** - โดยเฉพาะ SCSD01 (5 จุด)
 3. **Refactor Code Duplications** - โดยเฉพาะ SCBP01 (65.5%)
-4. **ใช้ PDBP03 เป็น baseline** - สำหรับเวอร์ชันใหม่
+4. **ใช้ PDSD01 เป็น baseline** - สำหรับเวอร์ชันใหม่
 
 #### สำหรับ Technical Lead
 
-1. **กำหนด Coding Standards** - ใช้ PDBP03 เป็น reference
+1. **กำหนด Coding Standards** - ใช้ PDSD01 เป็น reference
 2. **Setup CI/CD with SonarQube** - ตรวจสอบคุณภาพอัตโนมัติ
 3. **Code Review Process** - ตรวจสอบ Architecture, Patterns
 4. **Training** - สอน Clean Architecture, Best Practices
@@ -1608,13 +1608,13 @@ Repository Pattern (IMBP03, PDBP03) ✅
 ### วิธีการพัฒนา (Development Methods)
 
 1. **Basic Prompt (IMBP01-PDBP01):** ใช้ prompt พื้นฐานในการพัฒนา
-2. **Context Engineering (IMBP02-PDBP02):** ใช้ context ที่ดีขึ้นในการพัฒนา
-3. **SDD - Spec-Driven Development (IMBP03-PDBP03):** พัฒนาตาม specification ที่ละเอียด
+2. **Context Engineering (IMCE01-PDCE01):** ใช้ context ที่ดีขึ้นในการพัฒนา
+3. **SDD - Spec-Driven Development (IMSD01-PDSD01):** พัฒนาตาม specification ที่ละเอียด
 
 ### ข้อจำกัด
 
 1. **Test Coverage:** ไม่มีข้อมูล Test Coverage (0.0%) - อาจไม่สะท้อนคุณภาพจริง
-2. **Code Duplications:** SCBP01 และ SCBP03 มี Duplications สูง - อาจเป็นเพราะ copy-paste
+2. **Code Duplications:** SCBP01 และ SCSD01 มี Duplications สูง - อาจเป็นเพราะ copy-paste
 3. **Security Hotspots:** ต้องตรวจสอบด้วยตนเอง - SonarQube แค่ระบุจุด
 
 ### การตีความผล

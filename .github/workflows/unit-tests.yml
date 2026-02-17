@@ -7,24 +7,24 @@ on:
       - 'src/versions/IMBP01/**'
       - 'src/versions/SCBP01/**'
       - 'src/versions/PDBP01/**'
-      - 'src/versions/IMBP02/**'
-      - 'src/versions/SCBP02/**'
-      - 'src/versions/PDBP02/**'
-      - 'src/versions/IMBP03/**'
-      - 'src/versions/SCBP03/**'
-      - 'src/versions/PDBP03/**'
+      - 'src/versions/IMCE01/**'
+      - 'src/versions/SCCE01/**'
+      - 'src/versions/PDCE01/**'
+      - 'src/versions/IMSD01/**'
+      - 'src/versions/SCSD01/**'
+      - 'src/versions/PDSD01/**'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'src/versions/IMBP01/**'
       - 'src/versions/SCBP01/**'
       - 'src/versions/PDBP01/**'
-      - 'src/versions/IMBP02/**'
-      - 'src/versions/SCBP02/**'
-      - 'src/versions/PDBP02/**'
-      - 'src/versions/IMBP03/**'
-      - 'src/versions/SCBP03/**'
-      - 'src/versions/PDBP03/**'
+      - 'src/versions/IMCE01/**'
+      - 'src/versions/SCCE01/**'
+      - 'src/versions/PDCE01/**'
+      - 'src/versions/IMSD01/**'
+      - 'src/versions/SCSD01/**'
+      - 'src/versions/PDSD01/**'
   workflow_dispatch:
 
 jobs:
@@ -41,18 +41,18 @@ jobs:
             path: src/versions/SCBP01/shopping-cart-app/backend
           - version: PDBP01
             path: src/versions/PDBP01/promo-shop-plug-and-play/backend
-          - version: IMBP02
-            path: src/versions/IMBP02/inventory-system/backend
-          - version: SCBP02
-            path: src/versions/SCBP02/shopping-cart/backend
-          - version: PDBP02
-            path: src/versions/PDBP02/promotions-discounts-system/backend
-          - version: IMBP03
-            path: src/versions/IMBP03/backend
-          - version: SCBP03
-            path: src/versions/SCBP03/shopping-cart-app/backend
-          - version: PDBP03
-            path: src/versions/PDBP03/promotions-app/backend
+          - version: IMCE01
+            path: src/versions/IMCE01/inventory-system/backend
+          - version: SCCE01
+            path: src/versions/SCCE01/shopping-cart/backend
+          - version: PDCE01
+            path: src/versions/PDCE01/promotions-discounts-system/backend
+          - version: IMSD01
+            path: src/versions/IMSD01/backend
+          - version: SCSD01
+            path: src/versions/SCSD01/shopping-cart-app/backend
+          - version: PDSD01
+            path: src/versions/PDSD01/promotions-app/backend
 
     steps:
       - uses: actions/checkout@v4
@@ -89,12 +89,12 @@ jobs:
 
       # Setup PostgreSQL สำหรับ version ที่ต้องการ database
       - name: Setup PostgreSQL
-        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMBP02' || matrix.version == 'IMBP03')
+        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01')
         uses: ikalnytskyi/action-setup-postgres@v5
         with:
-          username: ${{ matrix.version == 'IMBP03' && 'inventory' || 'postgres' }}
-          password: ${{ matrix.version == 'IMBP03' && 'inventory' || 'postgres' }}
-          database: ${{ matrix.version == 'IMBP03' && 'inventory' || (matrix.version == 'IMBP02' && 'inventory' || 'shopdb') }}
+          username: ${{ matrix.version == 'IMSD01' && 'inventory' || 'postgres' }}
+          password: ${{ matrix.version == 'IMSD01' && 'inventory' || 'postgres' }}
+          database: ${{ matrix.version == 'IMSD01' && 'inventory' || (matrix.version == 'IMCE01' && 'inventory' || 'shopdb') }}
 
       - name: Check if package.json exists
         if: steps.should_run.outputs.run == 'true'
@@ -115,10 +115,10 @@ jobs:
 
       # Run database migrations สำหรับ version ที่ต้องการ
       - name: Run Database Migrations
-        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMBP02' || matrix.version == 'IMBP03')
+        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01')
         working-directory: ${{ matrix.path }}
         env:
-          DATABASE_URL: ${{ matrix.version == 'IMBP03' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMBP02' && 'postgres://postgres:postgres@localhost:5432/inventory' || 'postgres://postgres:postgres@localhost:5432/shopdb') }}
+          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || 'postgres://postgres:postgres@localhost:5432/shopdb') }}
         run: |
           if [ -f "scripts/run-migrations.js" ]; then
             npm run migrate || echo "⚠️ Migration script not found or failed"
@@ -145,6 +145,6 @@ jobs:
         working-directory: ${{ matrix.path }}
         continue-on-error: true
         env:
-          DATABASE_URL: ${{ matrix.version == 'IMBP03' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMBP02' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'IMBP01' && 'postgres://postgres:postgres@localhost:5432/shopdb' || '')) }}
+          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'IMBP01' && 'postgres://postgres:postgres@localhost:5432/shopdb' || '')) }}
           NODE_ENV: test
         run: npm test

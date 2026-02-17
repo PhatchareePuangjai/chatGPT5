@@ -29,11 +29,11 @@
 | **Code Duplications** | 16.6% ⚠️ |
 
 ### 📝 ข้อสังเกต
-- มี Security vulnerabilities 6 จุดที่ต้องแก้ไข (ส่วนใหญ่อยู่ใน SCBP03: 5 จุด)
-- มี Reliability issues (bugs) 101 จุด - ควรแก้ไขโดยเฉพาะ IMBP03 (22 จุด) และ IMBP02 (19 จุด)
+- มี Security vulnerabilities 6 จุดที่ต้องแก้ไข (ส่วนใหญ่อยู่ใน SCSD01: 5 จุด)
+- มี Reliability issues (bugs) 101 จุด - ควรแก้ไขโดยเฉพาะ IMSD01 (22 จุด) และ IMCE01 (19 จุด)
 - ไม่มี Test Coverage (0.0%) - **ปัญหาสำคัญ** ควรเพิ่มการทดสอบสำหรับทุกเวอร์ชัน
-- Code Duplications 16.6% - มีโค้ดซ้ำที่ควร refactor โดยเฉพาะ SCBP01 (65.5%) และ SCBP03 (34.8%)
-- PDBP03 และ PDBP02 มี Code Duplications = 0.0% - เป็นตัวอย่างที่ดี
+- Code Duplications 16.6% - มีโค้ดซ้ำที่ควร refactor โดยเฉพาะ SCBP01 (65.5%) และ SCSD01 (34.8%)
+- PDSD01 และ PDCE01 มี Code Duplications = 0.0% - เป็นตัวอย่างที่ดี
 
 ---
 
@@ -111,7 +111,7 @@
 
 ---
 
-### IMBP02 (inventory-system)
+### IMCE01 (inventory-system)
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -131,13 +131,13 @@
 - ✅ Code Duplications อยู่ในระดับดี (9.3%)
 - ❌ ไม่มี Test Coverage
 
-**⚠️ ข้อควรระวัง:** IMBP02 มี Reliability และ Maintainability issues สูงที่สุดในบางเวอร์ชัน (Reliability: 19, Maintainability: 26)
+**⚠️ ข้อควรระวัง:** IMCE01 มี Reliability และ Maintainability issues สูงที่สุดในบางเวอร์ชัน (Reliability: 19, Maintainability: 26)
 
 **เปรียบเทียบกับ Code Review:** ⭐⭐⭐⭐☆ (4/5) - มี Concurrency Safety (FOR UPDATE), Atomic Transactions แต่ SonarQube พบ Reliability และ Maintainability issues สูง
 
 ---
 
-### SCBP02 (shopping-cart)
+### SCCE01 (shopping-cart)
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -160,7 +160,7 @@
 
 ---
 
-### PDBP02 (promotions-discounts-system)
+### PDCE01 (promotions-discounts-system)
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -179,13 +179,13 @@
 - ⚠️ Maintainability issues สูง (20 จุด)
 - ❌ ไม่มี Test Coverage
 
-**⭐ จุดเด่น:** PDBP02 ไม่มี Code Duplications เลย (0.0%) - โค้ดสะอาดมาก
+**⭐ จุดเด่น:** PDCE01 ไม่มี Code Duplications เลย (0.0%) - โค้ดสะอาดมาก
 
 **เปรียบเทียบกับ Code Review:** ⭐⭐⭐⭐☆ (4/5) - มี Order of Operations Safe, Integer Satang Math, Error Handler Middleware แต่ยังไม่มี Zod validation
 
 ---
 
-### IMBP03
+### IMSD01
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -204,13 +204,13 @@
 - ✅ Code Duplications ต่ำ (3.1%)
 - ❌ ไม่มี Test Coverage
 
-**⚠️ ข้อควรระวัง:** IMBP03 มี Security vulnerability (1 จุด) และ Reliability issues สูงมาก (22 จุด - สูงที่สุด)
+**⚠️ ข้อควรระวัง:** IMSD01 มี Security vulnerability (1 จุด) และ Reliability issues สูงมาก (22 จุด - สูงที่สุด)
 
 **เปรียบเทียบกับ Code Review:** ⭐⭐⭐⭐☆ (4/5) - มี API endpoints, Alert System, Error Handler แต่ SonarQube พบ Security vulnerability และ Reliability issues สูง
 
 ---
 
-### SCBP03
+### SCSD01
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -229,13 +229,13 @@
 - ❌ **Code Duplications สูงมาก (34.8%)** - ต้อง refactor
 - ❌ ไม่มี Test Coverage
 
-**⚠️ ข้อควรระวัง:** SCBP03 มี Security vulnerabilities สูงที่สุด (5 จุด) และ Code Duplications สูง (34.8%)
+**⚠️ ข้อควรระวัง:** SCSD01 มี Security vulnerabilities สูงที่สุด (5 จุด) และ Code Duplications สูง (34.8%)
 
 **เปรียบเทียบกับ Code Review:** ⭐⭐⭐⭐☆ (4/5) - มี ES Modules, Zod Validation, Transaction Helper แต่ SonarQube พบ Security vulnerabilities สูงมาก (5 จุด) และ Code Duplications สูง (34.8%)
 
 ---
 
-### PDBP03 (promotions-app) ⭐ **Best Version**
+### PDSD01 (promotions-app) ⭐ **Best Version**
 
 | Metric | Value | Status |
 |--------|-------|--------|
@@ -256,7 +256,7 @@
 - ❌ ไม่มี Test Coverage
 
 **⭐ จุดเด่น:** 
-- PDBP03 ไม่มี Security vulnerabilities และ Code Duplications = 0.0%
+- PDSD01 ไม่มี Security vulnerabilities และ Code Duplications = 0.0%
 - Reliability ดีมาก (8 จุด)
 - เป็นเวอร์ชันที่มีคุณภาพดีที่สุดตาม CODE_REVIEW.md (5⭐)
 
@@ -274,39 +274,39 @@
 
 ### 🏆 เวอร์ชันที่ดีที่สุด (Best Versions)
 
-1. **PDBP03** ⭐⭐⭐⭐⭐ - ไม่มี Security issues, Code Duplications = 0.0%, Reliability ดี (8), Clean Architecture
+1. **PDSD01** ⭐⭐⭐⭐⭐ - ไม่มี Security issues, Code Duplications = 0.0%, Reliability ดี (8), Clean Architecture
 2. **PDBP01** ⭐⭐⭐☆☆ - Reliability issues น้อยที่สุด (1 จุด), Code Duplications ต่ำ (1.4%)
-3. **PDBP02** ⭐⭐⭐⭐☆ - Code Duplications = 0.0%, ไม่มี Security issues, Error Middleware
+3. **PDCE01** ⭐⭐⭐⭐☆ - Code Duplications = 0.0%, ไม่มี Security issues, Error Middleware
 4. **IMBP01** ⭐⭐⭐☆☆ - Maintainability ดีที่สุด (7 จุด), Reliability ดี (3 จุด)
 
 ### 📊 เปรียบเทียบ SonarQube vs Code Review
 
 | Version | SonarQube Score | Code Review Score | ความสอดคล้อง |
 |---------|----------------|-------------------|---------------|
-| PDBP03 | ⭐⭐⭐⭐⭐ (Security: 0, Duplications: 0.0%, Reliability: 8) | ⭐⭐⭐⭐⭐ | ✅ สอดคล้อง - ดีที่สุดทั้งสอง |
+| PDSD01 | ⭐⭐⭐⭐⭐ (Security: 0, Duplications: 0.0%, Reliability: 8) | ⭐⭐⭐⭐⭐ | ✅ สอดคล้อง - ดีที่สุดทั้งสอง |
 | PDBP01 | ⭐⭐⭐⭐ (Reliability: 1, Duplications: 1.4%) | ⭐⭐⭐☆☆ | ⚠️ SonarQube ดีกว่า - Reliability ดีมาก |
-| IMBP02 | ⭐⭐ (Reliability: 19, Maintainability: 26) | ⭐⭐⭐⭐☆ | ⚠️ Code Review ดีกว่า - มี Concurrency Safety |
+| IMCE01 | ⭐⭐ (Reliability: 19, Maintainability: 26) | ⭐⭐⭐⭐☆ | ⚠️ Code Review ดีกว่า - มี Concurrency Safety |
 | SCBP01 | ⭐⭐ (Duplications: 65.5%) | ⭐⭐⭐⭐☆ | ⚠️ Code Review ดีกว่า - มี Zod, ES Modules แต่ Duplications สูง |
-| SCBP03 | ⭐ (Security: 5, Duplications: 34.8%) | ⭐⭐⭐⭐☆ | ❌ SonarQube แย่กว่า - Security issues สูง |
+| SCSD01 | ⭐ (Security: 5, Duplications: 34.8%) | ⭐⭐⭐⭐☆ | ❌ SonarQube แย่กว่า - Security issues สูง |
 
 ### ⚠️ เวอร์ชันที่ต้องแก้ไขเร่งด่วน
 
-1. **SCBP03** ⚠️⚠️⚠️ - Security vulnerabilities สูงสุด (5 จุด), Code Duplications สูง (34.8%)
+1. **SCSD01** ⚠️⚠️⚠️ - Security vulnerabilities สูงสุด (5 จุด), Code Duplications สูง (34.8%)
    - แม้ Code Review ให้ 4⭐ แต่ SonarQube พบ Security issues สูงมาก
 2. **SCBP01** ⚠️⚠️ - Code Duplications สูงมาก (65.5%)
    - มี features ดี (Zod, ES Modules) แต่ Code Duplications สูงมาก
-3. **IMBP03** ⚠️⚠️ - มี Security vulnerability (1 จุด), Reliability issues สูงมาก (22 จุด - สูงที่สุด)
-4. **IMBP02** ⚠️ - Reliability issues สูง (19 จุด), Maintainability issues สูง (26 จุด - สูงที่สุด)
+3. **IMSD01** ⚠️⚠️ - มี Security vulnerability (1 จุด), Reliability issues สูงมาก (22 จุด - สูงที่สุด)
+4. **IMCE01** ⚠️ - Reliability issues สูง (19 จุด), Maintainability issues สูง (26 จุด - สูงที่สุด)
    - แม้มี Concurrency Safety แต่ SonarQube พบ issues สูง
 
 ### 📈 สถิติที่น่าสนใจ
 
 | Metric | Best | Worst |
 |--------|------|-------|
-| **Security** | IMBP01, PDBP01, IMBP02, SCBP02, PDBP02, PDBP03 (0) | SCBP03 (5) |
-| **Reliability** | PDBP01 (1) | IMBP03 (22) |
-| **Maintainability** | IMBP01 (7) | IMBP02 (26) |
-| **Code Duplications** | PDBP02, PDBP03 (0.0%) | SCBP01 (65.5%) |
+| **Security** | IMBP01, PDBP01, IMCE01, SCCE01, PDCE01, PDSD01 (0) | SCSD01 (5) |
+| **Reliability** | PDBP01 (1) | IMSD01 (22) |
+| **Maintainability** | IMBP01 (7) | IMCE01 (26) |
+| **Code Duplications** | PDCE01, PDSD01 (0.0%) | SCBP01 (65.5%) |
 
 ---
 
@@ -314,22 +314,22 @@
 
 ### Security Vulnerabilities โดยรวม: 6 จุด
 
-- **IMBP03**: 1 จุด
-- **SCBP03**: 5 จุด (สูงสุด)
-- **IMBP01, SCBP01, PDBP01, IMBP02, SCBP02, PDBP02, PDBP03**: 0 จุด ✅
+- **IMSD01**: 1 จุด
+- **SCSD01**: 5 จุด (สูงสุด)
+- **IMBP01, SCBP01, PDBP01, IMCE01, SCCE01, PDCE01, PDSD01**: 0 จุด ✅
 
 ### Security Hotspots: 44 จุด
 
 ต้องตรวจสอบและแก้ไข:
-- IMBP02: 7 จุด (สูงสุด)
-- PDBP03: 6 จุด
+- IMCE01: 7 จุด (สูงสุด)
+- PDSD01: 6 จุด
 - PDBP01: 5 จุด
-- PDBP02: 5 จุด
+- PDCE01: 5 จุด
 - SCBP01: 4 จุด
-- SCBP03: 4 จุด
-- IMBP03: 4 จุด
+- SCSD01: 4 จุด
+- IMSD01: 4 จุด
 - IMBP01: 2 จุด
-- SCBP02: 3 จุด
+- SCCE01: 3 จุด
 
 ---
 
@@ -338,16 +338,16 @@
 ### Reliability Issues (Bugs): 101 จุด
 
 **เวอร์ชันที่มี Reliability issues สูง:**
-- IMBP03: 22 จุด (สูงสุด)
-- IMBP02: 19 จุด
-- PDBP02: 17 จุด
+- IMSD01: 22 จุด (สูงสุด)
+- IMCE01: 19 จุด
+- PDCE01: 17 จุด
 - SCBP01: 9 จุด
-- SCBP02: 9 จุด
-- SCBP03: 9 จุด
-- PDBP03: 8 จุด
+- SCCE01: 9 จุด
+- SCSD01: 9 จุด
+- PDSD01: 8 จุด
 - PDBP01: 1 จุด (ดีที่สุด)
 
-**คำแนะนำ:** ควรแก้ไข Reliability issues โดยเฉพาะ IMBP03 และ IMBP02
+**คำแนะนำ:** ควรแก้ไข Reliability issues โดยเฉพาะ IMSD01 และ IMCE01
 
 ---
 
@@ -356,17 +356,17 @@
 ### Maintainability Issues (Code Smells): 148 จุด
 
 **เวอร์ชันที่มี Maintainability issues สูง:**
-- IMBP02: 26 จุด (สูงสุด)
-- PDBP02: 20 จุด
+- IMCE01: 26 จุด (สูงสุด)
+- PDCE01: 20 จุด
 - SCBP01: 18 จุด
-- IMBP03: 18 จุด
-- PDBP03: 17 จุด
+- IMSD01: 18 จุด
+- PDSD01: 17 จุด
 - PDBP01: 10 จุด
-- SCBP02: 12 จุด
-- SCBP03: 12 จุด
+- SCCE01: 12 จุด
+- SCSD01: 12 จุด
 - IMBP01: 7 จุด (ดีที่สุด)
 
-**คำแนะนำ:** ควร refactor โค้ดเพื่อลด Code Smells โดยเฉพาะ IMBP02
+**คำแนะนำ:** ควร refactor โค้ดเพื่อลด Code Smells โดยเฉพาะ IMCE01
 
 ---
 
@@ -376,18 +376,18 @@
 
 **เวอร์ชันที่มี Code Duplications:**
 - ❌ **SCBP01: 65.5%** (สูงสุด - ต้อง refactor เร่งด่วน)
-- ❌ **SCBP03: 34.8%** (สูง - ต้อง refactor)
+- ❌ **SCSD01: 34.8%** (สูง - ต้อง refactor)
 - ⚠️ IMBP01: 24.2%
-- ✅ IMBP02: 9.3%
-- ✅ SCBP02: 4.3%
-- ✅ IMBP03: 3.1%
+- ✅ IMCE01: 9.3%
+- ✅ SCCE01: 4.3%
+- ✅ IMSD01: 3.1%
 - ✅ PDBP01: 1.4%
-- ✅ **PDBP02: 0.0%** (ดีที่สุด)
-- ✅ **PDBP03: 0.0%** (ดีที่สุด)
+- ✅ **PDCE01: 0.0%** (ดีที่สุด)
+- ✅ **PDSD01: 0.0%** (ดีที่สุด)
 
 **คำแนะนำ:** 
-- SCBP01 และ SCBP03 ควร refactor เพื่อลด Code Duplications
-- PDBP02 และ PDBP03 เป็นตัวอย่างที่ดี - ไม่มี Code Duplications เลย
+- SCBP01 และ SCSD01 ควร refactor เพื่อลด Code Duplications
+- PDCE01 และ PDSD01 เป็นตัวอย่างที่ดี - ไม่มี Code Duplications เลย
 
 ---
 
@@ -408,14 +408,14 @@
 
 ### ✅ จุดเด่น
 
-1. **PDBP03** ⭐⭐⭐⭐⭐ - คุณภาพดีที่สุดทั้ง SonarQube และ Code Review
+1. **PDSD01** ⭐⭐⭐⭐⭐ - คุณภาพดีที่สุดทั้ง SonarQube และ Code Review
    - SonarQube: Security = 0, Duplications = 0.0%, Reliability = 8
    - Code Review: 5⭐ - Clean Architecture, Repository Pattern, Error Factory
    
 2. **PDBP01** - Reliability ดีมาก: Reliability issues น้อยที่สุด (1 จุด), Code Duplications ต่ำ (1.4%)
    - SonarQube metrics ดีมาก แต่ Code Review พบว่า Backend ยังใช้ CommonJS
    
-3. **PDBP02** - Code Duplications = 0.0%: ไม่มีโค้ดซ้ำ, ไม่มี Security issues
+3. **PDCE01** - Code Duplications = 0.0%: ไม่มีโค้ดซ้ำ, ไม่มี Security issues
    - มี Error Middleware, Integer Satang Math แต่ยังไม่มี Zod validation
    
 4. **IMBP01** - Maintainability ดีที่สุด (7 จุด), Reliability ดี (3 จุด)
@@ -424,16 +424,16 @@
 ### ⚠️ จุดที่ต้องแก้ไข
 
 1. **Security Vulnerabilities**
-   - SCBP03: 5 จุด - ต้องแก้ไขเร่งด่วน
-   - IMBP03: 1 จุด - ต้องแก้ไข
+   - SCSD01: 5 จุด - ต้องแก้ไขเร่งด่วน
+   - IMSD01: 1 จุด - ต้องแก้ไข
 
 2. **Code Duplications**
    - SCBP01: 65.5% - ต้อง refactor เร่งด่วน
-   - SCBP03: 34.8% - ต้อง refactor
+   - SCSD01: 34.8% - ต้อง refactor
 
 3. **Reliability Issues**
-   - IMBP03: 22 จุด - ต้องแก้ไข
-   - IMBP02: 19 จุด - ต้องแก้ไข
+   - IMSD01: 22 จุด - ต้องแก้ไข
+   - IMCE01: 19 จุด - ต้องแก้ไข
 
 4. **Test Coverage**
    - ทุกเวอร์ชัน: 0.0% - ต้องเพิ่มการทดสอบ
@@ -443,35 +443,35 @@
 #### 1. **เร่งด่วน (High Priority)** 🔴
 
 **Security Issues:**
-- ✅ **SCBP03: แก้ไข Security vulnerabilities 5 จุด** - สูงสุดในทุกเวอร์ชัน
-- ✅ **IMBP03: แก้ไข Security vulnerability 1 จุด**
+- ✅ **SCSD01: แก้ไข Security vulnerabilities 5 จุด** - สูงสุดในทุกเวอร์ชัน
+- ✅ **IMSD01: แก้ไข Security vulnerability 1 จุด**
 
 **Code Duplications:**
 - ✅ **SCBP01: Refactor เพื่อลด Code Duplications (65.5% → <10%)** - สูงที่สุด
-- ✅ **SCBP03: Refactor เพื่อลด Code Duplications (34.8% → <10%)**
+- ✅ **SCSD01: Refactor เพื่อลด Code Duplications (34.8% → <10%)**
 
 #### 2. **สำคัญ (Medium Priority)** 🟡
 
 **Reliability Issues:**
-- ✅ **IMBP03: แก้ไข Reliability issues 22 จุด** - สูงที่สุด
-- ✅ **IMBP02: แก้ไข Reliability issues 19 จุด**
+- ✅ **IMSD01: แก้ไข Reliability issues 22 จุด** - สูงที่สุด
+- ✅ **IMCE01: แก้ไข Reliability issues 19 จุด**
 
 **Maintainability Issues:**
-- ✅ **IMBP02: ลด Maintainability issues (26 จุด → <15)** - สูงที่สุด
-- ✅ **PDBP02: ลด Maintainability issues (20 จุด → <15)**
+- ✅ **IMCE01: ลด Maintainability issues (26 จุด → <15)** - สูงที่สุด
+- ✅ **PDCE01: ลด Maintainability issues (20 จุด → <15)**
 
 **Security Hotspots:**
-- ✅ ตรวจสอบ Security Hotspots ทั้งหมด 44 จุด โดยเฉพาะ IMBP02 (7 จุด) และ PDBP03 (6 จุด)
+- ✅ ตรวจสอบ Security Hotspots ทั้งหมด 44 จุด โดยเฉพาะ IMCE01 (7 จุด) และ PDSD01 (6 จุด)
 
 #### 3. **ควรทำ (Low Priority)** 🟢
 
 **Test Coverage:**
 - ⚠️ **เพิ่ม Test Coverage สำหรับทุกเวอร์ชัน (เป้าหมาย: 70-80%)**
   - ปัจจุบัน: 0.0% ทุกเวอร์ชัน
-  - ควรเริ่มจาก PDBP03, SCBP01, IMBP02 ที่มี test files อยู่แล้ว
+  - ควรเริ่มจาก PDSD01, SCBP01, IMCE01 ที่มี test files อยู่แล้ว
 
 **Best Practices:**
-- ใช้ PDBP03 และ PDBP02 เป็น reference สำหรับ Code Duplications = 0.0%
+- ใช้ PDSD01 และ PDCE01 เป็น reference สำหรับ Code Duplications = 0.0%
 - ใช้ PDBP01 เป็น reference สำหรับ Reliability (1 จุด)
 - ใช้ IMBP01 เป็น reference สำหรับ Maintainability (7 จุด)
 
@@ -498,9 +498,9 @@
 ### ตัวอย่างความแตกต่าง
 
 - **SCBP01**: Code Review 4⭐ (มี Zod, ES Modules) แต่ SonarQube พบ Duplications 65.5%
-- **IMBP02**: Code Review 4⭐ (มี Concurrency Safety) แต่ SonarQube พบ Reliability 19, Maintainability 26
-- **SCBP03**: Code Review 4⭐ (มี Zod, ES Modules) แต่ SonarQube พบ Security 5 จุด
-- **PDBP03**: Code Review 5⭐ และ SonarQube ดีมาก - สอดคล้องกัน ✅
+- **IMCE01**: Code Review 4⭐ (มี Concurrency Safety) แต่ SonarQube พบ Reliability 19, Maintainability 26
+- **SCSD01**: Code Review 4⭐ (มี Zod, ES Modules) แต่ SonarQube พบ Security 5 จุด
+- **PDSD01**: Code Review 5⭐ และ SonarQube ดีมาก - สอดคล้องกัน ✅
 
 ---
 

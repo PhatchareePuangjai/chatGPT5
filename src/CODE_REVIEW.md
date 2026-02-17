@@ -124,7 +124,7 @@ const productRes = await client.query(
 
 ---
 
-## IMBP02 (inventory-system)
+## IMCE01 (inventory-system)
 **Tech Stack:**
 - Frontend: React 18 + Vite + **Tailwind CSS**
 - Backend: Node.js (CommonJS) + Express
@@ -162,7 +162,7 @@ await client.query("COMMIT");
 
 ---
 
-## SCBP02 (shopping-cart)
+## SCCE01 (shopping-cart)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js + Express
@@ -182,7 +182,7 @@ await client.query("COMMIT");
 
 ---
 
-## PDBP02 (promotions-discounts-system)
+## PDCE01 (promotions-discounts-system)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js + Express
@@ -218,7 +218,7 @@ backend/
 
 ---
 
-## IMBP03 (inventory-system)
+## IMSD01 (inventory-system)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js + Express
@@ -250,7 +250,7 @@ backend/
 
 ---
 
-## SCBP03 (shopping-cart-app)
+## SCSD01 (shopping-cart-app)
 **Tech Stack:**
 - Frontend: React + Vite
 - Backend: Node.js (ES Modules) + Express
@@ -266,11 +266,11 @@ backend/
 - ✅ Error handler ที่ดี
 
 **จุดที่ควรปรับปรุง:**
-- ❌ ยังไม่มีการแยก service layer ชัดเจนเท่า PDBP03
+- ❌ ยังไม่มีการแยก service layer ชัดเจนเท่า PDSD01
 
 ---
 
-## PDBP03 (promotions-app) ⭐ **Best Version**
+## PDSD01 (promotions-app) ⭐ **Best Version**
 **Tech Stack:**
 - Frontend: React 18 (Vite)
 - Backend: Node.js 20 + Express 4 + **Zod 3.23.8**
@@ -367,12 +367,12 @@ async function getCartByUserId(userId) {
 | IMBP01 | JS | ❌ | ⚠️ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
 | SCBP01 | JS (ESM) | ✅ Zod | ✅ FOR UPDATE | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 | PDBP01 | TS/JS | ❌ | ⚠️ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
-| IMBP02 | JS | ❌ | ✅ FOR UPDATE | ⚠️ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| SCBP02 | JS | ❌ | ✅ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
-| PDBP02 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| IMBP03 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| SCBP03 | JS (ESM) | ✅ Zod | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| PDBP03 | JS | ✅ Zod | ✅ | ✅ Factory | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| IMCE01 | JS | ❌ | ✅ FOR UPDATE | ⚠️ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| SCCE01 | JS | ❌ | ✅ | ⚠️ | ⭐⭐⭐ | ⭐⭐⭐ |
+| PDCE01 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| IMSD01 | JS | ❌ | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| SCSD01 | JS (ESM) | ✅ Zod | ✅ | ✅ Middleware | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| PDSD01 | JS | ✅ Zod | ✅ | ✅ Factory | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 
 ---
 
@@ -381,30 +381,30 @@ async function getCartByUserId(userId) {
 ### 1. **Architecture Evolution**
 - IMBP01: Monolithic structure
 - SCBP01: Service layer separation
-- PDBP03: **Repository + Service pattern** (Clean Architecture)
+- PDSD01: **Repository + Service pattern** (Clean Architecture)
 
 ### 2. **Type Safety**
 - PDBP01: TypeScript (frontend only)
-- SCBP01, SCBP03, PDBP03: **Zod validation** (runtime type checking)
+- SCBP01, SCSD01, PDSD01: **Zod validation** (runtime type checking)
 
 ### 3. **Concurrency Safety**
 - IMBP01-SCBP01: Basic transactions
-- IMBP02+: **`SELECT ... FOR UPDATE`** row locking
+- IMCE01+: **`SELECT ... FOR UPDATE`** row locking
 
 ### 4. **Error Handling**
 - IMBP01-SCBP01: Basic error handler
-- PDBP02-IMBP03: Error handler middleware
-- PDBP03: **Error factory pattern** + structured responses
+- PDCE01-IMSD01: Error handler middleware
+- PDSD01: **Error factory pattern** + structured responses
 
 ### 5. **Money Handling**
 - SCBP01+: **Integer cents math** (แก้ floating point errors)
-- PDBP02+: **Integer satang math** (THB*100)
+- PDCE01+: **Integer satang math** (THB*100)
 
 ---
 
 ## คำแนะนำสำหรับการพัฒนาต่อ
 
-### Best Practices จาก PDBP03:
+### Best Practices จาก PDSD01:
 1. ✅ ใช้ **Repository pattern** - แยก data access
 2. ใช้ **Service layer** - แยก business logic
 3. ใช้ **Error factory** - structured error handling
@@ -412,7 +412,7 @@ async function getCartByUserId(userId) {
 5. ใช้ **Money utilities** - แก้ปัญหา precision
 
 ### สิ่งที่ควรเพิ่ม:
-1. ⚠️ **ES Modules** แทน CommonJS (PDBP03 ยังใช้ CommonJS)
+1. ⚠️ **ES Modules** แทน CommonJS (PDSD01 ยังใช้ CommonJS)
 2. ⚠️ **Structured logging** (Winston, Pino)
 3. ⚠️ **API documentation** (OpenAPI/Swagger)
 4. ⚠️ **Rate limiting** middleware
@@ -422,7 +422,7 @@ async function getCartByUserId(userId) {
 
 ## สรุป
 
-**เวอร์ชันที่ดีที่สุด: PDBP03** 🏆
+**เวอร์ชันที่ดีที่สุด: PDSD01** 🏆
 - มี architecture ที่ดีที่สุด (Repository + Service pattern)
 - มี error handling ที่เป็นระบบ
 - มี validation ที่ดี (Zod)
@@ -431,8 +431,8 @@ async function getCartByUserId(userId) {
 
 **เวอร์ชันที่แนะนำสำหรับเรียนรู้:**
 - **SCBP01**: เริ่มต้นด้วย ES Modules + Zod + Transactions
-- **IMBP02**: เรียนรู้ concurrency safety
-- **PDBP03**: เรียนรู้ Clean Architecture
+- **IMCE01**: เรียนรู้ concurrency safety
+- **PDSD01**: เรียนรู้ Clean Architecture
 
 ---
 

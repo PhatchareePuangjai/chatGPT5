@@ -30,38 +30,38 @@ jobs:
             path: 'src/versions/PDBP01/promo-shop-plug-and-play'
             port: '8080'
 
-          - version: 'IMBP02'
-            path: 'src/versions/IMBP02/inventory-system'
+          - version: 'IMCE01'
+            path: 'src/versions/IMCE01/inventory-system'
             port: '3000'
 
-          - version: 'SCBP02'
-            path: 'src/versions/SCBP02/shopping-cart'
+          - version: 'SCCE01'
+            path: 'src/versions/SCCE01/shopping-cart'
             port: '8080'
 
-          - version: 'PDBP02'
-            path: 'src/versions/PDBP02/promotions-discounts-system'
+          - version: 'PDCE01'
+            path: 'src/versions/PDCE01/promotions-discounts-system'
             port: '5173'
             
-          - version: 'IMBP03'
-            path: 'src/versions/IMBP03'
+          - version: 'IMSD01'
+            path: 'src/versions/IMSD01'
             port: '5173'
             
-          - version: 'SCBP03'
-            path: 'src/versions/SCBP03/shopping-cart-app'
+          - version: 'SCSD01'
+            path: 'src/versions/SCSD01/shopping-cart-app'
             port: '5173'
             
-          - version: 'PDBP03'
-            path: 'src/versions/PDBP03/promotions-app'
+          - version: 'PDSD01'
+            path: 'src/versions/PDSD01/promotions-app'
             port: '5173'
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Create .env file for IMBP02
-        if: matrix.version == 'IMBP02'
+      - name: Create .env file for IMCE01
+        if: matrix.version == 'IMCE01'
         run: |
-          cat <<EOF > src/versions/IMBP02/inventory-system/.env
+          cat <<EOF > src/versions/IMCE01/inventory-system/.env
           DB_USER=test
           DB_PASSWORD=test
           DB_NAME=testdb

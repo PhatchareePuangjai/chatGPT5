@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage: ./scan.sh <path_to_project> <sonar_token>
-# Example: ./scan.sh ../src/versions/IMBP02/inventory-system sqp_...
+# Example: ./scan.sh ../src/versions/IMCE01/inventory-system sqp_...
 
 if [ -z "$1" ]; then
   echo "Usage: ./scan.sh <path_to_project> [sonar_token]"
@@ -26,7 +26,7 @@ if [[ "$ABS_TARGET_DIR" != "$WORKSPACE_ROOT"* ]]; then
     exit 1
 fi
 
-# Get relative path from workspace root (e.g., src/versions/IMBP02/inventory-system)
+# Get relative path from workspace root (e.g., src/versions/IMCE01/inventory-system)
 RELATIVE_PATH="${ABS_TARGET_DIR#$WORKSPACE_ROOT/}"
 
 PROJECT_NAME=$(basename "$RELATIVE_PATH")
