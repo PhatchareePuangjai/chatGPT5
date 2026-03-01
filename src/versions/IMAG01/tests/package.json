@@ -1,0 +1,16 @@
+{
+  "name": "imag01-tests",
+  "version": "1.0.0",
+  "description": "Jest integration tests for IMAG01 inventory management (FastAPI backend)",
+  "scripts": {
+    "test": "jest --runInBand --forceExit"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "axios": "^1.6.0",
+    "pg": "^8.11.0"
+  },
+  "jest": {
+    "testTimeout": 30000
+  }
+}
