@@ -40,7 +40,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ─── Backend Unit Tests (BP / CE / SD versions) ──────────────────────────────
+  # ─── Unit Tests ที่ใช้ PostgreSQL action (ไม่ต้อง docker compose) ────────────
   unit-test:
     name: Unit Test ${{ matrix.version }}
     runs-on: ubuntu-latest
@@ -50,30 +50,32 @@ jobs:
         include:
           - version: IMBP01
             path: src/versions/IMBP01/online-shop-inventory/backend
-          - version: SCBP01
-            path: src/versions/SCBP01/shopping-cart-app/backend
-          - version: PDBP01
-            path: src/versions/PDBP01/promo-shop-plug-and-play/backend
+            db_user: postgres
+            db_pass: postgres
+            db_name: shopdb
+            database_url: postgresql://postgres:postgres@localhost:5432/shopdb
           - version: IMCE01
             path: src/versions/IMCE01/inventory-system/backend
-          - version: SCCE01
-            path: src/versions/SCCE01/shopping-cart/backend
-          - version: PDCE01
-            path: src/versions/PDCE01/promotions-discounts-system/backend
+            db_user: postgres
+            db_pass: postgres
+            db_name: inventory
+            database_url: postgres://postgres:postgres@localhost:5432/inventory
           - version: IMSD01
             path: src/versions/IMSD01/backend
-          - version: SCSD01
-            path: src/versions/SCSD01/shopping-cart-app/backend
-          - version: PDSD01
-            path: src/versions/PDSD01/promotions-app/backend
-          - version: PDCS01
-            path: src/versions/PDCS01/promotions-app/backend
+            db_user: inventory
+            db_pass: inventory
+            db_name: inventory
+            database_url: postgresql://inventory:inventory@localhost:5432/inventory
+          - version: PDCE01
+            path: src/versions/PDCE01/promotions-discounts-system/backend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
 
     steps:
       - uses: actions/checkout@v4
 
-      # ใช้ paths-filter เพื่อเช็คว่ามีการแก้ไขในโฟลเดอร์ของ version นั้นๆ หรือไม่
-      # แต่ถ้าเป็น workflow_dispatch ให้รันทุก version
       - uses: dorny/paths-filter@v2
         id: changes
         if: github.event_name != 'workflow_dispatch'
@@ -82,7 +84,6 @@ jobs:
             src:
               - '${{ matrix.path }}/**'
 
-      # กำหนดว่าจะรันหรือไม่ (true ถ้าเป็น workflow_dispatch หรือมี changes)
       - name: Determine if should run
         id: should_run
         run: |
@@ -102,71 +103,45 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ${{ matrix.path }}/package-lock.json
 
-      # Setup PostgreSQL สำหรับ version ที่ต้องการ database
       - name: Setup PostgreSQL
-        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01' || matrix.version == 'PDCS01')
+        if: steps.should_run.outputs.run == 'true' && matrix.db_name != ''
         uses: ikalnytskyi/action-setup-postgres@v5
         with:
-          username: ${{ matrix.version == 'IMSD01' && 'inventory' || 'postgres' }}
-          password: ${{ matrix.version == 'IMSD01' && 'inventory' || 'postgres' }}
-          database: ${{ matrix.version == 'IMSD01' && 'inventory' || (matrix.version == 'IMCE01' && 'inventory' || (matrix.version == 'PDCS01' && 'promotions' || 'shopdb')) }}
-
-      - name: Check if package.json exists
-        if: steps.should_run.outputs.run == 'true'
-        id: check_package
-        working-directory: ${{ matrix.path }}
-        run: |
-          if [ -f "package.json" ]; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-            echo "⚠️ package.json not found for ${{ matrix.version }}"
-          fi
+          username: ${{ matrix.db_user }}
+          password: ${{ matrix.db_pass }}
+          database: ${{ matrix.db_name }}
 
       - name: Install Dependencies
-        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true'
+        if: steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.path }}
         run: npm ci
 
-      # Run database migrations สำหรับ version ที่ต้องการ
       - name: Run Database Migrations
-        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01' || matrix.version == 'PDCS01')
+        if: steps.should_run.outputs.run == 'true' && matrix.db_name != ''
         working-directory: ${{ matrix.path }}
         env:
-          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'PDCS01' && 'postgres://postgres:postgres@localhost:5432/promotions' || 'postgres://postgres:postgres@localhost:5432/shopdb')) }}
+          DATABASE_URL: ${{ matrix.database_url }}
         run: |
           if [ -f "scripts/run-migrations.js" ]; then
-            npm run migrate || echo "⚠️ Migration script not found or failed"
+            npm run migrate || echo "Migration failed"
           elif [ -f "src/db/migrate.js" ]; then
-            npm run db:migrate || echo "⚠️ Migration script not found or failed"
+            npm run db:migrate || echo "Migration failed"
           elif [ -f "db/migrate.js" ]; then
-            npm run db:migrate || echo "⚠️ Migration script not found or failed"
+            npm run db:migrate || echo "Migration failed"
           else
-            echo "ℹ️ No migration script found for ${{ matrix.version }}"
-          fi
-
-      - name: Check if test script exists
-        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true'
-        id: check_test
-        working-directory: ${{ matrix.path }}
-        run: |
-          if grep -q '"test"' package.json; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-            echo "⚠️ No test script found in package.json for ${{ matrix.version }}"
+            echo "No migration script found"
           fi
 
       - name: Run Tests
-        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && steps.check_test.outputs.exists == 'true'
+        if: steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.path }}
         continue-on-error: true
         env:
-          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'IMBP01' && 'postgres://postgres:postgres@localhost:5432/shopdb' || (matrix.version == 'PDCS01' && 'postgres://postgres:postgres@localhost:5432/promotions' || ''))) }}
+          DATABASE_URL: ${{ matrix.database_url }}
           NODE_ENV: test
         run: npm test
 
-  # ─── Integration Tests (AG / CS versions — ต้อง docker compose) ─────────────
+  # ─── Integration Tests (ใช้ Docker Compose สำหรับ database) ─────────────────
   integration-test:
     name: Integration Test ${{ matrix.version }}
     runs-on: ubuntu-latest
@@ -174,24 +149,81 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # === AG / CS versions — full docker compose + external test folder ===
           - version: IMAG01
             compose_path: src/versions/IMAG01
             test_path: src/versions/IMAG01/tests
+            full_compose: true
+            database_url: ''
+            migrate_cmd: ''
           - version: IMCS01
             compose_path: src/versions/IMCS01
             test_path: src/versions/IMCS01/tests
+            full_compose: true
+            database_url: ''
+            migrate_cmd: ''
           - version: PDAG01
             compose_path: src/versions/PDAG01
             test_path: src/versions/PDAG01/tests
+            full_compose: true
+            database_url: ''
+            migrate_cmd: ''
           - version: PDCS01-integration
             compose_path: src/versions/PDCS01/promotions-app
             test_path: src/versions/PDCS01/tests
+            full_compose: true
+            database_url: ''
+            migrate_cmd: ''
           - version: SCAG01
             compose_path: src/versions/SCAG01/shopping-cart-system
             test_path: src/versions/SCAG01/tests
+            full_compose: true
+            database_url: ''
+            migrate_cmd: ''
           - version: SCCS01
             compose_path: src/versions/SCCS01
             test_path: src/versions/SCCS01/tests
+            full_compose: true
+            database_url: ''
+            migrate_cmd: ''
+
+          # === BP / CE / SD versions — docker compose DB only + supertest ===
+          - version: SCBP01
+            compose_path: src/versions/SCBP01/shopping-cart-app
+            test_path: src/versions/SCBP01/shopping-cart-app/backend
+            full_compose: false
+            database_url: postgresql://shop:shop@localhost:5433/shop
+            migrate_cmd: 'npm run db:migrate && npm run db:seed'
+          - version: PDBP01
+            compose_path: src/versions/PDBP01/promo-shop-plug-and-play
+            test_path: src/versions/PDBP01/promo-shop-plug-and-play/backend
+            full_compose: false
+            database_url: postgres://promo:promo@localhost:5435/promo_shop
+            migrate_cmd: ''
+          - version: SCCE01
+            compose_path: src/versions/SCCE01/shopping-cart
+            test_path: src/versions/SCCE01/shopping-cart/backend
+            full_compose: false
+            database_url: postgres://postgres:postgres@localhost:5433/shop
+            migrate_cmd: ''
+          - version: SCSD01
+            compose_path: src/versions/SCSD01/shopping-cart-app
+            test_path: src/versions/SCSD01/shopping-cart-app/backend
+            full_compose: false
+            database_url: postgres://postgres:postgres@localhost:5433/shopping_cart
+            migrate_cmd: 'npm run db:migrate && npm run db:seed'
+          - version: PDSD01
+            compose_path: src/versions/PDSD01/promotions-app
+            test_path: src/versions/PDSD01/promotions-app/backend
+            full_compose: false
+            database_url: postgres://promo:promo@localhost:5434/promotions
+            migrate_cmd: 'npm run db:migrate && npm run db:seed'
+          - version: PDCS01
+            compose_path: src/versions/PDCS01/promotions-app
+            test_path: src/versions/PDCS01/promotions-app/backend
+            full_compose: false
+            database_url: postgres://promo:promo@localhost:5434/promotions
+            migrate_cmd: 'npm run db:migrate && npm run db:seed'
 
     steps:
       - uses: actions/checkout@v4
@@ -216,13 +248,23 @@ jobs:
             echo "run=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Start Application via Docker Compose
-        if: steps.should_run.outputs.run == 'true'
+      # Full docker compose สำหรับ AG/CS (start ทุก service)
+      - name: Start Full Application
+        if: steps.should_run.outputs.run == 'true' && matrix.full_compose == true
         working-directory: ${{ matrix.compose_path }}
         run: |
           docker compose up -d --build
           echo "Waiting for application to initialize..."
           sleep 30
+
+      # DB only สำหรับ BP/CE/SD (start เฉพาะ database)
+      - name: Start Database Only
+        if: steps.should_run.outputs.run == 'true' && matrix.full_compose == false
+        working-directory: ${{ matrix.compose_path }}
+        run: |
+          docker compose up -d db --build
+          echo "Waiting for database to be ready..."
+          sleep 15
 
       - name: Setup Node.js
         if: steps.should_run.outputs.run == 'true'
@@ -233,17 +275,36 @@ jobs:
       - name: Install Test Dependencies
         if: steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.test_path }}
-        run: npm ci
+        run: |
+          if [ -f "package-lock.json" ]; then
+            npm ci
+          else
+            npm install
+          fi
 
-      - name: Run Integration Tests
+      - name: Run Migrations
+        if: steps.should_run.outputs.run == 'true' && matrix.migrate_cmd != ''
+        working-directory: ${{ matrix.test_path }}
+        env:
+          DATABASE_URL: ${{ matrix.database_url }}
+          NODE_ENV: test
+        run: ${{ matrix.migrate_cmd }}
+
+      - name: Run Tests
         if: steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.test_path }}
         continue-on-error: true
         env:
+          DATABASE_URL: ${{ matrix.database_url }}
+          DB_HOST: localhost
+          DB_PORT: '5433'
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_NAME: shop
           NODE_ENV: test
         run: npm test
 
-      - name: Stop Application
+      - name: Stop Docker Compose
         if: always() && steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.compose_path }}
         run: docker compose down

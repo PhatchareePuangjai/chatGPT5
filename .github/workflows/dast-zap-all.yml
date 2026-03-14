@@ -106,6 +106,10 @@ jobs:
           echo "Waiting for application to initialize..."
           sleep 60 
 
+      - name: Set workspace permissions for ZAP
+        run: |
+          sudo chmod -R 777 $GITHUB_WORKSPACE
+
       - name: Compute safe artifact name
         id: artifact
         shell: bash
