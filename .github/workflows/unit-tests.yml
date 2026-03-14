@@ -13,6 +13,12 @@ on:
       - 'src/versions/IMSD01/**'
       - 'src/versions/SCSD01/**'
       - 'src/versions/PDSD01/**'
+      - 'src/versions/IMAG01/**'
+      - 'src/versions/IMCS01/**'
+      - 'src/versions/PDAG01/**'
+      - 'src/versions/PDCS01/**'
+      - 'src/versions/SCAG01/**'
+      - 'src/versions/SCCS01/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -25,11 +31,18 @@ on:
       - 'src/versions/IMSD01/**'
       - 'src/versions/SCSD01/**'
       - 'src/versions/PDSD01/**'
+      - 'src/versions/IMAG01/**'
+      - 'src/versions/IMCS01/**'
+      - 'src/versions/PDAG01/**'
+      - 'src/versions/PDCS01/**'
+      - 'src/versions/SCAG01/**'
+      - 'src/versions/SCCS01/**'
   workflow_dispatch:
 
 jobs:
-  test:
-    name: Test ${{ matrix.version }}
+  # ─── Backend Unit Tests (BP / CE / SD versions) ──────────────────────────────
+  unit-test:
+    name: Unit Test ${{ matrix.version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -53,6 +66,8 @@ jobs:
             path: src/versions/SCSD01/shopping-cart-app/backend
           - version: PDSD01
             path: src/versions/PDSD01/promotions-app/backend
+          - version: PDCS01
+            path: src/versions/PDCS01/promotions-app/backend
 
     steps:
       - uses: actions/checkout@v4
@@ -89,12 +104,12 @@ jobs:
 
       # Setup PostgreSQL สำหรับ version ที่ต้องการ database
       - name: Setup PostgreSQL
-        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01')
+        if: steps.should_run.outputs.run == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01' || matrix.version == 'PDCS01')
         uses: ikalnytskyi/action-setup-postgres@v5
         with:
           username: ${{ matrix.version == 'IMSD01' && 'inventory' || 'postgres' }}
           password: ${{ matrix.version == 'IMSD01' && 'inventory' || 'postgres' }}
-          database: ${{ matrix.version == 'IMSD01' && 'inventory' || (matrix.version == 'IMCE01' && 'inventory' || 'shopdb') }}
+          database: ${{ matrix.version == 'IMSD01' && 'inventory' || (matrix.version == 'IMCE01' && 'inventory' || (matrix.version == 'PDCS01' && 'promotions' || 'shopdb')) }}
 
       - name: Check if package.json exists
         if: steps.should_run.outputs.run == 'true'
@@ -115,13 +130,15 @@ jobs:
 
       # Run database migrations สำหรับ version ที่ต้องการ
       - name: Run Database Migrations
-        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01')
+        if: steps.should_run.outputs.run == 'true' && steps.check_package.outputs.exists == 'true' && (matrix.version == 'IMBP01' || matrix.version == 'IMCE01' || matrix.version == 'IMSD01' || matrix.version == 'PDCS01')
         working-directory: ${{ matrix.path }}
         env:
-          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || 'postgres://postgres:postgres@localhost:5432/shopdb') }}
+          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'PDCS01' && 'postgres://postgres:postgres@localhost:5432/promotions' || 'postgres://postgres:postgres@localhost:5432/shopdb')) }}
         run: |
           if [ -f "scripts/run-migrations.js" ]; then
             npm run migrate || echo "⚠️ Migration script not found or failed"
+          elif [ -f "src/db/migrate.js" ]; then
+            npm run db:migrate || echo "⚠️ Migration script not found or failed"
           elif [ -f "db/migrate.js" ]; then
             npm run db:migrate || echo "⚠️ Migration script not found or failed"
           else
@@ -145,6 +162,88 @@ jobs:
         working-directory: ${{ matrix.path }}
         continue-on-error: true
         env:
-          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'IMBP01' && 'postgres://postgres:postgres@localhost:5432/shopdb' || '')) }}
+          DATABASE_URL: ${{ matrix.version == 'IMSD01' && 'postgresql://inventory:inventory@localhost:5432/inventory' || (matrix.version == 'IMCE01' && 'postgres://postgres:postgres@localhost:5432/inventory' || (matrix.version == 'IMBP01' && 'postgres://postgres:postgres@localhost:5432/shopdb' || (matrix.version == 'PDCS01' && 'postgres://postgres:postgres@localhost:5432/promotions' || ''))) }}
           NODE_ENV: test
         run: npm test
+
+  # ─── Integration Tests (AG / CS versions — ต้อง docker compose) ─────────────
+  integration-test:
+    name: Integration Test ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - version: IMAG01
+            compose_path: src/versions/IMAG01
+            test_path: src/versions/IMAG01/tests
+          - version: IMCS01
+            compose_path: src/versions/IMCS01
+            test_path: src/versions/IMCS01/tests
+          - version: PDAG01
+            compose_path: src/versions/PDAG01
+            test_path: src/versions/PDAG01/tests
+          - version: PDCS01-integration
+            compose_path: src/versions/PDCS01/promotions-app
+            test_path: src/versions/PDCS01/tests
+          - version: SCAG01
+            compose_path: src/versions/SCAG01/shopping-cart-system
+            test_path: src/versions/SCAG01/tests
+          - version: SCCS01
+            compose_path: src/versions/SCCS01
+            test_path: src/versions/SCCS01/tests
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        if: github.event_name != 'workflow_dispatch'
+        with:
+          filters: |
+            src:
+              - '${{ matrix.compose_path }}/**'
+              - '${{ matrix.test_path }}/**'
+
+      - name: Determine if should run
+        id: should_run
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          elif [ "${{ steps.changes.outputs.src }}" == "true" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Start Application via Docker Compose
+        if: steps.should_run.outputs.run == 'true'
+        working-directory: ${{ matrix.compose_path }}
+        run: |
+          docker compose up -d --build
+          echo "Waiting for application to initialize..."
+          sleep 30
+
+      - name: Setup Node.js
+        if: steps.should_run.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Test Dependencies
+        if: steps.should_run.outputs.run == 'true'
+        working-directory: ${{ matrix.test_path }}
+        run: npm ci
+
+      - name: Run Integration Tests
+        if: steps.should_run.outputs.run == 'true'
+        working-directory: ${{ matrix.test_path }}
+        continue-on-error: true
+        env:
+          NODE_ENV: test
+        run: npm test
+
+      - name: Stop Application
+        if: always() && steps.should_run.outputs.run == 'true'
+        working-directory: ${{ matrix.compose_path }}
+        run: docker compose down

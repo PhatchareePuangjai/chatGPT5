@@ -54,6 +54,30 @@ jobs:
             path: 'src/versions/PDSD01/promotions-app'
             port: '5173'
 
+          - version: 'IMAG01'
+            path: 'src/versions/IMAG01'
+            port: '5174'
+
+          - version: 'IMCS01'
+            path: 'src/versions/IMCS01'
+            port: '3000'
+
+          - version: 'PDAG01'
+            path: 'src/versions/PDAG01'
+            port: '5173'
+
+          - version: 'PDCS01'
+            path: 'src/versions/PDCS01/promotions-app'
+            port: '5173'
+
+          - version: 'SCAG01'
+            path: 'src/versions/SCAG01/shopping-cart-system'
+            port: '5174'
+
+          - version: 'SCCS01'
+            path: 'src/versions/SCCS01'
+            port: '3000'
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
