@@ -23,7 +23,9 @@ Python 3.11: Follow standard conventions
 
 ## Recent Changes
 
-- 001-inventory-scenarios: Added Python 3.11 + FastAPI + SQLAlchemy + Pydantic
+- 001-inventory-scenarios: Added Python 3.11 
+- + FastAPI + SQLAlchemy + Pydantic
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->
+

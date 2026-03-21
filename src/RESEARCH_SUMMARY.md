@@ -2,14 +2,14 @@
 
 ## 🎯 บทสรุปผู้บริหาร (Executive Summary)
 
-งานวิจัยนี้ทำการวิเคราะห์คุณภาพโค้ดของโปรเจกต์ e-commerce/inventory system ที่มี 9 เวอร์ชัน (IMBP01 - PDSD01) โดยใช้ 3 วิธีการวิเคราะห์:
+งานวิจัยนี้สรุปผลการวิเคราะห์คุณภาพโค้ดของโปรเจกต์ e-commerce/inventory system โดยใช้ **ชุดเปรียบเทียบหลัก 9 เวอร์ชัน** (IMBP01 - PDSD01) แม้ว่าใน `src/versions` จะมี artifact เพิ่มเติมนอกชุดหลักอยู่ด้วยก็ตาม เอกสารนี้ใช้ 3 วิธีการวิเคราะห์:
 
 1. **Code Review Analysis** - การทบทวนโค้ดแบบละเอียด (Architecture, Patterns, Features)
 2. **SonarQube Analysis** - การวิเคราะห์อัตโนมัติ (Security, Reliability, Maintainability, Duplications)
 3. **Version Analysis** - การวิเคราะห์ด้วยกราฟและสถิติ (Trends, Evolution, Comparisons)
 
 **ผลการวิจัยหลัก:**
-- ✅ คุณภาพโค้ดพัฒนาขึ้นอย่างต่อเนื่อง: IMBP01 (3⭐) → PDSD01 (5⭐)
+- ✅ เมื่อมองในระดับ strategy comparison ชุด SDD ให้ผลลัพธ์เฉลี่ยสูงที่สุด และ PDSD01 เป็นเวอร์ชันที่ดีที่สุด
 - ✅ PDSD01 เป็นเวอร์ชันที่ดีที่สุดทั้ง 3 วิธีการวิเคราะห์
 - ⚠️ พบปัญหาสำคัญ: Test Coverage = 0.0% ทุกเวอร์ชัน
 - ⚠️ SCBP01 และ SCSD01 มี Code Duplications สูงมาก (65.5%, 34.8%)
@@ -29,6 +29,30 @@
 - [Version Analysis Notebook](./version_analysis.ipynb) - กราฟวิเคราะห์การพัฒนา
 
 **หมายเหตุ:** Code Evolution Analysis ถูกรวมเข้าในส่วนที่ 8 ของเอกสารนี้แล้ว
+
+---
+
+## 🧭 Scope และข้อจำกัดของชุดข้อมูล
+
+### ชุดข้อมูลหลักที่ใช้สรุปผล
+
+ตารางและข้อสรุปในเอกสารนี้อ้างอิงจาก **9 เวอร์ชันหลัก** เท่านั้น:
+
+| Domain | Basic Prompt | Context Engineering | SDD |
+|--------|--------------|---------------------|-----|
+| Inventory Management | IMBP01 | IMCE01 | IMSD01 |
+| Shopping Cart | SCBP01 | SCCE01 | SCSD01 |
+| Promotion / Discount | PDBP01 | PDCE01 | PDSD01 |
+
+### Artifact อื่นที่มีอยู่ใน repo
+
+ใน `src/versions` ยังมีเวอร์ชันอื่น เช่น `IMAG01`, `IMCS01`, `PDAG01`, `PDCS01`, `SCAG01`, `SCCS01` ซึ่งเป็นหลักฐานประกอบและ implementation reference ที่มีประโยชน์ แต่ **ยังไม่ถูกรวมใน comparative summary ฉบับนี้**
+
+### วิธีอ่านผลลัพธ์ให้ถูกต้อง
+
+- การเปรียบเทียบนี้เป็น **cross-strategy comparison** ภายใน family ของงาน e-commerce
+- ไม่ควรตีความลำดับ IMBP01 → PDSD01 เป็น time-series ที่ควบคุม task เดียวกันทั้งหมด
+- การสรุปว่า strategy ใด “ดีกว่า” ควรอิงทั้ง prompt/spec evidence, code review, และ automated metrics ร่วมกัน
 
 ---
 
@@ -115,8 +139,8 @@
 **ผลการวิเคราะห์:**
 
 **คุณภาพโค้ด:**
-- Average Quality Score: 3.60⭐ (IMBP01-PDSD01)
-- Quality Improvement: 2 stars (IMBP01: 3⭐ → PDSD01: 5⭐)
+- Average Quality Score: 3.60⭐ (เฉพาะชุด 9 เวอร์ชันหลัก)
+- ชุด SDD มีค่าเฉลี่ยสูงสุดในงานนี้
 - Best Version: PDSD01 (5⭐, 10 features)
 
 **Features Evolution:**
@@ -219,7 +243,7 @@
 
 ## 🔍 3. เปรียบเทียบผลการวิเคราะห์ทั้ง 3 วิธี
 
-### 2.1 ความสอดคล้องระหว่างวิธีการ
+### 3.1 ความสอดคล้องระหว่างวิธีการ
 
 | Version | Code Review | SonarQube | Version Analysis | Dev Method | สรุป |
 |---------|-------------|-----------|------------------|------------|------|
@@ -231,7 +255,7 @@
 | **SCSD01** | ⭐⭐⭐⭐☆ | ⭐ | ⭐⭐⭐⭐☆ | SDD | ❌ SonarQube แย่กว่า (Security: 5) |
 | **IMBP01** | ⭐⭐⭐☆☆ | ⭐⭐⭐⭐ | ⭐⭐⭐☆☆ | Basic Prompt | ✅ SonarQube ดีกว่า (Maintainability: 7) |
 
-### 2.2 การวิเคราะห์ความแตกต่าง
+### 3.2 การวิเคราะห์ความแตกต่าง
 
 **กรณีที่ Code Review ให้คะแนนดี แต่ SonarQube พบ issues:**
 
@@ -271,7 +295,7 @@ IMBP01 (3⭐) [Basic Prompt]
   → PDSD01 (5⭐) [SDD]
 ```
 
-**จุดเปลี่ยนสำคัญ:**
+**จุดเปลี่ยนสำคัญในชุดเปรียบเทียบ:**
 - **IMBP01 → SCBP01:** กระโดดจาก 3⭐ → 4⭐ (Basic Prompt - เพิ่ม Zod, ES Modules, Row Locking)
 - **PDBP01 → IMCE01:** เปลี่ยนเป็น Context Engineering - คุณภาพ 4⭐, Code Duplications ลดลง
 - **PDCE01 → IMSD01:** เปลี่ยนเป็น SDD - คุณภาพคงที่ 4⭐ แต่ Architecture ดีขึ้น
@@ -357,18 +381,6 @@ Repository + Service Pattern (PDSD01) [SDD] ← Clean Architecture
 - SonarQube: Maintainability = 7 (ดีที่สุด), Reliability = 3
 - Code Review: 3⭐ (เริ่มต้นที่ดี แต่ยังไม่มี Validation)
 - **Development Method:** Basic Prompt - เริ่มต้นที่ดี
-
-**PDBP01 (promo-shop-plug-and-play):**
-- SonarQube: Reliability = 1 (ดีที่สุด), Duplications = 1.4%
-- Code Review: 3⭐ (Backend ยังใช้ CommonJS)
-
-**PDCE01 (promotions-discounts-system):**
-- SonarQube: Duplications = 0.0%, Security = 0
-- Code Review: 4⭐ (Error Middleware, Money Utils)
-
-**IMBP01 (online-shop-inventory):**
-- SonarQube: Maintainability = 7 (ดีที่สุด), Reliability = 3
-- Code Review: 3⭐ (เริ่มต้นที่ดี แต่ยังไม่มี Validation)
 
 ---
 

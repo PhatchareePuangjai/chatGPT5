@@ -1,171 +1,283 @@
-# Prompting Analysis: Basic Prompting vs Context Engineering
+# Prompting Analysis: Basic Prompting vs Context Engineering vs Specification-Driven Development
 
-> สรุปวิเคราะห์รูปแบบการ Prompt AI จาก ChatGPT Export Log ของแต่ละ Version
-> เปรียบเทียบระหว่าง **Basic Prompting (BP)** และ **Context Engineering (CE)**
-
----
-
-## Overview
-
-| Version | Feature              | Strategy            | Total Prompts | Conversations |
-| ------- | -------------------- | ------------------- | ------------- | ------------- |
-| IMBP01  | Inventory Management | Basic Prompt        | 5             | 1             |
-| IMCE01  | Inventory Management | Context Engineering | 8             | 1             |
-| PDBP01  | Promotion / Discount | Basic Prompt        | 2             | 1             |
-| PDCE01  | Promotion / Discount | Context Engineering | 1             | 1             |
-| SCBP01  | Shopping Cart        | Basic Prompt        | 6             | 2             |
-| SCCE01  | Shopping Cart        | Context Engineering | 3             | 1             |
+> สรุปวิเคราะห์รูปแบบการสั่งงาน AI จาก prompt artifacts ที่มีอยู่ในโปรเจกต์
+> เพื่อเปรียบเทียบระหว่าง **Basic Prompting (BP)**, **Context Engineering (CE)** และ **Specification-Driven Development (SDD)**
 
 ---
 
-## 1. Basic Prompting (BP) — รูปแบบการ Prompt
+## Scope and Sources
 
-### IMBP01 — Inventory Management (5 prompts)
+เอกสารนี้วิเคราะห์ **ชุดเปรียบเทียบหลัก 9 เวอร์ชัน**:
 
-| #   | Prompt Summary                                                                                                                                                                                                         | Pattern                         |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| 1   | "I am building an e-commerce website. I need you to write code for the Inventory Management System..." — ระบุ requirement แบบกว้างๆ (backend Node.js, frontend React, stock deduction, low stock alert, stock history) | **Feature Request**             |
-| 2   | "I want to build an online shop system for my inventory. Can you give me all the code..." — ขอ code ทั้งหมด + database setup + README เพราะ "I don't know how to code"                                                 | **Repeat Request + Setup Help** |
-| 3   | "I don't know how to copy all these code blocks into many files. It's too confusing. Can you put everything together into one link for me to download?"                                                                | **Packaging Request** (ขอ zip)  |
-| 4   | "I tried to run the code you gave me, but it's not working. I see a red box that says 'productId must be a positive integer'..."                                                                                       | **Debug / Fix Error**           |
-| 5   | (ซ้ำกับ #4 — ส่งซ้ำ)                                                                                                                                                                                                   | **Duplicate**                   |
+- BP: `IMBP01`, `SCBP01`, `PDBP01`
+- CE: `IMCE01`, `SCCE01`, `PDCE01`
+- SDD: `IMSD01`, `SCSD01`, `PDSD01`
 
-**Keywords:** "I need you to write code", "give me all the code", "I don't know how to code", "fix all the code", "ready to use"
+### Prompt Sources Used
 
-### PDBP01 — Promotion / Discount (2 prompts)
+| Strategy | Versions | Primary Source |
+| ------- | -------- | -------------- |
+| BP | IMBP01, SCBP01, PDBP01 | `chatgpt-export/.../conversations.json` |
+| CE | IMCE01, SCCE01, PDCE01 | `chatgpt-export/.../conversations.json` |
+| SDD | IMSD01, SCSD01, PDSD01 | `.specify/`, `speckit.specify`, `speckit.constitution`, scenarios files |
 
-| #   | Prompt Summary                                                                                                                                                                         | Pattern             |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| 1   | "I am making an online shop and I need code for a Promotion and Discount system..." — ระบุ features: coupon codes (SAVE100, min 500 THB), automatic 10% discount, README, Docker setup | **Feature Request** |
-| 2   | "I have the code, but the UI is messy and the text overlaps..." — ขอแก้ UI: fix overlapping, clear totals, mobile friendly                                                             | **UI Fix Request**  |
-
-**Keywords:** "I need code for", "give me the code", "UI is messy", "fix overlapping", "mobile friendly"
-
-### SCBP01 — Shopping Cart (6 prompts, 2 conversations)
-
-| #   | Prompt Summary                                                                                                                                                                                | Pattern                      |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| 1   | (Thai) เขียน scenarios.md สำหรับ Shopping Cart — ขอ acceptance scenarios format                                                                                                               | **Documentation Request**    |
-| 2   | "I am building an online shop and I need code for a Shopping Cart system..." — ขอ code ทั้ง React + Node.js, 5 features (add/merge, update qty, save for later, stock check, decimal pricing) | **Feature Request**          |
-| 3   | "don't know how to install or run many things. you can push all to one command."                                                                                                              | **Setup Simplification**     |
-| 4   | "it start only Postgres DB"                                                                                                                                                                   | **Debug — Incomplete Start** |
-| 5   | Reports migration failed (ENOENT), vite not found, backend/frontend exited                                                                                                                    | **Debug — Docker Errors**    |
-| 6   | Reports PostgreSQL cannot truncate `carts` due to foreign key constraint                                                                                                                      | **Debug — DB Error**         |
-
-**Keywords:** "I need code for", "don't know how to install", "push all to one command", error messages copy-paste
+> หมายเหตุ: สำหรับ SDD “prompt” ไม่ได้อยู่ในรูปบทสนทนา 1 ก้อนเสมอไป แต่เป็นชุด specification artifacts ที่ทำหน้าที่เป็น prompt package แทน
 
 ---
 
-## 2. Context Engineering (CE) — รูปแบบการ Prompt
+## 1. Overview
 
-### IMCE01 — Inventory Management (8 prompts)
-
-| #   | Prompt Summary                                                                                                                                                                                                                                                                                                                  | Pattern                         |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| 1   | **[Instruction & Role]** Act as expert Full-stack Developer and System Architect — ระบุ Role, Tech Spec (React, Node.js, PostgreSQL), Business Scenarios (Stock Deduction, Low Stock Alert, Stock Restoration), Constraints (Race Condition, Transaction Atomicity, Overselling Prevention), Deliverables, Self-Refinement Task | **Structured System Prompt**    |
-| 2   | "Please bundle all the generated code into a single block using a clear file structure... Also, include a Dockerfile and docker-compose.yml"                                                                                                                                                                                    | **Packaging + DevOps**          |
-| 3   | "zip all code to me."                                                                                                                                                                                                                                                                                                           | **Packaging Request**           |
-| 4   | "Before you bundle everything, please ensure the following Context Optimizations: (1) Environment Separation (.env), (2) Docker Orchestration (healthcheck), (3) Validation Log (README)"                                                                                                                                       | **Refinement with Constraints** |
-| 5   | "update this in code and zip to again."                                                                                                                                                                                                                                                                                         | **Iteration Request**           |
-| 6   | **[Goal]** Update UI — ระบุ Design Context (Tailwind CSS, Color Logic: Red/Green/Blue), Consistency Indicators (Sync Status, Transaction ID)                                                                                                                                                                                    | **Structured UI Prompt**        |
-| 7   | "zip to me."                                                                                                                                                                                                                                                                                                                    | **Packaging Request**           |
-| 8   | "Improve the user interface for easier use."                                                                                                                                                                                                                                                                                    | **General Improvement**         |
-
-**Keywords:** "[Instruction & Role]", "[Technical Specification]", "[Business Scenarios]", "[Constraints]", "[Deliverables]", "[Self-Refinement Task]", "Context Optimizations"
-
-### PDCE01 — Promotion / Discount (1 prompt)
-
-| #   | Prompt Summary                                                                                                                                                                                                                                                                                                                     | Pattern                         |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| 1   | **[Objective & Role]** Act as Senior Backend Architect and Logic Specialist — ระบุ Tech Spec, Business Logic (Coupon Validation, Discount Calculation, Usage Limit), Mathematical Constraints (Calculation Order, Negative Total Protection, Precision Guard), Output Requirements (SQL + API + UI + DevOps), Self-Refinement Task | **Single Comprehensive Prompt** |
-
-**Keywords:** "[Objective & Role]", "[Technical Specification]", "[Business Logic & Knowledge Base]", "[Mathematical Constraints & State]", "[Output Requirements]", "[Self-Refinement Task]"
-
-### SCCE01 — Shopping Cart (3 prompts)
-
-| #   | Prompt Summary                                                                                                                                                                                                                                                                               | Pattern                      |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| 1   | **Objective & Role:** Act as Lead Software Architect — ระบุ Tech Stack, Core Business Logic (Reactive Quantity Management, Item Merging, Save for Later), Critical Constraints (Inventory Guard, Financial Precision), Output Deliverables (SQL + API + UI + DevOps), Self-Verification Step | **Structured System Prompt** |
-| 2   | "zip all to me."                                                                                                                                                                                                                                                                             | **Packaging Request**        |
-| 3   | "how to start this project"                                                                                                                                                                                                                                                                  | **Setup Help**               |
-
-**Keywords:** "Objective & Role", "Technical Stack Implementation", "Core Business Logic", "Critical Constraints", "Output Deliverables", "Self-Verification Step"
+| Version | Feature | Strategy | Prompt/Spec Form | Total Prompts / Artifacts | Conversations |
+| ------- | ------- | -------- | ---------------- | -------------------------- | ------------- |
+| IMBP01 | Inventory Management | Basic Prompt | Natural language requests | 5 prompts | 1 |
+| SCBP01 | Shopping Cart | Basic Prompt | Natural language requests | 6 prompts | 2 |
+| PDBP01 | Promotion / Discount | Basic Prompt | Natural language requests | 2 prompts | 1 |
+| IMCE01 | Inventory Management | Context Engineering | Structured prompt with sections | 8 prompts | 1 |
+| SCCE01 | Shopping Cart | Context Engineering | Structured prompt with sections | 3 prompts | 1 |
+| PDCE01 | Promotion / Discount | Context Engineering | Single comprehensive structured prompt | 1 prompt | 1 |
+| IMSD01 | Inventory Management | SDD | Scenario + constitution + plan/spec workflow | specification-driven | N/A |
+| SCSD01 | Shopping Cart | SDD | `speckit.specify` + constitution-style constraints | specification-driven | N/A |
+| PDSD01 | Promotion / Discount | SDD | `speckit.specify` requirements package | specification-driven | N/A |
 
 ---
 
-## 3. Comparative Analysis — เปรียบเทียบ Keywords & Patterns
+## 2. Basic Prompting (BP) — รูปแบบการ Prompt
 
-### 3.1 Prompt Structure
+### IMBP01 — Inventory Management
 
-| Aspect              | Basic Prompting (BP)                              | Context Engineering (CE)                                                                                           |
-| ------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **Initial Prompt**  | คำอธิบายแบบ natural language, ระบุ feature กว้างๆ | มี section headers ชัดเจน เช่น [Role], [Tech Spec], [Business Logic], [Constraints], [Deliverables]                |
-| **Role Assignment** | ไม่มี — ถาม AI ตรงๆ                               | กำหนด Role ชัดเจน เช่น "Act as expert Full-stack Developer", "Senior Backend Architect", "Lead Software Architect" |
-| **Specificity**     | กว้าง — "write code for Inventory Management"     | เจาะจง — ระบุ version numbers, edge cases, mathematical constraints                                                |
-| **Constraints**     | ไม่มี หรือน้อยมาก                                 | ระบุชัดเจน: Race Condition, Transaction Atomicity, Negative Total Protection, Precision Guard                      |
-| **Self-Check**      | ไม่มี                                             | มี [Self-Refinement Task] / [Self-Verification Step] ทุก version                                                   |
+ลักษณะสำคัญจาก `chatgpt-export`:
 
-### 3.2 Conversation Flow
+- เริ่มจากคำสั่งแบบกว้าง เช่น “write code for Inventory Management System”
+- ระบุ feature หลัก แต่ยังไม่ลง acceptance criteria แบบละเอียด
+- follow-up ส่วนใหญ่เป็น setup help, packaging, และ debug
 
-| Aspect                  | Basic Prompting (BP)                    | Context Engineering (CE)                                                |
-| ----------------------- | --------------------------------------- | ----------------------------------------------------------------------- |
-| **จำนวน Prompt เฉลี่ย** | 4.3 prompts                             | 4.0 prompts                                                             |
-| **Debug / Fix prompts** | 2-4 ครั้ง (IMBP01: 2, SCBP01: 3)        | 0 ครั้ง (ไม่พบ debug prompts)                                           |
-| **Iteration Pattern**   | Request → Debug → Fix → Debug           | Structured Prompt → Package → Refine → Package                          |
-| **ภาษาที่ใช้**          | ภาษาพูดง่ายๆ "I don't know how to code" | ภาษาเทคนิคเฉพาะทาง "Transaction Atomicity", "Race Condition Management" |
+Pattern ที่พบ:
 
-### 3.3 Common Keywords by Strategy
+- **Feature Request**
+- **Repeat Request + Setup Help**
+- **Packaging Request**
+- **Debug / Fix Error**
 
-#### Basic Prompting — Recurring Phrases
+### SCBP01 — Shopping Cart
+
+ลักษณะสำคัญ:
+
+- มีการเริ่มจาก scenarios ก่อนหนึ่งครั้ง แล้วจึงขอให้สร้างระบบจริง
+- มี prompt เชิง implementation และ debug หลายรอบ
+- ผู้ใช้ส่ง error message ตรงๆ กลับเข้าไปในระบบ
+
+Pattern ที่พบ:
+
+- **Documentation Request**
+- **Feature Request**
+- **Setup Simplification**
+- **Debug — Incomplete Start / Docker Errors / DB Error**
+
+### PDBP01 — Promotion / Discount
+
+ลักษณะสำคัญ:
+
+- ขอระบบจาก feature list ตรงๆ
+- refinement รอบถัดไปเน้น UI fix มากกว่าการย้ำ business rules
+
+Pattern ที่พบ:
+
+- **Feature Request**
+- **UI Fix Request**
+
+### BP Summary
+
+คำที่พบซ้ำบ่อย:
 
 - "I need you to write code for..."
-- "Can you give me all the code..."
+- "give me all the code"
 - "I don't know how to..."
-- "it's not working" / "fix all the code"
-- "ready to use" / "easy to read"
-- Copy-paste error messages เป็น prompt
+- "it's not working"
+- "fix all the code"
+- copy-paste error messages as prompt input
 
-#### Context Engineering — Recurring Phrases
-
-- "[Instruction & Role] Act as..."
-- "[Technical Specification]" พร้อม version numbers
-- "[Business Scenarios / Logic]" พร้อม acceptance criteria
-- "[Constraints]" — Race Condition, Atomicity, Precision
-- "[Deliverables / Output Requirements]"
-- "[Self-Refinement Task]" / "[Self-Verification Step]"
-- "Context Optimizations"
-
-### 3.4 Key Differences Summary
-
-| Dimension                      | BP                                | CE                                                                 |
-| ------------------------------ | --------------------------------- | ------------------------------------------------------------------ |
-| **Prompt Design**              | Ad-hoc, conversational            | Pre-structured, systematic                                         |
-| **Knowledge Transfer**         | ผู้ใช้บอก AI ทีละขั้น             | ผู้ใช้ส่ง "knowledge base" ทั้งหมดใน prompt แรก                    |
-| **Error Handling**             | เกิด error แล้วค่อยแก้ (reactive) | ป้องกัน error ใน prompt (proactive)                                |
-| **Edge Cases**                 | ไม่ได้ระบุ — พบปัญหาตอน run       | ระบุ edge cases ใน prompt เช่น concurrent requests, floating-point |
-| **Quality Assurance**          | ไม่มี                             | มี Self-Refinement/Verification ทุก prompt                         |
-| **Iterations to Working Code** | ต้อง debug หลายรอบ                | ส่วนใหญ่ได้ code ที่ใช้งานได้ตั้งแต่ prompt แรก                    |
+BP จึงมีลักษณะเด่นคือ **implementation-first, debug-later** และมักเกิด iteration จากปัญหาหลังรันจริง
 
 ---
 
-## 4. ตารางสรุปสำหรับงานวิจัย
+## 3. Context Engineering (CE) — รูปแบบการ Prompt
 
-### Prompting Characteristics Matrix
+### IMCE01 — Inventory Management
 
-| Characteristic                 | IMBP01 | PDBP01 | SCBP01   | IMCE01   | PDCE01   | SCCE01   |
-| ------------------------------ | ------ | ------ | -------- | -------- | -------- | -------- |
-| Role Assignment                | -      | -      | -        | Yes      | Yes      | Yes      |
-| Structured Sections            | -      | -      | -        | Yes      | Yes      | Yes      |
-| Tech Stack Versioning          | -      | -      | -        | Yes      | Yes      | Yes      |
-| Business Scenarios             | Vague  | Vague  | Moderate | Detailed | Detailed | Detailed |
-| Edge Case Specification        | -      | -      | -        | Yes      | Yes      | Yes      |
-| Concurrency/Safety Constraints | -      | -      | -        | Yes      | Yes      | Yes      |
-| Mathematical Precision         | -      | -      | -        | Yes      | Yes      | Yes      |
-| Self-Refinement Instruction    | -      | -      | -        | Yes      | Yes      | Yes      |
-| DevOps Requirements in Prompt  | -      | -      | -        | Yes      | Yes      | Yes      |
-| Debug Iterations Needed        | 2      | 0      | 3        | 0        | 0        | 0        |
-| Total Prompts                  | 5      | 2      | 6        | 8        | 1        | 3        |
+Prompt แรกของ IMCE01 มีโครงสร้างชัดเจนมาก และประกอบด้วย:
+
+- **Role assignment**: expert full-stack developer / system architect
+- **Technical specification**: React, Node.js, PostgreSQL พร้อม version
+- **Business scenarios**: stock deduction, low stock alert, stock restoration
+- **Constraints**: race condition, transaction atomicity, overselling prevention
+- **Deliverables**: SQL + API + UI + Docker
+- **Self-refinement task**: ตรวจเงื่อนไข low-stock `<= 5`
+
+follow-up prompts ของ IMCE01 ส่วนใหญ่เป็น:
+
+- packaging
+- environment/Docker refinement
+- UI refinement
+
+### SCCE01 — Shopping Cart
+
+ลักษณะสำคัญ:
+
+- ใช้ role prompt ลักษณะ “Lead Software Architect”
+- ระบุ core business logic และ critical constraints ตั้งแต่ต้น
+- มี prompt ตามหลังเพียงเพื่อ packaging และ setup help
+
+### PDCE01 — Promotion / Discount
+
+PDCE01 เป็นตัวอย่าง CE ที่ชัดมาก เพราะใช้ **single comprehensive prompt** ซึ่งรวม:
+
+- objective & role
+- technical specification
+- business logic & knowledge base
+- mathematical constraints
+- output requirements
+- self-refinement task
+
+### CE Summary
+
+คำและองค์ประกอบที่พบซ้ำ:
+
+- `[Instruction & Role]` / `[Objective & Role]`
+- `[Technical Specification]`
+- `[Business Scenarios / Business Logic]`
+- `[Constraints]`
+- `[Deliverables / Output Requirements]`
+- `[Self-Refinement Task]` / `[Self-Verification Step]`
+
+CE จึงมีลักษณะเด่นคือ **front-loaded context transfer** และ **proactive constraint injection**
 
 ---
 
-> Generated from ChatGPT export logs analysis — for research paper reference
+## 4. Specification-Driven Development (SDD) — รูปแบบของ Prompt Package
+
+SDD ในโปรเจกต์นี้ไม่ได้ขับด้วย prompt สนทนาเป็นหลัก แต่ใช้เอกสาร requirement เป็นชุดคำสั่งเชิงระบบแทน
+
+### IMSD01 — Inventory Management
+
+จาก `.specify/` และ related templates:
+
+- ใช้ constitution/charter เพื่อกำหนด quality gates
+- ใช้ plan/spec workflow ก่อนลงมือ implement
+- ยึด scenario documents เป็นฐานของ acceptance behavior
+
+ลักษณะเด่น:
+
+- **governance-first**
+- **test-and-quality expectations ถูกกำหนดก่อนเขียนโค้ด**
+- **implementation เกิดตามแผน ไม่ใช่ตามบทสนทนาแบบ ad hoc**
+
+### SCSD01 — Shopping Cart
+
+จาก `speckit.specify` และ `speckit.constitution`:
+
+- แยก `Context`, `Data & State`, `Functional Requirements`, `Non-Functional Requirements`, `Test Coverage Expectations`, `Traceability`
+- functional requirements ถูกแมปกลับไปยัง scenario IDs โดยตรง
+
+Pattern ที่พบ:
+
+- **Formal Specification**
+- **Acceptance Traceability**
+- **Explicit Non-Functional Requirements**
+- **Test-first expectation**
+
+### PDSD01 — Promotion / Discount
+
+จาก `speckit.specify`:
+
+- ระบุ data model, business rules, order of operations, negative-total guard
+- มี acceptance traceability ชัดเจน เช่น `Scenario 8.1 -> FR1`
+- บอก observability, localization, performance, reliability ตั้งแต่ก่อนเขียนโค้ด
+
+### SDD Summary
+
+องค์ประกอบหลักของ SDD prompt package:
+
+- Constitution / quality charter
+- Structured specification
+- Explicit FR/NFR sections
+- Acceptance traceability
+- Test coverage expectations
+- Performance and observability requirements
+
+SDD จึงมีลักษณะเด่นคือ **prompt ถูกแทนด้วย requirements system** มากกว่าการสั่งงานแบบประโยคเดียว
+
+---
+
+## 5. Comparative Analysis — เปรียบเทียบ Keywords, Structure, and Flow
+
+### 5.1 Prompt / Spec Structure
+
+| Aspect | Basic Prompting (BP) | Context Engineering (CE) | SDD |
+| ----- | -------------------- | ------------------------ | --- |
+| Initial input form | natural language request | structured prompt with sections | multi-file specification package |
+| Role assignment | usually absent | explicit | implicit via charter / spec workflow |
+| Constraint detail | low | high | very high |
+| Acceptance criteria | mostly implicit | partially explicit | explicit and traceable |
+| Self-check | absent | explicit self-refinement | embedded in quality gates and test expectations |
+| Non-functional requirements | rarely stated | sometimes stated | explicitly formalized |
+
+### 5.2 Conversation / Workflow Pattern
+
+| Aspect | BP | CE | SDD |
+| ----- | -- | -- | --- |
+| Typical sequence | Request -> Debug -> Fix -> Debug | Structured prompt -> Package -> Refine | Scenario -> Spec -> Plan -> Implement |
+| Debug prompts in source artifacts | frequent | low or absent | not represented as chat-centered flow |
+| Packaging requests | common | common | secondary to spec completeness |
+| Primary control mechanism | user follow-up | prompt structure | documentation and traceability |
+
+### 5.3 Knowledge Transfer Style
+
+| Dimension | BP | CE | SDD |
+| --------- | -- | -- | --- |
+| How domain knowledge is delivered | incremental | concentrated in first prompt | externalized into artifacts |
+| How edge cases are introduced | after failures or briefly up front | up front in constraints | encoded as formal requirements |
+| How QA is expressed | reactive | self-check instructions | mandatory tests / quality gates |
+
+---
+
+## 6. Prompting Characteristics Matrix
+
+| Characteristic | IMBP01 | SCBP01 | PDBP01 | IMCE01 | SCCE01 | PDCE01 | IMSD01 | SCSD01 | PDSD01 |
+| -------------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| Role Assignment | - | - | - | Yes | Yes | Yes | Indirect | Indirect | Indirect |
+| Structured Sections | - | - | - | Yes | Yes | Yes | Yes | Yes | Yes |
+| Tech Stack Versioning | - | - | - | Yes | Yes | Yes | Partial | Partial | Partial |
+| Business Scenarios | Vague | Moderate | Vague | Detailed | Detailed | Detailed | Detailed | Detailed | Detailed |
+| Edge Case Specification | - | Partial | - | Yes | Yes | Yes | Yes | Yes | Yes |
+| Concurrency / Safety Constraints | - | Partial | - | Yes | Yes | Yes | Yes | Yes | Yes |
+| Mathematical Precision Rules | - | Partial | Partial | Partial | Yes | Yes | Partial | Yes | Yes |
+| Self-Refinement / Verification | - | - | - | Yes | Yes | Yes | Yes | Yes | Yes |
+| DevOps Requirements | Partial | Partial | Partial | Yes | Yes | Yes | Partial | Partial | Partial |
+| Acceptance Traceability | - | - | - | - | - | - | Yes | Yes | Yes |
+| Test Coverage Expectations in Input | - | - | - | - | - | - | Yes | Yes | Yes |
+
+---
+
+## 7. Key Differences Summary
+
+| Dimension | BP | CE | SDD |
+| --------- | -- | -- | --- |
+| Prompt design | ad hoc | pre-structured | specification-driven |
+| Knowledge transfer | conversational | dense and explicit | externalized into documents |
+| Error handling strategy | reactive | preventive | governed by requirements |
+| Edge-case handling | often discovered during execution | anticipated in prompt | formalized before implementation |
+| Quality assurance mechanism | minimal | self-refinement | quality gates + traceability |
+| Expected implementation stability | lower | medium-high | highest in theory, but depends on spec quality |
+
+---
+
+## 8. Research Interpretation Notes
+
+- ถ้าจะเชื่อมเอกสารนี้กับ `METHODOLOGY.md` และ `RESEARCH_SUMMARY.md` ควรใช้เอกสารนี้เป็นหลักฐานของ **independent variable** ว่าแต่ละ strategy ต่างกันอย่างไรในระดับ input design
+- สำหรับ BP/CE เราวิเคราะห์จากบทสนทนาจริงใน `chatgpt-export`
+- สำหรับ SDD เราวิเคราะห์จาก specification artifacts แทน conversational prompts
+- ดังนั้นคำว่า “prompting” ในงานนี้ควรถูกตีความกว้างเป็น **instruction design / requirement packaging**, ไม่ใช่เฉพาะข้อความ prompt 1 บรรทัด
+
+---
+
+> Generated from `chatgpt-export`, `prompt.txt`, scenarios files, and specification artifacts for research-paper traceability
