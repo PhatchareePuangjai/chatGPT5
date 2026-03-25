@@ -1,195 +1,312 @@
-# Research Methodology: Evaluating AI-Generated Code Quality
+# Research Methodology
 
 ## Overview
 
-This study evaluates AI-generated code using a multi-method design that combines prompt analysis, automated correctness checks, static analysis, and rubric-based code review. The goal is not only to measure whether generated systems run, but also to compare how different human-AI development strategies influence implementation quality, safety, and maintainability.
+This study adopts a controlled experimental design to evaluate the quality of AI-generated code produced under different human-AI interaction strategies, using an e-commerce system as the experimental testbed. A multi-method assessment framework is employed, combining prompt and specification analysis, functional correctness testing, static code analysis, security scanning, and rubric-based qualitative review. The objective is not merely to determine whether generated systems execute correctly, but to investigate how different interaction strategies influence correctness, security, maintainability, and architectural quality of the resulting implementations.
 
-## 1. Study Scope and Dataset
+## 1. Research Design
 
-### Core Comparative Dataset
+### 1.1 Study Objective
 
-The primary comparative dataset contains **9 generated versions** across **3 business domains** and **3 interaction strategies**.
+The study investigates whether increasing the degree of structure in human-AI collaboration is associated with higher-quality implementation outcomes. In this context, "quality" is operationalized as a multi-dimensional construct comprising:
 
-| Domain | Basic Prompting | Context Engineering | Specification-Driven Development (SDD) |
-|--------|------------------|---------------------|----------------------------------------|
+- functional correctness
+- security posture
+- reliability and maintainability
+- code organization and duplication
+- architectural discipline and engineering practices
+
+### 1.2 Comparative Design
+
+A cross-case comparative design is applied across three business domains and three development strategies. Each generated project version constitutes one case. Comparisons are conducted at two levels:
+
+- **within-domain comparison:** evaluating BP, CE, and SDD implementations for the same business domain
+- **cross-strategy comparison:** examining overall trends across all versions belonging to the same strategy
+
+This design enables interpretation of strategy effects while acknowledging task-specific variation.
+
+## 2. Dataset and Unit of Analysis
+
+### 2.1 Core Comparative Dataset
+
+The primary dataset consists of **9 generated versions** organized as a 3 × 3 matrix of domains and strategies.
+
+| Domain | Basic Prompting | Context Engineering | Specification-Driven Development |
+|--------|-----------------|---------------------|----------------------------------|
 | Inventory Management | IMBP01 | IMCE01 | IMSD01 |
 | Shopping Cart | SCBP01 | SCCE01 | SCSD01 |
 | Promotion / Discount | PDBP01 | PDCE01 | PDSD01 |
 
-These 9 versions are the basis for the comparative claims reported in `RESEARCH_SUMMARY.md`.
+All twelve code versions were generated using ChatGPT 5.2 as the underlying model. Each version is evaluated against an identical set of Acceptance Scenarios and Edge Cases across all versions, as summarized in the table above. These 9 versions form the basis of the main comparative findings reported in RESEARCH_SUMMARY.md.
 
-### Supplementary Artifacts in the Repository
+### 2.2 Supplementary Repository Artifacts
 
-The repository also contains additional versions such as `IMAG01` (Agentic), `IMCS01` (Cursor), `PDAG01` (Agentic), `PDCS01` (Cursor), `SCAG01` (Agentic), and `SCCS01` (Cursor). These artifacts are useful as implementation references and supporting evidence, but they are **not included in the main 9-version comparison unless explicitly stated**.
+The repository also contains additional versions — `IMAG01`, `IMCS01`, `PDAG01`, `PDCS01`, `SCAG01`, and `SCCS01` — produced using Agentic (AG) and Cursor (CS) workflows. These artifacts serve as supporting references but are excluded from the main 9-version comparison unless explicitly stated.
 
-> **Naming convention:** The prefix codes are **AG** = Agentic, **CS** = Cursor, **BP** = Basic Prompting, **CE** = Context Engineering, **SD** = Specification-Driven Development. This distinction is important because the repository-level population is larger than the dataset used in the summary tables.
+### 2.3 Unit of Analysis
 
-### Unit of Analysis
+The unit of analysis is **one generated project version**. Each version is evaluated as a standalone full-stack implementation containing business logic, API endpoints, and in most cases a frontend and deployment configuration.
 
-The primary unit of analysis is **one generated project version** (for example, `IMCE01` or `PDSD01`). Each version is evaluated as a standalone full-stack implementation for one domain.
+## 3. Independent Variable: Development Strategy
 
-## 2. Experimental Design
+The primary independent variable is the style of human-AI collaboration employed to produce each system. Three levels of interaction complexity are compared, each representing a progressively more structured approach to communicating requirements to the AI.
 
-### Independent Variable: Human-AI Interaction Strategy
+### 3.1 Basic Prompting (BP)
 
-We compare three levels of interaction complexity:
+Basic Prompting refers to direct, conversational natural-language requests with limited formal structure. Prompts typically describe desired features at a high level, while detailed constraints, validation rules, and architectural decisions emerge only through subsequent debugging or follow-up turns.
 
-1. **Basic Prompting (BP):** Direct feature requests written in natural language with limited structure.
-2. **Context Engineering (CE):** Structured prompting with role assignment, technical requirements, constraints, deliverables, and self-check instructions.
-3. **Specification-Driven Development (SDD):** Implementation driven by structured specifications such as constitution/charter files, plans, scenario documents, and formal requirement traceability.
+**Illustrative excerpt (IMBP01):**
 
-### Controlled Task Domains
+> *"I am building an e-commerce website. I need you to write code for the Inventory Management System. Requirements: Backend (Node.js): Create an API to handle stock updates. When a user buys an item, deduct the stock. If stock is low (less than 5), print a log message. Also, keep a history of stock changes. Frontend (React): Create a simple dashboard page to view current stock levels and a list of low-stock items. Please provide the code for both the backend controller and the frontend component."*
 
-To reduce domain randomness while still testing realistic business logic, all versions were built in a controlled e-commerce setting:
+**Illustrative excerpt (SCBP01):**
 
-- Inventory management
-- Shopping cart
-- Promotion and discount logic
+> *"I am building an online shop and I need code for a Shopping Cart system. Can you give me all the code for both the display page (React) and the backend (Node.js)? [...] I don't know how to code or how to manage many files, so please provide the full code and tell me how to set up the database. If possible, put everything together so I can just download and run it on my Mac."*
 
-These domains were selected because they require:
+As illustrated above, BP prompts tend to be informal and conversational in tone, specify technology choices only at a general level (e.g., "Node.js", "React"), and leave architectural decisions, concurrency handling, and edge-case coverage unaddressed.
+
+### 3.2 Context Engineering (CE)
+
+Context Engineering refers to structured prompting that front-loads relevant context before implementation begins. These prompts typically include explicit role assignment, pinned technology versions, domain constraints, acceptance criteria, concurrency requirements, and self-check instructions — all provided within the initial request.
+
+**Illustrative excerpt (IMCE01):**
+
+> *"[Instruction & Role] Act as an expert Full-stack Developer and System Architect. Your mission is to implement a high-reliability Inventory Management System where data consistency and concurrency control are the top priorities.*
+>
+> *[Technical Specification] Frontend: React (^18.3.1) with Vite (^5.4.8). Backend: Node.js (CommonJS) with Express (^4.19.2). Database: PostgreSQL using the pg driver (^8.12.0).*
+>
+> *[Constraints & Concurrency Control] Race Condition Management: Use Database-level locking (e.g., SELECT ... FOR UPDATE or Transactions) to ensure that if 5 concurrent requests buy the last remaining item, only one succeeds, and stock never drops below zero. Transaction Atomicity: Ensure an 'All or Nothing' approach. If the logging process fails, the stock deduction must rollback automatically."*
+
+**Illustrative excerpt (PDCE01):**
+
+> *"[Objective & Role] Act as a Senior Backend Architect and Logic Specialist. Your mission is to implement a high-precision Promotions and Discounts System. You must prioritize the Order of Operations and Business Rule Integrity to ensure financial accuracy and prevent revenue leakage.*
+>
+> *[Mathematical Constraints & State] Calculation Order (Crucial): If multiple discounts apply, you must follow the correct business sequence: (Original Total − Percentage Discount) − Fixed Amount Discount. Do not miscalculate the order. Negative Total Protection: The Grand Total must NEVER fall below zero."*
+
+Compared with BP, CE prompts are notably longer (280–341 words versus 85–266 words for BP), adopt a formal tone with bracketed section headers, assign an explicit professional role to the model, pin dependency versions, and specify edge cases using precise technical terminology such as "SELECT ... FOR UPDATE" and "Transaction Atomicity."
+
+### 3.3 Specification-Driven Development (SDD)
+
+Specification-Driven Development refers to workflows in which implementation is guided by formalized, multi-document specification packages rather than conversational prompts. Requirements are externalized into structured artifacts — constitutions, specifications, plans, task breakdowns, and scenario definitions — that collectively define the system's behavior, quality gates, and acceptance criteria.
+
+**Illustrative excerpt — Constitution (SCSD01 `speckit.constitution`):**
+
+> *"Code Quality: modularity, lint rules, code review gates, static analysis in CI. Testing Standards: >85% branch coverage target, deterministic tests, smoke/regression/performance suites. User Experience Consistency: design system adherence, WCAG 2.1 AA, i18n layer, usability metrics. Performance Requirements: p95 latency <300 ms, page interactive <2 s on 3G, lazy loading, profiling, automated perf tests."*
+
+**Illustrative excerpt — Specification (PDSD01 `speckit.specify`):**
+
+> *"Context: Promotions & Discounts engine. Functional Requirements (FR1–FR6): coupon validation, percentage discounts, expiration enforcement, usage limits, discount ordering, and negative-total protection. Data & State: coupon schema, usage records, audit events. Non-Functional Requirements: 100 ms median / 200 ms p95 latency budget, idempotency requirement for promotion writes. Acceptance Criteria Traceability: scenario-to-FR mapping table."*
+
+Unlike BP and CE, the SDD approach does not rely on a single conversational prompt. Instead, it distributes requirements across multiple purpose-specific documents — each governing a different aspect of the system (governance principles, behavioral specifications, implementation plans, and task decomposition). This separation enables explicit traceability between requirements and implementation.
+
+### 3.4 Summary of Strategy Characteristics
+
+| Characteristic | Basic Prompting (BP) | Context Engineering (CE) | Specification-Driven Development (SDD) |
+|----------------|----------------------|--------------------------|----------------------------------------|
+| Tone | Informal, conversational | Formal, structured sections | Declarative, policy-oriented |
+| Prompt length | 85–266 words | 280–341 words | Multi-document package |
+| Role assignment | None | Explicit (e.g., "Act as a Senior Architect") | Implicit via document structure |
+| Tech specifications | General ("Node.js", "React") | Pinned versions (e.g., React ^18.3.1) | Defined in specification context |
+| Edge-case handling | Ad hoc, via follow-up turns | Pre-specified with technical terminology | Formalized as numbered FRs with traceability |
+| Architecture guidance | Unspecified | Partially specified (e.g., Docker, locking strategy) | Governed by constitution and quality gates |
+| Quality gates | None | Self-check instructions | Explicit gates (coverage targets, performance SLOs, lint rules) |
+
+## 4. Controlled Task Domains
+
+To reduce domain-related randomness while preserving realistic engineering complexity, the study employs three related e-commerce modules as the experimental testbed:
+
+- **Inventory Management (IM):** stock deduction, low-stock alerts, stock restoration, and audit logging
+- **Shopping Cart (SC):** item merging, quantity management, save-for-later, and price calculation
+- **Promotion and Discount (PD):** coupon validation, discount calculation, usage limits, and ordering rules
+
+These domains were selected because they require comparable forms of software reasoning, including:
 
 - stateful CRUD behavior
 - transaction integrity
-- concurrency handling
+- concurrency control
 - monetary precision
-- user-visible validation and error handling
+- rule-based validation
+- user-facing error handling
 
-### Important Interpretation Note
+Employing related domains ensures that the application family remains comparable while preventing the benchmark from collapsing into a single repeated task.
 
-The 9 versions do **not** form a pure time-series benchmark where the same task is repeated unchanged. They represent a matrix of:
+## 5. Prompt and Specification Data Collection
 
-- multiple domains, and
-- multiple interaction strategies
+### 5.1 Prompt Sources for BP and CE
 
-Therefore, comparisons should be interpreted primarily as **cross-strategy comparisons within a shared application family**, not as proof of linear improvement over time alone.
+For Basic Prompting and Context Engineering versions, the study uses conversation artifacts exported from ChatGPT, stored as `chatgpt-export/.../conversations.json` within each version directory. These exports preserve:
 
-## 3. Prompt and Specification Sources
+- initial generation requests
+- follow-up clarification and refinement turns
+- packaging and setup requests
+- debugging and fix prompts
 
-To make the prompt-side analysis reproducible, the study uses prompt artifacts from two source types:
+### 5.2 Specification Sources for SDD
 
-### A. ChatGPT Export Logs
+For SDD versions, the prompt equivalent is a structured specification package rather than a single conversational thread. The three SDD versions employ two different specification structures:
 
-Used for BP and CE versions where available:
+**IMSD01** uses a `.specify/` directory containing:
 
-- `src/versions/IMBP01/chatgpt-export/.../conversations.json`
-- `src/versions/SCBP01/chatgpt-export/.../conversations.json`
-- `src/versions/PDBP01/chatgpt-export/.../conversations.json`
-- `src/versions/IMCE01/chatgpt-export/.../conversations.json`
-- `src/versions/SCCE01/chatgpt-export/.../conversations.json`
-- `src/versions/PDCE01/chatgpt-export/.../conversations.json`
+- `scripts/bash/` — setup and automation scripts (`setup-plan.sh`, `check-prerequisites.sh`, etc.)
+- `templates/` — structured templates for specs, plans, tasks, and checklists
+- `memory/constitution.md` — project constitution
 
-These files provide the actual user prompts, refinement turns, packaging requests, and debug follow-ups used in the prompting analysis.
+**SCSD01 and PDSD01** use `speckit.*` flat files:
 
-### B. Specification Artifacts
+- `speckit.specify` — formal requirements specification
+- `speckit.constitution` — project constitution (SCSD01 only)
+- `speckit.plan` — implementation plan
+- `speckit.tasks` — task breakdown
+- `speckit.implement` — implementation guidance
 
-Used for SDD-style versions:
+All SDD versions also include scenario definition files (`scenarios_inventory.md`, `scenarios_cart.md`, `scenarios_promotions.md`).
 
-- `src/versions/IMSD01/.specify/...`
-- `src/versions/SCSD01/speckit.specify`
-- `src/versions/SCSD01/speckit.constitution`
-- `src/versions/PDSD01/speckit.specify`
+> **Note:** The structural difference between IMSD01 (directory-based) and SCSD01/PDSD01 (flat-file-based) reflects an evolution in specification tooling during the study. Both approaches serve the same purpose — providing a structured specification package to the AI — but differ in file organization.
 
-For SDD, the effective “prompt” is not a single conversational request but a structured requirements package composed of scenarios, constitutions/charters, plans, and formal specifications.
+### 5.3 Prompt and Specification Review Procedure
 
-### Analysis Procedure
+For each version, the analysis reviews:
 
-For each version, we extracted or reviewed:
+- the initial request or formal specification package
+- explicit business rules and constraints
+- acceptance criteria and non-functional requirements
+- follow-up refinement or debug instructions when present
 
-- the initial generation request or specification package
-- follow-up refinement instructions
-- packaging/setup/debug turns when present
-- explicit constraints, acceptance criteria, and self-check instructions
+This step is necessary to establish traceability between the instruction design and the resulting implementation quality.
 
-## 4. Measurement Standards (Dependent Variables)
+## 6. Dependent Variables and Evaluation Standards
 
-Code quality is evaluated through three complementary standards.
+The study operationalizes code quality through three automated measurement layers and one qualitative synthesis layer.
 
-### Standard A: Functional Correctness Evaluation
-**Tool:** Automated Acceptance Tests (Jest)
+### 6.1 Functional Correctness
 
-We implemented scenario-based tests aligned with the domain requirements, including:
+**Instrument:** scenario-based automated tests (Jest)
 
-- **Standard scenarios:** CRUD flows, cart updates, coupon application, stock restoration.
-- **Edge cases:**
-  - **Race Conditions:** concurrent deduction/addition requests against limited stock.
-  - **Transaction Atomicity:** rollback behavior when part of the workflow fails.
-  - **Boundary Values:** overselling prevention, threshold-trigger conditions, negative total prevention.
-  - **Precision:** financial calculations such as `19.99 * 3`.
+Functional correctness is measured through acceptance-style tests aligned with each domain's scenario file. The test suites cover both standard flows and critical edge cases:
 
-**Primary metric:** Pass/fail status against the scenario suites defined in `scenarios_*.md`.
+- normal CRUD and update operations
+- coupon application and cart recalculation
+- stock restoration and threshold alerts
+- race conditions under concurrent requests
+- transaction rollback and atomicity behavior
+- boundary conditions such as overselling prevention and negative totals
+- monetary precision cases such as decimal multiplication (e.g., 19.99 × 3 = 59.97)
 
-**Reproducibility note:** Scenario files are version-specific by domain, so the test suites are equivalent in intent, but not identical line-for-line across all projects.
+**Primary metric:** pass/fail outcome against the relevant scenario suite.
 
-### Standard B: Static Code Analysis
-**Tool:** SonarQube Community Edition
+Because each domain uses domain-specific scenarios, the suites are equivalent in intent rather than identical in implementation.
 
-We used static analysis to measure:
+### 6.2 Static Code Quality
 
-- **Security vulnerabilities**
-- **Reliability issues (bugs)**
-- **Maintainability issues (code smells / technical debt)**
-- **Code duplication percentage**
-- **Security hotspots**
+**Instrument:** SonarQube Community Edition
 
-These metrics help capture structural quality issues that may not immediately break scenario tests.
+SonarQube is employed to capture structural quality issues that may not surface in functional tests. The following measures are collected:
 
-### Standard C: Advanced Security Analysis
-**Tool:** GitHub CodeQL
+- security vulnerabilities
+- reliability issues (bugs)
+- maintainability issues (code smells and technical debt)
+- security hotspots
+- duplication percentage
+- coverage as reported by the scanner
 
-CodeQL was used as a deeper semantic security scan to identify issues that basic linters or style tools may miss, such as unsafe data handling patterns.
+These metrics support comparison of technical debt and code health across strategies.
 
-**Primary metric:** Presence or absence of critical security alerts.
+### 6.3 Advanced Security Analysis
 
-## 5. Qualitative Assessment: Rubric-Based Quality Score
+**Instrument:** GitHub CodeQL
 
-Automated tools do not fully capture architecture and design quality, so we also applied a structured rubric.
+CodeQL is used as a deeper semantic analysis layer to detect security-relevant patterns — such as injection vulnerabilities and unsafe data handling — that surface-level linting or style-based inspection may miss.
 
-### Review Method
+**Primary metric:** number and severity of security alerts.
 
-- **Single-rater assessment:** One reviewer evaluated all versions using the same rubric.
-- **Retrospective application:** The rubric was applied after generation, not during prompting.
-- **Scoring scale:** 0-3 points per dimension.
+### 6.4 Dynamic Application Security Testing
 
-### Scoring Rubric (Total: 12 Points)
+**Instrument:** OWASP ZAP
+
+OWASP ZAP is employed for dynamic application security testing (DAST) to identify runtime vulnerabilities by actively probing the running application. This complements the static analysis performed by SonarQube and CodeQL by testing the system's behavior under simulated attack conditions.
+
+### 6.5 Qualitative Engineering Quality
+
+**Instrument:** rubric-based code review
+
+Because automated scanners do not fully capture design quality, each version is also assessed using a structured rubric focused on architecture, implementation discipline, and engineering practice.
+
+## 7. Rubric-Based Review Method
+
+### 7.1 Review Procedure
+
+- A single reviewer evaluated all versions using the same scoring rubric to ensure consistency.
+- Scoring was applied retrospectively after code generation.
+- Each dimension was scored on a 0–3 scale, yielding a maximum total of 12 points.
+
+### 7.2 Scoring Dimensions
 
 | Dimension | 0 Points | 1 Point | 2 Points | 3 Points |
 |-----------|----------|---------|----------|----------|
-| **1. Architecture** | Monolithic, no separation | Basic structure, some organization | Service layer or clear separation | Clean Architecture (Repository + Service Pattern) |
-| **2. Features** | No validation, basic error handling | Basic validation/error handling | Good validation + error handling | Comprehensive (Zod, Error Factory, Money utils, Tests) |
-| **3. Code Organization** | >30% duplication | 10-30% duplication | <10% duplication | 0% duplication, excellent structure |
-| **4. Best Practices** | None | Some | Good | Comprehensive (patterns, utilities, structured errors) |
+| Architecture | Monolithic, no meaningful separation | Basic structural separation | Clear service/repository boundaries | Clean architecture with disciplined layering |
+| Features and Robustness | Minimal validation or error handling | Basic validation and handling | Good validation and reusable utilities | Comprehensive robustness including structured errors, money utilities, and strong test support |
+| Code Organization | Heavy duplication and weak modularity | Some reuse but inconsistent structure | Mostly modular with limited duplication | Excellent modularity and minimal duplication |
+| Best Practices | Largely absent | Partially applied | Clearly applied in multiple areas | Consistently applied across the implementation |
 
-### Penalty Rules
+### 7.3 Penalty Rules
 
-- **Security penalty:** If security vulnerabilities > 0, the maximum total score is capped at 4/12.
-- **Duplication penalty:**
-  - If duplication > 50%, the Architecture dimension is capped at 1 point.
-  - If duplication > 30%, the Code Organization dimension is capped at 1 point.
+- If confirmed security vulnerabilities are present, the total rubric score is capped at 4/12.
+- If duplication exceeds 50%, the Architecture score is capped at 1.
+- If duplication exceeds 30%, the Code Organization score is capped at 1.
 
-### Star Rating Mapping
+### 7.4 Score-to-Rating Mapping
 
-- **⭐ (1/5):** 0-3 points
-- **⭐⭐ (2/5):** 4-6 points
-- **⭐⭐⭐ (3/5):** 7-9 points
-- **⭐⭐⭐⭐ (4/5):** 10-11 points
-- **⭐⭐⭐⭐⭐ (5/5):** 12 points
+| Rating | Score Range |
+|--------|-------------|
+| 1/5 stars | 0–3 points |
+| 2/5 stars | 4–6 points |
+| 3/5 stars | 7–9 points |
+| 4/5 stars | 10–11 points |
+| 5/5 stars | 12 points |
 
-## 6. Traceability Rules
+## 8. Analysis Workflow
 
-To keep the study internally consistent, conclusions should follow this chain:
+The evaluation pipeline follows an identical sequence for every version:
 
-1. **Prompt/spec evidence** from `chatgpt-export`, `prompt.txt`, or specification artifacts
-2. **Implementation evidence** from the generated codebase
-3. **Measured outcomes** from tests, SonarQube, and CodeQL
-4. **Rubric interpretation** for architecture and engineering quality
+1. **Prompt/specification review** — identify requirements, constraints, and development intent from the input artifacts
+2. **Implementation inspection** — verify how requirements were translated into code structure and behavior
+3. **Functional validation** — execute scenario-based tests against the running application
+4. **Static analysis and security scanning** — run SonarQube, CodeQL, and OWASP ZAP
+5. **Rubric scoring** — synthesize architectural and engineering quality assessment
+6. **Cross-version comparison** — compare results by domain and by strategy
 
-This traceability is essential because a version may score well on one method and poorly on another.
+This workflow ensures that all interpretive claims are grounded in both instruction evidence and observable implementation outcomes.
 
-## 7. Limitations
+## 9. Traceability Rules
 
-- **Single-rater bias:** The qualitative score was assigned by a single reviewer without inter-rater reliability checks.
-- **Incomplete generation metadata:** Some run-level parameters such as exact model identifiers, temperature, or seed were not consistently preserved in the dataset.
-- **Scope limitation:** The main comparison is based on 9 core versions even though the repository contains additional related artifacts.
-- **Cross-domain variance:** Differences between inventory, cart, and promotions tasks may affect results independently of prompting strategy.
-- **Coverage gap:** Reported test coverage is 0.0% in SonarQube for most versions, even when scenario tests exist externally.
-- **Ecosystem bias:** Results are tied to the web application / e-commerce setting and should not be generalized to all software domains.
+To maintain internal consistency, conclusions are drawn only when the following traceability chain can be established:
+
+1. **Instruction evidence** — from prompts, conversation exports, or specification artifacts
+2. **Implementation evidence** — from the generated codebase
+3. **Measured evidence** — from functional tests, SonarQube, CodeQL, and OWASP ZAP
+4. **Interpretive evidence** — from the rubric-based review
+
+This rule is particularly important because strong performance in one layer does not guarantee strong performance in another. A project may pass all scenario tests while still containing significant duplication or security weaknesses.
+
+## 10. Interpretation Boundaries
+
+The results should be interpreted as a **comparative benchmark of development strategies within a shared application family**, not as a pure time-series experiment. Because the versions differ by both domain and strategy, the methodology supports comparative insight rather than strict causal inference.
+
+Accordingly:
+
+- Findings regarding strategy superiority should be treated as pattern-based rather than absolute.
+- Within-domain comparisons carry greater evidential weight than unrestricted cross-domain comparisons.
+- Repository-wide artifacts outside the 9 core versions should not be merged into the main conclusions without explicit re-scoping.
+
+## 11. Limitations
+
+- **Single-rater bias:** The qualitative review was conducted by one evaluator without inter-rater reliability testing.
+- **Incomplete generation metadata:** Exact model parameters such as temperature and seed values were not consistently preserved across all generation sessions.
+- **Cross-domain variation:** Inherent differences among inventory, cart, and promotion tasks may influence outcomes independently of the interaction strategy.
+- **Coverage reporting gap:** Scanner-reported coverage is near zero for most versions even when external scenario tests exist, due to the tests running outside the instrumented build pipeline.
+- **Ecosystem limitation:** Findings are grounded in web-based e-commerce applications (Node.js + PostgreSQL + React) and may not generalize to other software domains or technology stacks.
+- **Repository scope asymmetry:** The repository contains additional artifacts beyond the primary 9-version comparison set, which may create an impression of broader coverage than the formal analysis supports.
+
+## 12. Methodological Summary
+
+In summary, this study evaluates AI-generated software through a triangulated methodology: instruction analysis characterizes how each system was requested, automated testing verifies whether it meets functional requirements, static and dynamic security analysis reveals structural and runtime risks, and rubric-based review captures design quality that automated tools alone cannot measure. By providing illustrative examples of each interaction strategy — from informal conversational prompts (BP) through structured context-rich prompts (CE) to multi-document specification packages (SDD) — the methodology enables transparent comparison of how the degree of input structure influences the quality of AI-generated implementations. This combination provides a more defensible basis for comparing AI-assisted development strategies than relying on execution success alone.
