@@ -112,16 +112,18 @@
 
 ### Common ZAP Warnings (across all versions)
 
-| Warning                                      | Rule ID | Severity      | Affected                              |
-| -------------------------------------------- | ------- | ------------- | ------------------------------------- |
-| Missing Anti-clickjacking Header             | 10020   | Medium        | 12/12                                 |
-| X-Content-Type-Options Header Missing        | 10021   | Low           | 12/12                                 |
-| Content Security Policy (CSP) Header Not Set | 10038   | Medium        | 12/12                                 |
-| Storable but Non-Cacheable Content           | 10049   | Informational | 12/12                                 |
-| Permissions Policy Header Not Set            | 10063   | Low           | 12/12                                 |
-| Modern Web Application                       | 10109   | Informational | 12/12                                 |
-| Cross-Origin-Embedder-Policy Header Missing  | 90004   | Medium        | 12/12                                 |
-| Server Leaks Version Information             | 10036   | Low           | 4/12 (IMCS01, SCCE01, SCCS01, PDBP01) |
+| Warning                                              | Rule ID | Severity      | Affected                               |
+| ---------------------------------------------------- | ------- | ------------- | -------------------------------------- |
+| Missing Anti-clickjacking Header                     | 10020   | Medium        | 12/12                                  |
+| Content Security Policy (CSP) Header Not Set         | 10038   | Medium        | 12/12                                  |
+| Cross-Origin-Embedder-Policy (COEP) Header Missing   | 90004   | Low           | 12/12                                  |
+| Cross-Origin-Opener-Policy (COOP) Header Missing     | 90004   | Low           | 12/12                                  |
+| Cross-Origin-Resource-Policy (CORP) Header Missing   | 90004   | Low           | 12/12                                  |
+| Permissions Policy Header Not Set                    | 10063   | Low           | 12/12                                  |
+| X-Content-Type-Options Header Missing                | 10021   | Low           | 12/12                                  |
+| Storable but Non-Cacheable Content                   | 10049   | Informational | 12/12                                  |
+| Modern Web Application                               | 10109   | Informational | 12/12                                  |
+| Server Leaks Version Information                     | 10036   | Low           | 4/12 (IMCS01, SCCE01, SCCS01, PDBP01) |
 
 ### DAST Summary by Strategy
 
