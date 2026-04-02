@@ -53,3 +53,5 @@ yarn-error.log*
 
 # Generated artifacts
 **/*.tsbuildinfo
+
+paper_intro_final_v2.docx
