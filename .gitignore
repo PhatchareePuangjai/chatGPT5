@@ -11,11 +11,15 @@ ENV/
 
 # Python cache files
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+**/.pytest_cache/
 .ruff_cache/
+**/.ruff_cache/
 .mypy_cache/
+**/.mypy_cache/
 
 # Distribution / packaging
 dist/
@@ -46,6 +50,12 @@ coverage/
 .vscode/
 *.swp
 *.swo
+
+# AI agent / specify tool workspace (generated, not source)
+.agents/
+**/.agents/
+.specify/
+**/.specify/
 
 # OS specific files
 .DS_Store
