@@ -14,6 +14,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
 
 # Distribution / packaging
 dist/
@@ -22,6 +24,15 @@ build/
 
 # Log files
 *.log
+.coverage
+.coverage.*
+htmlcov/
+coverage/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
 
 # Local development settings
 .env
@@ -53,5 +64,8 @@ yarn-error.log*
 
 # Generated artifacts
 **/*.tsbuildinfo
+
+# Temporary Office files
+~$*.docx
 
 paper_intro_final_v2.docx

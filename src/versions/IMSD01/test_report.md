@@ -1,165 +1,163 @@
 # Inventory Management System Test Report
 
-**Date:** January 19, 2026
+**Date:** April 3, 2026
 **Project Version:** IMSD01 (Inventory System)
 
 ## 1. Test Summary
 
-All scenarios defined in `scenarios_inventory.md` have been tested using Jest running against the Dockerized backend.
+All scenarios defined in [`scenarios_inventory.md`](./scenarios_inventory.md) have been tested using `pytest` against the IMSD01 backend test suite.
 
 | Scenario | Result | Notes |
 |---|---|---|
-| **1) Successful Stock Deduction** | ✅ PASS | Stock reduced correctly (10 -> 8), Log 'SALE' created. |
-| **2) Low Stock Alert Trigger** | ✅ PASS | Stock reduced (6 -> 4), Threshold is 5. Alert created correctly. |
-| **3) Stock Restoration** | ✅ PASS | Stock restored (5 -> 6) via Restore API. Log 'RESTOCK_RETURN' created. |
-| **Edge 1) Race Condition** | ✅ PASS | 5 concurrent requests for last item. Only 1 success, 4 failures. Stock 0. |
-| **Edge 2) Transaction Atomicity** | ✅ PASS | Operations wrapped in `withTransaction`. Data consistency verified. |
-| **Edge 3) Overselling Attempt** | ✅ PASS | Request for more than available stock rejected with 409 Conflict. |
-| **Edge 4) Boundary Value** | ✅ PASS | Alert triggers correctly when quantity reaches threshold (<= 5). |
+| **1) Successful Stock Deduction** | ✅ PASS | Stock reduced correctly from 10 to 8, and `InventoryLog` recorded `SALE` with `-2`. |
+| **2) Low Stock Alert Trigger** | ✅ PASS | Stock reduced from 6 to 4, and an `Alert` record was created because `4 <= 5`. |
+| **3) Stock Restoration** | ✅ PASS | Stock restored from 5 to 6 for both `cancelled` and `expired` flows, with correct log operation recorded. |
+| **Edge 1) Race Condition** | ✅ PASS | Concurrent purchase test allowed only 1 success out of 5 requests. Final stock remained 0. |
+| **Edge 2) Transaction Atomicity** | ✅ PASS | When log creation was forced to fail, the stock update was rolled back and no log was persisted. |
+| **Edge 3) Overselling Attempt** | ✅ PASS | Purchase request beyond available stock raised `InsufficientStockError`, and stock remained unchanged at 5. |
+| **Edge 4) Boundary Value** | ✅ PASS | Alert behavior matched the spec exactly: no alert at 6, alert at 5, alert at 4. |
 
 ---
 
 ## 2. Test Output
 
 ```text
- PASS  tests/inventory.test.js
-  Inventory System Tests (IMSD01)
-    ✓ 1) Successful Stock Deduction (57 ms)
-    ✓ 2) Low Stock Alert Trigger (17 ms)
-    ✓ 3) Stock Restoration (17 ms)
-    ✓ Edge Case 1: Race Condition (122 ms)
-    ✓ Edge Case 2: Transaction Atomicity (11 ms)
-    ✓ Edge Case 3: Overselling Attempt (13 ms)
-    ✓ Edge Case 4: Boundary Value (Low Stock) (30 ms)
+$ pytest tests/test_inventory_scenarios.py
+============================= test session starts ==============================
+platform darwin -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0
+rootdir: /Users/phatchareepuangjai/Documents/chat_gsheet_logger_python/src/versions/IMSD01/backend
+configfile: pyproject.toml
+plugins: anyio-4.12.1, asyncio-1.3.0
+asyncio: mode=Mode.STRICT
+collected 8 items
 
-Test Suites: 1 passed, 1 total
-Tests:       7 passed, 7 total
-Snapshots:   0 total
-Time:        0.912 s
-Ran all test suites matching tests/inventory.test.js.
+tests/test_inventory_scenarios.py::TestInventoryScenarios::test_1_successful_stock_deduction PASSED
+tests/test_inventory_scenarios.py::TestInventoryScenarios::test_2_low_stock_alert_trigger PASSED
+tests/test_inventory_scenarios.py::TestInventoryScenarios::test_3_stock_restoration[cancelled-RESTOCK] PASSED
+tests/test_inventory_scenarios.py::TestInventoryScenarios::test_3_stock_restoration[expired-RETURN] PASSED
+tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_1_race_condition PASSED
+tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_2_transaction_atomicity PASSED
+tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_3_overselling_attempt PASSED
+tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_4_boundary_value_low_stock PASSED
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_1_successful_stock_deduction
+PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_2_low_stock_alert_trigger
+PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_3_stock_restoration[cancelled-RESTOCK]
+PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_3_stock_restoration[expired-RETURN]
+PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_1_race_condition
+PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_2_transaction_atomicity
+PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_3_overselling_attempt
+PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_4_boundary_value_low_stock
+============================== 8 passed in 0.08s ===============================
 ```
 
 ---
 
 ## 3. Code Implementation Details
 
-### Backend: Database Schema (`sql/001_inventory_tables.sql`)
+### Backend: Scenario Test File (`backend/tests/test_inventory_scenarios.py`)
 
-```sql
-CREATE TABLE IF NOT EXISTS inventory_items (
-  sku TEXT PRIMARY KEY,
-  quantity INTEGER NOT NULL CHECK (quantity >= 0),
-  low_stock_threshold INTEGER NOT NULL DEFAULT 0,
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+The IMSD01 version uses a dedicated `pytest` scenario suite that maps directly to the acceptance scenarios and edge cases in `scenarios_inventory.md`.
 
-CREATE TABLE IF NOT EXISTS inventory_logs (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  sku TEXT NOT NULL REFERENCES inventory_items (sku),
-  change_type TEXT NOT NULL,
-  quantity_delta INTEGER NOT NULL,
-  order_id TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+```python
+class TestInventoryScenarios:
+    def test_1_successful_stock_deduction(self, db_session):
+        ...
 
-CREATE TABLE IF NOT EXISTS stock_alerts (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  sku TEXT NOT NULL REFERENCES inventory_items (sku),
-  threshold INTEGER NOT NULL,
-  quantity INTEGER NOT NULL,
-  status TEXT NOT NULL DEFAULT 'OPEN',
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+    def test_2_low_stock_alert_trigger(self, db_session):
+        ...
+
+    def test_3_stock_restoration(self, db_session, reason, expected_operation):
+        ...
+
+
+class TestInventoryEdgeCases:
+    def test_edge_case_1_race_condition(self):
+        ...
+
+    def test_edge_case_2_transaction_atomicity(self, db_session, monkeypatch):
+        ...
+
+    def test_edge_case_3_overselling_attempt(self, db_session):
+        ...
+
+    def test_edge_case_4_boundary_value_low_stock(self, db_session):
+        ...
 ```
 
-### Backend: Purchase Logic (`src/services/stockService.js`)
+### Backend: Purchase Logic (`backend/src/services/inventory_service.py`)
 
-The `deductStock` function handles the business logic within a transaction, ensuring correct stock updates and alert generation using `inventoryRepository` with locking enabled.
+The `purchase` function updates stock inside a transaction, creates an audit log, and triggers a low-stock alert when the remaining quantity is less than or equal to the threshold.
 
-```javascript
-const deductStock = async ({ sku, quantity, orderId }) =>
-  withTransaction(async (client) => {
-    // getBySku with 'true' likely implies FOR UPDATE lock
-    const item = await inventoryRepository.getBySku(client, sku, true);
-    
-    if (quantity > item.quantity) {
-      const error = new Error('Insufficient stock.');
-      error.status = 409;
-      throw error;
-    }
+```python
+def purchase(session: Session, product_id: str, sku: str, quantity: int):
+    if quantity <= 0:
+        raise ValidationError("Quantity must be greater than zero")
 
-    const newQuantity = item.quantity - quantity;
-    const updated = await inventoryRepository.updateQuantity(client, sku, newQuantity);
+    with _transaction(session):
+        product = session.execute(
+            select(Product).where(Product.id == product_id, Product.sku == sku)
+        ).scalar_one_or_none()
 
-    await inventoryLogRepository.createLog(client, {
-      sku,
-      changeType: 'SALE',
-      quantityDelta: -quantity,
-      orderId,
-    });
+        result = session.execute(
+            update(Product)
+            .where(
+                Product.id == product_id,
+                Product.sku == sku,
+                Product.available_qty >= quantity,
+            )
+            .values(available_qty=Product.available_qty - quantity)
+        )
 
-    if (updated.quantity <= updated.low_stock_threshold) {
-      await stockAlertRepository.createAlert(client, {
-        sku,
-        threshold: updated.low_stock_threshold,
-        quantity: updated.quantity,
-      });
-    }
+        log = InventoryLog(
+            id=str(uuid4()),
+            product_id=product.id,
+            operation="SALE",
+            quantity_delta=-quantity,
+        )
+        session.add(log)
 
-    return { updated, logId: log.id };
-  });
+        if product.available_qty <= product.low_stock_threshold:
+            alert = create_low_stock_alert(session, product.id, product.available_qty)
 ```
 
-## 4. Test Script (`backend/tests/inventory.test.js`)
+### Backend: Restore Logic (`backend/src/services/inventory_service.py`)
 
-The Jest test file establishes the environment and verifies the scenarios directly against the database logic exposed via API.
+The `restore` function restores stock and writes either `RESTOCK` or `RETURN` depending on the input reason.
 
-```javascript
-const request = require("supertest");
-const app = require("../src/app");
-const { pool } = require("../src/db");
+```python
+def restore(session: Session, product_id: str, sku: str, quantity: int, reason: str):
+    if reason not in {"cancelled", "expired"}:
+        raise ValidationError("Order not cancellable")
 
-describe("Inventory System Tests (IMSD01)", () => {
-  beforeEach(async () => {
-    // Reset DB and Seed Data
-    await pool.query("TRUNCATE inventory_items, inventory_logs, stock_alerts RESTART IDENTITY CASCADE");
-    // ... insert seed data for scenarios ...
-  });
+    operation = "RESTOCK" if reason == "cancelled" else "RETURN"
 
-  test("1) Successful Stock Deduction", async () => {
-    const sku = 'SKU-001';
-    const deductRes = await request(app)
-      .post(`/api/inventory/${sku}/deduct`)
-      .send({ quantity: 2, order_id: 'ORDER-001' })
-      .expect(200);
+    with _transaction(session):
+        stmt = (
+            select(Product)
+            .where(Product.id == product_id, Product.sku == sku)
+            .with_for_update()
+        )
+        product = session.execute(stmt).scalar_one_or_none()
 
-    expect(deductRes.body.data.new_quantity).toBe(8);
-    // Verify Audit Log
-    const logRes = await pool.query(
-      "SELECT count(*) FROM inventory_logs WHERE sku = $1 AND change_type = 'SALE'", 
-      [sku]
-    );
-    expect(parseInt(logRes.rows[0].count)).toBe(1);
-  });
+        product.available_qty += quantity
 
-  test("Edge Case 1: Race Condition", async () => {
-    const sku = 'SKU-004'; // Stock: 1
-    // Simulate 5 concurrent requests
-    const requests = Array(5).fill().map((_, i) => 
-      request(app)
-        .post(`/api/inventory/${sku}/deduct`)
-        .send({ quantity: 1, order_id: `RACE-${i}` })
-    );
+        log = InventoryLog(
+            id=str(uuid4()),
+            product_id=product.id,
+            operation=operation,
+            quantity_delta=quantity,
+        )
+        session.add(log)
+```
 
-    const results = await Promise.all(requests);
-    const successCount = results.filter(r => r.status === 200).length;
-    
-    // Only 1 should succeed due to DB locking
-    expect(successCount).toBe(1);
-    
-    // Stock should be 0, never negative
-    const { rows } = await pool.query("SELECT quantity FROM inventory_items WHERE sku = $1", [sku]);
-    expect(rows[0].quantity).toBe(0);
-  });
-});
+## 4. Test Command
+
+Run the scenario suite from [`backend`](./backend) with either of the following commands:
+
+```bash
+pytest tests/test_inventory_scenarios.py
+pytest -m scenarios
 ```
