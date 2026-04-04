@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: cartdb
+      POSTGRES_USER: cartuser
+      POSTGRES_PASSWORD: cartpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - cart_db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: postgresql://cartuser:cartpass@db:5432/cartdb
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      VITE_API_BASE: /api
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  cart_db_data:

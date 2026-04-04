@@ -47,7 +47,7 @@ jobs:
             port: '5173'
 
           - version: 'SCSD01'
-            path: 'src/versions/SCSD01/shopping-cart-app'
+            path: 'src/versions/SCSD01'
             port: '5173'
 
           - version: 'PDSD01'

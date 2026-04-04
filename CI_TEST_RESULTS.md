@@ -1,8 +1,20 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-03-21
+> Last updated: 2026-04-03
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
+
+---
+
+## Local Verification Updates (2026-04-03)
+
+The following scenario-based test suites were added and executed locally after the CI runs listed below. These results are local verification updates and are not part of the archived GitHub Actions run `#23089850265`.
+
+| Version | Feature | Test File | Command | Result | Passed | Failed | Notes |
+| ------- | ------- | --------- | ------- | ------ | ------ | ------ | ----- |
+| IMSD01 | Inventory Management | `src/versions/IMSD01/backend/tests/test_inventory_scenarios.py` | `pytest tests/test_inventory_scenarios.py -vv` | :white_check_mark: PASS | 8 | 0 | Covers all scenarios in `scenarios_inventory.md`, including both `cancelled` and `expired` restoration flows. |
+| PDSD01 | Promotions & Discounts | `src/versions/PDSD01/backend/tests/test_promotions_scenarios.py` | `pytest tests/test_promotions_scenarios.py -vv` | :white_check_mark: PASS | 6 | 0 | Covers coupon validation, percentage discount, expiration, usage limit, order of operations, and negative total protection. |
+| SCSD01 | Shopping Cart | `src/versions/SCSD01/tests/test_cart_scenarios.py` | `pytest tests/test_cart_scenarios.py -vv` | :white_check_mark: PASS | 5 | 0 | Covers quantity update, merge logic, save for later, stock limit handling, and decimal precision. |
 
 ---
 
