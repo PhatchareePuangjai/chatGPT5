@@ -1,0 +1,122 @@
+:root {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  line-height: 1.4;
+  color: #0f1f2d;
+  background: radial-gradient(circle at top, #f5f8ff 0%, #eef1f6 55%, #e7ebf2 100%);
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+}
+
+#app {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header .sub {
+  margin-top: 4px;
+  color: #4b5a67;
+}
+
+.panel {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(18, 26, 33, 0.08);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  color: #1b2b3a;
+}
+
+input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #c9d2dd;
+  font-size: 0.95rem;
+}
+
+button {
+  margin-top: 14px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #0f3d66;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #e7eef6;
+  color: #0f3d66;
+}
+
+.error {
+  color: #c0392b;
+  margin-top: 8px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 0 0 6px;
+}
+
+.card small {
+  color: #5b6b78;
+}
+
+.card-actions {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+
+.card-actions input {
+  width: 80px;
+}
+
+.totals {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  margin-top: 12px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 12px;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+}

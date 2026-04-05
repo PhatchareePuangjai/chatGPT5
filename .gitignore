@@ -14,12 +14,14 @@ __pycache__/
 **/__pycache__/
 *.py[cod]
 *$py.class
+.python-version
 .pytest_cache/
 **/.pytest_cache/
 .ruff_cache/
 **/.ruff_cache/
 .mypy_cache/
 **/.mypy_cache/
+pytestdebug.log
 
 # Distribution / packaging
 dist/
@@ -74,6 +76,8 @@ yarn-error.log*
 
 # Generated artifacts
 **/*.tsbuildinfo
+**/.scannerwork/
+**/.sonar/
 
 # Temporary Office files
 ~$*.docx
