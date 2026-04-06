@@ -14,11 +14,8 @@ on:
       - 'src/versions/SCSD01/**'
       - 'src/versions/PDSD01/**'
       - 'src/versions/IMAG01/**'
-      - 'src/versions/IMCS01/**'
       - 'src/versions/PDAG01/**'
-      - 'src/versions/PDCS01/**'
       - 'src/versions/SCAG01/**'
-      - 'src/versions/SCCS01/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -32,11 +29,8 @@ on:
       - 'src/versions/SCSD01/**'
       - 'src/versions/PDSD01/**'
       - 'src/versions/IMAG01/**'
-      - 'src/versions/IMCS01/**'
       - 'src/versions/PDAG01/**'
-      - 'src/versions/PDCS01/**'
       - 'src/versions/SCAG01/**'
-      - 'src/versions/SCCS01/**'
   workflow_dispatch:
 
 jobs:
@@ -149,17 +143,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # === AG / CS versions — full docker compose + external test folder ===
+          # === AG versions — full docker compose + external test folder ===
           - version: IMAG01
             compose_path: src/versions/IMAG01
             test_path: src/versions/IMAG01/tests
-            full_compose: true
-            database_url: ''
-            migrate_cmd: ''
-            node_options: ''
-          - version: IMCS01
-            compose_path: src/versions/IMCS01
-            test_path: src/versions/IMCS01/tests
             full_compose: true
             database_url: ''
             migrate_cmd: ''
@@ -171,23 +158,9 @@ jobs:
             database_url: ''
             migrate_cmd: ''
             node_options: ''
-          - version: PDCS01-integration
-            compose_path: src/versions/PDCS01/promotions-app
-            test_path: src/versions/PDCS01/tests
-            full_compose: true
-            database_url: ''
-            migrate_cmd: ''
-            node_options: ''
           - version: SCAG01
             compose_path: src/versions/SCAG01/shopping-cart-system
             test_path: src/versions/SCAG01/tests
-            full_compose: true
-            database_url: ''
-            migrate_cmd: ''
-            node_options: ''
-          - version: SCCS01
-            compose_path: src/versions/SCCS01
-            test_path: src/versions/SCCS01/tests
             full_compose: true
             database_url: ''
             migrate_cmd: ''
@@ -229,13 +202,6 @@ jobs:
             database_url: postgres://promo:promo@localhost:5434/promotions
             migrate_cmd: 'npm run db:migrate && npm run db:seed'
             node_options: ''
-          - version: PDCS01
-            compose_path: src/versions/PDCS01/promotions-app
-            test_path: src/versions/PDCS01/promotions-app/backend
-            full_compose: false
-            database_url: postgres://promo:promo@localhost:5434/promotions
-            migrate_cmd: 'npm run db:migrate && npm run db:seed'
-            node_options: ''
 
     steps:
       - uses: actions/checkout@v4
@@ -260,7 +226,7 @@ jobs:
             echo "run=false" >> $GITHUB_OUTPUT
           fi
 
-      # Full docker compose สำหรับ AG/CS (start ทุก service)
+      # Full docker compose สำหรับ AG (start ทุก service)
       - name: Start Full Application
         if: steps.should_run.outputs.run == 'true' && matrix.full_compose == true
         working-directory: ${{ matrix.compose_path }}
