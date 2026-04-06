@@ -4,7 +4,7 @@ import { pool } from "../src/db.js";
 
 describe("Shopping Cart Scenarios", () => {
   beforeAll(async () => {
-    // Ensure connection
+    // Tables created via 001_init.sql
   });
 
   afterAll(async () => {

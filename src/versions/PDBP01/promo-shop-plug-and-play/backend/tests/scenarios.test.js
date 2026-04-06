@@ -1,10 +1,11 @@
 const request = require("supertest");
 const { app } = require("../src/server");
 const { pool, query } = require("../src/db");
+const { migrateAndSeed } = require("../src/migrate");
 
 describe("Promotions and Discounts Scenarios", () => {
   beforeAll(async () => {
-    // Ensure DB is ready
+    await migrateAndSeed();
   });
 
   afterAll(async () => {

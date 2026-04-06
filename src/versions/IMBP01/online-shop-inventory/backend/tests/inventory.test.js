@@ -153,7 +153,7 @@ describe("Inventory System Tests", () => {
     // Simulate a DB error during transaction by dropping the history table
     // The purchase logic updates product stock THEN inserts into history.
     // If history insert fails, product stock update must be rolled back.
-    
+    jest.spyOn(console, "error").mockImplementation(() => {});
     await pool.query("DROP TABLE stock_history CASCADE");
 
     // Try to buy 1 of SKU-001 (Stock 10)
