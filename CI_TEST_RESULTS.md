@@ -158,6 +158,8 @@ These results are local verification updates and are not part of the archived Gi
 
 ## 4. SonarQube Static Analysis
 
+> SDD SonarQube values in this section were updated from the latest results in `Evaluating AI-Generated Code Quality from Basic Prompting to Spec-Driven Development - High-Quality Code (1).csv`.
+
 ### Functional Correctness
 
 > All versions pass all functional correctness tests :white_check_mark:
@@ -187,6 +189,7 @@ These results are local verification updates and are not part of the archived Gi
 | SCBP01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
 | SCCE01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
 | SCSD01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
+| SCSD01_v2 | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
 | SCCS01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
 
 ### SonarQube Open Issues by Version
@@ -195,15 +198,16 @@ These results are local verification updates and are not part of the archived Gi
 | ------- | --------------- | ------------------ | ---------------------- | ------------ |
 | IMBP01  | 0               | 3                  | 7                      | 6.90%        |
 | IMCE01  | 0               | 19                 | 26                     | 0.00%        |
-| IMSD01  | 1               | 22                 | 18                     | 3.10%        |
+| IMSD01  | 0               | 12                 | 15                     | 3.30%        |
 | IMCS01  | 1               | 8                  | 7                      | 0.00%        |
 | PDBP01  | 0               | 1                  | 10                     | 1.40%        |
 | PDCE01  | 0               | 16                 | 20                     | 0.00%        |
-| PDSD01  | 0               | 8                  | 17                     | 0.00%        |
+| PDSD01  | 1               | 6                  | 9                      | 0.00%        |
 | PDCS01  | 0               | 8                  | 19                     | 4.20%        |
 | SCBP01  | 0               | 9                  | 18                     | 5.40%        |
 | SCCE01  | 0               | 9                  | 12                     | 4.30%        |
-| SCSD01  | 0               | 9                  | 12                     | 4.40%        |
+| SCSD01  | 1               | 0                  | 5                      | 26.90%       |
+| SCSD01_v2 | 0             | 4                  | 25                     | 0.00%        |
 | SCCS01  | 0               | 2                  | 8                      | 0.00%        |
 
 ### SonarQube Summary by Strategy
@@ -213,7 +217,7 @@ These results are local verification updates and are not part of the archived Gi
 | **BP** (Basic Prompting)     | 0.0          | 4.3             | 11.7                | 4.57%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
 | **CS** (Cursor)              | 0.3          | 6.0             | 11.3                | 1.40%            |
-| **SD** (Spec-Driven Dev)     | 0.3          | 13.0            | 15.7                | 2.50%            |
+| **SD** (Spec-Driven Dev)     | 0.5          | 5.5             | 13.5                | 7.55%            |
 
 ---
 
@@ -224,18 +228,18 @@ These results are local verification updates and are not part of the archived Gi
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        |
 | IMCS01    | :white_check_mark: 7/7     | 0 alerts      | 0/8/59                | 1 / 8 / 7                 | 0.00%        |
-| IMSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/7/60                | 1 / 22 / 18               | 3.10%        |
+| IMSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        |
 | SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 0 / 9 / 12                | 4.30%        |
 | SCCS01    | :white_check_mark: 5/5     | 0 alerts      | 0/8/59                | 0 / 2 / 8                 | 0.00%        |
-| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/7/60                | 0 / 9 / 12                | 4.40%        |
-| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | —                         | —            |
+| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/7/60                | 1 / 0 / 5                 | 26.90%       |
+| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 0 / 4 / 25                | 0.00%        |
 | PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 0 / 1 / 10                | 1.40%        |
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 0 / 16 / 20               | 0.00%        |
 | PDCS01    | :white_check_mark: 6/6     | 0 alerts      | 0/7/60                | 0 / 8 / 19                | 4.20%        |
-| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/7/60                | 0 / 8 / 17                | 0.00%        |
+| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/7/60                | 1 / 6 / 9                 | 0.00%        |
 
-> ¹ Full test suite (scenario + unit + integration) from local run 2026-04-04. CodeQL and DAST results are from old code and pending re-run on new SDD codebase.
+> ¹ Full test suite (scenario + unit + integration) from local run 2026-04-04. CodeQL and DAST results are from old code and pending re-run on new SDD codebase. SonarQube values for SDD rows were updated from the latest CSV source.
 
 ---
 
