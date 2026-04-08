@@ -6,6 +6,27 @@
 
 ---
 
+## CI Results Update (2026-04-06)
+
+Latest GitHub Actions runs triggered by code changes (unit test + SonarQube updates).
+
+**CodeQL** run [`#24025305539`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539) — Both Python and JavaScript analyses passed. Security alert counts **unchanged** from previous run.
+
+**DAST** run [`#24026211427`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24026211427) — Overall status: FAILURE. 9/15 jobs scanned; 6 failed due to missing directories (IMCS01, PDCS01, SCCS01 paths not found; new AG versions IMAG01, PDAG01, SCAG01 not yet in repo).
+
+| Version | Change                    | Notes                                                                              |
+| ------- | ------------------------- | ---------------------------------------------------------------------------------- |
+| PDSD01  | WARN-NEW 7→9, PASS 60→58  | New warnings: In Page Banner Info Leak [10009], Server Leaks Version Info [10036]  |
+| SCSD01  | WARN-NEW 7→8, PASS 60→59  | New warning: Sub Resource Integrity Attribute Missing [90003]                      |
+| IMCS01  | Scan FAILED               | Directory `/src/versions/IMCS01` not found                                         |
+| PDCS01  | Scan FAILED               | Directory `/src/versions/PDCS01/promotions-app` not found                          |
+| SCCS01  | Scan FAILED               | Directory `/src/versions/SCCS01` not found                                         |
+| IMAG01  | Scan FAILED (new version) | Directory `/src/versions/IMAG01` not found — not yet in repo                      |
+| PDAG01  | Scan FAILED (new version) | Directory `/src/versions/PDAG01` not found — not yet in repo                      |
+| SCAG01  | Scan FAILED (new version) | Directory `/src/versions/SCAG01/shopping-cart-system` not found — not yet in repo |
+
+---
+
 ## Local Verification Updates (2026-04-04)
 
 Full test suites (scenario + unit + integration) executed locally for all SDD versions after restructuring code under new folder names.
@@ -74,7 +95,7 @@ These results are local verification updates and are not part of the archived Gi
 
 ## 2. CodeQL Static Analysis (SAST)
 
-> Workflow run: [CodeQL #23089483346](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089483346)
+> Workflow run: [CodeQL #24025305539](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539)
 > Security alerts: [Code Scanning Alerts](https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning)
 
 | Language              | Result                  |
@@ -112,47 +133,53 @@ These results are local verification updates and are not part of the archived Gi
 
 ## 3. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #23089748932](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089748932)
-> Result: :white_check_mark: **ALL 12 VERSIONS SCANNED SUCCESSFULLY**
+> Workflow run: [DAST #24026211427](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24026211427)
+> Result: :x: **9/15 JOBS SCANNED, 6 FAILED (directory not found)**
+> Note: IMCS01, PDCS01, SCCS01 failed — directory paths not found after code restructuring. IMAG01, PDAG01, SCAG01 are new versions referenced in workflow but not yet in repo.
 
-| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                          |
-| ------- | -------- | -------- | ---- | --------------------------------------------------------- |
-| IMBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
-| IMCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
-| IMCS01  | 0        | 8        | 59   | Missing headers + Server version leak                     |
-| IMSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
-| SCBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
-| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                     |
-| SCCS01  | 0        | 8        | 59   | Missing headers + Server version leak                     |
-| SCSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
-| PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                     |
-| PDCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
-| PDCS01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
-| PDSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP) |
+| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                               |
+| ------- | -------- | -------- | ---- | ------------------------------------------------------------------------------ |
+| IMBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
+| IMCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
+| IMCS01  | —        | —        | —    | :x: ลบออกจาก workflow แล้ว (CS strategy ตัดออกจากงาน)                          |
+| IMSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
+| SCBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
+| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                           |
+| SCCS01  | —        | —        | —    | :x: SCAN FAILED — directory not found                                          |
+| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attr Missing [90003] *(new)*          |
+| PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                           |
+| PDCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
+| PDCS01  | —        | —        | —    | :x: SCAN FAILED — directory not found                                          |
+| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Info Leak [10009] *(new)* |
+| IMAG01  | —        | —        | —    | :x: SCAN FAILED — new version, not yet in repo                                 |
+| PDAG01  | —        | —        | —    | :x: SCAN FAILED — new version, not yet in repo                                 |
+| SCAG01  | —        | —        | —    | :x: SCAN FAILED — new version, not yet in repo                                 |
 
 ### Common ZAP Warnings (across all versions)
 
-| Warning                                            | Rule ID | Severity      | Affected                              |
-| -------------------------------------------------- | ------- | ------------- | ------------------------------------- |
-| Missing Anti-clickjacking Header                   | 10020   | Medium        | 12/12                                 |
-| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 12/12                                 |
-| Cross-Origin-Embedder-Policy (COEP) Header Missing | 90004   | Low           | 12/12                                 |
-| Cross-Origin-Opener-Policy (COOP) Header Missing   | 90004   | Low           | 12/12                                 |
-| Cross-Origin-Resource-Policy (CORP) Header Missing | 90004   | Low           | 12/12                                 |
-| Permissions Policy Header Not Set                  | 10063   | Low           | 12/12                                 |
-| X-Content-Type-Options Header Missing              | 10021   | Low           | 12/12                                 |
-| Storable but Non-Cacheable Content                 | 10049   | Informational | 12/12                                 |
-| Modern Web Application                             | 10109   | Informational | 12/12                                 |
-| Server Leaks Version Information                   | 10036   | Low           | 4/12 (IMCS01, SCCE01, SCCS01, PDBP01) |
+| Warning                                            | Rule ID | Severity      | Affected (9 scanned)                       |
+| -------------------------------------------------- | ------- | ------------- | ------------------------------------------ |
+| Missing Anti-clickjacking Header                   | 10020   | Medium        | 9/9                                        |
+| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 9/9                                        |
+| Cross-Origin-Embedder-Policy (COEP) Header Missing | 90004   | Low           | 9/9                                        |
+| Cross-Origin-Opener-Policy (COOP) Header Missing   | 90004   | Low           | 9/9                                        |
+| Cross-Origin-Resource-Policy (CORP) Header Missing | 90004   | Low           | 9/9                                        |
+| Permissions Policy Header Not Set                  | 10063   | Low           | 9/9                                        |
+| X-Content-Type-Options Header Missing              | 10021   | Low           | 9/9                                        |
+| Storable but Non-Cacheable Content                 | 10049   | Informational | 9/9                                        |
+| Modern Web Application                             | 10109   | Informational | 9/9                                        |
+| Server Leaks Version Information                   | 10036   | Low           | 3/9 (SCCE01, PDBP01, PDSD01) *(+PDSD01)*  |
+| In Page Banner Information Leak                    | 10009   | Low           | 1/9 (PDSD01) *(new)*                       |
+| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/9 (SCSD01) *(new)*                       |
 
 ### DAST Summary by Strategy
 
-| Strategy                     | Avg Warnings | Avg Pass | Server Leak          |
-| ---------------------------- | ------------ | -------- | -------------------- |
-| **BP** (Basic Prompting)     | 7.3          | 59.7     | 1/3 (PDBP01)         |
-| **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)         |
-| **CS** (Cursor)              | 7.7          | 59.3     | 2/3 (IMCS01, SCCS01) |
-| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | No                   |
+| Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
+| ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
+| **BP** (Basic Prompting)     | 7.3          | 59.7     | 1/3 (PDBP01)             | 3/3 scanned                          |
+| **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
+| **CS** (Cursor)              | —            | —        | —                        | :x: 0/3 scanned (all dirs not found) |
+| **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01) *(changed)* | 3/3 scanned                          |
 
 ---
 
@@ -232,12 +259,12 @@ These results are local verification updates and are not part of the archived Gi
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        |
 | SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 0 / 9 / 12                | 4.30%        |
 | SCCS01    | :white_check_mark: 5/5     | 0 alerts      | 0/8/59                | 0 / 2 / 8                 | 0.00%        |
-| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/7/60                | 1 / 0 / 5                 | 26.90%       |
+| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59 *(changed)*    | 1 / 0 / 5                 | 26.90%       |
 | SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 0 / 4 / 25                | 0.00%        |
 | PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 0 / 1 / 10                | 1.40%        |
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 0 / 16 / 20               | 0.00%        |
 | PDCS01    | :white_check_mark: 6/6     | 0 alerts      | 0/7/60                | 0 / 8 / 19                | 4.20%        |
-| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/7/60                | 1 / 6 / 9                 | 0.00%        |
+| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58 *(changed)*    | 1 / 6 / 9                 | 0.00%        |
 
 > ¹ Full test suite (scenario + unit + integration) from local run 2026-04-04. CodeQL and DAST results are from old code and pending re-run on new SDD codebase. SonarQube values for SDD rows were updated from the latest CSV source.
 
@@ -254,5 +281,5 @@ These results are local verification updates and are not part of the archived Gi
 | DAST ZAP Workflow        | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml |
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
 | Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265           |
-| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089483346           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089748932           |
+| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24026211427           |

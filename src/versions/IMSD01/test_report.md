@@ -19,18 +19,53 @@ All scenarios defined in [`scenarios_inventory.md`](./scenarios_inventory.md) ha
 
 ---
 
+### Unit Tests
+
+| Test | Result | Notes |
+| --- | --- | --- |
+| `test_purchase_creates_log_and_updates_stock` | ✅ PASS | `purchase()` reduces stock from 10 to 8, creates `InventoryLog` with `operation="SALE"`, `quantity_delta=-2`. |
+| `test_insufficient_stock_rejected` | ✅ PASS | `purchase()` with quantity=6 on stock=5 raises `InsufficientStockError`. |
+| `test_low_stock_threshold_boundary` | ✅ PASS | Alert created at remaining=5 (≤ threshold) and again at remaining=4; not triggered above threshold. |
+| `test_restore_creates_log_and_updates_stock` | ✅ PASS | `restore()` increases stock from 5 to 6, creates `InventoryLog` with `operation="RESTOCK"`, `quantity_delta=1`. |
+
+### Contract Tests
+
+| Test | Result | Notes |
+| --- | --- | --- |
+| `test_purchase_contract_success` | ✅ PASS | `POST /inventory/purchase` returns `status="success"`, `deducted=2`, `remaining=8`. |
+| `test_cancel_contract_success` | ✅ PASS | `POST /inventory/cancel` returns `status="success"`, `restored=1`, `remaining=6`. |
+
+### Integration Tests
+
+| Test | Result | Notes |
+| --- | --- | --- |
+| `test_purchase_rolls_back_on_log_failure` | ✅ PASS | When `InventoryLog` insert fails, stock update rolls back; stock remains 5, no logs persisted. |
+| `test_low_stock_alert_created_on_purchase` | ✅ PASS | Purchase via API triggers alert record when remaining stock (4) ≤ threshold (5). |
+| `test_restore_stock_flow` | ✅ PASS | Cancel via API with `reason="expired"` creates `InventoryLog` with `operation="RETURN"`. |
+| `test_concurrent_purchases_only_one_succeeds` | ✅ PASS | 5 concurrent threads with stock=1: exactly 1 succeeds, 4 raise `InsufficientStockError`, final stock=0. |
+
+**Total: 18 passed, 0 failed**
+
+---
+
 ## 2. Test Output
 
 ```text
-$ pytest tests/test_inventory_scenarios.py
+$ pytest tests/ -v
 ============================= test session starts ==============================
 platform darwin -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0
 rootdir: /Users/phatchareepuangjai/Documents/chat_gsheet_logger_python/src/versions/IMSD01/backend
 configfile: pyproject.toml
 plugins: anyio-4.12.1, asyncio-1.3.0
 asyncio: mode=Mode.STRICT
-collected 8 items
+collected 18 items
 
+tests/contract/test_inventory_cancel.py::test_cancel_contract_success PASSED
+tests/contract/test_inventory_purchase.py::test_purchase_contract_success PASSED
+tests/integration/test_low_stock_alert.py::test_low_stock_alert_created_on_purchase PASSED
+tests/integration/test_purchase_atomicity.py::test_purchase_rolls_back_on_log_failure PASSED
+tests/integration/test_purchase_concurrency.py::test_concurrent_purchases_only_one_succeeds PASSED
+tests/integration/test_restore_stock.py::test_restore_stock_flow PASSED
 tests/test_inventory_scenarios.py::TestInventoryScenarios::test_1_successful_stock_deduction PASSED
 tests/test_inventory_scenarios.py::TestInventoryScenarios::test_2_low_stock_alert_trigger PASSED
 tests/test_inventory_scenarios.py::TestInventoryScenarios::test_3_stock_restoration[cancelled-RESTOCK] PASSED
@@ -39,18 +74,12 @@ tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_1_race
 tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_2_transaction_atomicity PASSED
 tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_3_overselling_attempt PASSED
 tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_4_boundary_value_low_stock PASSED
+tests/unit/test_inventory_service_purchase.py::test_purchase_creates_log_and_updates_stock PASSED
+tests/unit/test_inventory_service_restore.py::test_restore_creates_log_and_updates_stock PASSED
+tests/unit/test_low_stock_threshold.py::test_low_stock_threshold_boundary PASSED
+tests/unit/test_purchase_boundary.py::test_insufficient_stock_rejected PASSED
 
-==================================== PASSES ====================================
-=========================== short test summary info ============================
-PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_1_successful_stock_deduction
-PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_2_low_stock_alert_trigger
-PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_3_stock_restoration[cancelled-RESTOCK]
-PASSED tests/test_inventory_scenarios.py::TestInventoryScenarios::test_3_stock_restoration[expired-RETURN]
-PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_1_race_condition
-PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_2_transaction_atomicity
-PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_3_overselling_attempt
-PASSED tests/test_inventory_scenarios.py::TestInventoryEdgeCases::test_edge_case_4_boundary_value_low_stock
-============================== 8 passed in 0.08s ===============================
+============================== 18 passed in 0.08s ==============================
 ```
 
 ---
