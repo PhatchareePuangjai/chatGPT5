@@ -12,15 +12,15 @@ Latest GitHub Actions runs triggered by code changes (unit test + SonarQube upda
 
 **CodeQL** run [`#24025305539`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539) — Both Python and JavaScript analyses passed. Security alert counts **unchanged** from previous run.
 
-**DAST** run [`#24026211427`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24026211427) — Overall status: FAILURE. 9/15 jobs scanned; 6 failed due to missing directories (IMCS01, PDCS01, SCCS01 paths not found; new AG versions IMAG01, PDAG01, SCAG01 not yet in repo).
+**DAST** run [`#24028162574`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574) — Overall status: FAILURE. 9/12 jobs scanned; 3 failed (AG versions IMAG01, PDAG01, SCAG01 not yet in repo). CS versions (IMCS01, PDCS01, SCCS01) removed from workflow.
 
 | Version | Change                    | Notes                                                                              |
 | ------- | ------------------------- | ---------------------------------------------------------------------------------- |
 | PDSD01  | WARN-NEW 7→9, PASS 60→58  | New warnings: In Page Banner Info Leak [10009], Server Leaks Version Info [10036]  |
 | SCSD01  | WARN-NEW 7→8, PASS 60→59  | New warning: Sub Resource Integrity Attribute Missing [90003]                      |
-| IMCS01  | Scan FAILED               | Directory `/src/versions/IMCS01` not found                                         |
-| PDCS01  | Scan FAILED               | Directory `/src/versions/PDCS01/promotions-app` not found                          |
-| SCCS01  | Scan FAILED               | Directory `/src/versions/SCCS01` not found                                         |
+| IMCS01  | Removed from workflow     | CS strategy removed from DAST workflow                                             |
+| PDCS01  | Removed from workflow     | CS strategy removed from DAST workflow                                             |
+| SCCS01  | Removed from workflow     | CS strategy removed from DAST workflow                                             |
 | IMAG01  | Scan FAILED (new version) | Directory `/src/versions/IMAG01` not found — not yet in repo                      |
 | PDAG01  | Scan FAILED (new version) | Directory `/src/versions/PDAG01` not found — not yet in repo                      |
 | SCAG01  | Scan FAILED (new version) | Directory `/src/versions/SCAG01/shopping-cart-system` not found — not yet in repo |
