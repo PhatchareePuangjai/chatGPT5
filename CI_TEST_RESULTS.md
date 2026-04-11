@@ -12,18 +12,18 @@ Latest GitHub Actions runs triggered by code changes (unit test + SonarQube upda
 
 **CodeQL** run [`#24025305539`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539) — Both Python and JavaScript analyses passed. Security alert counts **unchanged** from previous run.
 
-**DAST** run [`#24028162574`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574) — Overall status: FAILURE. 9/12 jobs scanned; 3 failed (AG versions IMAG01, PDAG01, SCAG01 not yet in repo). CS versions (IMCS01, PDCS01, SCCS01) removed from workflow.
+**DAST** run [`#24028162574`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574) — Overall status: 9/9 jobs scanned. CS versions (IMCS01, PDCS01, SCCS01) and AG versions (IMAG01, PDAG01, SCAG01) removed from workflow.
 
-| Version | Change                    | Notes                                                                              |
-| ------- | ------------------------- | ---------------------------------------------------------------------------------- |
-| PDSD01  | WARN-NEW 7→9, PASS 60→58  | New warnings: In Page Banner Info Leak [10009], Server Leaks Version Info [10036]  |
-| SCSD01  | WARN-NEW 7→8, PASS 60→59  | New warning: Sub Resource Integrity Attribute Missing [90003]                      |
-| IMCS01  | Removed from workflow     | CS strategy removed from DAST workflow                                             |
-| PDCS01  | Removed from workflow     | CS strategy removed from DAST workflow                                             |
-| SCCS01  | Removed from workflow     | CS strategy removed from DAST workflow                                             |
-| IMAG01  | Scan FAILED (new version) | Directory `/src/versions/IMAG01` not found — not yet in repo                      |
-| PDAG01  | Scan FAILED (new version) | Directory `/src/versions/PDAG01` not found — not yet in repo                      |
-| SCAG01  | Scan FAILED (new version) | Directory `/src/versions/SCAG01/shopping-cart-system` not found — not yet in repo |
+| Version | Change                   | Notes                                                                             |
+| ------- | ------------------------ | --------------------------------------------------------------------------------- |
+| PDSD01  | WARN-NEW 7→9, PASS 60→58 | New warnings: In Page Banner Info Leak [10009], Server Leaks Version Info [10036] |
+| SCSD01  | WARN-NEW 7→8, PASS 60→59 | New warning: Sub Resource Integrity Attribute Missing [90003]                     |
+| IMCS01  | Removed from workflow    | CS strategy removed from DAST workflow                                            |
+| PDCS01  | Removed from workflow    | CS strategy removed from DAST workflow                                            |
+| SCCS01  | Removed from workflow    | CS strategy removed from DAST workflow                                            |
+| IMAG01  | Removed from workflow    | AG strategy removed from DAST workflow                                            |
+| PDAG01  | Removed from workflow    | AG strategy removed from DAST workflow                                            |
+| SCAG01  | Removed from workflow    | AG strategy removed from DAST workflow                                            |
 
 ---
 
@@ -40,6 +40,8 @@ These results are local verification updates and are not part of the archived Gi
 | PDSD01    | Promotions & Discounts | `pytest tests/ -v` | :white_check_mark: PASS | 18     | 0      | scenarios: 6, unit: 7, integration: 5                                       |
 | SCSD01    | Shopping Cart          | `pytest tests/ -v` | :white_check_mark: PASS | 16     | 0      | scenarios: 5, unit: 8, integration: 3                                       |
 | SCSD01_v2 | Shopping Cart          | `pytest tests/ -v` | :white_check_mark: PASS | 15     | 0      | scenarios: 5, unit: 6, integration: 4                                       |
+
+> **Note on SCSD01_v2:** สร้างขึ้นเพื่อทดสอบ reproducibility เท่านั้น — ต้องการรู้ว่าถ้ารัน spec-driven process เดิมซ้ำอีกครั้งโดยไม่เปลี่ยนอะไร จะได้ผลลัพธ์เหมือน SCSD01 ไหม **ไม่ได้นำมารวมในการวิเคราะห์เปรียบเทียบ strategy** (ทุกกราฟและ summary ใช้เฉพาะ SCSD01)
 
 ---
 
@@ -78,18 +80,18 @@ These results are local verification updates and are not part of the archived Gi
 
 ### Test Summary by Prompting Strategy
 
-| Strategy                     | IM (Inventory)           | SC (Shopping Cart) [2]           | PD (Promotions)          | Total     |
-| ---------------------------- | ------------------------ | -------------------------------- | ------------------------ | --------- |
-| **BP** (Basic Prompting)     | :white_check_mark: 7/7   | :white_check_mark: 5/5           | :white_check_mark: 6/6   | **18/18** |
-| **CE** (Context Engineering) | :white_check_mark: 7/7   | :white_check_mark: 5/5           | :white_check_mark: 6/6   | **18/18** |
-| **CS** (Cursor)              | :white_check_mark: 7/7   | :white_check_mark: 5/5           | :white_check_mark: 6/6   | **18/18** |
-| **SD** (Spec-Driven Dev)     | :white_check_mark: 18/18 | :white_check_mark: 16/16 + 15/15 | :white_check_mark: 18/18 | **67/67** |
+| Strategy                     | IM (Inventory)           | SC (Shopping Cart)       | PD (Promotions)          | Total     |
+| ---------------------------- | ------------------------ | ------------------------ | ------------------------ | --------- |
+| **BP** (Basic Prompting)     | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
+| **CE** (Context Engineering) | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
+| **CS** (Cursor)              | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
+| **SD** (Spec-Driven Dev)     | :white_check_mark: 18/18 | :white_check_mark: 16/16 | :white_check_mark: 18/18 | **52/52** |
 
 > BP/CE/CS counts are scenario-level tests from CI run `#23089850265`.
 > SD counts include full test suite (scenario + unit + integration) from local run 2026-04-04 / 2026-04-05.
-> [2] SD has 2 SC implementations: SCSD01 (OOP Service Layer, 16) + SCSD01_v2 (Functional/Module-Level, 15) = 31
+> SCSD01_v2 excluded from strategy comparison — reproducibility test only (see note above).
 >
-> **Total: 121 tests passed, 0 failed across all 13 versions**
+> **Total: 106 tests passed, 0 failed across 12 versions (excluding SCSD01_v2)**
 
 ---
 
@@ -133,27 +135,20 @@ These results are local verification updates and are not part of the archived Gi
 
 ## 3. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #24026211427](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24026211427)
-> Result: :x: **9/15 JOBS SCANNED, 6 FAILED (directory not found)**
-> Note: IMCS01, PDCS01, SCCS01 failed — directory paths not found after code restructuring. IMAG01, PDAG01, SCAG01 are new versions referenced in workflow but not yet in repo.
+> Workflow run: [DAST #24028162574](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574)
+> Result: :white_check_mark: **9/9 JOBS SCANNED** — CS and AG versions removed from workflow.
 
-| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                               |
-| ------- | -------- | -------- | ---- | ------------------------------------------------------------------------------ |
-| IMBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
-| IMCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
-| IMCS01  | —        | —        | —    | :x: ลบออกจาก workflow แล้ว (CS strategy ตัดออกจากงาน)                          |
-| IMSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
-| SCBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
-| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                           |
-| SCCS01  | —        | —        | —    | :x: SCAN FAILED — directory not found                                          |
-| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attr Missing [90003] *(new)*          |
-| PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                           |
-| PDCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                      |
-| PDCS01  | —        | —        | —    | :x: SCAN FAILED — directory not found                                          |
-| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Info Leak [10009] *(new)* |
-| IMAG01  | —        | —        | —    | :x: SCAN FAILED — new version, not yet in repo                                 |
-| PDAG01  | —        | —        | —    | :x: SCAN FAILED — new version, not yet in repo                                 |
-| SCAG01  | —        | —        | —    | :x: SCAN FAILED — new version, not yet in repo                                 |
+| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
+| ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
+| IMBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| IMCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| IMSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| SCBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
+| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attr Missing [90003] *(new)*             |
+| PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
+| PDCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Info Leak [10009] *(new)*  |
 
 ### Common ZAP Warnings (across all versions)
 
@@ -168,7 +163,7 @@ These results are local verification updates and are not part of the archived Gi
 | X-Content-Type-Options Header Missing              | 10021   | Low           | 9/9                                        |
 | Storable but Non-Cacheable Content                 | 10049   | Informational | 9/9                                        |
 | Modern Web Application                             | 10109   | Informational | 9/9                                        |
-| Server Leaks Version Information                   | 10036   | Low           | 3/9 (SCCE01, PDBP01, PDSD01) *(+PDSD01)*  |
+| Server Leaks Version Information                   | 10036   | Low           | 3/9 (SCCE01, PDBP01, PDSD01)              |
 | In Page Banner Information Leak                    | 10009   | Low           | 1/9 (PDSD01) *(new)*                       |
 | Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/9 (SCSD01) *(new)*                       |
 
@@ -178,7 +173,6 @@ These results are local verification updates and are not part of the archived Gi
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
 | **BP** (Basic Prompting)     | 7.3          | 59.7     | 1/3 (PDBP01)             | 3/3 scanned                          |
 | **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
-| **CS** (Cursor)              | —            | —        | —                        | :x: 0/3 scanned (all dirs not found) |
 | **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01) *(changed)* | 3/3 scanned                          |
 
 ---
@@ -198,7 +192,6 @@ These results are local verification updates and are not part of the archived Gi
 | IMBP01  | :white_check_mark:         | :white_check_mark:      | :white_check_mark: | :white_check_mark: PASS |
 | IMCE01  | :white_check_mark:         | :white_check_mark:      | :white_check_mark: | :white_check_mark: PASS |
 | IMSD01  | :white_check_mark:         | :white_check_mark:      | :white_check_mark: | :white_check_mark: PASS |
-| IMCS01  | :white_check_mark:         | :white_check_mark:      | :white_check_mark: | :white_check_mark: PASS |
 
 **PD (Promotion / Discount)** — Coupon Validation, Cart Total Discount, Expiration Date Check
 
@@ -207,35 +200,30 @@ These results are local verification updates and are not part of the archived Gi
 | PDBP01  | :white_check_mark: | :white_check_mark:  | :white_check_mark:    | :white_check_mark: PASS |
 | PDCE01  | :white_check_mark: | :white_check_mark:  | :white_check_mark:    | :white_check_mark: PASS |
 | PDSD01  | :white_check_mark: | :white_check_mark:  | :white_check_mark:    | :white_check_mark: PASS |
-| PDCS01  | :white_check_mark: | :white_check_mark:  | :white_check_mark:    | :white_check_mark: PASS |
 
 **SC (Shopping Cart)** — Update Item Quantity, Merge Items Logic, Save for Later
 
-| Version | Update Item Quantity | Merge Items Logic  | Save for Later     | Result                  |
-| ------- | -------------------- | ------------------ | ------------------ | ----------------------- |
-| SCBP01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-| SCCE01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-| SCSD01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-| SCSD01_v2 | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-| SCCS01  | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
+| Version   | Update Item Quantity | Merge Items Logic  | Save for Later     | Result                  |
+| --------- | -------------------- | ------------------ | ------------------ | ----------------------- |
+| SCBP01    | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
+| SCCE01    | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
+| SCSD01    | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
+| SCSD01_v2 | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
 
 ### SonarQube Open Issues by Version
 
-| Version | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
-| ------- | --------------- | ------------------ | ---------------------- | ------------ |
-| IMBP01  | 0               | 3                  | 7                      | 6.90%        |
-| IMCE01  | 0               | 19                 | 26                     | 0.00%        |
-| IMSD01  | 0               | 12                 | 15                     | 3.30%        |
-| IMCS01  | 1               | 8                  | 7                      | 0.00%        |
-| PDBP01  | 0               | 1                  | 10                     | 1.40%        |
-| PDCE01  | 0               | 16                 | 20                     | 0.00%        |
-| PDSD01  | 1               | 6                  | 9                      | 0.00%        |
-| PDCS01  | 0               | 8                  | 19                     | 4.20%        |
-| SCBP01  | 0               | 9                  | 18                     | 5.40%        |
-| SCCE01  | 0               | 9                  | 12                     | 4.30%        |
-| SCSD01  | 1               | 0                  | 5                      | 26.90%       |
-| SCSD01_v2 | 0             | 4                  | 25                     | 0.00%        |
-| SCCS01  | 0               | 2                  | 8                      | 0.00%        |
+| Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
+| --------- | --------------- | ------------------ | ---------------------- | ------------ |
+| IMBP01    | 0               | 3                  | 7                      | 6.90%        |
+| IMCE01    | 0               | 19                 | 26                     | 0.00%        |
+| IMSD01    | 0               | 12                 | 15                     | 3.30%        |
+| SCBP01    | 0               | 9                  | 18                     | 5.40%        |
+| SCCE01    | 0               | 9                  | 12                     | 4.30%        |
+| SCSD01    | 1               | 0                  | 5                      | 26.90%       |
+| SCSD01_v2 | 0               | 4                  | 25                     | 0.00%        |
+| PDBP01    | 0               | 1                  | 10                     | 1.40%        |
+| PDCE01    | 0               | 16                 | 20                     | 0.00%        |
+| PDSD01    | 1               | 6                  | 9                      | 0.00%        |
 
 ### SonarQube Summary by Strategy
 
@@ -243,8 +231,7 @@ These results are local verification updates and are not part of the archived Gi
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- |
 | **BP** (Basic Prompting)     | 0.0          | 4.3             | 11.7                | 4.57%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
-| **CS** (Cursor)              | 0.3          | 6.0             | 11.3                | 1.40%            |
-| **SD** (Spec-Driven Dev)     | 0.5          | 5.5             | 13.5                | 7.55%            |
+| **SD** (Spec-Driven Dev)     | 0.67         | 6.0             | 9.67                | 10.07%           |
 
 ---
 
@@ -254,19 +241,16 @@ These results are local verification updates and are not part of the archived Gi
 | --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ |
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        |
-| IMCS01    | :white_check_mark: 7/7     | 0 alerts      | 0/8/59                | 1 / 8 / 7                 | 0.00%        |
 | IMSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        |
 | SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 0 / 9 / 12                | 4.30%        |
-| SCCS01    | :white_check_mark: 5/5     | 0 alerts      | 0/8/59                | 0 / 2 / 8                 | 0.00%        |
-| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59 *(changed)*    | 1 / 0 / 5                 | 26.90%       |
+| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 1 / 0 / 5                 | 26.90%       |
 | SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 0 / 4 / 25                | 0.00%        |
 | PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 0 / 1 / 10                | 1.40%        |
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 0 / 16 / 20               | 0.00%        |
-| PDCS01    | :white_check_mark: 6/6     | 0 alerts      | 0/7/60                | 0 / 8 / 19                | 4.20%        |
-| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58 *(changed)*    | 1 / 6 / 9                 | 0.00%        |
+| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 1 / 6 / 9                 | 0.00%        |
 
-> ¹ Full test suite (scenario + unit + integration) from local run 2026-04-04. CodeQL and DAST results are from old code and pending re-run on new SDD codebase. SonarQube values for SDD rows were updated from the latest CSV source.
+> ¹ Full test suite (scenario + unit + integration) from local run 2026-04-04. SonarQube values updated from CSV source.
 
 ---
 
@@ -282,4 +266,4 @@ These results are local verification updates and are not part of the archived Gi
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
 | Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265           |
 | Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24026211427           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574           |
