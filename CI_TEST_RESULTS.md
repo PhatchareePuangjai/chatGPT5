@@ -86,89 +86,7 @@ These results are local verification updates and are not part of the archived Gi
 
 ---
 
-## 2. CodeQL Static Analysis (SAST)
-
-> Workflow run: [CodeQL #24025305539](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539)
-> Security alerts: [Code Scanning Alerts](https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning)
-
-| Language              | Result                  |
-| --------------------- | ----------------------- |
-| JavaScript/TypeScript | :white_check_mark: PASS |
-| Python                | :white_check_mark: PASS |
-
-### Security Alerts by Version (Open)
-
-| Version | High | Medium | Total | Details                                |
-| ------- | ---- | ------ | ----- | -------------------------------------- |
-| IMBP01  | 5    | 0      | 5     | Missing rate limiting                  |
-| IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
-| SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
-| PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
-| IMCS01  | 0    | 0      | 0     | -                                      |
-| PDCS01  | 0    | 0      | 0     | -                                      |
-| SCCS01  | 0    | 0      | 0     | -                                      |
-| IMSD01  | 0    | 0      | 0     | -                                      |
-| SCSD01  | 0    | 0      | 0     | -                                      |
-| PDSD01  | 0    | 0      | 0     | -                                      |
-| SCBP01  | 0    | 0      | 0     | -                                      |
-| PDBP01  | 0    | 0      | 0     | -                                      |
-
-### CodeQL Alert Summary by Strategy
-
-| Strategy                     | Total Alerts | High | Medium |
-| ---------------------------- | ------------ | ---- | ------ |
-| **BP** (Basic Prompting)     | 5            | 5    | 0      |
-| **CE** (Context Engineering) | 11           | 9    | 2      |
-| **CS** (Cursor)              | 0            | 0    | 0      |
-| **SD** (Spec-Driven Dev)     | 0            | 0    | 0      |
-
----
-
-## 3. DAST Security Scan (ZAP)
-
-> Workflow run: [DAST #24028162574](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574)
-> Result: :white_check_mark: **9/9 JOBS SCANNED** — CS and AG versions removed from workflow.
-
-| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
-| ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
-| IMBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| IMCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| IMSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| SCBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
-| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attr Missing [90003] *(new)*             |
-| PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
-| PDCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Info Leak [10009] *(new)*  |
-
-### Common ZAP Warnings (across all versions)
-
-| Warning                                            | Rule ID | Severity      | Affected (9 scanned)                       |
-| -------------------------------------------------- | ------- | ------------- | ------------------------------------------ |
-| Missing Anti-clickjacking Header                   | 10020   | Medium        | 9/9                                        |
-| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 9/9                                        |
-| Cross-Origin-Embedder-Policy (COEP) Header Missing | 90004   | Low           | 9/9                                        |
-| Cross-Origin-Opener-Policy (COOP) Header Missing   | 90004   | Low           | 9/9                                        |
-| Cross-Origin-Resource-Policy (CORP) Header Missing | 90004   | Low           | 9/9                                        |
-| Permissions Policy Header Not Set                  | 10063   | Low           | 9/9                                        |
-| X-Content-Type-Options Header Missing              | 10021   | Low           | 9/9                                        |
-| Storable but Non-Cacheable Content                 | 10049   | Informational | 9/9                                        |
-| Modern Web Application                             | 10109   | Informational | 9/9                                        |
-| Server Leaks Version Information                   | 10036   | Low           | 3/9 (SCCE01, PDBP01, PDSD01)              |
-| In Page Banner Information Leak                    | 10009   | Low           | 1/9 (PDSD01) *(new)*                       |
-| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/9 (SCSD01) *(new)*                       |
-
-### DAST Summary by Strategy
-
-| Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
-| ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
-| **BP** (Basic Prompting)     | 7.3          | 59.7     | 1/3 (PDBP01)             | 3/3 scanned                          |
-| **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
-| **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01) *(changed)* | 3/3 scanned                          |
-
----
-
-## 4. SonarQube Static Analysis
+## 2. SonarQube Static Analysis
 
 > SDD SonarQube values in this section were updated from the latest results in `Evaluating AI-Generated Code Quality from Basic Prompting to Spec-Driven Development - High-Quality Code (1).csv`.
 
@@ -223,6 +141,88 @@ These results are local verification updates and are not part of the archived Gi
 | **BP** (Basic Prompting)     | 0.0          | 4.3             | 11.7                | 4.57%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
 | **SD** (Spec-Driven Dev)     | 0.67         | 6.0             | 9.67                | 10.07%           |
+
+---
+
+## 3. CodeQL Static Analysis (SAST)
+
+> Workflow run: [CodeQL #24025305539](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539)
+> Security alerts: [Code Scanning Alerts](https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning)
+
+| Language              | Result                  |
+| --------------------- | ----------------------- |
+| JavaScript/TypeScript | :white_check_mark: PASS |
+| Python                | :white_check_mark: PASS |
+
+### Security Alerts by Version (Open)
+
+| Version | High | Medium | Total | Details                                |
+| ------- | ---- | ------ | ----- | -------------------------------------- |
+| IMBP01  | 5    | 0      | 5     | Missing rate limiting                  |
+| IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
+| SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
+| PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
+| IMCS01  | 0    | 0      | 0     | -                                      |
+| PDCS01  | 0    | 0      | 0     | -                                      |
+| SCCS01  | 0    | 0      | 0     | -                                      |
+| IMSD01  | 0    | 0      | 0     | -                                      |
+| SCSD01  | 0    | 0      | 0     | -                                      |
+| PDSD01  | 0    | 0      | 0     | -                                      |
+| SCBP01  | 0    | 0      | 0     | -                                      |
+| PDBP01  | 0    | 0      | 0     | -                                      |
+
+### CodeQL Alert Summary by Strategy
+
+| Strategy                     | Total Alerts | High | Medium |
+| ---------------------------- | ------------ | ---- | ------ |
+| **BP** (Basic Prompting)     | 5            | 5    | 0      |
+| **CE** (Context Engineering) | 11           | 9    | 2      |
+| **CS** (Cursor)              | 0            | 0    | 0      |
+| **SD** (Spec-Driven Dev)     | 0            | 0    | 0      |
+
+---
+
+## 4. DAST Security Scan (ZAP)
+
+> Workflow run: [DAST #24028162574](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574)
+> Result: :white_check_mark: **9/9 JOBS SCANNED** — CS and AG versions removed from workflow.
+
+| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
+| ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
+| IMBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| IMCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| IMSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| SCBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
+| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attr Missing [90003] *(new)*             |
+| PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
+| PDCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
+| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Info Leak [10009] *(new)*  |
+
+### Common ZAP Warnings (across all versions)
+
+| Warning                                            | Rule ID | Severity      | Affected (9 scanned)                       |
+| -------------------------------------------------- | ------- | ------------- | ------------------------------------------ |
+| Missing Anti-clickjacking Header                   | 10020   | Medium        | 9/9                                        |
+| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 9/9                                        |
+| Cross-Origin-Embedder-Policy (COEP) Header Missing | 90004   | Low           | 9/9                                        |
+| Cross-Origin-Opener-Policy (COOP) Header Missing   | 90004   | Low           | 9/9                                        |
+| Cross-Origin-Resource-Policy (CORP) Header Missing | 90004   | Low           | 9/9                                        |
+| Permissions Policy Header Not Set                  | 10063   | Low           | 9/9                                        |
+| X-Content-Type-Options Header Missing              | 10021   | Low           | 9/9                                        |
+| Storable but Non-Cacheable Content                 | 10049   | Informational | 9/9                                        |
+| Modern Web Application                             | 10109   | Informational | 9/9                                        |
+| Server Leaks Version Information                   | 10036   | Low           | 3/9 (SCCE01, PDBP01, PDSD01)              |
+| In Page Banner Information Leak                    | 10009   | Low           | 1/9 (PDSD01) *(new)*                       |
+| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/9 (SCSD01) *(new)*                       |
+
+### DAST Summary by Strategy
+
+| Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
+| ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
+| **BP** (Basic Prompting)     | 7.3          | 59.7     | 1/3 (PDBP01)             | 3/3 scanned                          |
+| **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
+| **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01) *(changed)* | 3/3 scanned                          |
 
 ---
 
