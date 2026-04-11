@@ -1,31 +1,20 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-04-06
+> Last updated: 2026-04-11
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
 ---
 
-## CI Results Update (2026-04-06)
+## CI Results Update (2026-04-11)
 
 Latest GitHub Actions runs triggered by code changes (unit test + SonarQube updates).
 
 **CodeQL** run [`#24025305539`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539) — Both Python and JavaScript analyses passed. Security alert counts **unchanged** from previous run.
 
-**DAST** run [`#24028162574`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574) — Overall status: 9/9 jobs scanned. CS versions (IMCS01, PDCS01, SCCS01) and AG versions (IMAG01, PDAG01, SCAG01) removed from workflow.
+**DAST** run [`#24028162574`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574) — Overall status: 9/9 jobs scanned.
 
-| Version | Change                   | Notes                                                                             |
-| ------- | ------------------------ | --------------------------------------------------------------------------------- |
-| PDSD01  | WARN-NEW 7→9, PASS 60→58 | New warnings: In Page Banner Info Leak [10009], Server Leaks Version Info [10036] |
-| SCSD01  | WARN-NEW 7→8, PASS 60→59 | New warning: Sub Resource Integrity Attribute Missing [90003]                     |
-| IMCS01  | Removed from workflow    | CS strategy removed from DAST workflow                                            |
-| PDCS01  | Removed from workflow    | CS strategy removed from DAST workflow                                            |
-| SCCS01  | Removed from workflow    | CS strategy removed from DAST workflow                                            |
-| IMAG01  | Removed from workflow    | AG strategy removed from DAST workflow                                            |
-| PDAG01  | Removed from workflow    | AG strategy removed from DAST workflow                                            |
-| SCAG01  | Removed from workflow    | AG strategy removed from DAST workflow                                            |
-
----
+Note: CS versions (IMCS01, PDCS01, SCCS01) and AG versions (IMAG01, PDAG01, SCAG01 removed from workflow.
 
 ## Local Verification Updates (2026-04-04)
 
@@ -33,10 +22,12 @@ Full test suites (scenario + unit + integration) executed locally for all SDD ve
 These results are local verification updates and are not part of the archived GitHub Actions run `#23089850265`.
 
 > **Note:** CI run `#23089850265` results in the tables below reflect the **old code** (`_IMSD01`, `_PDSD01`, `_SCSD01`). The SDD test counts shown there are outdated. The correct counts from the new code are listed here.
+>
+> **Counting convention used in this document:** for `IMSD01`, scenario count is reported as **7 scenario methods** to stay consistent with archived workflow run `#23089850265` (`Unit Test IMSD01 = 7/7`). Although local `pytest` collection can expand one parametrized scenario into multiple test items, that expansion is **not** used in the summary tables below.
 
 | Version   | Feature                | Command            | Result                  | Passed | Failed | Breakdown                                                                   |
 | --------- | ---------------------- | ------------------ | ----------------------- | ------ | ------ | --------------------------------------------------------------------------- |
-| IMSD01    | Inventory Management   | `pytest tests/ -v` | :white_check_mark: PASS | 18     | 0      | scenarios: 8 (test_3 parametrized ×2), contract: 2, unit: 4, integration: 4 |
+| IMSD01    | Inventory Management   | `pytest tests/ -v` | :white_check_mark: PASS | 17     | 0      | scenarios: 7, contract: 2, unit: 4, integration: 4                          |
 | PDSD01    | Promotions & Discounts | `pytest tests/ -v` | :white_check_mark: PASS | 18     | 0      | scenarios: 6, unit: 7, integration: 5                                       |
 | SCSD01    | Shopping Cart          | `pytest tests/ -v` | :white_check_mark: PASS | 16     | 0      | scenarios: 5, unit: 8, integration: 3                                       |
 | SCSD01_v2 | Shopping Cart          | `pytest tests/ -v` | :white_check_mark: PASS | 15     | 0      | scenarios: 5, unit: 6, integration: 4                                       |
@@ -85,10 +76,10 @@ These results are local verification updates and are not part of the archived Gi
 | **BP** (Basic Prompting)     | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
 | **CE** (Context Engineering) | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
 | **CS** (Cursor)              | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
-| **SD** (Spec-Driven Dev)     | :white_check_mark: 18/18 | :white_check_mark: 16/16 | :white_check_mark: 18/18 | **52/52** |
+| **SD** (Spec-Driven Dev)     | :white_check_mark: 17/17 | :white_check_mark: 16/16 | :white_check_mark: 18/18 | **51/51** |
 
-> BP/CE/CS counts are scenario-level tests from CI run `#23089850265`.
-> SD counts include full test suite (scenario + unit + integration) from local run 2026-04-04 / 2026-04-05.
+> BP/CE/CS counts are scenario-level test counts from archived CI run `#23089850265`.
+> SD counts are local full-suite counts from the restructured codebase, using the document counting convention above.
 > SCSD01_v2 excluded from strategy comparison — reproducibility test only (see note above).
 >
 > **Total: 106 tests passed, 0 failed across 12 versions (excluding SCSD01_v2)**
@@ -241,7 +232,7 @@ These results are local verification updates and are not part of the archived Gi
 | --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ |
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        |
-| IMSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        |
+| IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        |
 | SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 0 / 9 / 12                | 4.30%        |
 | SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 1 / 0 / 5                 | 26.90%       |
@@ -250,7 +241,7 @@ These results are local verification updates and are not part of the archived Gi
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 0 / 16 / 20               | 0.00%        |
 | PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 1 / 6 / 9                 | 0.00%        |
 
-> ¹ Full test suite (scenario + unit + integration) from local run 2026-04-04. SonarQube values updated from CSV source.
+> ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
 
 ---
 
