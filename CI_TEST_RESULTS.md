@@ -24,6 +24,17 @@ These results are local verification updates and are not part of the archived Gi
 > **Note:** CI run `#23089850265` results in the tables below reflect the **old code** (`_IMSD01`, `_PDSD01`, `_SCSD01`). The SDD test counts shown there are outdated. The correct counts from the new code are listed here.
 >
 > **Counting convention used in this document:** for `IMSD01`, scenario count is reported as **7 scenario methods** to stay consistent with archived workflow run `#23089850265` (`Unit Test IMSD01 = 7/7`). Although local `pytest` collection can expand one parametrized scenario into multiple test items, that expansion is **not** used in the summary tables below.
+>
+> **Functional correctness in this document is represented by scenario-level tests** rather than SonarQube. The table below isolates the scenario counts that map directly to business requirements.
+
+### Functional Correctness Coverage (Scenario-Level Tests)
+
+| Version   | Feature                | Scenario Tests | Result                  | Business Coverage                                             |
+| --------- | ---------------------- | -------------- | ----------------------- | ------------------------------------------------------------- |
+| IMSD01    | Inventory Management   | 7/7            | :white_check_mark: PASS | Stock deduction, low stock alert, stock restoration, edge cases |
+| PDSD01    | Promotions & Discounts | 6/6            | :white_check_mark: PASS | Coupon validation, discount calculation, expiration, edge cases |
+| SCSD01    | Shopping Cart          | 5/5            | :white_check_mark: PASS | Update quantity, merge items, save for later, edge cases       |
+| SCSD01_v2 | Shopping Cart          | 5/5            | :white_check_mark: PASS | Reproducibility rerun of SCSD01 scenario coverage              |
 
 | Version   | Feature                | Command            | Result                  | Passed | Failed | Breakdown                                                                   |
 | --------- | ---------------------- | ------------------ | ----------------------- | ------ | ------ | --------------------------------------------------------------------------- |
@@ -36,7 +47,7 @@ These results are local verification updates and are not part of the archived Gi
 
 ---
 
-## 1. Unit Tests & Integration Tests
+## 1. Unit Tests & Integration Tests (For Note, ไม่ได้ใช้ หรือให้ความสำคัญมาก)
 
 > Workflow run: [Unit Tests #23089850265](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265)
 > Result: :white_check_mark: **ALL 13 JOBS PASSED**
@@ -90,35 +101,6 @@ These results are local verification updates and are not part of the archived Gi
 
 > SDD SonarQube values in this section were updated from the latest results in `Evaluating AI-Generated Code Quality from Basic Prompting to Spec-Driven Development - High-Quality Code (1).csv`.
 
-### Functional Correctness
-
-> All versions pass all functional correctness tests :white_check_mark:
-
-**IM (Inventory Management)** — Successful Stock Deduction, Low Stock Alert Trigger, Stock Restoration
-
-| Version | Successful Stock Deduction | Low Stock Alert Trigger | Stock Restoration  | Result                  |
-| ------- | -------------------------- | ----------------------- | ------------------ | ----------------------- |
-| IMBP01  | :white_check_mark:         | :white_check_mark:      | :white_check_mark: | :white_check_mark: PASS |
-| IMCE01  | :white_check_mark:         | :white_check_mark:      | :white_check_mark: | :white_check_mark: PASS |
-| IMSD01  | :white_check_mark:         | :white_check_mark:      | :white_check_mark: | :white_check_mark: PASS |
-
-**PD (Promotion / Discount)** — Coupon Validation, Cart Total Discount, Expiration Date Check
-
-| Version | Coupon Validation  | Cart Total Discount | Expiration Date Check | Result                  |
-| ------- | ------------------ | ------------------- | --------------------- | ----------------------- |
-| PDBP01  | :white_check_mark: | :white_check_mark:  | :white_check_mark:    | :white_check_mark: PASS |
-| PDCE01  | :white_check_mark: | :white_check_mark:  | :white_check_mark:    | :white_check_mark: PASS |
-| PDSD01  | :white_check_mark: | :white_check_mark:  | :white_check_mark:    | :white_check_mark: PASS |
-
-**SC (Shopping Cart)** — Update Item Quantity, Merge Items Logic, Save for Later
-
-| Version   | Update Item Quantity | Merge Items Logic  | Save for Later     | Result                  |
-| --------- | -------------------- | ------------------ | ------------------ | ----------------------- |
-| SCBP01    | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-| SCCE01    | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-| SCSD01    | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-| SCSD01_v2 | :white_check_mark:   | :white_check_mark: | :white_check_mark: | :white_check_mark: PASS |
-
 ### SonarQube Open Issues by Version
 
 | Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
@@ -133,6 +115,8 @@ These results are local verification updates and are not part of the archived Gi
 | PDBP01    | 0               | 1                  | 10                     | 1.40%        |
 | PDCE01    | 0               | 16                 | 20                     | 0.00%        |
 | PDSD01    | 1               | 6                  | 9                      | 0.00%        |
+
+> CS and AG versions are excluded from this SonarQube summary to match the current workflow scope.
 
 ### SonarQube Summary by Strategy
 
