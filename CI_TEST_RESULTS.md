@@ -144,16 +144,14 @@ These results are local verification updates and are not part of the archived Gi
 | ------- | ---- | ------ | ----- | -------------------------------------- |
 | IMBP01  | 5    | 0      | 5     | Missing rate limiting                  |
 | IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
-| SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
-| PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
-| IMCS01  | 0    | 0      | 0     | -                                      |
-| PDCS01  | 0    | 0      | 0     | -                                      |
-| SCCS01  | 0    | 0      | 0     | -                                      |
 | IMSD01  | 0    | 0      | 0     | -                                      |
-| SCSD01  | 0    | 0      | 0     | -                                      |
-| PDSD01  | 0    | 0      | 0     | -                                      |
 | SCBP01  | 0    | 0      | 0     | -                                      |
+| SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
+| SCSD01  | 0    | 0      | 0     | -                                      |
 | PDBP01  | 0    | 0      | 0     | -                                      |
+| PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
+| PDSD01  | 0    | 0      | 0     | -                                      |
+
 
 ### CodeQL Alert Summary by Strategy
 
@@ -161,7 +159,6 @@ These results are local verification updates and are not part of the archived Gi
 | ---------------------------- | ------------ | ---- | ------ |
 | **BP** (Basic Prompting)     | 5            | 5    | 0      |
 | **CE** (Context Engineering) | 11           | 9    | 2      |
-| **CS** (Cursor)              | 0            | 0    | 0      |
 | **SD** (Spec-Driven Dev)     | 0            | 0    | 0      |
 
 ---

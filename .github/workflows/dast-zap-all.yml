@@ -50,6 +50,10 @@ jobs:
             path: 'src/versions/SCSD01'
             port: '5173'
 
+          - version: 'SCSD01_v2'
+            path: 'src/versions/SCSD01_v2'
+            port: '5173'
+
           - version: 'PDSD01'
             path: 'src/versions/PDSD01'
             port: '3000'

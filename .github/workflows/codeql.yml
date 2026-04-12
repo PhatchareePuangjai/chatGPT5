@@ -5,11 +5,13 @@ on:
     branches: [ "main" ]
     paths:
       - 'src/versions/**'
+      - 'src/versions/SCSD01_v2/**'
       - '.github/workflows/codeql.yml'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'src/versions/**'
+      - 'src/versions/SCSD01_v2/**'
       - '.github/workflows/codeql.yml'
   workflow_dispatch:
 
