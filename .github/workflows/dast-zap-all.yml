@@ -58,18 +58,6 @@ jobs:
             path: 'src/versions/PDSD01'
             port: '3000'
 
-          - version: 'IMAG01'
-            path: 'src/versions/IMAG01'
-            port: '5174'
-
-          - version: 'PDAG01'
-            path: 'src/versions/PDAG01'
-            port: '5173'
-
-          - version: 'SCAG01'
-            path: 'src/versions/SCAG01/shopping-cart-system'
-            port: '5174'
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

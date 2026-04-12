@@ -1,0 +1,104 @@
+name: SonarQube
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'src/versions/IMBP01/**'
+      - 'src/versions/IMCE01/**'
+      - 'src/versions/IMSD01/**'
+      - 'src/versions/SCBP01/**'
+      - 'src/versions/SCCE01/**'
+      - 'src/versions/SCSD01/**'
+      - 'src/versions/SCSD01_v2/**'
+      - 'src/versions/PDBP01/**'
+      - 'src/versions/PDCE01/**'
+      - 'src/versions/PDSD01/**'
+      - '.github/workflows/sonarqube.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'src/versions/IMBP01/**'
+      - 'src/versions/IMCE01/**'
+      - 'src/versions/IMSD01/**'
+      - 'src/versions/SCBP01/**'
+      - 'src/versions/SCCE01/**'
+      - 'src/versions/SCSD01/**'
+      - 'src/versions/SCSD01_v2/**'
+      - 'src/versions/PDBP01/**'
+      - 'src/versions/PDCE01/**'
+      - 'src/versions/PDSD01/**'
+      - '.github/workflows/sonarqube.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: SonarQube ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - version: IMBP01
+            path: src/versions/IMBP01/online-shop-inventory
+          - version: IMCE01
+            path: src/versions/IMCE01/inventory-system
+          - version: IMSD01
+            path: src/versions/IMSD01
+          - version: SCBP01
+            path: src/versions/SCBP01/shopping-cart-app
+          - version: SCCE01
+            path: src/versions/SCCE01/shopping-cart
+          - version: SCSD01
+            path: src/versions/SCSD01
+          - version: SCSD01_v2
+            path: src/versions/SCSD01_v2
+          - version: PDBP01
+            path: src/versions/PDBP01/promo-shop-plug-and-play
+          - version: PDCE01
+            path: src/versions/PDCE01/promotions-discounts-system
+          - version: PDSD01
+            path: src/versions/PDSD01
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate SonarQube configuration
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "Missing GitHub secret: SONAR_TOKEN" >&2
+            exit 1
+          fi
+          if [ -z "$SONAR_HOST_URL" ]; then
+            echo "Missing GitHub variable: SONAR_HOST_URL" >&2
+            exit 1
+          fi
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: SonarQube scan
+        uses: SonarSource/sonarqube-scan-action@v7
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+        with:
+          projectBaseDir: ${{ matrix.path }}
+          args: >
+            -Dsonar.projectKey=chatGPT5_${{ matrix.version }}
+            -Dsonar.projectName=${{ matrix.version }}
+            -Dsonar.sources=.
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.venv/**,**/__pycache__/**,**/.pytest_cache/**,**/*.pyc,**/coverage/**,**/*.md,**/*.png,**/specs/**,**/.agents/**,**/.specify/**
