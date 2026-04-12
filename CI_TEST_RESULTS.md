@@ -1,10 +1,14 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-04-11
+> Last updated: 2026-04-12
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
 ---
+
+## CI Results Update (2026-04-12)
+
+**DAST** run [`#24299653751`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24299653751) — Overall status: 9/9 jobs scanned. All FAIL-NEW counts remain 0 across all versions.
 
 ## CI Results Update (2026-04-11)
 
@@ -165,20 +169,20 @@ These results are local verification updates and are not part of the archived Gi
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #24028162574](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574)
-> Result: :white_check_mark: **9/9 JOBS SCANNED** — CS and AG versions removed from workflow.
+> Workflow run: [DAST #24299653751](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24299653751)
+> Result: :white_check_mark: **9/9 JOBS SCANNED**
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
-| IMBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| IMCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| IMSD01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| SCBP01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
-| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attr Missing [90003] *(new)*             |
+| IMBP01  | 0        | 7        | 60   | Missing headers                                                                   |
+| IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
+| IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
-| PDCE01  | 0        | 7        | 60   | Missing headers (CSP, X-Content-Type, Clickjacking, COEP)                         |
-| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Info Leak [10009] *(new)*  |
+| PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
+| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Information Leak [10009]   |
+| SCBP01  | 0        | 7        | 60   | Missing headers                                                                   |
+| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
+| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attribute Missing [90003]                |
 
 ### Common ZAP Warnings (across all versions)
 
@@ -194,8 +198,8 @@ These results are local verification updates and are not part of the archived Gi
 | Storable but Non-Cacheable Content                 | 10049   | Informational | 9/9                                        |
 | Modern Web Application                             | 10109   | Informational | 9/9                                        |
 | Server Leaks Version Information                   | 10036   | Low           | 3/9 (SCCE01, PDBP01, PDSD01)              |
-| In Page Banner Information Leak                    | 10009   | Low           | 1/9 (PDSD01) *(new)*                       |
-| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/9 (SCSD01) *(new)*                       |
+| In Page Banner Information Leak                    | 10009   | Low           | 1/9 (PDSD01)                               |
+| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/9 (SCSD01)                               |
 
 ### DAST Summary by Strategy
 
@@ -203,7 +207,7 @@ These results are local verification updates and are not part of the archived Gi
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
 | **BP** (Basic Prompting)     | 7.3          | 59.7     | 1/3 (PDBP01)             | 3/3 scanned                          |
 | **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
-| **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01) *(changed)* | 3/3 scanned                          |
+| **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
 
 ---
 
@@ -238,4 +242,4 @@ These results are local verification updates and are not part of the archived Gi
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
 | Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265           |
 | Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24299653751           |
