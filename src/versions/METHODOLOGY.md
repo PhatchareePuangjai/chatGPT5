@@ -111,6 +111,22 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 | Architecture guidance | Unspecified                  | Partially specified (e.g., Docker, locking strategy) | Governed by constitution and quality gates                      |
 | Quality gates         | None                         | Self-check instructions                              | Explicit gates (coverage targets, performance SLOs, lint rules) |
 
+**Per-version quantitative metrics:**
+
+| Version | Strategy | LOC (prod. src) | User Prompt Tokens ⁵ |
+| ------- | -------- | --------------- | -------------------- |
+| IMBP01  | BP       | 282             | 423                  |
+| SCBP01  | BP       | 454             | 836                  |
+| PDBP01  | BP       | 365             | 618                  |
+| IMCE01  | CE       | 256             | 927                  |
+| SCCE01  | CE       | 459             | 463                  |
+| PDCE01  | CE       | 344             | 531                  |
+| IMSD01  | SDD      | 398             | 296                  |
+| SCSD01  | SDD      | 758             | 353                  |
+| PDSD01  | SDD      | 296             | 170                  |
+
+> ⁵ Counted using tiktoken `cl100k_base` encoding (GPT-4/GPT-5 tokenizer) applied to all user-side prompt text. BP/CE source: `chatgpt-export/conversations.json`. SDD source: `conversation_export.json` — reflects spec commands only (e.g., `speckit-plan`, `speckit.implement`); actual token consumption is significantly higher as AI-generated code responses are not captured in the export.
+
 ## 4. Controlled Task Domains
 
 To reduce domain-related randomness while preserving realistic engineering complexity, the study employs three related e-commerce modules as the experimental testbed:

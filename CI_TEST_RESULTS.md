@@ -231,6 +231,44 @@ These results are local verification updates and are not part of the archived Gi
 
 ---
 
+## 5. Conversation & Interaction Effort
+
+> **Data sources:**
+> - **BP / CE**: `chatgpt-export/.../conversations.json` — ChatGPT web interface exports (GPT-5 series)
+> - **SDD**: `conversation_export.json` — Codex CLI session export, partial log (user commands only; AI responses not captured in export)
+>
+> **Note on token counts:** Conversations were conducted via web interfaces (not direct API), so actual API billing tokens were not recorded. `usage_json` in the Excel logs is `{}` (empty). User prompt tokens below are counted using **tiktoken `cl100k_base`** (GPT-4/GPT-5 tokenizer) applied to user-side text only. SDD values reflect spec commands only — actual AI token consumption is significantly higher.
+
+### Interaction Counts by Version
+
+| Version | Strategy | Model | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
+| ------- | -------- | ----- | ------------- | ---------- | -------- | -------------------- |
+| IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 7 | 423 |
+| SCBP01  | BP       | GPT-5 (gpt-5-2) | 2 | 6 | 6 | 836 |
+| PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
+| IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 13 | 927 |
+| SCCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 3 | 3 | 463 |
+| PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
+| IMSD01  | SDD      | Codex CLI | N/A | 13 | 12 | 296 ⁴ |
+| SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |
+| PDSD01  | SDD      | Codex CLI | N/A | 14 | 13 | 170 ⁴ |
+
+### Interaction Summary by Strategy
+
+| Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
+| -------- | ------------------- | ---------------- | -------------- | -------------------- |
+| **BP** (Basic Prompting) | 4 | 13 | 15 | 3,527 |
+| **CE** (Context Engineering) | 3 | 12 | 17 | 1,921 |
+| **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
+
+> ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
+> ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
+> &nbsp;&nbsp;&nbsp;&nbsp;**What is counted:** user-side spec commands in `conversation_export.json` only.
+> &nbsp;&nbsp;&nbsp;&nbsp;**What is NOT counted:** AI-generated code responses, full conversation context sent per turn.
+> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 353 / 170) are a significant undercount and should not be compared directly with BP/CE token values.
+
+---
+
 ## Links
 
 | Resource                 | URL                                                                               |
