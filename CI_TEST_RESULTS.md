@@ -243,10 +243,10 @@ These results are local verification updates and are not part of the archived Gi
 
 | Version | Strategy | Model | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
 | ------- | -------- | ----- | ------------- | ---------- | -------- | -------------------- |
-| IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 7 | 423 |
-| SCBP01  | BP       | GPT-5 (gpt-5-2) | 2 | 6 | 6 | 836 |
+| IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 4 | 7 | 341 |
+| SCBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 836 |
 | PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
-| IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 13 | 927 |
+| IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
 | SCCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 3 | 3 | 463 |
 | PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
 | IMSD01  | SDD      | Codex CLI | N/A | 13 | 12 | 296 ⁴ |
@@ -257,8 +257,8 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
-| **BP** (Basic Prompting) | 4 | 13 | 15 | 3,527 |
-| **CE** (Context Engineering) | 3 | 12 | 17 | 1,921 |
+| **BP** (Basic Prompting) | 3 | 11 | 14 | 1,795 |
+| **CE** (Context Engineering) | 3 | 12 | 16 | 1,921 |
 | **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
