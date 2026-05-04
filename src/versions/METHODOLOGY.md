@@ -37,7 +37,7 @@ The primary dataset consists of **9 generated versions** organized as a 3 × 3 m
 | Shopping Cart        | SCBP01          | SCCE01              | SCSD01                           |
 | Promotion / Discount | PDBP01          | PDCE01              | PDSD01                           |
 
-All twelve code versions were generated using ChatGPT 5.2 as the underlying model. Each version is evaluated against an identical set of Acceptance Scenarios and Edge Cases across all versions, as summarized in the table above. These 9 versions form the basis of the main comparative findings reported in RESEARCH_SUMMARY.md.
+All nine core code versions were generated using the GPT-5 series (gpt-5-2) as the underlying model — BP and CE versions via the ChatGPT web interface, and SDD versions via Codex CLI using structured specification workflows. Each version is evaluated against an identical set of Acceptance Scenarios and Edge Cases across all versions, as summarized in the table above. These 9 versions form the basis of the main comparative findings reported in RESEARCH_SUMMARY.md.
 
 ### 2.2 Supplementary Repository Artifacts
 
@@ -196,7 +196,7 @@ The study operationalizes code quality through four automated measurement layers
 
 ### 6.1 Functional Correctness
 
-**Instrument:** scenario-based automated tests (Jest)
+**Instrument:** scenario-based automated tests (Jest for BP/CE versions; pytest for SDD versions)
 
 Functional correctness is measured through acceptance-style tests aligned with each domain's scenario file. The test suites cover both standard flows and critical edge cases:
 
@@ -239,7 +239,7 @@ CodeQL is used as a deeper semantic analysis layer to detect security-relevant p
 
 **Instrument:** OWASP ZAP
 
-OWASP ZAP is employed for dynamic application security testing (DAST) to identify runtime vulnerabilities by actively probing the running application. This complements the static analysis performed by SonarQube and CodeQL by testing the system's behavior under simulated attack conditions.
+OWASP ZAP is employed for dynamic application security testing (DAST) via the `zaproxy/action-baseline` GitHub Action, which performs a passive (baseline) scan against the running application. This complements the static analysis performed by SonarQube and CodeQL by detecting runtime-observable issues such as missing security headers and information leakage without executing active exploit techniques.
 
 ## 7. Analysis Workflow
 

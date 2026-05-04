@@ -1,6 +1,6 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-04-12
+> Last updated: 2026-05-03
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -64,6 +64,7 @@ These results are local verification updates and are not part of the archived Gi
 | IMCE01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
 | IMSD01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
 | PDCE01  | Promotions & Discounts | :white_check_mark: PASS | 6      | 0      | 6     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
+| IMBP02  | Inventory Management   | :x: FAIL (6/7)          | 6      | 1      | 7     | Local run 2026-05-03 — see CI Results Update (2026-05-03)                      |
 
 ### Integration Tests (Docker Compose — CS)
 
