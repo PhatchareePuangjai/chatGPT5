@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>One Click Shop</title>
+</head>
+<body>
+  <h1>🛒 One Click Shop</h1>
+  <button onclick="addItem()">Add Sample Item</button>
+  <div id="products"></div>
+
+  <script>
+    async function fetchProducts() {
+      const res = await fetch("/products");
+      const products = await res.json();
+      const div = document.getElementById("products");
+      div.innerHTML = "";
+
+      products.forEach(p => {
+        div.innerHTML += `
+          <div>
+            <h3>${p.name}</h3>
+            <p>Price: $${p.price}</p>
+            <p>Stock: ${p.stock}</p>
+            <button onclick="buy(${p.id})" ${p.stock===0?"disabled":""}>
+              Buy 1
+            </button>
+            <hr>
+          </div>
+        `;
+      });
+    }
+
+    async function addItem() {
+      await fetch("/products", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({name:"Sample Item", price:10, stock:10})
+      });
+      fetchProducts();
+    }
+
+    async function buy(id) {
+      await fetch("/buy/"+id, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({quantity:1})
+      });
+      fetchProducts();
+    }
+
+    fetchProducts();
+  </script>
+</body>
+</html>

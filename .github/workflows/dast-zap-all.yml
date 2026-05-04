@@ -58,6 +58,10 @@ jobs:
             path: 'src/versions/PDSD01'
             port: '3000'
 
+          - version: 'IMBP02'
+            path: 'src/versions/IMBP02/one-click-online-shop'
+            port: '3000'
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

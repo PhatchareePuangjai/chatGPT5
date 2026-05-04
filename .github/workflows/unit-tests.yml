@@ -17,6 +17,7 @@ on:
       - 'src/versions/IMAG01/**'
       - 'src/versions/PDAG01/**'
       - 'src/versions/SCAG01/**'
+      - 'src/versions/IMBP02/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -33,6 +34,7 @@ on:
       - 'src/versions/IMAG01/**'
       - 'src/versions/PDAG01/**'
       - 'src/versions/SCAG01/**'
+      - 'src/versions/IMBP02/**'
   workflow_dispatch:
 
 jobs:
@@ -64,6 +66,12 @@ jobs:
             database_url: postgresql://inventory:inventory@localhost:5432/inventory
           - version: PDCE01
             path: src/versions/PDCE01/promotions-discounts-system/backend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
+          - version: IMBP02
+            path: src/versions/IMBP02/one-click-online-shop/app
             db_user: ''
             db_pass: ''
             db_name: ''
