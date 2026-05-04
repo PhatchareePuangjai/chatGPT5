@@ -41,7 +41,7 @@ All nine core code versions were generated using the GPT-5 series (gpt-5-2) as t
 
 ### 2.2 Supplementary Repository Artifacts
 
-The repository also contains additional versions — `IMAG01`, `IMCS01`, `PDAG01`, `PDCS01`, `SCAG01`, and `SCCS01` — produced using Agentic (AG) and Cursor (CS) workflows. These artifacts serve as supporting references but are excluded from the main 9-version comparison unless explicitly stated.
+The repository also contains additional versions — `IMAG01`, `IMCS01`, `PDAG01`, `PDCS01`, `SCAG01`, `SCCS01`, and `IMBP02` — produced using Agentic (AG), Cursor (CS), and iterative Basic Prompting workflows. These artifacts serve as supporting references but are excluded from the main 9-version comparison unless explicitly stated.
 
 ### 2.3 Unit of Analysis
 
@@ -116,6 +116,7 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 | Version | Strategy | LOC (prod. src) | User Prompt Tokens ⁵ |
 | ------- | -------- | --------------- | -------------------- |
 | IMBP01  | BP       | 282             | 341                  |
+| IMBP02  | BP       | 67              | TBD                  |
 | SCBP01  | BP       | 454             | 836                  |
 | PDBP01  | BP       | 365             | 618                  |
 | IMCE01  | CE       | 256             | 927                  |
