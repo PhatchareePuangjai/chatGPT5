@@ -1,10 +1,18 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-04
+> Last updated: 2026-05-08
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
 ---
+
+## CI Results Update (2026-05-09)
+
+LOC values recalculated for all versions using **backend-only convention** (frontend files excluded). 7 versions updated: IMBP01, IMCE01, SCBP01, SCCE01, SCSD01, SCSD01_v2, PDCE01.
+
+## CI Results Update (2026-05-08)
+
+DAST run [`#25560722631`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25560722631) — **IMBP02**: FAIL-NEW=0 WARN-NEW=9 PASS=58.
 
 ## CI Results Update (2026-05-04)
 
@@ -180,8 +188,8 @@ These results are local verification updates and are not part of the archived Gi
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #24299653751](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24299653751)
-> Result: :white_check_mark: **9/9 JOBS SCANNED**
+> Workflow run: [DAST #25560722631](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25560722631)
+> Result: :white_check_mark: **11/11 JOBS SCANNED**
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
@@ -198,20 +206,21 @@ These results are local verification updates and are not part of the archived Gi
 
 ### Common ZAP Warnings (across all versions)
 
-| Warning                                            | Rule ID | Severity      | Affected (9 scanned)                       |
+| Warning                                            | Rule ID | Severity      | Affected (11 scanned)                      |
 | -------------------------------------------------- | ------- | ------------- | ------------------------------------------ |
-| Missing Anti-clickjacking Header                   | 10020   | Medium        | 9/9                                        |
-| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 9/9                                        |
-| Cross-Origin-Embedder-Policy (COEP) Header Missing | 90004   | Low           | 9/9                                        |
-| Cross-Origin-Opener-Policy (COOP) Header Missing   | 90004   | Low           | 9/9                                        |
-| Cross-Origin-Resource-Policy (CORP) Header Missing | 90004   | Low           | 9/9                                        |
-| Permissions Policy Header Not Set                  | 10063   | Low           | 9/9                                        |
-| X-Content-Type-Options Header Missing              | 10021   | Low           | 9/9                                        |
-| Storable but Non-Cacheable Content                 | 10049   | Informational | 9/9                                        |
-| Modern Web Application                             | 10109   | Informational | 9/9                                        |
-| Server Leaks Version Information                   | 10036   | Low           | 3/9 (SCCE01, PDBP01, PDSD01)              |
-| In Page Banner Information Leak                    | 10009   | Low           | 1/9 (PDSD01)                               |
-| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/9 (SCSD01)                               |
+| Missing Anti-clickjacking Header                   | 10020   | Medium        | 11/11                                      |
+| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 11/11                                      |
+| Cross-Origin-Embedder-Policy Header Missing        | 90004   | Low           | 11/11                                      |
+| Permissions Policy Header Not Set                  | 10063   | Low           | 11/11                                      |
+| X-Content-Type-Options Header Missing              | 10021   | Low           | 11/11                                      |
+| Modern Web Application                             | 10109   | Informational | 11/11                                      |
+| Storable but Non-Cacheable Content                 | 10049   | Informational | 7/11                                       |
+| Storable and Cacheable Content                     | 10049   | Informational | 4/11 (IMBP02, SCCE01, PDBP01, PDSD01)     |
+| Server Leaks Version Information                   | 10036   | Low           | 3/11 (SCCE01, PDBP01, PDSD01)             |
+| Server X-Powered-By Header Leak                    | 10037   | Low           | 1/11 (IMBP02)                              |
+| CSP Failure to Define Directive with No Fallback   | 10055   | Medium        | 1/11 (IMBP02)                              |
+| In Page Banner Information Leak                    | 10009   | Low           | 1/11 (PDSD01)                              |
+| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/11 (SCSD01)                              |
 
 ### DAST Summary by Strategy
 
@@ -225,22 +234,23 @@ These results are local verification updates and are not part of the archived Gi
 
 ## Overall Summary
 
-| Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Total LOC | Avg LOC/File |
-| --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | --------- | ------------ |
-| IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        | 282       | 47.0         |
-| IMBP02    | :x: 6/7                    | 3 high, 1 med | 0/9/58                | TBD / TBD / TBD           | TBD          | 67        | 67.0         |
-| IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 256       | 51.2         |
-| IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398       | 15.9         |
-| SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 454       | 50.4         |
-| SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 0 / 9 / 12                | 4.30%        | 459       | 91.8         |
-| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 1 / 0 / 5                 | 26.90%       | 758       | 84.2         |
-| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 0 / 4 / 25                | 0.00%        | 665       | 47.5         |
-| PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 0 / 1 / 10                | 1.40%        | 365       | 60.8         |
-| PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 0 / 16 / 20               | 0.00%        | 344       | 38.2         |
-| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 1 / 6 / 9                 | 0.00%        | 296       | 32.8         |
+| Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
+| --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
+| IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        | 251           | 404            | 62.8         |
+| IMBP02    | :x: 6/7                    | 3 high, 1 med | 0/9/58                | TBD / TBD / TBD           | TBD          | 67            | 55             | 67.0         |
+| IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 228           | 1,115          | 114.0        |
+| IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398           | 318            | 15.9         |
+| SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 406           | 358            | 67.7         |
+| SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 0 / 9 / 12                | 4.30%        | 409           | 457            | 204.5        |
+| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 1 / 0 / 5                 | 26.90%       | 208           | 988            | 34.7         |
+| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 0 / 4 / 25                | 0.00%        | 493           | 357            | 41.1         |
+| PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 0 / 1 / 10                | 1.40%        | 365           | 805            | 60.8         |
+| PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 0 / 16 / 20               | 0.00%        | 305           | 249            | 43.6         |
+| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 1 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
 
 > ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
-> ² LOC counted from production source files only (`.py` / `.js`), excluding `node_modules`, `tests/`, and test files (`test_*`, `*.test.js`, `*.spec.js`). Avg LOC/File = Total LOC ÷ number of source files.
+> ² Backend LOC: counted from **backend production source files only** (`.py` / `.js`), excluding `node_modules`, `tests/`, test files (`test_*`, `*.test.js`, `*.spec.js`), and all frontend files (folders: `frontend/`, `client/`, `public/`; files: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.
+> ³ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js` in `frontend/`, `client/`, or `public/` folders; `.css` excluded). IMBP02 has no dedicated frontend folder — value reflects only the `index.html` embedded UI. Note: SonarQube and CodeQL scans include frontend code; this metric is provided for completeness only.
 
 ---
 
@@ -257,7 +267,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version | Strategy | Model | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
 | ------- | -------- | ----- | ------------- | ---------- | -------- | -------------------- |
 | IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 4 | 7 | 341 |
-| IMBP02  | BP       | GPT-5 (gpt-5-2) | TBD | TBD | TBD | TBD |
+| IMBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 79 |
 | SCBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 836 |
 | PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
 | IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
@@ -271,7 +281,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
-| **BP** (Basic Prompting) | 3 | 11 | 14 | 1,795 |
+| **BP** (Basic Prompting) | 4 | 16 | 19 | 1,874 |
 | **CE** (Context Engineering) | 3 | 12 | 16 | 1,921 |
 | **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
 
@@ -295,4 +305,4 @@ These results are local verification updates and are not part of the archived Gi
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
 | Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25304296735           |
 | Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25304296742           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25560722631           |

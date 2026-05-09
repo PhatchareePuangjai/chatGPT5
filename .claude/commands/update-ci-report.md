@@ -1,3 +1,4 @@
+
 # Skill: update-ci-report
 
 ดึงผล CI จาก GitHub Actions แล้ว update ไฟล์ `CI_TEST_RESULTS.md` และ `METHODOLOGY.md`
@@ -127,7 +128,7 @@ Unit Tests  : Passed=? Failed=? Total=?  (run #?)
 CodeQL      : High=?  Medium=?  Total=?
 DAST        : FAIL-NEW=? WARN-NEW=? PASS=?  (run #?)
 SonarQube   : run=pass/fail  (open issues: TBD — ดูจาก dashboard)
-LOC         : TBD (นับจาก .js/.py production files)
+LOC         : TBD (นับจาก .js/.py production backend files เท่านั้น — ไม่รวม frontend, node_modules, tests)
 ```
 
 ถามว่า:
@@ -252,5 +253,5 @@ DAST run `#<run-id>` — **<TARGET>**: FAIL-NEW=0 WARN-NEW=<n> PASS=<n>.
 3. เมื่อ user ยืนยัน ให้เขียนทั้ง 2 ไฟล์
 4. แจ้ง user ว่า field ไหนที่ยังเป็น `TBD` ต้องไปกรอกเพิ่มเองจากที่ใด:
    - SonarQube open issues → ดูจาก SonarQube dashboard ที่ `<SONAR_HOST_URL>`
-   - LOC → นับจาก `.js`/`.py` production files ใน `src/versions/<TARGET>/` (ไม่รวม node_modules, tests)
+   - LOC → นับจาก `.js`/`.py` **backend/server-side files เท่านั้น** ใน `src/versions/<TARGET>/` (ไม่รวม node_modules, tests, และ frontend — folder `frontend/`, `client/`, `public/`, ไฟล์ `.html`, `.css`, client-side JS ที่ไม่มี server logic)
    - Interaction data → ดูจากไฟล์ `conversations.json` หรือ `conversation_export.json`
