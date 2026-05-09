@@ -127,7 +127,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
 | --------- | --------------- | ------------------ | ---------------------- | ------------ |
 | IMBP01    | 0               | 3                  | 7                      | 6.90%        |
-| IMBP02    | TBD             | TBD                | TBD                    | TBD          |
+| IMBP02    | 0               | 2                  | 4                      | 0.0%         |
 | IMCE01    | 0               | 19                 | 26                     | 0.00%        |
 | IMSD01    | 0               | 12                 | 15                     | 3.30%        |
 | SCBP01    | 0               | 9                  | 18                     | 5.40%        |
@@ -144,7 +144,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- |
-| **BP** (Basic Prompting)     | 0.0          | 4.3             | 11.7                | 4.57%            |
+| **BP** (Basic Prompting)     | 0.0          | 3.75            | 9.75                | 3.43%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
 | **SD** (Spec-Driven Dev)     | 0.67         | 6.0             | 9.67                | 10.07%           |
 
@@ -237,7 +237,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
 | --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        | 251           | 404            | 62.8         |
-| IMBP02    | :x: 6/7                    | 3 high, 1 med | 0/9/58                | TBD / TBD / TBD           | TBD          | 67            | 55             | 67.0         |
+| IMBP02    | :x: 6/7                    | 3 high, 1 med | 0/9/58                | 0 / 2 / 4                 | 0.0%         | 67            | 55             | 67.0         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398           | 318            | 15.9         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 406           | 358            | 67.7         |
