@@ -61,7 +61,22 @@ app.get("/api/inventory/history", (req, res) => {
   res.json(stockHistory);
 });
 
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Backend running on port ${PORT}`);
-});
+function resetInventory() {
+  inventory.splice(0);
+  inventory.push(
+    { id: 1, name: "Laptop",   stock: 10 },
+    { id: 2, name: "Mouse",    stock: 6  },
+    { id: 3, name: "Keyboard", stock: 5  },
+    { id: 4, name: "Monitor",  stock: 1  },
+    { id: 5, name: "Headset",  stock: 5  },
+    { id: 6, name: "Webcam",   stock: 7  }
+  );
+  stockHistory.splice(0);
+}
+
+const PORT = process.env.PORT || 5000;
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+}
+
+module.exports = { app, resetInventory, inventory, stockHistory };
