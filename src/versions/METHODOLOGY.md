@@ -116,7 +116,6 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 | Version | Strategy | Backend LOC ⁵ | Frontend LOC ⁶ | User Prompt Tokens ⁷ |
 | ------- | -------- | ------------- | -------------- | -------------------- |
 | IMBP01  | BP       | 251           | 404            | 341                  |
-| IMBP02  | BP       | 67            | 55             | 79                   |
 | SCBP01  | BP       | 406           | 358            | 836                  |
 | PDBP01  | BP       | 365           | 805            | 618                  |
 | IMCE01  | CE       | 228           | 1,115          | 927                  |
@@ -127,7 +126,7 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 | PDSD01  | SDD      | 296           | 171            | 170                  |
 
 > ⁵ Backend LOC: counted from backend production source files (`.js` / `.py`) only, excluding `node_modules`, test files, and all frontend files (by folder: `frontend/`, `client/`, `public/`; by extension: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic).
-> ⁶ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js` in frontend folders; `.css` excluded). IMBP02 has no dedicated frontend folder — value reflects the embedded `index.html` UI only. SonarQube and CodeQL scans include frontend code; this metric is provided for reference only.
+> ⁶ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js` in frontend folders; `.css` excluded). SonarQube and CodeQL scans include frontend code; this metric is provided for reference only.
 > ⁷ Counted using tiktoken `cl100k_base` encoding (GPT-4/GPT-5 tokenizer) applied to all user-side prompt text. BP/CE source: `chatgpt-export/conversations.json`. SDD source: `conversation_export.json` — reflects spec commands only (e.g., `speckit-plan`, `speckit.implement`); actual token consumption is significantly higher as AI-generated code responses are not captured in the export.
 
 ## 4. Controlled Task Domains

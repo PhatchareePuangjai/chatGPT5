@@ -2,8 +2,8 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from typing import List
-from database import engine, Base, get_db
-import models
+from versions.olds._IMAG01.backend.database import engine, Base, get_db
+import versions.olds._IMAG01.backend.models as models
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime

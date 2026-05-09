@@ -10,15 +10,7 @@
 
 LOC values recalculated for all versions using **backend-only convention** (frontend files excluded). 7 versions updated: IMBP01, IMCE01, SCBP01, SCCE01, SCSD01, SCSD01_v2, PDCE01.
 
-## CI Results Update (2026-05-08)
-
-DAST run [`#25560722631`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25560722631) — **IMBP02**: FAIL-NEW=0 WARN-NEW=9 PASS=58.
-
 ## CI Results Update (2026-05-04)
-
-Unit Tests run [`#25304296735`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25304296735) — **IMBP02**: 6/7 tests passed (1 failed — Edge Case 1: Race Condition).
-DAST run [`#25304296742`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25304296742) — **IMBP02**: FAIL-NEW=0 WARN-NEW=9 PASS=58.
-SonarQube run [`#25304296727`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25304296727) — **IMBP02**: job failed (open issues: TBD — ดูจาก SonarQube dashboard).
 
 ## CI Results Update (2026-04-12)
 
@@ -49,7 +41,6 @@ These results are local verification updates and are not part of the archived Gi
 
 | Version   | Feature                | Scenario Tests | Result                  | Business Coverage                                             |
 | --------- | ---------------------- | -------------- | ----------------------- | ------------------------------------------------------------- |
-| IMBP02    | Inventory Management   | 6/7            | :x: FAIL                | Stock deduction ✅, low stock alert ✅, overselling prevention ✅; Race Condition ❌ (no DB locking) |
 | IMSD01    | Inventory Management   | 7/7            | :white_check_mark: PASS | Stock deduction, low stock alert, stock restoration, edge cases |
 | PDSD01    | Promotions & Discounts | 6/6            | :white_check_mark: PASS | Coupon validation, discount calculation, expiration, edge cases |
 | SCSD01    | Shopping Cart          | 5/5            | :white_check_mark: PASS | Update quantity, merge items, save for later, edge cases       |
@@ -57,7 +48,6 @@ These results are local verification updates and are not part of the archived Gi
 
 | Version   | Feature                | Command            | Result                  | Passed | Failed | Breakdown                                                                   |
 | --------- | ---------------------- | ------------------ | ----------------------- | ------ | ------ | --------------------------------------------------------------------------- |
-| IMBP02    | Inventory Management   | `npm test`         | :x: FAIL                | 6      | 1      | 7 tests (1 failed: Edge Case 1 — Race Condition; no DB locking/transaction) |
 | IMSD01    | Inventory Management   | `pytest tests/ -v` | :white_check_mark: PASS | 17     | 0      | scenarios: 7, contract: 2, unit: 4, integration: 4                          |
 | PDSD01    | Promotions & Discounts | `pytest tests/ -v` | :white_check_mark: PASS | 18     | 0      | scenarios: 6, unit: 7, integration: 5                                       |
 | SCSD01    | Shopping Cart          | `pytest tests/ -v` | :white_check_mark: PASS | 16     | 0      | scenarios: 5, unit: 8, integration: 3                                       |
@@ -80,7 +70,6 @@ These results are local verification updates and are not part of the archived Gi
 | IMCE01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
 | IMSD01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
 | PDCE01  | Promotions & Discounts | :white_check_mark: PASS | 6      | 0      | 6     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| IMBP02  | Inventory Management   | :x: FAIL (6/7)          | 6      | 1      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25304296735) |
 
 ### Integration Tests (Docker Compose — CS)
 
@@ -105,7 +94,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy                     | IM (Inventory)           | SC (Shopping Cart)       | PD (Promotions)          | Total     |
 | ---------------------------- | ------------------------ | ------------------------ | ------------------------ | --------- |
-| **BP** (Basic Prompting)     | IMBP01: :white_check_mark: 7/7 / IMBP02: :x: 6/7 | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **24/25** |
+| **BP** (Basic Prompting)     | :white_check_mark: 7/7                            | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
 | **CE** (Context Engineering) | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
 | **CS** (Cursor)              | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
 | **SD** (Spec-Driven Dev)     | :white_check_mark: 17/17 | :white_check_mark: 16/16 | :white_check_mark: 18/18 | **51/51** |
@@ -114,7 +103,7 @@ These results are local verification updates and are not part of the archived Gi
 > SD counts are local full-suite counts from the restructured codebase, using the document counting convention above.
 > SCSD01_v2 excluded from strategy comparison — reproducibility test only (see note above).
 >
-> **Total: 112 tests passed, 1 failed across 13 versions (excluding SCSD01_v2)**
+> **Total: 106 tests passed, 0 failed across 12 versions (excluding SCSD01_v2)**
 
 ---
 
@@ -127,7 +116,6 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
 | --------- | --------------- | ------------------ | ---------------------- | ------------ |
 | IMBP01    | 0               | 3                  | 7                      | 6.90%        |
-| IMBP02    | 0               | 2                  | 4                      | 0.0%         |
 | IMCE01    | 0               | 19                 | 26                     | 0.00%        |
 | IMSD01    | 0               | 12                 | 15                     | 3.30%        |
 | SCBP01    | 0               | 9                  | 18                     | 5.40%        |
@@ -144,7 +132,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- |
-| **BP** (Basic Prompting)     | 0.0          | 3.75            | 9.75                | 3.43%            |
+| **BP** (Basic Prompting)     | 0.0          | 4.33            | 11.67               | 4.57%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
 | **SD** (Spec-Driven Dev)     | 0.67         | 6.0             | 9.67                | 10.07%           |
 
@@ -165,7 +153,6 @@ These results are local verification updates and are not part of the archived Gi
 | Version | High | Medium | Total | Details                                |
 | ------- | ---- | ------ | ----- | -------------------------------------- |
 | IMBP01  | 5    | 0      | 5     | Missing rate limiting                  |
-| IMBP02  | 3    | 1      | 4     | Missing rate limiting (×3), Exposure of private files |
 | IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
 | IMSD01  | 0    | 0      | 0     | -                                      |
 | SCBP01  | 0    | 0      | 0     | -                                      |
@@ -180,7 +167,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy                     | Total Alerts | High | Medium |
 | ---------------------------- | ------------ | ---- | ------ |
-| **BP** (Basic Prompting)     | 9            | 8    | 1      |
+| **BP** (Basic Prompting)     | 5            | 5    | 0      |
 | **CE** (Context Engineering) | 11           | 9    | 2      |
 | **SD** (Spec-Driven Dev)     | 0            | 0    | 0      |
 
@@ -194,7 +181,6 @@ These results are local verification updates and are not part of the archived Gi
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
 | IMBP01  | 0        | 7        | 60   | Missing headers                                                                   |
-| IMBP02  | 0        | 9        | 58   | Missing headers, Server X-Powered-By leak, Storable & Cacheable Content           |
 | IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
@@ -215,10 +201,8 @@ These results are local verification updates and are not part of the archived Gi
 | X-Content-Type-Options Header Missing              | 10021   | Low           | 11/11                                      |
 | Modern Web Application                             | 10109   | Informational | 11/11                                      |
 | Storable but Non-Cacheable Content                 | 10049   | Informational | 7/11                                       |
-| Storable and Cacheable Content                     | 10049   | Informational | 4/11 (IMBP02, SCCE01, PDBP01, PDSD01)     |
-| Server Leaks Version Information                   | 10036   | Low           | 3/11 (SCCE01, PDBP01, PDSD01)             |
-| Server X-Powered-By Header Leak                    | 10037   | Low           | 1/11 (IMBP02)                              |
-| CSP Failure to Define Directive with No Fallback   | 10055   | Medium        | 1/11 (IMBP02)                              |
+| Storable and Cacheable Content                     | 10049   | Informational | 3/10 (SCCE01, PDBP01, PDSD01)             |
+| Server Leaks Version Information                   | 10036   | Low           | 3/10 (SCCE01, PDBP01, PDSD01)             |
 | In Page Banner Information Leak                    | 10009   | Low           | 1/11 (PDSD01)                              |
 | Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/11 (SCSD01)                              |
 
@@ -226,7 +210,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
-| **BP** (Basic Prompting)     | 7.8          | 59.3     | 2/4 (PDBP01, IMBP02)     | 4/4 scanned                          |
+| **BP** (Basic Prompting)     | 7.33         | 59.67    | 1/3 (PDBP01)             | 3/3 scanned                          |
 | **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
 | **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
 
@@ -237,7 +221,6 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
 | --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        | 251           | 404            | 62.8         |
-| IMBP02    | :x: 6/7                    | 3 high, 1 med | 0/9/58                | 0 / 2 / 4                 | 0.0%         | 67            | 55             | 67.0         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398           | 318            | 15.9         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 406           | 358            | 67.7         |
@@ -267,7 +250,6 @@ These results are local verification updates and are not part of the archived Gi
 | Version | Strategy | Model | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
 | ------- | -------- | ----- | ------------- | ---------- | -------- | -------------------- |
 | IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 4 | 7 | 341 |
-| IMBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 79 |
 | SCBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 836 |
 | PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
 | IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
@@ -281,7 +263,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
-| **BP** (Basic Prompting) | 4 | 16 | 19 | 1,874 |
+| **BP** (Basic Prompting) | 3 | 11 | 14 | 1,795 |
 | **CE** (Context Engineering) | 3 | 12 | 16 | 1,921 |
 | **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
 
