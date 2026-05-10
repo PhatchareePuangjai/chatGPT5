@@ -104,5 +104,6 @@ jobs:
           args: >
             -Dsonar.projectKey=chatGPT5_${{ matrix.version }}
             -Dsonar.projectName=${{ matrix.version }}
+            -Dsonar.organization=phatchareepuangjai
             -Dsonar.sources=.
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.venv/**,**/__pycache__/**,**/.pytest_cache/**,**/*.pyc,**/coverage/**,**/*.md,**/*.png,**/specs/**,**/.agents/**,**/.specify/**
