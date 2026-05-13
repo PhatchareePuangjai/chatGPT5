@@ -1,4 +1,0 @@
-scenarios_inventory.md
- from scenarios_inventory, please create code for front-end and back-end to start this project.
-
-Than create docker file to build front-end, back-end, and data base.
