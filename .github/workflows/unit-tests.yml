@@ -19,6 +19,7 @@ on:
       - 'src/versions/SCAG01/**'
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
+      - 'src/versions/PDBP02/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -37,6 +38,7 @@ on:
       - 'src/versions/SCAG01/**'
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
+      - 'src/versions/PDBP02/**'
   workflow_dispatch:
 
 jobs:
@@ -80,6 +82,12 @@ jobs:
             database_url: ''
           - version: SCBP02
             path: src/versions/SCBP02/backend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
+          - version: PDBP02
+            path: src/versions/PDBP02/backend
             db_user: ''
             db_pass: ''
             db_name: ''

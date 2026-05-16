@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: pdbp02-mongo
+    network_mode: host
+
+  backend:
+    build: ./backend
+    container_name: pdbp02-backend
+    network_mode: host
+    depends_on:
+      - mongodb
