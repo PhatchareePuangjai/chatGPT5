@@ -15,6 +15,7 @@ on:
       - 'src/versions/PDCE01/**'
       - 'src/versions/PDSD01/**'
       - 'src/versions/IMBP02/**'
+      - 'src/versions/SCBP02/**'
       - '.github/workflows/sonarqube.yml'
   pull_request:
     branches: [ "main" ]
@@ -30,6 +31,7 @@ on:
       - 'src/versions/PDCE01/**'
       - 'src/versions/PDSD01/**'
       - 'src/versions/IMBP02/**'
+      - 'src/versions/SCBP02/**'
       - '.github/workflows/sonarqube.yml'
   workflow_dispatch:
 
@@ -66,6 +68,8 @@ jobs:
             path: src/versions/PDSD01
           - version: IMBP02
             path: src/versions/IMBP02/inventory-management-system
+          - version: SCBP02
+            path: src/versions/SCBP02
 
     steps:
       - name: Checkout repository

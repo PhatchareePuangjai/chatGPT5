@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk ls *)",
+      "Bash(cp src/versions/PDBP01/scenarios_promotions.md src/versions/PDBP02/scenarios_promotions.md && echo \"Done\")",
+      "Bash(npm test *)",
+      "Bash(rtk grep *)"
+    ],
+    "additionalDirectories": [
+      "/Users/phatchareepuangjai/Documents/chat_gsheet_logger_python/src/versions/PDBP01"
+    ]
+  }
+}

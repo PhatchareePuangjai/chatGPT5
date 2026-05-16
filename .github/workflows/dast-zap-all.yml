@@ -62,6 +62,10 @@ jobs:
             path: 'src/versions/IMBP02/inventory-management-system'
             port: '3000'
 
+          - version: 'SCBP02'
+            path: 'src/versions/SCBP02'
+            port: '5000'
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
