@@ -59,8 +59,8 @@ jobs:
             port: '3000'
 
           - version: 'IMBP02'
-            path: 'src/versions/IMBP02'
-            port: '5001'
+            path: 'src/versions/IMBP02/inventory-management-system'
+            port: '3000'
 
     steps:
       - name: Checkout Code

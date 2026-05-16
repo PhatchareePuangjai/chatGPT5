@@ -71,7 +71,7 @@ jobs:
             db_name: ''
             database_url: ''
           - version: IMBP02
-            path: src/versions/IMBP02/backend
+            path: src/versions/IMBP02/inventory-management-system/backend
             db_user: ''
             db_pass: ''
             db_name: ''

@@ -65,7 +65,7 @@ jobs:
           - version: PDSD01
             path: src/versions/PDSD01
           - version: IMBP02
-            path: src/versions/IMBP02/backend
+            path: src/versions/IMBP02/inventory-management-system
 
     steps:
       - name: Checkout repository
