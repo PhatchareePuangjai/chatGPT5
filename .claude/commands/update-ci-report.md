@@ -91,13 +91,40 @@ gh run view <run-id> --repo <REPO> --log | grep -A3 "Scan <TARGET>"
 
 #### A4 — SonarQube
 
+ดึง run ID ล่าสุดก่อน:
+
 ```bash
 gh run list --workflow=sonarqube.yml --repo <REPO> --limit 5 --json databaseId,conclusion,createdAt,status
 ```
 
-ตรวจ conclusion ของ job `<TARGET>` ใน run ล่าสุด บันทึกเป็น pass/fail
+ตรวจ conclusion ของ job `<TARGET>` ใน run ล่าสุด บันทึก run ID ไว้
 
-> **หมายเหตุ:** ตัวเลข open issues (Security/Reliability/Maintainability/Duplications) ของ SonarQube ไม่อยู่ใน GitHub Actions log โดยตรง ให้ใส่ค่า `TBD` ก่อน แล้วแจ้ง user ให้ไปดูจาก SonarQube dashboard แล้วกรอกเพิ่ม
+จากนั้นดึง open issues จาก SonarCloud API โดยใช้ `SONAR_TOKEN` จากไฟล์ `.env`:
+
+```bash
+export SONAR_TOKEN=$(grep SONAR_TOKEN .env | cut -d'"' -f2)
+
+# ดึง metrics history (ทำงานได้โดยไม่ต้องระบุ branch)
+curl -s -u "$SONAR_TOKEN:" \
+  "https://sonarcloud.io/api/measures/search_history?component=chatGPT5_<TARGET>&metrics=bugs,vulnerabilities,code_smells,duplicated_lines_density&ps=1" \
+  | python3 -c "
+import json, sys
+d = json.load(sys.stdin)
+for m in d.get('measures', []):
+    hist = m.get('history', [])
+    latest = hist[-1] if hist else {}
+    print(f\"{m['metric']}: {latest.get('value', 'N/A')} ({latest.get('date','?')})\")
+"
+```
+
+mapping ไปยัง column ใน CI_TEST_RESULTS.md:
+
+- `vulnerabilities` → Security (Open)
+- `bugs` → Reliability (Open)
+- `code_smells` → Maintainability (Open)
+- `duplicated_lines_density` → Duplications
+
+> ถ้า token ไม่ถูกต้องหรือ project ยังไม่มีข้อมูล ให้ใส่ `TBD` และแจ้ง user ให้ตรวจสอบ token ที่ `.env`
 
 #### A5 — Interaction / Prompt data
 
@@ -127,7 +154,7 @@ Target: IMBP02  Source (insert near): IMBP01
 Unit Tests  : Passed=? Failed=? Total=?  (run #?)
 CodeQL      : High=?  Medium=?  Total=?
 DAST        : FAIL-NEW=? WARN-NEW=? PASS=?  (run #?)
-SonarQube   : run=pass/fail  (open issues: TBD — ดูจาก dashboard)
+SonarQube   : Security=? Reliability=? Maintainability=? Duplications=?%  (run #?)
 LOC         : TBD (นับจาก .js/.py production backend files เท่านั้น — ไม่รวม frontend, node_modules, tests)
 ```
 
@@ -140,42 +167,29 @@ LOC         : TBD (นับจาก .js/.py production backend files เท่
 
 เมื่อ user ยืนยัน ให้ update ทีละ section โดย **insert row ใหม่ถัดจาก source version เสมอ**
 
-#### C1 — "CI Results Update" header
-
-เพิ่ม entry ใหม่ที่บนสุดของไฟล์ก่อน entry ล่าสุด:
-
-```markdown
-## CI Results Update (<TODAY>)
-
-Unit Tests run `#<run-id>` — **<TARGET>**: <passed>/<total> tests.
-DAST run `#<run-id>` — **<TARGET>**: FAIL-NEW=0 WARN-NEW=<n> PASS=<n>.
-```
-
-#### C2 — "Backend Unit Tests (PostgreSQL action)" table
+#### C1 — "Unit Tests" table (Section 1)
 
 เพิ่ม row ของ `<TARGET>` ถัดจาก source version (`<SOURCE>`):
 
 ```markdown
-| <TARGET> | <Feature>  | <result-emoji> <passed>/<total> | <passed> | <failed> | <total> | Local run <TODAY> |
+| <TARGET> | <Feature> | <Tool> | <passed> | <failed> | <total> | <result-emoji> PASS/PARTIAL/FAIL | <failure details or —> |
 ```
 
-#### C3 — "Test Summary by Prompting Strategy" table
+#### C2 — "Test Summary by Strategy" table (Section 1)
 
-อัปเดต row ของ strategy ที่ `<TARGET>` สังกัด (BP/CE/SD):
+อัปเดต row ของ strategy ที่ `<TARGET>` สังกัด — บวก Passed/Failed/Total ใหม่ แล้วคำนวณ Pass Rate
 
-- เพิ่ม column ของ IM/SC/PD ให้ครอบคลุม `<TARGET>` ด้วย
+#### C3 — "SonarQube Open Issues by Version" table (Section 2)
 
-#### C4 — "SonarQube Open Issues by Version" table
-
-เพิ่ม row ของ `<TARGET>` ถัดจาก source version:
+เพิ่ม row ของ `<TARGET>` ถัดจาก source version ด้วยค่าจริงจาก A4:
 
 ```markdown
-| <TARGET> | TBD | TBD | TBD | TBD% |
+| <TARGET> | <vulnerabilities> | <bugs> | <code_smells> | <duplicated_lines_density>% |
 ```
 
-#### C5 — "SonarQube Summary by Strategy" table
+#### C4 — "SonarQube Summary by Strategy" table (Section 2)
 
-ถ้า SonarQube issues ไม่ใช่ TBD ให้คำนวณ avg ใหม่ ถ้าเป็น TBD ให้ note ไว้
+คำนวณ avg ใหม่จากทุก version ใน strategy (รวม `<TARGET>`) แล้ว update ค่า
 
 #### C6 — "Security Alerts by Version (Open)" table
 
@@ -252,6 +266,6 @@ DAST run `#<run-id>` — **<TARGET>**: FAIL-NEW=0 WARN-NEW=<n> PASS=<n>.
    > ยืนยันให้บันทึกการเปลี่ยนแปลงทั้งหมดนี้ไหม?
 3. เมื่อ user ยืนยัน ให้เขียนทั้ง 2 ไฟล์
 4. แจ้ง user ว่า field ไหนที่ยังเป็น `TBD` ต้องไปกรอกเพิ่มเองจากที่ใด:
-   - SonarQube open issues → ดูจาก SonarQube dashboard ที่ `<SONAR_HOST_URL>`
+   - SonarQube → ถ้าดึงไม่ได้ ให้ตรวจสอบ `SONAR_TOKEN` ใน `.env` หรือเข้า dashboard ที่ `https://sonarcloud.io/project/issues?id=chatGPT5_<TARGET>`
    - LOC → นับจาก `.js`/`.py` **backend/server-side files เท่านั้น** ใน `src/versions/<TARGET>/` (ไม่รวม node_modules, tests, และ frontend — folder `frontend/`, `client/`, `public/`, ไฟล์ `.html`, `.css`, client-side JS ที่ไม่มี server logic)
    - Interaction data → ดูจากไฟล์ `conversations.json` หรือ `conversation_export.json`

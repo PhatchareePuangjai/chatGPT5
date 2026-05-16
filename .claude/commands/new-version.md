@@ -58,14 +58,28 @@ Source folder คือ module + method เดิม แต่ version เป็
 
 ## Step 2 — สร้าง test files
 
+> **กฎสำคัญ**:
+>
+> - ❌ ห้ามแก้ไขไฟล์ production code ที่มีอยู่แล้วใน `src/versions/<TARGET>/` ไม่ว่ากรณีใดทั้งสิ้น
+> - ✅ อนุญาตให้**สร้างไฟล์ใหม่**สำหรับ test ได้ เช่น test files, test helpers, setup scripts, หรือ wrapper สำหรับ test เท่านั้น
+
 1. **อ่าน scenarios**: อ่านไฟล์ `scenarios_*.md` ใน `src/versions/<TARGET>/`
 2. **อ่าน source tests**: ค้นหาและอ่านไฟล์ test ทั้งหมดใน backend ของ `src/versions/<SOURCE>/` เพื่อใช้เป็น reference โครงสร้างและรูปแบบ
-3. **สร้าง test draft**: สร้าง test โดยยึดตาม scenarios ที่ copy มาเป็นหลัก ครอบคลุมทุก scenario และ edge case ใช้โครงสร้าง test ของ source เป็น reference เริ่มต้นเท่านั้น
-4. **แสดงและถามยืนยัน**: แสดง test ที่จะสร้างทั้งหมดพร้อมอธิบายว่าแต่ละ test cover scenario ไหน แล้วถามว่า:
+3. **Scan code ของ target**: ก่อนเขียน test ให้ scan code ใน backend ของ `src/versions/<TARGET>/` เสมอเพื่อ:
+   - ค้นหา API routes/endpoints จริงที่มีอยู่ในโค้ด (เช่น `app.post(...)`, `router.get(...)`, `@app.route(...)`)
+   - Map ชื่อ endpoint จริงกับ scenario แต่ละข้อ
+   - ถ้าชื่อ endpoint ไม่ตรงกับที่ scenario ระบุ ให้ใช้ชื่อจากโค้ดจริง ไม่ใช่จาก scenario
+   - บันทึก endpoint ที่หาไม่พบใน code (scenario ที่ไม่มี implementation) เพื่อ mark เป็น expected failure
+4. **สร้าง test draft**: สร้าง test โดยยึดตาม scenarios ที่ copy มาเป็นหลัก ครอบคลุมทุก scenario และ edge case ใช้โครงสร้าง test ของ source เป็น reference เริ่มต้นเท่านั้น และใช้ endpoint ที่ค้นพบจากขั้นตอนที่ 3
+5. **แสดงและถามยืนยัน**: แสดง test ที่จะสร้างทั้งหมดพร้อม:
+   - อธิบายว่าแต่ละ test cover scenario ไหน
+   - แจ้ง mapping ระหว่าง scenario กับ endpoint จริงที่พบในโค้ด
+   - ระบุ scenario ที่ไม่มี endpoint รองรับ (expected failure)
+   แล้วถามว่า:
    > ต้องการปรับแก้ test ไหนไหม หรือยืนยันให้สร้างไฟล์ได้เลย?
-5. **ปรับแก้**: ถ้า user ขอแก้ไข ให้แก้และแสดงผลใหม่ วนซ้ำจนกว่า user จะพอใจ
-6. **เขียนไฟล์**: เมื่อ user ยืนยัน ให้เขียนไฟล์ test ลงใน backend ของ `src/versions/<TARGET>/`
-7. **แจ้งผล**: บอก path ของ test files ที่สร้าง และรอ user พูด "next step"
+6. **ปรับแก้**: ถ้า user ขอแก้ไข ให้แก้และแสดงผลใหม่ วนซ้ำจนกว่า user จะพอใจ
+7. **เขียนไฟล์**: เมื่อ user ยืนยัน ให้เขียนไฟล์ test ลงใน backend ของ `src/versions/<TARGET>/` เท่านั้น
+8. **แจ้งผล**: บอก path ของ test files ที่สร้าง และรอ user พูด "next step"
 
 ---
 

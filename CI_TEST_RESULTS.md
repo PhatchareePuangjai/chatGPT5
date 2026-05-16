@@ -6,112 +6,35 @@
 
 ---
 
-## CI Results Update (2026-05-16)
-
-Unit Tests (local run) — **IMBP02**: 5/7 tests passed, 2 failed (missing restock endpoint; low-stock threshold off-by-one `< 5` vs `<= 5`). CI job skipped due to paths-filter.
-DAST run [`#25953174638`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25953174638) — **IMBP02**: FAIL-NEW=0 WARN-NEW=11 PASS=56.
-SonarQube run [`#25953174624`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25953174624) — **IMBP02**: job passed (open issues TBD — check dashboard).
-CodeQL — **IMBP02**: 0 alerts (High=0, Medium=0).
-
-## CI Results Update (2026-05-09)
-
-LOC values recalculated for all versions using **backend-only convention** (frontend files excluded). 7 versions updated: IMBP01, IMCE01, SCBP01, SCCE01, SCSD01, SCSD01_v2, PDCE01.
-
-## CI Results Update (2026-05-04)
-
-## CI Results Update (2026-04-12)
-
-**DAST** run [`#24299653751`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24299653751) — Overall status: 9/9 jobs scanned. All FAIL-NEW counts remain 0 across all versions.
-
-## CI Results Update (2026-04-11)
-
-Latest GitHub Actions runs triggered by code changes (unit test + SonarQube updates).
-
-**CodeQL** run [`#24025305539`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539) — Both Python and JavaScript analyses passed. Security alert counts **unchanged** from previous run.
-
-**DAST** run [`#24028162574`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24028162574) — Overall status: 9/9 jobs scanned.
-
-Note: CS versions (IMCS01, PDCS01, SCCS01) and AG versions (IMAG01, PDAG01, SCAG01 removed from workflow.
-
-## Local Verification Updates (2026-04-04)
-
-Full test suites (scenario + unit + integration) executed locally for all SDD versions after restructuring code under new folder names.
-These results are local verification updates and are not part of the archived GitHub Actions run `#23089850265`.
-
-> **Note:** CI run `#23089850265` results in the tables below reflect the **old code** (`_IMSD01`, `_PDSD01`, `_SCSD01`). The SDD test counts shown there are outdated. The correct counts from the new code are listed here.
->
-> **Counting convention used in this document:** for `IMSD01`, scenario count is reported as **7 scenario methods** to stay consistent with archived workflow run `#23089850265` (`Unit Test IMSD01 = 7/7`). Although local `pytest` collection can expand one parametrized scenario into multiple test items, that expansion is **not** used in the summary tables below.
->
-> **Functional correctness in this document is represented by scenario-level tests** rather than SonarQube. The table below isolates the scenario counts that map directly to business requirements.
-
-### Functional Correctness Coverage (Scenario-Level Tests)
-
-| Version   | Feature                | Scenario Tests | Result                  | Business Coverage                                             |
-| --------- | ---------------------- | -------------- | ----------------------- | ------------------------------------------------------------- |
-| IMSD01    | Inventory Management   | 7/7            | :white_check_mark: PASS | Stock deduction, low stock alert, stock restoration, edge cases |
-| PDSD01    | Promotions & Discounts | 6/6            | :white_check_mark: PASS | Coupon validation, discount calculation, expiration, edge cases |
-| SCSD01    | Shopping Cart          | 5/5            | :white_check_mark: PASS | Update quantity, merge items, save for later, edge cases       |
-| SCSD01_v2 | Shopping Cart          | 5/5            | :white_check_mark: PASS | Reproducibility rerun of SCSD01 scenario coverage              |
-
-| Version   | Feature                | Command            | Result                  | Passed | Failed | Breakdown                                                                   |
-| --------- | ---------------------- | ------------------ | ----------------------- | ------ | ------ | --------------------------------------------------------------------------- |
-| IMSD01    | Inventory Management   | `pytest tests/ -v` | :white_check_mark: PASS | 17     | 0      | scenarios: 7, contract: 2, unit: 4, integration: 4                          |
-| PDSD01    | Promotions & Discounts | `pytest tests/ -v` | :white_check_mark: PASS | 18     | 0      | scenarios: 6, unit: 7, integration: 5                                       |
-| SCSD01    | Shopping Cart          | `pytest tests/ -v` | :white_check_mark: PASS | 16     | 0      | scenarios: 5, unit: 8, integration: 3                                       |
-| SCSD01_v2 | Shopping Cart          | `pytest tests/ -v` | :white_check_mark: PASS | 15     | 0      | scenarios: 5, unit: 6, integration: 4                                       |
-
-> **Note on SCSD01_v2:** สร้างขึ้นเพื่อทดสอบ reproducibility เท่านั้น — ต้องการรู้ว่าถ้ารัน spec-driven process เดิมซ้ำอีกครั้งโดยไม่เปลี่ยนอะไร จะได้ผลลัพธ์เหมือน SCSD01 ไหม **ไม่ได้นำมารวมในการวิเคราะห์เปรียบเทียบ strategy** (ทุกกราฟและ summary ใช้เฉพาะ SCSD01)
+> **Note on SCSD01_v2:** ปรากฏในตาราง version เพื่อความสมบูรณ์ของข้อมูล แต่**ไม่รวมในทุก strategy-level summary** เนื่องจากสร้างขึ้นเพื่อทดสอบ reproducibility เท่านั้น ไม่ได้เป็นส่วนหนึ่งของการวิเคราะห์เปรียบเทียบ
 
 ---
 
-## 1. Unit Tests & Integration Tests (For Note, ไม่ได้ใช้ หรือให้ความสำคัญมาก)
+## 1. Unit Tests
 
-> Workflow run: [Unit Tests #23089850265](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265)
-> Result: :white_check_mark: **ALL 13 JOBS PASSED**
+> Workflow run: [Unit Tests #23089850265](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) — CI jobs passed (IMBP02: local run only, CI skipped — paths-filter)
+> Source: `test_report.md` in each version directory
 
-### Backend Unit Tests (PostgreSQL action)
+| Version | Feature                | Tool   | Passed | Failed | Total | Result                  | Failure Details                                           |
+| ------- | ---------------------- | ------ | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------- |
+| IMBP01  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | —                                                         |
+| IMBP02  | Inventory Management   | Jest   | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5` |
+| IMCE01  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | —                                                         |
+| IMSD01  | Inventory Management   | pytest | 17     | 0      | 17    | :white_check_mark: PASS | scenarios: 7, contract: 2, unit: 4, integration: 4        |
+| SCBP01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
+| SCCE01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
+| SCSD01  | Shopping Cart          | pytest | 16     | 0      | 16    | :white_check_mark: PASS | scenarios: 5, unit: 8, integration: 3                     |
+| PDBP01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
+| PDCE01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
+| PDSD01  | Promotions & Discounts | pytest | 18     | 0      | 18    | :white_check_mark: PASS | scenarios: 6, unit: 7, integration: 5                     |
 
-| Version | Feature                | Result                  | Passed | Failed | Total | Details                                                                        |
-| ------- | ---------------------- | ----------------------- | ------ | ------ | ----- | ------------------------------------------------------------------------------ |
-| IMBP01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| IMBP02  | Inventory Management   | ⚠️ 5/7 (local)          | 5      | 2      | 7     | Local run 2026-05-16 (CI skipped — paths-filter) |
-| IMCE01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| IMSD01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| PDCE01  | Promotions & Discounts | :white_check_mark: PASS | 6      | 0      | 6     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
+### Test Summary by Strategy
 
-### Integration Tests (Docker Compose — CS)
-
-| Version            | Feature                | Result                  | Passed | Failed | Total | Details                                                                        |
-| ------------------ | ---------------------- | ----------------------- | ------ | ------ | ----- | ------------------------------------------------------------------------------ |
-| IMCS01             | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| PDCS01-integration | Promotions & Discounts | :white_check_mark: PASS | 6      | 0      | 6     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| SCCS01             | Shopping Cart          | :white_check_mark: PASS | 5      | 0      | 5     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-
-### Integration Tests (Docker Compose DB — BP / CE / SD)
-
-| Version | Feature                | Result                  | Passed | Failed | Total | Details                                                                        |
-| ------- | ---------------------- | ----------------------- | ------ | ------ | ----- | ------------------------------------------------------------------------------ |
-| SCBP01  | Shopping Cart          | :white_check_mark: PASS | 5      | 0      | 5     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| PDBP01  | Promotions & Discounts | :white_check_mark: PASS | 6      | 0      | 6     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| SCCE01  | Shopping Cart          | :white_check_mark: PASS | 5      | 0      | 5     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| SCSD01  | Shopping Cart          | :white_check_mark: PASS | 5      | 0      | 5     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| PDSD01  | Promotions & Discounts | :white_check_mark: PASS | 11     | 0      | 11    | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-| PDCS01  | Promotions & Discounts | :white_check_mark: PASS | 6      | 0      | 6     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
-
-### Test Summary by Prompting Strategy
-
-| Strategy                     | IM (Inventory)           | SC (Shopping Cart)       | PD (Promotions)          | Total     |
-| ---------------------------- | ------------------------ | ------------------------ | ------------------------ | --------- |
-| **BP** (Basic Prompting)     | :white_check_mark: 7/7                            | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
-| **CE** (Context Engineering) | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
-| **CS** (Cursor)              | :white_check_mark: 7/7   | :white_check_mark: 5/5   | :white_check_mark: 6/6   | **18/18** |
-| **SD** (Spec-Driven Dev)     | :white_check_mark: 17/17 | :white_check_mark: 16/16 | :white_check_mark: 18/18 | **51/51** |
-
-> BP/CE/CS counts are scenario-level test counts from archived CI run `#23089850265`.
-> SD counts are local full-suite counts from the restructured codebase, using the document counting convention above.
-> SCSD01_v2 excluded from strategy comparison — reproducibility test only (see note above).
->
-> **Total: 106 tests passed, 0 failed across 12 versions (excluding SCSD01_v2)**
+| Strategy                     | Passed | Failed | Total | Pass Rate |
+| ---------------------------- | ------ | ------ | ----- | --------- |
+| **BP** (Basic Prompting)     | 23     | 2      | 25    | 92%       |
+| **CE** (Context Engineering) | 18     | 0      | 18    | 100%      |
+| **SD** (Spec-Driven Dev)     | 51     | 0      | 51    | 100%      |
 
 ---
 
@@ -124,7 +47,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
 | --------- | --------------- | ------------------ | ---------------------- | ------------ |
 | IMBP01    | 0               | 3                  | 7                      | 6.90%        |
-| IMBP02    | TBD             | TBD                | TBD                    | TBD          |
+| IMBP02    | 2               | 0                  | 1                      | 0.00%        |
 | IMCE01    | 0               | 19                 | 26                     | 0.00%        |
 | IMSD01    | 0               | 12                 | 15                     | 3.30%        |
 | SCBP01    | 0               | 9                  | 18                     | 5.40%        |
@@ -141,7 +64,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- |
-| **BP** (Basic Prompting)     | 0.0          | 4.33            | 11.67               | 4.57%            |
+| **BP** (Basic Prompting)     | 0.5          | 3.25            | 9.0                 | 3.43%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
 | **SD** (Spec-Driven Dev)     | 0.67         | 6.0             | 9.67                | 10.07%           |
 
@@ -191,7 +114,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
 | IMBP01  | 0        | 7        | 60   | Missing headers                                                                   |
-| IMBP02  | 0        | 11       | 56   | Missing headers + Cross-Domain Misconfiguration + Permissions Policy              |
+| IMBP02  | 0        | 10       | 57   | Missing headers + Cross-Domain Misconfiguration + Permissions Policy              |
 | IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
@@ -221,7 +144,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
-| **BP** (Basic Prompting)     | 7.33         | 59.67    | 1/3 (PDBP01)             | 3/3 scanned                          |
+| **BP** (Basic Prompting)     | 8.0          | 59.0     | 1/4 (PDBP01)             | 4/4 scanned                          |
 | **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
 | **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
 
@@ -232,7 +155,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
 | --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        | 251           | 404            | 62.8         |
-| IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/11/56               | TBD                       | TBD          | 85            | 80             | 28.3         |
+| IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/10/57               | 2 / 0 / 1                 | 0.00%        | 85            | 80             | 28.3         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398           | 318            | 15.9         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 406           | 358            | 67.7         |
