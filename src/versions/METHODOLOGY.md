@@ -39,7 +39,7 @@ The primary dataset is being expanded to **18 generated versions** organized as 
 
 The `01` versions form the initial baseline set. The `02` versions are repeat generations of the same domain-strategy combinations and are included to reduce single-run variance and make the comparison less dependent on one generated sample. Each version is evaluated against the same Acceptance Scenarios and Edge Cases for its domain. Results are reported both per version and, where applicable, aggregated by strategy across all completed runs.
 
-At the time of this methodology update, the second Basic Prompting run (`IMBP02`, `SCBP02`, and `PDBP02`) has been generated and measured. The remaining `02` versions for Context Engineering and Specification-Driven Development are planned for the next evaluation pass and will be added using the same measurement procedure.
+At the time of this methodology update, the second Basic Prompting run (`IMBP02`, `SCBP02`, and `PDBP02`) and the second Context Engineering run for Inventory Management (`IMCE02`) have been generated and measured. The remaining `02` versions for Context Engineering and Specification-Driven Development are planned for the next evaluation pass and will be added using the same measurement procedure.
 
 ### 2.2 Supplementary Repository Artifacts
 
@@ -126,6 +126,7 @@ The table below is updated progressively as each version in the 18-version datas
 | PDBP01  | BP       | 365           | 805            | 618                  |
 | PDBP02  | BP       | 93            | 81             | 1,366                |
 | IMCE01  | CE       | 228           | 1,115          | 927                  |
+| IMCE02  | CE       | 58            | 60             | 210                  |
 | SCCE01  | CE       | 409           | 457            | 463                  |
 | PDCE01  | CE       | 305           | 249            | 531                  |
 | IMSD01  | SDD      | 398           | 318            | 296                  |
