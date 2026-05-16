@@ -118,6 +118,7 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 | IMBP01  | BP       | 251           | 404            | 341                  |
 | IMBP02  | BP       | 85            | 80             | 144                  |
 | SCBP01  | BP       | 406           | 358            | 836                  |
+| SCBP02  | BP       | 87            | 88             | 177                  |
 | PDBP01  | BP       | 365           | 805            | 618                  |
 | IMCE01  | CE       | 228           | 1,115          | 927                  |
 | SCCE01  | CE       | 409           | 457            | 463                  |

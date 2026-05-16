@@ -22,6 +22,7 @@
 | IMCE01  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | —                                                         |
 | IMSD01  | Inventory Management   | pytest | 17     | 0      | 17    | :white_check_mark: PASS | scenarios: 7, contract: 2, unit: 4, integration: 4        |
 | SCBP01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
+| SCBP02  | Shopping Cart          | Jest   | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)        |
 | SCCE01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
 | SCSD01  | Shopping Cart          | pytest | 16     | 0      | 16    | :white_check_mark: PASS | scenarios: 5, unit: 8, integration: 3                     |
 | PDBP01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
@@ -32,7 +33,7 @@
 
 | Strategy                     | Passed | Failed | Total | Pass Rate |
 | ---------------------------- | ------ | ------ | ----- | --------- |
-| **BP** (Basic Prompting)     | 23     | 2      | 25    | 92%       |
+| **BP** (Basic Prompting)     | 27     | 3      | 30    | 90%       |
 | **CE** (Context Engineering) | 18     | 0      | 18    | 100%      |
 | **SD** (Spec-Driven Dev)     | 51     | 0      | 51    | 100%      |
 
@@ -51,6 +52,7 @@
 | IMCE01    | 0               | 19                 | 26                     | 0.00%        |
 | IMSD01    | 0               | 12                 | 15                     | 3.30%        |
 | SCBP01    | 0               | 9                  | 18                     | 5.40%        |
+| SCBP02    | 6               | 1                  | 2                      | 0.00%        |
 | SCCE01    | 0               | 9                  | 12                     | 4.30%        |
 | SCSD01    | 1               | 0                  | 5                      | 26.90%       |
 | SCSD01_v2 | 0               | 4                  | 25                     | 0.00%        |
@@ -64,7 +66,7 @@
 
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- |
-| **BP** (Basic Prompting)     | 0.5          | 3.25            | 9.0                 | 3.43%            |
+| **BP** (Basic Prompting)     | 1.6          | 2.8             | 7.6                 | 2.74%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
 | **SD** (Spec-Driven Dev)     | 0.67         | 6.0             | 9.67                | 10.07%           |
 
@@ -89,6 +91,7 @@
 | IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
 | IMSD01  | 0    | 0      | 0     | -                                      |
 | SCBP01  | 0    | 0      | 0     | -                                      |
+| SCBP02  | 0    | 0      | 0     | -                                      |
 | SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
 | SCSD01  | 0    | 0      | 0     | -                                      |
 | PDBP01  | 0    | 0      | 0     | -                                      |
@@ -121,6 +124,7 @@
 | PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Information Leak [10009]   |
 | SCBP01  | 0        | 7        | 60   | Missing headers                                                                   |
+| SCBP02  | 0        | 5        | 62   | Storable and Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
 | SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
 | SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attribute Missing [90003]                |
 
@@ -144,7 +148,7 @@
 
 | Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
-| **BP** (Basic Prompting)     | 8.0          | 59.0     | 1/4 (PDBP01)             | 4/4 scanned                          |
+| **BP** (Basic Prompting)     | 7.4          | 59.6     | 1/5 (PDBP01)             | 5/5 scanned                          |
 | **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
 | **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
 
@@ -159,6 +163,7 @@
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398           | 318            | 15.9         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 406           | 358            | 67.7         |
+| SCBP02    | ⚠️ 4/5 (CI, 1 fail)        | 0 alerts      | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 87            | 88             | 29.0         |
 | SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 0 / 9 / 12                | 4.30%        | 409           | 457            | 204.5        |
 | SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 1 / 0 / 5                 | 26.90%       | 208           | 988            | 34.7         |
 | SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 0 / 4 / 25                | 0.00%        | 493           | 357            | 41.1         |
@@ -187,6 +192,7 @@
 | IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 4 | 7 | 341 |
 | IMBP02  | BP       | GPT-5 (gpt-5-2-instant) | 1 | 2 | 3 | 144 |
 | SCBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 836 |
+| SCBP02  | BP       | GPT-5 (gpt-5-2-instant) | 1 | 2 | 5 | 177 |
 | PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
 | IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
 | SCCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 3 | 3 | 463 |
@@ -199,7 +205,7 @@
 
 | Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
-| **BP** (Basic Prompting) | 4 | 13 | 17 | 1,939 |
+| **BP** (Basic Prompting) | 5 | 15 | 22 | 2,116 |
 | **CE** (Context Engineering) | 3 | 12 | 16 | 1,921 |
 | **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
 
