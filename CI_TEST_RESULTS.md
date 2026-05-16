@@ -117,7 +117,7 @@
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
 | IMBP01  | 0        | 7        | 60   | Missing headers                                                                   |
-| IMBP02  | 0        | 10       | 57   | Missing headers + Cross-Domain Misconfiguration + Permissions Policy              |
+| IMBP02  | 0        | 11       | 56   | Missing headers + Cross-Domain Misconfiguration + Permissions Policy              |
 | IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
@@ -148,7 +148,7 @@
 
 | Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
-| **BP** (Basic Prompting)     | 7.4          | 59.6     | 1/5 (PDBP01)             | 5/5 scanned                          |
+| **BP** (Basic Prompting)     | 7.6          | 59.4     | 1/5 (PDBP01)             | 5/5 scanned                          |
 | **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
 | **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
 
@@ -159,7 +159,7 @@
 | Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
 | --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        | 251           | 404            | 62.8         |
-| IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/10/57               | 2 / 0 / 1                 | 0.00%        | 85            | 80             | 28.3         |
+| IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/11/56               | 2 / 0 / 1                 | 0.00%        | 85            | 80             | 28.3         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398           | 318            | 15.9         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 406           | 358            | 67.7         |
