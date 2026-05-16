@@ -20,6 +20,7 @@ on:
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
       - 'src/versions/PDBP02/**'
+      - 'src/versions/IMCE02/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -39,6 +40,7 @@ on:
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
       - 'src/versions/PDBP02/**'
+      - 'src/versions/IMCE02/**'
   workflow_dispatch:
 
 jobs:
@@ -282,6 +284,13 @@ jobs:
             full_compose: false
             database_url: postgres://promo:promo@localhost:5434/promotions
             migrate_cmd: 'npm run db:migrate && npm run db:seed'
+            node_options: ''
+          - version: IMCE02
+            compose_path: src/versions/IMCE02
+            test_path: src/versions/IMCE02/backend/tests
+            full_compose: false
+            database_url: postgres://postgres:postgres@localhost:5432/inventory
+            migrate_cmd: ''
             node_options: ''
 
     steps:

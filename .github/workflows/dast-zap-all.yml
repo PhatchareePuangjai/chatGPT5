@@ -70,6 +70,10 @@ jobs:
             path: 'src/versions/PDBP02'
             port: '5000'
 
+          - version: 'IMCE02'
+            path: 'src/versions/IMCE02'
+            port: '5000'
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
