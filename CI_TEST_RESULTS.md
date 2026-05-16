@@ -1,10 +1,17 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-08
+> Last updated: 2026-05-16
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
 ---
+
+## CI Results Update (2026-05-16)
+
+Unit Tests (local run) — **IMBP02**: 5/7 tests passed, 2 failed (missing restock endpoint; low-stock threshold off-by-one `< 5` vs `<= 5`). CI job skipped due to paths-filter.
+DAST run [`#25953174638`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25953174638) — **IMBP02**: FAIL-NEW=0 WARN-NEW=11 PASS=56.
+SonarQube run [`#25953174624`](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25953174624) — **IMBP02**: job passed (open issues TBD — check dashboard).
+CodeQL — **IMBP02**: 0 alerts (High=0, Medium=0).
 
 ## CI Results Update (2026-05-09)
 
@@ -67,6 +74,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version | Feature                | Result                  | Passed | Failed | Total | Details                                                                        |
 | ------- | ---------------------- | ----------------------- | ------ | ------ | ----- | ------------------------------------------------------------------------------ |
 | IMBP01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
+| IMBP02  | Inventory Management   | ⚠️ 5/7 (local)          | 5      | 2      | 7     | Local run 2026-05-16 (CI skipped — paths-filter) |
 | IMCE01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
 | IMSD01  | Inventory Management   | :white_check_mark: PASS | 7      | 0      | 7     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
 | PDCE01  | Promotions & Discounts | :white_check_mark: PASS | 6      | 0      | 6     | [Log](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) |
@@ -116,6 +124,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
 | --------- | --------------- | ------------------ | ---------------------- | ------------ |
 | IMBP01    | 0               | 3                  | 7                      | 6.90%        |
+| IMBP02    | TBD             | TBD                | TBD                    | TBD          |
 | IMCE01    | 0               | 19                 | 26                     | 0.00%        |
 | IMSD01    | 0               | 12                 | 15                     | 3.30%        |
 | SCBP01    | 0               | 9                  | 18                     | 5.40%        |
@@ -153,6 +162,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version | High | Medium | Total | Details                                |
 | ------- | ---- | ------ | ----- | -------------------------------------- |
 | IMBP01  | 5    | 0      | 5     | Missing rate limiting                  |
+| IMBP02  | 0    | 0      | 0     | -                                      |
 | IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
 | IMSD01  | 0    | 0      | 0     | -                                      |
 | SCBP01  | 0    | 0      | 0     | -                                      |
@@ -181,6 +191,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
 | IMBP01  | 0        | 7        | 60   | Missing headers                                                                   |
+| IMBP02  | 0        | 11       | 56   | Missing headers + Cross-Domain Misconfiguration + Permissions Policy              |
 | IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
@@ -221,6 +232,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
 | --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
 | IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 0 / 3 / 7                 | 6.90%        | 251           | 404            | 62.8         |
+| IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/11/56               | TBD                       | TBD          | 85            | 80             | 28.3         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 0 / 19 / 26               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 0 / 12 / 15               | 3.30%        | 398           | 318            | 15.9         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 0 / 9 / 18                | 5.40%        | 406           | 358            | 67.7         |
@@ -250,6 +262,7 @@ These results are local verification updates and are not part of the archived Gi
 | Version | Strategy | Model | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
 | ------- | -------- | ----- | ------------- | ---------- | -------- | -------------------- |
 | IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 4 | 7 | 341 |
+| IMBP02  | BP       | GPT-5 (gpt-5-2-instant) | 1 | 2 | 3 | 144 |
 | SCBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 836 |
 | PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
 | IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
@@ -263,7 +276,7 @@ These results are local verification updates and are not part of the archived Gi
 
 | Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
-| **BP** (Basic Prompting) | 3 | 11 | 14 | 1,795 |
+| **BP** (Basic Prompting) | 4 | 13 | 17 | 1,939 |
 | **CE** (Context Engineering) | 3 | 12 | 16 | 1,921 |
 | **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
 

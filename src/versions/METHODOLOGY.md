@@ -116,6 +116,7 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 | Version | Strategy | Backend LOC ⁵ | Frontend LOC ⁶ | User Prompt Tokens ⁷ |
 | ------- | -------- | ------------- | -------------- | -------------------- |
 | IMBP01  | BP       | 251           | 404            | 341                  |
+| IMBP02  | BP       | 85            | 80             | 144                  |
 | SCBP01  | BP       | 406           | 358            | 836                  |
 | PDBP01  | BP       | 365           | 805            | 618                  |
 | IMCE01  | CE       | 228           | 1,115          | 927                  |
