@@ -22,7 +22,7 @@ beforeEach(async () => {
   const tomorrow = new Date(Date.now() + 86400000);
 
   await Coupon.insertMany([
-    // SAVE100: 10% discount → 100 baht off on 1000 baht cart
+    // SAVE100: implemented as 10%, which happens to equal 100 baht on a 1000 baht cart.
     { code: "SAVE100", discountPercentage: 10, expirationDate: tomorrow, isActive: true },
     // EXPIRED: expired yesterday
     { code: "EXPIRED", discountPercentage: 10, expirationDate: yesterday, isActive: true },
@@ -33,7 +33,7 @@ beforeEach(async () => {
 
 describe("Promotions and Discounts Scenarios", () => {
   // Scenario 1: Coupon Validation
-  test("1) Coupon Validation: SAVE100 gives 10% off on 1000 baht cart", async () => {
+  test("1) Coupon Validation: SAVE100 applies discount and enforces minimum purchase", async () => {
     const res = await request(app)
       .post("/api/promotions/apply-coupon")
       .send({ code: "SAVE100", cartTotal: 1000 })
@@ -42,17 +42,23 @@ describe("Promotions and Discounts Scenarios", () => {
     expect(res.body.discountAmount).toBe(100);  // 1000 * 10% = 100
     expect(res.body.newTotal).toBe(900);
     expect(res.body.message).toMatch(/success/i);
-    // NOTE: min purchase check (500 baht) does NOT exist in PDBP02 — not enforced
+
+    const belowMinimum = await request(app)
+      .post("/api/promotions/apply-coupon")
+      .send({ code: "SAVE100", cartTotal: 400 });
+
+    expect(belowMinimum.status).toBe(400); // EXPECTED FAILURE: minimum purchase is not enforced
   });
 
-  // Scenario 2: Cart Total Discount % — no auto-discount endpoint
-  test("2) Cart Total Discount %: auto-discount endpoint does not exist (expected failure)", async () => {
+  // Scenario 2: Cart Total Discount %
+  test("2) Cart Total Discount %: 10% off on 2000 baht cart", async () => {
     const res = await request(app)
       .post("/api/promotions/auto-discount")
-      .send({ cartTotal: 2000, discountPercent: 10 });
+      .send({ cartTotal: 2000, discountPercent: 10 })
+      .expect(200);
 
-    // Route does not exist → 404
-    expect(res.status).toBe(404);
+    expect(res.body.discountAmount).toBe(200);
+    expect(res.body.newTotal).toBe(1800);
   });
 
   // Scenario 3: Expiration Date Check

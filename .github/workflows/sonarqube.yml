@@ -73,7 +73,7 @@ jobs:
           - version: SCBP02
             path: src/versions/SCBP02
           - version: PDBP02
-            path: src/versions/PDBP02/backend
+            path: src/versions/PDBP02
 
     steps:
       - name: Checkout repository
