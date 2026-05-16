@@ -12,7 +12,7 @@
 
 ## 1. Unit Tests
 
-> Workflow run: [Unit Tests #23089850265](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/23089850265) — CI jobs passed (IMBP02: local run only, CI skipped — paths-filter)
+> Workflow run: [Unit Tests #25960389958](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25960389958)
 > Source: `test_report.md` in each version directory
 
 | Version | Feature                | Tool   | Passed | Failed | Total | Result                  | Failure Details                                           |
@@ -26,6 +26,7 @@
 | SCCE01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
 | SCSD01  | Shopping Cart          | pytest | 16     | 0      | 16    | :white_check_mark: PASS | scenarios: 5, unit: 8, integration: 3                     |
 | PDBP01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
+| PDBP02  | Promotions & Discounts | Jest   | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard |
 | PDCE01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
 | PDSD01  | Promotions & Discounts | pytest | 18     | 0      | 18    | :white_check_mark: PASS | scenarios: 6, unit: 7, integration: 5                     |
 
@@ -33,7 +34,7 @@
 
 | Strategy                     | Passed | Failed | Total | Pass Rate |
 | ---------------------------- | ------ | ------ | ----- | --------- |
-| **BP** (Basic Prompting)     | 27     | 3      | 30    | 90%       |
+| **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 18     | 0      | 18    | 100%      |
 | **SD** (Spec-Driven Dev)     | 51     | 0      | 51    | 100%      |
 
@@ -57,6 +58,7 @@
 | SCSD01    | 1               | 0                  | 5                      | 26.90%       |
 | SCSD01_v2 | 0               | 4                  | 25                     | 0.00%        |
 | PDBP01    | 0               | 1                  | 10                     | 1.40%        |
+| PDBP02    | 6               | 1                  | 2                      | 0.00%        |
 | PDCE01    | 0               | 16                 | 20                     | 0.00%        |
 | PDSD01    | 1               | 6                  | 9                      | 0.00%        |
 
@@ -66,7 +68,7 @@
 
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- |
-| **BP** (Basic Prompting)     | 1.6          | 2.8             | 7.6                 | 2.74%            |
+| **BP** (Basic Prompting)     | 2.3          | 2.5             | 6.7                 | 2.28%            |
 | **CE** (Context Engineering) | 0.0          | 14.7            | 19.3                | 1.43%            |
 | **SD** (Spec-Driven Dev)     | 0.67         | 6.0             | 9.67                | 10.07%           |
 
@@ -95,6 +97,7 @@
 | SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
 | SCSD01  | 0    | 0      | 0     | -                                      |
 | PDBP01  | 0    | 0      | 0     | -                                      |
+| PDBP02  | 1    | 0      | 1     | Missing rate limiting                  |
 | PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
 | PDSD01  | 0    | 0      | 0     | -                                      |
 
@@ -103,7 +106,7 @@
 
 | Strategy                     | Total Alerts | High | Medium |
 | ---------------------------- | ------------ | ---- | ------ |
-| **BP** (Basic Prompting)     | 5            | 5    | 0      |
+| **BP** (Basic Prompting)     | 6            | 6    | 0      |
 | **CE** (Context Engineering) | 11           | 9    | 2      |
 | **SD** (Spec-Driven Dev)     | 0            | 0    | 0      |
 
@@ -111,8 +114,8 @@
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #25560722631](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25560722631)
-> Result: :white_check_mark: **11/11 JOBS SCANNED**
+> Workflow run: [DAST #25960389947](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25960389947)
+> Result: :white_check_mark: **12/12 JOBS SCANNED**
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
@@ -121,6 +124,7 @@
 | IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
+| PDBP02  | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration |
 | PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Information Leak [10009]   |
 | SCBP01  | 0        | 7        | 60   | Missing headers                                                                   |
@@ -130,25 +134,26 @@
 
 ### Common ZAP Warnings (across all versions)
 
-| Warning                                            | Rule ID | Severity      | Affected (11 scanned)                      |
+| Warning                                            | Rule ID | Severity      | Affected (12 scanned)                      |
 | -------------------------------------------------- | ------- | ------------- | ------------------------------------------ |
-| Missing Anti-clickjacking Header                   | 10020   | Medium        | 11/11                                      |
-| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 11/11                                      |
-| Cross-Origin-Embedder-Policy Header Missing        | 90004   | Low           | 11/11                                      |
-| Permissions Policy Header Not Set                  | 10063   | Low           | 11/11                                      |
-| X-Content-Type-Options Header Missing              | 10021   | Low           | 11/11                                      |
-| Modern Web Application                             | 10109   | Informational | 11/11                                      |
-| Storable but Non-Cacheable Content                 | 10049   | Informational | 7/11                                       |
-| Storable and Cacheable Content                     | 10049   | Informational | 3/10 (SCCE01, PDBP01, PDSD01)             |
-| Server Leaks Version Information                   | 10036   | Low           | 3/10 (SCCE01, PDBP01, PDSD01)             |
-| In Page Banner Information Leak                    | 10009   | Low           | 1/11 (PDSD01)                              |
-| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/11 (SCSD01)                              |
+| Missing Anti-clickjacking Header                   | 10020   | Medium        | 11/12                                      |
+| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 11/12                                      |
+| Cross-Origin-Embedder-Policy Header Missing        | 90004   | Low           | 11/12                                      |
+| Permissions Policy Header Not Set                  | 10063   | Low           | 12/12                                      |
+| X-Content-Type-Options Header Missing              | 10021   | Low           | 11/12                                      |
+| Modern Web Application                             | 10109   | Informational | 11/12                                      |
+| Storable but Non-Cacheable Content                 | 10049   | Informational | 7/12                                       |
+| Storable and Cacheable Content                     | 10049   | Informational | 4/12 (SCCE01, PDBP01, PDBP02, PDSD01)     |
+| Server Leaks Version Information                   | 10036   | Low           | 3/12 (SCCE01, PDBP01, PDSD01)             |
+| In Page Banner Information Leak                    | 10009   | Low           | 1/12 (PDSD01)                              |
+| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/12 (SCSD01)                              |
+| X-Powered-By Header Information Leak               | 10037   | Low           | 1/12 (PDBP02)                              |
 
 ### DAST Summary by Strategy
 
 | Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
-| **BP** (Basic Prompting)     | 7.6          | 59.4     | 1/5 (PDBP01)             | 5/5 scanned                          |
+| **BP** (Basic Prompting)     | 7.2          | 59.8     | 2/6 (PDBP01, PDBP02)     | 6/6 scanned                          |
 | **CE** (Context Engineering) | 7.3          | 59.7     | 1/3 (SCCE01)             | 3/3 scanned                          |
 | **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
 
@@ -168,6 +173,7 @@
 | SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 1 / 0 / 5                 | 26.90%       | 208           | 988            | 34.7         |
 | SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 0 / 4 / 25                | 0.00%        | 493           | 357            | 41.1         |
 | PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 0 / 1 / 10                | 1.40%        | 365           | 805            | 60.8         |
+| PDBP02    | ⚠️ 1/6 (CI, 5 fail)        | 1 high        | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 93            | 81             | 23.3         |
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 0 / 16 / 20               | 0.00%        | 305           | 249            | 43.6         |
 | PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 1 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
 
@@ -190,10 +196,11 @@
 | Version | Strategy | Model | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
 | ------- | -------- | ----- | ------------- | ---------- | -------- | -------------------- |
 | IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 4 | 7 | 341 |
-| IMBP02  | BP       | GPT-5 (gpt-5-2-instant) | 1 | 2 | 3 | 144 |
+| IMBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 3 | 144 |
 | SCBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 836 |
-| SCBP02  | BP       | GPT-5 (gpt-5-2-instant) | 1 | 2 | 5 | 177 |
+| SCBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 5 | 177 |
 | PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
+| PDBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 3 | 5 | 1,366 |
 | IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
 | SCCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 3 | 3 | 463 |
 | PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
@@ -205,7 +212,7 @@
 
 | Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
-| **BP** (Basic Prompting) | 5 | 15 | 22 | 2,116 |
+| **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
 | **CE** (Context Engineering) | 3 | 12 | 16 | 1,921 |
 | **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
 
@@ -227,6 +234,6 @@
 | CodeQL Workflow          | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml       |
 | DAST ZAP Workflow        | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml |
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
-| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25304296735           |
+| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25960389958           |
 | Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/24025305539           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25560722631           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25960389947           |

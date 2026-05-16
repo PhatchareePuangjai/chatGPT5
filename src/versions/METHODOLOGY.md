@@ -29,19 +29,21 @@ This design enables interpretation of strategy effects while acknowledging task-
 
 ### 2.1 Core Comparative Dataset
 
-The primary dataset consists of **9 generated versions** organized as a 3 × 3 matrix of domains and strategies.
+The primary dataset is being expanded to **18 generated versions** organized as a 3 × 3 × 2 design: three business domains, three development strategies, and two independent generation runs per domain-strategy pair. The first run uses the `01` suffix and the second run uses the `02` suffix.
 
 | Domain               | Basic Prompting | Context Engineering | Specification-Driven Development |
 | -------------------- | --------------- | ------------------- | -------------------------------- |
-| Inventory Management | IMBP01          | IMCE01              | IMSD01                           |
-| Shopping Cart        | SCBP01          | SCCE01              | SCSD01                           |
-| Promotion / Discount | PDBP01          | PDCE01              | PDSD01                           |
+| Inventory Management | IMBP01, IMBP02  | IMCE01, IMCE02      | IMSD01, IMSD02                   |
+| Shopping Cart        | SCBP01, SCBP02  | SCCE01, SCCE02      | SCSD01, SCSD02                   |
+| Promotion / Discount | PDBP01, PDBP02  | PDCE01, PDCE02      | PDSD01, PDSD02                   |
 
-All nine core code versions were generated using the GPT-5 series (gpt-5-2) as the underlying model — BP and CE versions via the ChatGPT web interface, and SDD versions via Codex CLI using structured specification workflows. Each version is evaluated against an identical set of Acceptance Scenarios and Edge Cases across all versions, as summarized in the table above. These 9 versions form the basis of the main comparative findings reported in RESEARCH_SUMMARY.md.
+The `01` versions form the initial baseline set. The `02` versions are repeat generations of the same domain-strategy combinations and are included to reduce single-run variance and make the comparison less dependent on one generated sample. Each version is evaluated against the same Acceptance Scenarios and Edge Cases for its domain. Results are reported both per version and, where applicable, aggregated by strategy across all completed runs.
+
+At the time of this methodology update, the second Basic Prompting run (`IMBP02`, `SCBP02`, and `PDBP02`) has been generated and measured. The remaining `02` versions for Context Engineering and Specification-Driven Development are planned for the next evaluation pass and will be added using the same measurement procedure.
 
 ### 2.2 Supplementary Repository Artifacts
 
-The repository also contains additional versions — `IMAG01`, `IMCS01`, `PDAG01`, `PDCS01`, `SCAG01`, `SCCS01`, and `IMBP02` — produced using Agentic (AG), Cursor (CS), and iterative Basic Prompting workflows. These artifacts serve as supporting references but are excluded from the main 9-version comparison unless explicitly stated.
+The repository also contains additional non-core versions — `IMAG01`, `IMCS01`, `PDAG01`, `PDCS01`, `SCAG01`, and `SCCS01` — produced using Agentic (AG) and Cursor (CS) workflows. These artifacts serve as supporting references but are excluded from the main 18-version comparison unless explicitly stated.
 
 ### 2.3 Unit of Analysis
 
@@ -113,6 +115,8 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 
 **Per-version quantitative metrics:**
 
+The table below is updated progressively as each version in the 18-version dataset is generated and measured. Blank future rows are not included until source artifacts, tests, CI results, LOC counts, and interaction data are available.
+
 | Version | Strategy | Backend LOC ⁵ | Frontend LOC ⁶ | User Prompt Tokens ⁷ |
 | ------- | -------- | ------------- | -------------- | -------------------- |
 | IMBP01  | BP       | 251           | 404            | 341                  |
@@ -120,6 +124,7 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 | SCBP01  | BP       | 406           | 358            | 836                  |
 | SCBP02  | BP       | 87            | 88             | 177                  |
 | PDBP01  | BP       | 365           | 805            | 618                  |
+| PDBP02  | BP       | 93            | 81             | 1,366                |
 | IMCE01  | CE       | 228           | 1,115          | 927                  |
 | SCCE01  | CE       | 409           | 457            | 463                  |
 | PDCE01  | CE       | 305           | 249            | 531                  |
@@ -275,7 +280,7 @@ Accordingly:
 
 - Findings regarding strategy superiority should be treated as pattern-based rather than absolute.
 - Within-domain comparisons carry greater evidential weight than unrestricted cross-domain comparisons.
-- Repository-wide artifacts outside the 9 core versions should not be merged into the main conclusions without explicit re-scoping.
+- Repository-wide artifacts outside the 18-version core dataset should not be merged into the main conclusions without explicit re-scoping.
 
 ## 10. Limitations
 
@@ -283,7 +288,8 @@ Accordingly:
 - **Cross-domain variation:** Inherent differences among inventory, cart, and promotion tasks may influence outcomes independently of the interaction strategy.
 - **Coverage reporting gap:** Scanner-reported coverage is near zero for most versions even when external scenario tests exist, due to the tests running outside the instrumented build pipeline.
 - **Ecosystem limitation:** Findings are grounded in web-based e-commerce applications (Node.js + PostgreSQL + React) and may not generalize to other software domains or technology stacks.
-- **Repository scope asymmetry:** The repository contains additional artifacts beyond the primary 9-version comparison set, which may create an impression of broader coverage than the formal analysis supports.
+- **Repository scope asymmetry:** The repository contains additional artifacts beyond the primary 18-version comparison set, which may create an impression of broader coverage than the formal analysis supports.
+- **In-progress second-run dataset:** The 18-version design includes planned `02` reruns for every domain-strategy pair. Until all reruns are generated and measured, aggregate results should distinguish between completed versions and planned follow-up versions.
 
 ## 11. Methodological Summary
 
