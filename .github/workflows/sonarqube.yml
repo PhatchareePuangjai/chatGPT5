@@ -16,6 +16,7 @@ on:
       - 'src/versions/PDSD01/**'
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
+      - 'src/versions/SCCE02/**'
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
       - '.github/workflows/sonarqube.yml'
@@ -34,6 +35,7 @@ on:
       - 'src/versions/PDSD01/**'
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
+      - 'src/versions/SCCE02/**'
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
       - '.github/workflows/sonarqube.yml'
@@ -74,6 +76,8 @@ jobs:
             path: src/versions/IMBP02/inventory-management-system
           - version: SCBP02
             path: src/versions/SCBP02
+          - version: SCCE02
+            path: src/versions/SCCE02
           - version: PDBP02
             path: src/versions/PDBP02
           - version: IMCE02

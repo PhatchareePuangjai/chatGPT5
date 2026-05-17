@@ -19,6 +19,7 @@ on:
       - 'src/versions/SCAG01/**'
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
+      - 'src/versions/SCCE02/**'
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
   pull_request:
@@ -39,6 +40,7 @@ on:
       - 'src/versions/SCAG01/**'
       - 'src/versions/IMBP02/**'
       - 'src/versions/SCBP02/**'
+      - 'src/versions/SCCE02/**'
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
   workflow_dispatch:
@@ -88,6 +90,12 @@ jobs:
             db_pass: ''
             db_name: ''
             database_url: ''
+          - version: SCCE02
+            path: src/versions/SCCE02/backend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
           - version: PDBP02
             path: src/versions/PDBP02/backend
             db_user: ''
@@ -123,7 +131,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: ${{ matrix.path }}/package-lock.json
+          cache-dependency-path: ${{ matrix.path }}/package*.json
 
       - name: Setup PostgreSQL
         if: steps.should_run.outputs.run == 'true' && matrix.db_name != ''
@@ -136,7 +144,12 @@ jobs:
       - name: Install Dependencies
         if: steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.path }}
-        run: npm ci
+        run: |
+          if [ -f "package-lock.json" ]; then
+            npm ci
+          else
+            npm install
+          fi
 
       - name: Run Database Migrations
         if: steps.should_run.outputs.run == 'true' && matrix.db_name != ''
@@ -161,7 +174,12 @@ jobs:
         env:
           DATABASE_URL: ${{ matrix.database_url }}
           NODE_ENV: test
-        run: npm test
+        run: |
+          if npm pkg get scripts.test | grep -qv undefined; then
+            npm test
+          else
+            node --test tests/*.test.js
+          fi
 
   python-test:
     name: Python Test ${{ matrix.version }}
