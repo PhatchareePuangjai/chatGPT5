@@ -1,0 +1,1305 @@
+{
+    "title": "Promotions & Discounts System",
+    "create_time": 1779019359.915486,
+    "update_time": 1779020378.172418,
+    "moderation_results": [],
+    "plugin_ids": null,
+    "conversation_id": "6a09ae59-8b6c-83ec-a7e0-32b65d98aea6",
+    "conversation_template_id": "g-p-6a053634c4308191b35782fadb612dee",
+    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+    "gizmo_type": "snorlax",
+    "is_archived": false,
+    "is_starred": null,
+    "safe_urls": [
+        "https://www.docker.com/products/docker-desktop/",
+        "https://www.postgresql.org/download/",
+        "https://github.com/openclaw/openclaw",
+        "https://nodejs.org",
+        "https://www.openai.com",
+        "https://www.statefarm.com",
+        "https://www.progressive.com"
+    ],
+    "blocked_urls": [],
+    "default_model_slug": "gpt-5-2-instant",
+    "atlas_mode_enabled": null,
+    "conversation_origin": null,
+    "is_read_only": null,
+    "voice": null,
+    "async_status": null,
+    "disabled_tool_ids": [],
+    "is_temporary_chat": false,
+    "is_do_not_remember": false,
+    "memory_scope": "global_enabled",
+    "context_scopes": [],
+    "sugar_item_id": null,
+    "sugar_item_visible": false,
+    "pinned_time": null,
+    "is_study_mode": false,
+    "owner": {
+        "user_id": "user-OdJSWpchmjqUltjeZ1MphyRT",
+        "user_email": "toy.taemin@gmail.com",
+        "name": "Toy Toytoy",
+        "avatar_url": "https://s.gravatar.com/avatar/87d220b6fe30bac1450a3ee2fbb6e18a?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fto.png"
+    },
+    "mapping": {
+        "client-created-root": {
+            "id": "client-created-root",
+            "message": null,
+            "parent": null,
+            "children": [
+                "6b9ad1e1-03ad-43bf-bf99-7a3c95bb9a19"
+            ]
+        },
+        "6b9ad1e1-03ad-43bf-bf99-7a3c95bb9a19": {
+            "id": "6b9ad1e1-03ad-43bf-bf99-7a3c95bb9a19",
+            "message": {
+                "id": "6b9ad1e1-03ad-43bf-bf99-7a3c95bb9a19",
+                "author": {
+                    "role": "system",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": null,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        ""
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": true,
+                "weight": 0,
+                "metadata": {
+                    "is_visually_hidden_from_conversation": true,
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "client-created-root",
+            "children": [
+                "046626de-a0bf-44ad-a998-4ea796ed3bb1"
+            ]
+        },
+        "046626de-a0bf-44ad-a998-4ea796ed3bb1": {
+            "id": "046626de-a0bf-44ad-a998-4ea796ed3bb1",
+            "message": {
+                "id": "046626de-a0bf-44ad-a998-4ea796ed3bb1",
+                "author": {
+                    "role": "system",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": null,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        ""
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": true,
+                "weight": 0,
+                "metadata": {
+                    "rebase_developer_message": true,
+                    "is_visually_hidden_from_conversation": true,
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "6b9ad1e1-03ad-43bf-bf99-7a3c95bb9a19",
+            "children": [
+                "8a094772-502d-4c32-8a33-55e0411338a6"
+            ]
+        },
+        "8a094772-502d-4c32-8a33-55e0411338a6": {
+            "id": "8a094772-502d-4c32-8a33-55e0411338a6",
+            "message": {
+                "id": "8a094772-502d-4c32-8a33-55e0411338a6",
+                "author": {
+                    "role": "system",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019354.354033,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        ""
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "attachments": [],
+                    "is_visually_hidden_from_conversation": true,
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "046626de-a0bf-44ad-a998-4ea796ed3bb1",
+            "children": [
+                "36dc7aa9-2188-49c6-b298-23bf55280beb"
+            ]
+        },
+        "36dc7aa9-2188-49c6-b298-23bf55280beb": {
+            "id": "36dc7aa9-2188-49c6-b298-23bf55280beb",
+            "message": {
+                "id": "36dc7aa9-2188-49c6-b298-23bf55280beb",
+                "author": {
+                    "role": "system",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019359.65442,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        ""
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 0,
+                "metadata": {
+                    "request_id": "6c316b78-51ae-47c2-ba46-50456b0dda13",
+                    "message_source": null,
+                    "turn_exchange_id": "0c41257b-ae3b-4d3b-aef0-ba17aece6f5b",
+                    "is_visually_hidden_from_conversation": true,
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "8a094772-502d-4c32-8a33-55e0411338a6",
+            "children": [
+                "c66ea1f4-a009-4c0a-a049-993e781254a5"
+            ]
+        },
+        "c66ea1f4-a009-4c0a-a049-993e781254a5": {
+            "id": "c66ea1f4-a009-4c0a-a049-993e781254a5",
+            "message": {
+                "id": "c66ea1f4-a009-4c0a-a049-993e781254a5",
+                "author": {
+                    "role": "user",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019359.292,
+                "update_time": 1779019376.998284,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "[Instruction & Role] \nAct as an expert Full-stack Developer and System Architect. I need you to develop the Promotions & Discounts System for an e-commerce application.\n\n[Tech Spec] \n- Frontend: React ^18.3.1\n- Backend: Node.js\n- Database: PostgreSQL\n\n[Business Scenarios] \n- Coupon Validation: Validate promo codes entered by the user.\n- Expiration Date Check: Ensure the applied coupon is not expired.\n- Cart Total Discount: Calculate the discount amount based on the cart total.\n\n[Constraints & Edge Cases] \n- Coupon Usage Limit: Enforce per-user usage limits for each coupon.\n- Order-of-Operations: If multiple discount rules apply, you must calculate percentage (%) discounts before applying flat amount discounts.\n- Negative Total Protection: Ensure that discounts never cause the final cart total to drop below zero.\n\n[Deliverables] \nProvide production-ready code for the backend API controllers, frontend React components, and the database schema.\n\n[Self-Refinement Task] \nBefore providing the final output, review your code to ensure the order of operations for multiple discounts is mathematically correct and the final total strictly prevents negative values."
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "developer_mode_connector_ids": [],
+                    "selected_sources": [],
+                    "selected_github_repos": [],
+                    "serialization_metadata": {
+                        "custom_symbol_offsets": []
+                    },
+                    "request_id": "6c316b78-51ae-47c2-ba46-50456b0dda13",
+                    "message_source": null,
+                    "turn_exchange_id": "0c41257b-ae3b-4d3b-aef0-ba17aece6f5b",
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "36dc7aa9-2188-49c6-b298-23bf55280beb",
+            "children": [
+                "b1f010b4-5133-48fe-a9b3-92da35076d13"
+            ]
+        },
+        "b1f010b4-5133-48fe-a9b3-92da35076d13": {
+            "id": "b1f010b4-5133-48fe-a9b3-92da35076d13",
+            "message": {
+                "id": "b1f010b4-5133-48fe-a9b3-92da35076d13",
+                "author": {
+                    "role": "system",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019359.826243,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        ""
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "is_contextual_answers_system_message": true,
+                    "is_visually_hidden_from_conversation": true,
+                    "command": "prompt",
+                    "contextual_answers_message_type": "sources_and_filters_prompt",
+                    "request_id": "6c316b78-51ae-47c2-ba46-50456b0dda13",
+                    "message_type": "next",
+                    "turn_exchange_id": "0c41257b-ae3b-4d3b-aef0-ba17aece6f5b",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "parent_id": "c66ea1f4-a009-4c0a-a049-993e781254a5",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "c66ea1f4-a009-4c0a-a049-993e781254a5",
+            "children": [
+                "6c2ef396-0333-4583-8972-a3591aad5bf8"
+            ]
+        },
+        "6c2ef396-0333-4583-8972-a3591aad5bf8": {
+            "id": "6c2ef396-0333-4583-8972-a3591aad5bf8",
+            "message": {
+                "id": "6c2ef396-0333-4583-8972-a3591aad5bf8",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019359.8418515,
+                "update_time": null,
+                "content": {
+                    "content_type": "model_editable_context",
+                    "model_set_context": "",
+                    "repository": null,
+                    "repo_summary": null,
+                    "structured_context": null
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "search_result_groups": [],
+                    "request_id": "6c316b78-51ae-47c2-ba46-50456b0dda13",
+                    "message_type": "next",
+                    "turn_exchange_id": "0c41257b-ae3b-4d3b-aef0-ba17aece6f5b",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "can_save": false,
+                    "parent_id": "b1f010b4-5133-48fe-a9b3-92da35076d13",
+                    "model_switcher_deny": []
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "b1f010b4-5133-48fe-a9b3-92da35076d13",
+            "children": [
+                "8b79a560-7d05-44e0-aedd-f8e2f5c7eb9e"
+            ]
+        },
+        "8b79a560-7d05-44e0-aedd-f8e2f5c7eb9e": {
+            "id": "8b79a560-7d05-44e0-aedd-f8e2f5c7eb9e",
+            "message": {
+                "id": "8b79a560-7d05-44e0-aedd-f8e2f5c7eb9e",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019359.861329,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "Excellent — below is a **production-ready Promotions & Discounts System** designed for:\n\n- **Frontend:** React 18.3.1  \n- **Backend:** Node.js (Express)  \n- **Database:** PostgreSQL  \n\nIt correctly handles:\n\n✔ Coupon validation  \n✔ Expiration checks  \n✔ Per-user usage limits  \n✔ Percentage → Flat discount order  \n✔ Negative total protection  \n✔ Clean architecture & production patterns  \n\n---\n\n# 🗄️ DATABASE SCHEMA (PostgreSQL)\n\n### 1️⃣ Coupons Table\n\n```sql\nCREATE TABLE coupons (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    code VARCHAR(50) UNIQUE NOT NULL,\n    discount_type VARCHAR(20) NOT NULL CHECK (discount_type IN ('PERCENTAGE', 'FLAT')),\n    discount_value NUMERIC(10,2) NOT NULL,\n    expiration_date TIMESTAMP NOT NULL,\n    usage_limit_per_user INTEGER DEFAULT 1,\n    is_active BOOLEAN DEFAULT TRUE,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);\n```\n\n---\n\n### 2️⃣ Coupon Usage Table\n\n```sql\nCREATE TABLE coupon_usages (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    user_id UUID NOT NULL,\n    coupon_id UUID REFERENCES coupons(id) ON DELETE CASCADE,\n    usage_count INTEGER DEFAULT 1,\n    UNIQUE(user_id, coupon_id)\n);\n```\n\n---\n\n# 🧠 BACKEND (Node.js + Express)\n\n### Install Dependencies\n\n```bash\nnpm install express pg dotenv uuid\n```\n\n---\n\n## 📁 db.js (PostgreSQL Connection)\n\n```javascript\nconst { Pool } = require('pg');\n\nconst pool = new Pool({\n  connectionString: process.env.DATABASE_URL,\n});\n\nmodule.exports = pool;\n```\n\n---\n\n# 📦 Discount Utility (Core Logic)\n\nThis enforces:\n\n- % discounts first  \n- Flat discounts second  \n- Never below zero  \n\n## 📁 utils/discountCalculator.js\n\n```javascript\nfunction applyDiscounts(cartTotal, coupons) {\n  let total = Number(cartTotal);\n\n  // Separate percentage and flat coupons\n  const percentageCoupons = coupons.filter(c => c.discount_type === 'PERCENTAGE');\n  const flatCoupons = coupons.filter(c => c.discount_type === 'FLAT');\n\n  // 1️⃣ Apply percentage discounts first\n  percentageCoupons.forEach(coupon => {\n    const discountAmount = (total * coupon.discount_value) / 100;\n    total -= discountAmount;\n  });\n\n  // 2️⃣ Apply flat discounts second\n  flatCoupons.forEach(coupon => {\n    total -= coupon.discount_value;\n  });\n\n  // 3️⃣ Prevent negative totals\n  total = Math.max(0, total);\n\n  return Number(total.toFixed(2));\n}\n\nmodule.exports = applyDiscounts;\n```\n\n---\n\n# 🎯 Coupon Controller\n\n## 📁 controllers/couponController.js\n\n```javascript\nconst pool = require('../db');\nconst applyDiscounts = require('../utils/discountCalculator');\n\nexports.validateCoupons = async (req, res) => {\n  const { userId, cartTotal, couponCodes } = req.body;\n\n  if (!couponCodes || !couponCodes.length) {\n    return res.status(400).json({ message: \"No coupons provided\" });\n  }\n\n  try {\n    const validCoupons = [];\n\n    for (let code of couponCodes) {\n      const couponResult = await pool.query(\n        `SELECT * FROM coupons WHERE code = $1 AND is_active = true`,\n        [code]\n      );\n\n      if (!couponResult.rows.length) continue;\n\n      const coupon = couponResult.rows[0];\n\n      // Expiration check\n      if (new Date(coupon.expiration_date) < new Date()) continue;\n\n      // Usage check\n      const usageResult = await pool.query(\n        `SELECT usage_count FROM coupon_usages \n         WHERE user_id = $1 AND coupon_id = $2`,\n        [userId, coupon.id]\n      );\n\n      const usageCount = usageResult.rows[0]?.usage_count || 0;\n\n      if (usageCount >= coupon.usage_limit_per_user) continue;\n\n      validCoupons.push(coupon);\n    }\n\n    if (!validCoupons.length) {\n      return res.status(400).json({ message: \"No valid coupons applied\" });\n    }\n\n    const finalTotal = applyDiscounts(cartTotal, validCoupons);\n\n    return res.json({\n      originalTotal: cartTotal,\n      finalTotal,\n      appliedCoupons: validCoupons.map(c => c.code)\n    });\n\n  } catch (err) {\n    console.error(err);\n    res.status(500).json({ message: \"Server error\" });\n  }\n};\n```\n\n---\n\n# 🛒 Apply Coupon Usage After Successful Order\n\n## 📁 controllers/orderController.js\n\n```javascript\nexports.recordCouponUsage = async (userId, coupons) => {\n  for (let coupon of coupons) {\n    await pool.query(`\n      INSERT INTO coupon_usages (user_id, coupon_id, usage_count)\n      VALUES ($1, $2, 1)\n      ON CONFLICT (user_id, coupon_id)\n      DO UPDATE SET usage_count = coupon_usages.usage_count + 1\n    `, [userId, coupon.id]);\n  }\n};\n```\n\n---\n\n# 🚀 Express Route Setup\n\n## 📁 routes/couponRoutes.js\n\n```javascript\nconst express = require('express');\nconst router = express.Router();\nconst couponController = require('../controllers/couponController');\n\nrouter.post('/validate', couponController.validateCoupons);\n\nmodule.exports = router;\n```\n\n---\n\n# 🧩 FRONTEND (React 18.3.1)\n\n---\n\n## 📁 services/api.js\n\n```javascript\nexport const validateCoupons = async (payload) => {\n  const response = await fetch('/api/coupons/validate', {\n    method: 'POST',\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify(payload),\n  });\n\n  return response.json();\n};\n```\n\n---\n\n# 🎟 Coupon Component\n\n## 📁 components/CouponForm.jsx\n\n```jsx\nimport React, { useState } from 'react';\nimport { validateCoupons } from '../services/api';\n\nconst CouponForm = ({ cartTotal, userId, onDiscountApplied }) => {\n  const [codeInput, setCodeInput] = useState('');\n  const [codes, setCodes] = useState([]);\n  const [message, setMessage] = useState('');\n\n  const addCoupon = () => {\n    if (!codeInput.trim()) return;\n    setCodes([...codes, codeInput.trim().toUpperCase()]);\n    setCodeInput('');\n  };\n\n  const applyCoupons = async () => {\n    const data = await validateCoupons({\n      userId,\n      cartTotal,\n      couponCodes: codes\n    });\n\n    if (data.finalTotal !== undefined) {\n      onDiscountApplied(data.finalTotal);\n      setMessage(`Applied: ${data.appliedCoupons.join(', ')}`);\n    } else {\n      setMessage(data.message);\n    }\n  };\n\n  return (\n    <div>\n      <h3>Apply Coupons</h3>\n\n      <input\n        value={codeInput}\n        onChange={(e) => setCodeInput(e.target.value)}\n        placeholder=\"Enter promo code\"\n      />\n      <button onClick={addCoupon}>Add</button>\n\n      <ul>\n        {codes.map((c, i) => (\n          <li key={i}>{c}</li>\n        ))}\n      </ul>\n\n      <button onClick={applyCoupons}>Apply Discounts</button>\n\n      {message && <p>{message}</p>}\n    </div>\n  );\n};\n\nexport default CouponForm;\n```\n\n---\n\n# 🛍 Cart Component Example\n\n```jsx\nimport React, { useState } from 'react';\nimport CouponForm from './CouponForm';\n\nconst Cart = ({ userId }) => {\n  const [cartTotal, setCartTotal] = useState(200);\n\n  return (\n    <div>\n      <h2>Cart Total: ${cartTotal}</h2>\n\n      <CouponForm\n        userId={userId}\n        cartTotal={cartTotal}\n        onDiscountApplied={(newTotal) => setCartTotal(newTotal)}\n      />\n    </div>\n  );\n};\n\nexport default Cart;\n```\n\n---\n\n# 🔍 Self-Refinement Verification (Mathematical Correctness)\n\n### ✔ Order of Operations\n\n1. Percentage discounts applied sequentially:\n   ```\n   total = total - (total * percent / 100)\n   ```\n2. Flat discounts applied after percentage adjustments.\n3. Final safeguard:\n   ```\n   total = Math.max(0, total)\n   ```\n\nThis guarantees:\n\n- Correct % → flat ordering\n- Compounded % behavior is mathematically valid\n- Final total NEVER negative\n- Rounded to 2 decimals for currency safety\n\n---\n\n# 🏆 Example Scenario (Correct Calculation)\n\nCart Total: $200  \nCoupons:\n- 10% OFF  \n- 20% OFF  \n- $50 OFF  \n\nStep 1: 200 → 180 (10%)  \nStep 2: 180 → 144 (20%)  \nStep 3: 144 → 94 (−50)  \n\nFinal = $94  \n✔ Correct order  \n✔ No negative risk  \n\n---\n\n# 🧱 Production Notes\n\n- Add DB indexes on `code`, `user_id`\n- Use transactions during order placement\n- Use monetary type if strict accounting required\n- Consider soft-deletes instead of `is_active`\n- Add logging + audit trail\n\n---\n\nIf you'd like, I can next provide:\n\n- Enterprise-grade version with stacking rules engine  \n- Admin dashboard for managing coupons  \n- Auto-apply best coupon logic  \n- Redis caching layer  \n- Full Docker production setup  \n\nJust tell me your scaling target 🚀"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": true,
+                "weight": 1,
+                "metadata": {
+                    "finish_details": {
+                        "type": "stop",
+                        "stop_tokens": [
+                            200002
+                        ]
+                    },
+                    "is_complete": true,
+                    "citations": [],
+                    "content_references": [],
+                    "story_events": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "search_result_groups": [],
+                    "code_blocks": {
+                        "0": {
+                            "id": "a4437l",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "1": {
+                            "id": "i2mgl3",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "2": {
+                            "id": "j4pvyd",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "3": {
+                            "id": "bw9888",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "4": {
+                            "id": "20fml2",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "5": {
+                            "id": "fq7106",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "6": {
+                            "id": "xx16nz",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "7": {
+                            "id": "8lfzcm",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "8": {
+                            "id": "f1nys5",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "9": {
+                            "id": "b8c93p",
+                            "edited": false,
+                            "previewable": true,
+                            "preview_language": "react"
+                        },
+                        "10": {
+                            "id": "qyszjv",
+                            "edited": false,
+                            "previewable": true,
+                            "preview_language": "react"
+                        }
+                    },
+                    "request_id": "6c316b78-51ae-47c2-ba46-50456b0dda13",
+                    "message_type": "next",
+                    "turn_exchange_id": "0c41257b-ae3b-4d3b-aef0-ba17aece6f5b",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "can_save": true,
+                    "parent_id": "6c2ef396-0333-4583-8972-a3591aad5bf8",
+                    "model_switcher_deny": []
+                },
+                "recipient": "all",
+                "channel": "final"
+            },
+            "parent": "6c2ef396-0333-4583-8972-a3591aad5bf8",
+            "children": [
+                "63843d66-56fb-45b9-afa7-3595fd3dae37"
+            ]
+        },
+        "63843d66-56fb-45b9-afa7-3595fd3dae37": {
+            "id": "63843d66-56fb-45b9-afa7-3595fd3dae37",
+            "message": {
+                "id": "63843d66-56fb-45b9-afa7-3595fd3dae37",
+                "author": {
+                    "role": "user",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019583.463,
+                "update_time": 1779019603.717173,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "I don't know how to program. Can you please organize all the code into the correct folder structure and provide a ZIP file for me to download?"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "developer_mode_connector_ids": [],
+                    "selected_sources": [],
+                    "selected_github_repos": [],
+                    "serialization_metadata": {
+                        "custom_symbol_offsets": []
+                    },
+                    "request_id": "2b1dc141-5089-4589-8515-a29a842660d6",
+                    "message_source": null,
+                    "turn_exchange_id": "18af6bfb-fd8e-4274-a11c-8fb8f9eeeaf6",
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "8b79a560-7d05-44e0-aedd-f8e2f5c7eb9e",
+            "children": [
+                "c2ec561f-b93c-482f-bc0d-5e083dc6c790"
+            ]
+        },
+        "c2ec561f-b93c-482f-bc0d-5e083dc6c790": {
+            "id": "c2ec561f-b93c-482f-bc0d-5e083dc6c790",
+            "message": {
+                "id": "c2ec561f-b93c-482f-bc0d-5e083dc6c790",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019584.3329227,
+                "update_time": null,
+                "content": {
+                    "content_type": "model_editable_context",
+                    "model_set_context": "",
+                    "repository": null,
+                    "repo_summary": null,
+                    "structured_context": null
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "search_result_groups": [],
+                    "request_id": "2b1dc141-5089-4589-8515-a29a842660d6",
+                    "message_type": "next",
+                    "turn_exchange_id": "18af6bfb-fd8e-4274-a11c-8fb8f9eeeaf6",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "can_save": false,
+                    "parent_id": "63843d66-56fb-45b9-afa7-3595fd3dae37",
+                    "model_switcher_deny": []
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "63843d66-56fb-45b9-afa7-3595fd3dae37",
+            "children": [
+                "929a4014-c7a1-44d9-9287-1eeaeed873a4"
+            ]
+        },
+        "929a4014-c7a1-44d9-9287-1eeaeed873a4": {
+            "id": "929a4014-c7a1-44d9-9287-1eeaeed873a4",
+            "message": {
+                "id": "929a4014-c7a1-44d9-9287-1eeaeed873a4",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019584.358695,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "# Create full project structure and zip it for download\r\n\r\nimport os\r\nimport zipfile\r\n\r\nBASE_DIR = \"/mnt/data/ecommerce-promotions-system\"\r\nBACKEND_DIR = os.path.join(BASE_DIR, \"backend\")\r\nFRONTEND_DIR = os.path.join(BASE_DIR, \"frontend\")\r\n\r\n# Folder structure\r\nfolders = [\r\n    BACKEND_DIR,\r\n    os.path.join(BACKEND_DIR, \"controllers\"),\r\n    os.path.join(BACKEND_DIR, \"routes\"),\r\n    os.path.join(BACKEND_DIR, \"utils\"),\r\n    FRONTEND_DIR,\r\n    os.path.join(FRONTEND_DIR, \"src\"),\r\n    os.path.join(FRONTEND_DIR, \"src/components\"),\r\n    os.path.join(FRONTEND_DIR, \"src/services\"),\r\n]\r\n\r\nfor folder in folders:\r\n    os.makedirs(folder, exist_ok=True)\r\n\r\n# ---------------- BACKEND FILES ----------------\r\n\r\nbackend_files = {\r\n    \"backend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-backend\",\r\n  \"version\": \"1.0.0\",\r\n  \"main\": \"server.js\",\r\n  \"scripts\": { \"start\": \"node server.js\" },\r\n  \"dependencies\": {\r\n    \"dotenv\": \"^16.0.0\",\r\n    \"express\": \"^4.18.2\",\r\n    \"pg\": \"^8.11.0\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"backend/.env.example\": \"DATABASE_URL=postgres://username:password@localhost:5432/yourdb\\nPORT=5000\",\r\n\r\n    \"backend/server.js\": \"\"\"require('dotenv').config();\r\nconst express = require('express');\r\nconst couponRoutes = require('./routes/couponRoutes');\r\n\r\nconst app = express();\r\napp.use(express.json());\r\napp.use('/api/coupons', couponRoutes);\r\n\r\nconst PORT = process.env.PORT || 5000;\r\napp.listen(PORT, () => console.log(`Backend running on port ${PORT}`));\r\n\"\"\",\r\n\r\n    \"backend/db.js\": \"\"\"const { Pool } = require('pg');\r\n\r\nconst pool = new Pool({\r\n  connectionString: process.env.DATABASE_URL,\r\n});\r\n\r\nmodule.exports = pool;\r\n\"\"\",\r\n\r\n    \"backend/utils/discountCalculator.js\": \"\"\"function applyDiscounts(cartTotal, coupons) {\r\n  let total = Number(cartTotal);\r\n\r\n  const percentageCoupons = coupons.filter(c => c.discount_type === 'PERCENTAGE');\r\n  const flatCoupons = coupons.filter(c => c.discount_type === 'FLAT');\r\n\r\n  percentageCoupons.forEach(coupon => {\r\n    const discountAmount = (total * coupon.discount_value) / 100;\r\n    total -= discountAmount;\r\n  });\r\n\r\n  flatCoupons.forEach(coupon => {\r\n    total -= coupon.discount_value;\r\n  });\r\n\r\n  total = Math.max(0, total);\r\n\r\n  return Number(total.toFixed(2));\r\n}\r\n\r\nmodule.exports = applyDiscounts;\r\n\"\"\",\r\n\r\n    \"backend/controllers/couponController.js\": \"\"\"const pool = require('../db');\r\nconst applyDiscounts = require('../utils/discountCalculator');\r\n\r\nexports.validateCoupons = async (req, res) => {\r\n  const { userId, cartTotal, couponCodes } = req.body;\r\n\r\n  if (!couponCodes || !couponCodes.length) {\r\n    return res.status(400).json({ message: \"No coupons provided\" });\r\n  }\r\n\r\n  try {\r\n    const validCoupons = [];\r\n\r\n    for (let code of couponCodes) {\r\n      const couponResult = await pool.query(\r\n        'SELECT * FROM coupons WHERE code = $1 AND is_active = true',\r\n        [code]\r\n      );\r\n\r\n      if (!couponResult.rows.length) continue;\r\n\r\n      const coupon = couponResult.rows[0];\r\n\r\n      if (new Date(coupon.expiration_date) < new Date()) continue;\r\n\r\n      const usageResult = await pool.query(\r\n        'SELECT usage_count FROM coupon_usages WHERE user_id = $1 AND coupon_id = $2',\r\n        [userId, coupon.id]\r\n      );\r\n\r\n      const usageCount = usageResult.rows[0]?.usage_count || 0;\r\n\r\n      if (usageCount >= coupon.usage_limit_per_user) continue;\r\n\r\n      validCoupons.push(coupon);\r\n    }\r\n\r\n    if (!validCoupons.length) {\r\n      return res.status(400).json({ message: \"No valid coupons applied\" });\r\n    }\r\n\r\n    const finalTotal = applyDiscounts(cartTotal, validCoupons);\r\n\r\n    res.json({\r\n      originalTotal: cartTotal,\r\n      finalTotal,\r\n      appliedCoupons: validCoupons.map(c => c.code)\r\n    });\r\n\r\n  } catch (err) {\r\n    console.error(err);\r\n    res.status(500).json({ message: \"Server error\" });\r\n  }\r\n};\r\n\"\"\",\r\n\r\n    \"backend/routes/couponRoutes.js\": \"\"\"const express = require('express');\r\nconst router = express.Router();\r\nconst couponController = require('../controllers/couponController');\r\n\r\nrouter.post('/validate', couponController.validateCoupons);\r\n\r\nmodule.exports = router;\r\n\"\"\",\r\n\r\n    \"backend/schema.sql\": \"\"\"CREATE TABLE coupons (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    code VARCHAR(50) UNIQUE NOT NULL,\r\n    discount_type VARCHAR(20) CHECK (discount_type IN ('PERCENTAGE', 'FLAT')),\r\n    discount_value NUMERIC(10,2) NOT NULL,\r\n    expiration_date TIMESTAMP NOT NULL,\r\n    usage_limit_per_user INTEGER DEFAULT 1,\r\n    is_active BOOLEAN DEFAULT TRUE\r\n);\r\n\r\nCREATE TABLE coupon_usages (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    user_id UUID NOT NULL,\r\n    coupon_id UUID REFERENCES coupons(id) ON DELETE CASCADE,\r\n    usage_count INTEGER DEFAULT 1,\r\n    UNIQUE(user_id, coupon_id)\r\n);\r\n\"\"\"\r\n}\r\n\r\n# Write backend files\r\nfor path, content in backend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- FRONTEND FILES ----------------\r\n\r\nfrontend_files = {\r\n    \"frontend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-frontend\",\r\n  \"version\": \"1.0.0\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"react\": \"^18.3.1\",\r\n    \"react-dom\": \"^18.3.1\",\r\n    \"react-scripts\": \"5.0.1\"\r\n  },\r\n  \"scripts\": {\r\n    \"start\": \"react-scripts start\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"frontend/src/index.js\": \"\"\"import React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport App from './App';\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(<App />);\r\n\"\"\",\r\n\r\n    \"frontend/src/App.js\": \"\"\"import React from 'react';\r\nimport Cart from './components/Cart';\r\n\r\nfunction App() {\r\n  return (\r\n    <div>\r\n      <h1>Promotions System</h1>\r\n      <Cart userId=\"123e4567-e89b-12d3-a456-426614174000\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/Cart.jsx\": \"\"\"import React, { useState } from 'react';\r\nimport CouponForm from './CouponForm';\r\n\r\nconst Cart = ({ userId }) => {\r\n  const [cartTotal, setCartTotal] = useState(200);\r\n\r\n  return (\r\n    <div>\r\n      <h2>Cart Total: ${cartTotal}</h2>\r\n      <CouponForm\r\n        userId={userId}\r\n        cartTotal={cartTotal}\r\n        onDiscountApplied={(newTotal) => setCartTotal(newTotal)}\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Cart;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/CouponForm.jsx\": \"\"\"import React, { useState } from 'react';\r\n\r\nconst CouponForm = ({ cartTotal, userId, onDiscountApplied }) => {\r\n  const [codeInput, setCodeInput] = useState('');\r\n  const [codes, setCodes] = useState([]);\r\n  const [message, setMessage] = useState('');\r\n\r\n  const addCoupon = () => {\r\n    if (!codeInput.trim()) return;\r\n    setCodes([...codes, codeInput.trim().toUpperCase()]);\r\n    setCodeInput('');\r\n  };\r\n\r\n  const applyCoupons = async () => {\r\n    const response = await fetch('/api/coupons/validate', {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({ userId, cartTotal, couponCodes: codes })\r\n    });\r\n\r\n    const data = await response.json();\r\n\r\n    if (data.finalTotal !== undefined) {\r\n      onDiscountApplied(data.finalTotal);\r\n      setMessage(`Applied: ${data.appliedCoupons.join(', ')}`);\r\n    } else {\r\n      setMessage(data.message);\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <input\r\n        value={codeInput}\r\n        onChange={(e) => setCodeInput(e.target.value)}\r\n        placeholder=\"Enter promo code\"\r\n      />\r\n      <button onClick={addCoupon}>Add</button>\r\n      <button onClick={applyCoupons}>Apply</button>\r\n      <p>{message}</p>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CouponForm;\r\n\"\"\"\r\n}\r\n\r\nfor path, content in frontend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# Create ZIP\r\nzip_path = \"/mnt/data/ecommerce-promotions-system.zip\"\r\nwith zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:\r\n    for root, dirs, files in os.walk(BASE_DIR):\r\n        for file in files:\r\n            file_path = os.path.join(root, file)\r\n            zipf.write(file_path, os.path.relpath(file_path, BASE_DIR))\r\n\r\nzip_path"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": false,
+                "weight": 1,
+                "metadata": {
+                    "finish_details": {
+                        "type": "stop",
+                        "stop_tokens": [
+                            200012
+                        ]
+                    },
+                    "is_complete": true,
+                    "citations": [],
+                    "content_references": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "request_id": "2b1dc141-5089-4589-8515-a29a842660d6",
+                    "message_type": "next",
+                    "turn_exchange_id": "18af6bfb-fd8e-4274-a11c-8fb8f9eeeaf6",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "parent_id": "92988ed8-f395-4b1c-9ac4-88a0c4042ce6",
+                    "model_switcher_deny": [],
+                    "can_save": false
+                },
+                "recipient": "python",
+                "channel": "commentary"
+            },
+            "parent": "c2ec561f-b93c-482f-bc0d-5e083dc6c790",
+            "children": [
+                "1b361148-d4af-44ef-8145-2491b7781fef"
+            ]
+        },
+        "1b361148-d4af-44ef-8145-2491b7781fef": {
+            "id": "1b361148-d4af-44ef-8145-2491b7781fef",
+            "message": {
+                "id": "1b361148-d4af-44ef-8145-2491b7781fef",
+                "author": {
+                    "role": "tool",
+                    "name": "python",
+                    "metadata": {}
+                },
+                "create_time": 1779019598.0566227,
+                "update_time": 1779019600.0732598,
+                "content": {
+                    "content_type": "execution_output",
+                    "text": "'/mnt/data/ecommerce-promotions-system.zip'"
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "is_complete": true,
+                    "aggregate_result": {
+                        "status": "success",
+                        "run_id": "a4e415b4-af34-4ca3-84d2-dcf5355538bf",
+                        "start_time": 1779019598.0566227,
+                        "update_time": 1779019600.0732598,
+                        "code": "# Create full project structure and zip it for download\r\n\r\nimport os\r\nimport zipfile\r\n\r\nBASE_DIR = \"/mnt/data/ecommerce-promotions-system\"\r\nBACKEND_DIR = os.path.join(BASE_DIR, \"backend\")\r\nFRONTEND_DIR = os.path.join(BASE_DIR, \"frontend\")\r\n\r\n# Folder structure\r\nfolders = [\r\n    BACKEND_DIR,\r\n    os.path.join(BACKEND_DIR, \"controllers\"),\r\n    os.path.join(BACKEND_DIR, \"routes\"),\r\n    os.path.join(BACKEND_DIR, \"utils\"),\r\n    FRONTEND_DIR,\r\n    os.path.join(FRONTEND_DIR, \"src\"),\r\n    os.path.join(FRONTEND_DIR, \"src/components\"),\r\n    os.path.join(FRONTEND_DIR, \"src/services\"),\r\n]\r\n\r\nfor folder in folders:\r\n    os.makedirs(folder, exist_ok=True)\r\n\r\n# ---------------- BACKEND FILES ----------------\r\n\r\nbackend_files = {\r\n    \"backend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-backend\",\r\n  \"version\": \"1.0.0\",\r\n  \"main\": \"server.js\",\r\n  \"scripts\": { \"start\": \"node server.js\" },\r\n  \"dependencies\": {\r\n    \"dotenv\": \"^16.0.0\",\r\n    \"express\": \"^4.18.2\",\r\n    \"pg\": \"^8.11.0\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"backend/.env.example\": \"DATABASE_URL=postgres://username:password@localhost:5432/yourdb\\nPORT=5000\",\r\n\r\n    \"backend/server.js\": \"\"\"require('dotenv').config();\r\nconst express = require('express');\r\nconst couponRoutes = require('./routes/couponRoutes');\r\n\r\nconst app = express();\r\napp.use(express.json());\r\napp.use('/api/coupons', couponRoutes);\r\n\r\nconst PORT = process.env.PORT || 5000;\r\napp.listen(PORT, () => console.log(`Backend running on port ${PORT}`));\r\n\"\"\",\r\n\r\n    \"backend/db.js\": \"\"\"const { Pool } = require('pg');\r\n\r\nconst pool = new Pool({\r\n  connectionString: process.env.DATABASE_URL,\r\n});\r\n\r\nmodule.exports = pool;\r\n\"\"\",\r\n\r\n    \"backend/utils/discountCalculator.js\": \"\"\"function applyDiscounts(cartTotal, coupons) {\r\n  let total = Number(cartTotal);\r\n\r\n  const percentageCoupons = coupons.filter(c => c.discount_type === 'PERCENTAGE');\r\n  const flatCoupons = coupons.filter(c => c.discount_type === 'FLAT');\r\n\r\n  percentageCoupons.forEach(coupon => {\r\n    const discountAmount = (total * coupon.discount_value) / 100;\r\n    total -= discountAmount;\r\n  });\r\n\r\n  flatCoupons.forEach(coupon => {\r\n    total -= coupon.discount_value;\r\n  });\r\n\r\n  total = Math.max(0, total);\r\n\r\n  return Number(total.toFixed(2));\r\n}\r\n\r\nmodule.exports = applyDiscounts;\r\n\"\"\",\r\n\r\n    \"backend/controllers/couponController.js\": \"\"\"const pool = require('../db');\r\nconst applyDiscounts = require('../utils/discountCalculator');\r\n\r\nexports.validateCoupons = async (req, res) => {\r\n  const { userId, cartTotal, couponCodes } = req.body;\r\n\r\n  if (!couponCodes || !couponCodes.length) {\r\n    return res.status(400).json({ message: \"No coupons provided\" });\r\n  }\r\n\r\n  try {\r\n    const validCoupons = [];\r\n\r\n    for (let code of couponCodes) {\r\n      const couponResult = await pool.query(\r\n        'SELECT * FROM coupons WHERE code = $1 AND is_active = true',\r\n        [code]\r\n      );\r\n\r\n      if (!couponResult.rows.length) continue;\r\n\r\n      const coupon = couponResult.rows[0];\r\n\r\n      if (new Date(coupon.expiration_date) < new Date()) continue;\r\n\r\n      const usageResult = await pool.query(\r\n        'SELECT usage_count FROM coupon_usages WHERE user_id = $1 AND coupon_id = $2',\r\n        [userId, coupon.id]\r\n      );\r\n\r\n      const usageCount = usageResult.rows[0]?.usage_count || 0;\r\n\r\n      if (usageCount >= coupon.usage_limit_per_user) continue;\r\n\r\n      validCoupons.push(coupon);\r\n    }\r\n\r\n    if (!validCoupons.length) {\r\n      return res.status(400).json({ message: \"No valid coupons applied\" });\r\n    }\r\n\r\n    const finalTotal = applyDiscounts(cartTotal, validCoupons);\r\n\r\n    res.json({\r\n      originalTotal: cartTotal,\r\n      finalTotal,\r\n      appliedCoupons: validCoupons.map(c => c.code)\r\n    });\r\n\r\n  } catch (err) {\r\n    console.error(err);\r\n    res.status(500).json({ message: \"Server error\" });\r\n  }\r\n};\r\n\"\"\",\r\n\r\n    \"backend/routes/couponRoutes.js\": \"\"\"const express = require('express');\r\nconst router = express.Router();\r\nconst couponController = require('../controllers/couponController');\r\n\r\nrouter.post('/validate', couponController.validateCoupons);\r\n\r\nmodule.exports = router;\r\n\"\"\",\r\n\r\n    \"backend/schema.sql\": \"\"\"CREATE TABLE coupons (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    code VARCHAR(50) UNIQUE NOT NULL,\r\n    discount_type VARCHAR(20) CHECK (discount_type IN ('PERCENTAGE', 'FLAT')),\r\n    discount_value NUMERIC(10,2) NOT NULL,\r\n    expiration_date TIMESTAMP NOT NULL,\r\n    usage_limit_per_user INTEGER DEFAULT 1,\r\n    is_active BOOLEAN DEFAULT TRUE\r\n);\r\n\r\nCREATE TABLE coupon_usages (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    user_id UUID NOT NULL,\r\n    coupon_id UUID REFERENCES coupons(id) ON DELETE CASCADE,\r\n    usage_count INTEGER DEFAULT 1,\r\n    UNIQUE(user_id, coupon_id)\r\n);\r\n\"\"\"\r\n}\r\n\r\n# Write backend files\r\nfor path, content in backend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- FRONTEND FILES ----------------\r\n\r\nfrontend_files = {\r\n    \"frontend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-frontend\",\r\n  \"version\": \"1.0.0\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"react\": \"^18.3.1\",\r\n    \"react-dom\": \"^18.3.1\",\r\n    \"react-scripts\": \"5.0.1\"\r\n  },\r\n  \"scripts\": {\r\n    \"start\": \"react-scripts start\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"frontend/src/index.js\": \"\"\"import React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport App from './App';\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(<App />);\r\n\"\"\",\r\n\r\n    \"frontend/src/App.js\": \"\"\"import React from 'react';\r\nimport Cart from './components/Cart';\r\n\r\nfunction App() {\r\n  return (\r\n    <div>\r\n      <h1>Promotions System</h1>\r\n      <Cart userId=\"123e4567-e89b-12d3-a456-426614174000\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/Cart.jsx\": \"\"\"import React, { useState } from 'react';\r\nimport CouponForm from './CouponForm';\r\n\r\nconst Cart = ({ userId }) => {\r\n  const [cartTotal, setCartTotal] = useState(200);\r\n\r\n  return (\r\n    <div>\r\n      <h2>Cart Total: ${cartTotal}</h2>\r\n      <CouponForm\r\n        userId={userId}\r\n        cartTotal={cartTotal}\r\n        onDiscountApplied={(newTotal) => setCartTotal(newTotal)}\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Cart;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/CouponForm.jsx\": \"\"\"import React, { useState } from 'react';\r\n\r\nconst CouponForm = ({ cartTotal, userId, onDiscountApplied }) => {\r\n  const [codeInput, setCodeInput] = useState('');\r\n  const [codes, setCodes] = useState([]);\r\n  const [message, setMessage] = useState('');\r\n\r\n  const addCoupon = () => {\r\n    if (!codeInput.trim()) return;\r\n    setCodes([...codes, codeInput.trim().toUpperCase()]);\r\n    setCodeInput('');\r\n  };\r\n\r\n  const applyCoupons = async () => {\r\n    const response = await fetch('/api/coupons/validate', {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({ userId, cartTotal, couponCodes: codes })\r\n    });\r\n\r\n    const data = await response.json();\r\n\r\n    if (data.finalTotal !== undefined) {\r\n      onDiscountApplied(data.finalTotal);\r\n      setMessage(`Applied: ${data.appliedCoupons.join(', ')}`);\r\n    } else {\r\n      setMessage(data.message);\r\n    }\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <input\r\n        value={codeInput}\r\n        onChange={(e) => setCodeInput(e.target.value)}\r\n        placeholder=\"Enter promo code\"\r\n      />\r\n      <button onClick={addCoupon}>Add</button>\r\n      <button onClick={applyCoupons}>Apply</button>\r\n      <p>{message}</p>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CouponForm;\r\n\"\"\"\r\n}\r\n\r\nfor path, content in frontend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# Create ZIP\r\nzip_path = \"/mnt/data/ecommerce-promotions-system.zip\"\r\nwith zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:\r\n    for root, dirs, files in os.walk(BASE_DIR):\r\n        for file in files:\r\n            file_path = os.path.join(root, file)\r\n            zipf.write(file_path, os.path.relpath(file_path, BASE_DIR))\r\n\r\nzip_path",
+                        "end_time": 1779019600.0732598,
+                        "final_expression_output": "'/mnt/data/ecommerce-promotions-system.zip'",
+                        "in_kernel_exception": null,
+                        "system_exception": null,
+                        "messages": [],
+                        "jupyter_messages": [
+                            {
+                                "msg_type": "status",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_4",
+                                    "version": "5.3"
+                                },
+                                "content": {
+                                    "execution_state": "busy"
+                                }
+                            },
+                            {
+                                "msg_type": "execute_input",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_4",
+                                    "version": "5.3"
+                                }
+                            },
+                            {
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_4",
+                                    "version": "5.3"
+                                },
+                                "msg_type": "execute_result",
+                                "content": {
+                                    "data": {
+                                        "text/plain": "'/mnt/data/ecommerce-promotions-system.zip'"
+                                    }
+                                }
+                            },
+                            {
+                                "msg_type": "status",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_4",
+                                    "version": "5.3"
+                                },
+                                "content": {
+                                    "execution_state": "idle"
+                                }
+                            }
+                        ],
+                        "timeout_triggered": null
+                    },
+                    "request_id": "2b1dc141-5089-4589-8515-a29a842660d6",
+                    "message_type": "next",
+                    "turn_exchange_id": "18af6bfb-fd8e-4274-a11c-8fb8f9eeeaf6",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "parent_id": "929a4014-c7a1-44d9-9287-1eeaeed873a4",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": "commentary"
+            },
+            "parent": "929a4014-c7a1-44d9-9287-1eeaeed873a4",
+            "children": [
+                "60482f34-040b-48c8-8361-ec348f912406"
+            ]
+        },
+        "60482f34-040b-48c8-8361-ec348f912406": {
+            "id": "60482f34-040b-48c8-8361-ec348f912406",
+            "message": {
+                "id": "60482f34-040b-48c8-8361-ec348f912406",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019600.508279,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "Your complete project is ready 🎉  \n\nYou can download it here:\n\n👉 **[Download the Promotions System ZIP](sandbox:/mnt/data/ecommerce-promotions-system.zip)**\n\n---\n\n# 📦 What’s Inside the ZIP\n\n```\necommerce-promotions-system/\n│\n├── backend/\n│   ├── controllers/\n│   ├── routes/\n│   ├── utils/\n│   ├── server.js\n│   ├── db.js\n│   ├── schema.sql\n│   ├── package.json\n│   └── .env.example\n│\n└── frontend/\n    ├── src/\n    │   ├── components/\n    │   ├── App.js\n    │   └── index.js\n    └── package.json\n```\n\n---\n\n# 🚀 Next Step (Very Simple Instructions)\n\nIf you want, I can now give you:\n\n- Step-by-step instructions to run this on your computer  \n- A Docker version (one command startup)  \n- Or a fully automated setup guide  \n\nJust tell me what you'd like 😊"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": true,
+                "weight": 1,
+                "metadata": {
+                    "finish_details": {
+                        "type": "stop",
+                        "stop_tokens": [
+                            200002
+                        ]
+                    },
+                    "is_complete": true,
+                    "citations": [],
+                    "content_references": [],
+                    "story_events": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "code_blocks": {
+                        "0": {
+                            "id": "7qhfik",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        }
+                    },
+                    "search_result_groups": [],
+                    "request_id": "2b1dc141-5089-4589-8515-a29a842660d6",
+                    "message_type": "next",
+                    "turn_exchange_id": "18af6bfb-fd8e-4274-a11c-8fb8f9eeeaf6",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "can_save": true,
+                    "parent_id": "1b361148-d4af-44ef-8145-2491b7781fef",
+                    "model_switcher_deny": []
+                },
+                "recipient": "all",
+                "channel": "final"
+            },
+            "parent": "1b361148-d4af-44ef-8145-2491b7781fef",
+            "children": [
+                "ee94dab4-6439-4b9f-9465-388a57d3cf34"
+            ]
+        },
+        "ee94dab4-6439-4b9f-9465-388a57d3cf34": {
+            "id": "ee94dab4-6439-4b9f-9465-388a57d3cf34",
+            "message": {
+                "id": "ee94dab4-6439-4b9f-9465-388a57d3cf34",
+                "author": {
+                    "role": "user",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019692.563,
+                "update_time": 1779019702.541185,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "how to start"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "developer_mode_connector_ids": [],
+                    "selected_sources": [],
+                    "selected_github_repos": [],
+                    "serialization_metadata": {
+                        "custom_symbol_offsets": []
+                    },
+                    "request_id": "75b5b477-877a-47d1-8ff4-f373beaf7501",
+                    "message_source": null,
+                    "turn_exchange_id": "afd22e74-2e30-4ab0-ae5e-52bde273892a",
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "60482f34-040b-48c8-8361-ec348f912406",
+            "children": [
+                "4c4a914d-e430-4200-9c15-0b20981cb203"
+            ]
+        },
+        "4c4a914d-e430-4200-9c15-0b20981cb203": {
+            "id": "4c4a914d-e430-4200-9c15-0b20981cb203",
+            "message": {
+                "id": "4c4a914d-e430-4200-9c15-0b20981cb203",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019693.338235,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "Perfect 👍 I’ll guide you step-by-step in **simple language**.\n\nYou downloaded:\n\n`ecommerce-promotions-system.zip`\n\nNow we will run it.\n\n---\n\n# ✅ STEP 1 — Install Required Software (One Time Only)\n\nYou need:\n\n### 1️⃣ Install Node.js  \nDownload and install from:\n\nhttps://nodejs.org\n\nAfter installing, open Terminal and check:\n\n```bash\nnode -v\nnpm -v\n```\n\nIf both show version numbers → ✅ good.\n\n---\n\n### 2️⃣ Install PostgreSQL  \nDownload from:\n\nhttps://www.postgresql.org/download/\n\nAfter installing, open Terminal and check:\n\n```bash\npsql --version\n```\n\nIf it shows a version → ✅ good.\n\n---\n\n# ✅ STEP 2 — Unzip the Project\n\nUnzip:\n\n```\necommerce-promotions-system.zip\n```\n\nYou should now see:\n\n```\nbackend/\nfrontend/\n```\n\nOpen Terminal and navigate into the folder:\n\n```bash\ncd ecommerce-promotions-system\n```\n\n---\n\n# ✅ STEP 3 — Setup Database\n\nOpen PostgreSQL (or pgAdmin).\n\n### Create a database:\n\n```sql\nCREATE DATABASE promotionsdb;\n```\n\nNow connect to it:\n\n```bash\npsql promotionsdb\n```\n\nRun the schema file:\n\n```bash\n\\i backend/schema.sql\n```\n\nNow your tables are created ✅\n\n---\n\n# ✅ STEP 4 — Setup Backend\n\nGo into backend folder:\n\n```bash\ncd backend\n```\n\nInstall dependencies:\n\n```bash\nnpm install\n```\n\nCreate `.env` file:\n\n```bash\ncp .env.example .env\n```\n\nOpen `.env` and change:\n\n```\nDATABASE_URL=postgres://yourusername:yourpassword@localhost:5432/promotionsdb\nPORT=5000\n```\n\nSave it.\n\nStart backend:\n\n```bash\nnpm start\n```\n\nYou should see:\n\n```\nBackend running on port 5000\n```\n\nLeave this terminal open.\n\n---\n\n# ✅ STEP 5 — Setup Frontend (New Terminal Window)\n\nOpen a **new terminal window**.\n\nGo into frontend:\n\n```bash\ncd ecommerce-promotions-system/frontend\n```\n\nInstall dependencies:\n\n```bash\nnpm install\n```\n\nStart frontend:\n\n```bash\nnpm start\n```\n\nBrowser should open automatically:\n\n```\nhttp://localhost:3000\n```\n\n---\n\n# 🎉 DONE!\n\nYou now have:\n\n- Backend → http://localhost:5000\n- Frontend → http://localhost:3000\n\nYou can test coupon validation.\n\n---\n\n# ❗If Something Fails\n\nTell me:\n\n- Your operating system (Mac / Windows)\n- The exact error message you see\n\nI will fix it for you step-by-step.\n\n---\n\nIf you'd like, I can also give you:\n\n- 🐳 One-command Docker version (easier)\n- 🎯 Auto-setup script\n- 📹 Visual diagram of how everything connects"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": true,
+                "weight": 1,
+                "metadata": {
+                    "citations": [],
+                    "content_references": [],
+                    "story_events": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "search_result_groups": [],
+                    "request_id": "75b5b477-877a-47d1-8ff4-f373beaf7501",
+                    "message_type": "next",
+                    "turn_exchange_id": "afd22e74-2e30-4ab0-ae5e-52bde273892a",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "can_save": true,
+                    "parent_id": "ee94dab4-6439-4b9f-9465-388a57d3cf34",
+                    "model_switcher_deny": []
+                },
+                "recipient": "all",
+                "channel": "final"
+            },
+            "parent": "ee94dab4-6439-4b9f-9465-388a57d3cf34",
+            "children": [
+                "b3f80c2a-0931-4d6d-aeba-3823e2309549"
+            ]
+        },
+        "b3f80c2a-0931-4d6d-aeba-3823e2309549": {
+            "id": "b3f80c2a-0931-4d6d-aeba-3823e2309549",
+            "message": {
+                "id": "b3f80c2a-0931-4d6d-aeba-3823e2309549",
+                "author": {
+                    "role": "user",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019865.166,
+                "update_time": 1779019888.198712,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "you can create docker file to start front-end, back-end, and database to me, than zip all code to me again."
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "developer_mode_connector_ids": [],
+                    "selected_sources": [],
+                    "selected_github_repos": [],
+                    "serialization_metadata": {
+                        "custom_symbol_offsets": []
+                    },
+                    "request_id": "66e08361-f7f0-4d23-8593-8b9243a024b6",
+                    "message_source": null,
+                    "turn_exchange_id": "afeceb96-bc02-4181-b3bf-11c91109a2d6",
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "4c4a914d-e430-4200-9c15-0b20981cb203",
+            "children": [
+                "ff04f660-5b37-49b6-b386-0a680c794f95"
+            ]
+        },
+        "ff04f660-5b37-49b6-b386-0a680c794f95": {
+            "id": "ff04f660-5b37-49b6-b386-0a680c794f95",
+            "message": {
+                "id": "ff04f660-5b37-49b6-b386-0a680c794f95",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019865.872097,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "# Create Dockerized full project and zip it\r\n\r\nimport os\r\nimport zipfile\r\n\r\nBASE_DIR = \"/mnt/data/ecommerce-promotions-docker\"\r\nBACKEND_DIR = os.path.join(BASE_DIR, \"backend\")\r\nFRONTEND_DIR = os.path.join(BASE_DIR, \"frontend\")\r\n\r\nfolders = [\r\n    BACKEND_DIR,\r\n    os.path.join(BACKEND_DIR, \"controllers\"),\r\n    os.path.join(BACKEND_DIR, \"routes\"),\r\n    os.path.join(BACKEND_DIR, \"utils\"),\r\n    FRONTEND_DIR,\r\n    os.path.join(FRONTEND_DIR, \"src\"),\r\n    os.path.join(FRONTEND_DIR, \"src/components\"),\r\n]\r\n\r\nfor folder in folders:\r\n    os.makedirs(folder, exist_ok=True)\r\n\r\n# ---------------- BACKEND ----------------\r\n\r\nbackend_files = {\r\n    \"backend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-backend\",\r\n  \"version\": \"1.0.0\",\r\n  \"main\": \"server.js\",\r\n  \"scripts\": { \"start\": \"node server.js\" },\r\n  \"dependencies\": {\r\n    \"dotenv\": \"^16.0.0\",\r\n    \"express\": \"^4.18.2\",\r\n    \"pg\": \"^8.11.0\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"backend/server.js\": \"\"\"require('dotenv').config();\r\nconst express = require('express');\r\nconst pool = require('./db');\r\nconst couponRoutes = require('./routes/couponRoutes');\r\n\r\nconst app = express();\r\napp.use(express.json());\r\napp.use('/api/coupons', couponRoutes);\r\n\r\nconst PORT = process.env.PORT || 5000;\r\n\r\napp.listen(PORT, () => console.log(`Backend running on port ${PORT}`));\r\n\"\"\",\r\n\r\n    \"backend/db.js\": \"\"\"const { Pool } = require('pg');\r\n\r\nconst pool = new Pool({\r\n  host: process.env.DB_HOST,\r\n  user: process.env.DB_USER,\r\n  password: process.env.DB_PASSWORD,\r\n  database: process.env.DB_NAME,\r\n  port: 5432\r\n});\r\n\r\nmodule.exports = pool;\r\n\"\"\",\r\n\r\n    \"backend/utils/discountCalculator.js\": \"\"\"function applyDiscounts(cartTotal, coupons) {\r\n  let total = Number(cartTotal);\r\n\r\n  const percentageCoupons = coupons.filter(c => c.discount_type === 'PERCENTAGE');\r\n  const flatCoupons = coupons.filter(c => c.discount_type === 'FLAT');\r\n\r\n  percentageCoupons.forEach(coupon => {\r\n    total -= (total * coupon.discount_value) / 100;\r\n  });\r\n\r\n  flatCoupons.forEach(coupon => {\r\n    total -= coupon.discount_value;\r\n  });\r\n\r\n  total = Math.max(0, total);\r\n  return Number(total.toFixed(2));\r\n}\r\n\r\nmodule.exports = applyDiscounts;\r\n\"\"\",\r\n\r\n    \"backend/controllers/couponController.js\": \"\"\"const pool = require('../db');\r\nconst applyDiscounts = require('../utils/discountCalculator');\r\n\r\nexports.validateCoupons = async (req, res) => {\r\n  const { userId, cartTotal, couponCodes } = req.body;\r\n\r\n  if (!couponCodes || !couponCodes.length)\r\n    return res.status(400).json({ message: \"No coupons provided\" });\r\n\r\n  try {\r\n    const validCoupons = [];\r\n\r\n    for (let code of couponCodes) {\r\n      const result = await pool.query(\r\n        'SELECT * FROM coupons WHERE code=$1 AND is_active=true',\r\n        [code]\r\n      );\r\n\r\n      if (!result.rows.length) continue;\r\n\r\n      const coupon = result.rows[0];\r\n\r\n      if (new Date(coupon.expiration_date) < new Date()) continue;\r\n\r\n      validCoupons.push(coupon);\r\n    }\r\n\r\n    if (!validCoupons.length)\r\n      return res.status(400).json({ message: \"No valid coupons applied\" });\r\n\r\n    const finalTotal = applyDiscounts(cartTotal, validCoupons);\r\n\r\n    res.json({\r\n      originalTotal: cartTotal,\r\n      finalTotal,\r\n      appliedCoupons: validCoupons.map(c => c.code)\r\n    });\r\n\r\n  } catch (err) {\r\n    console.error(err);\r\n    res.status(500).json({ message: \"Server error\" });\r\n  }\r\n};\r\n\"\"\",\r\n\r\n    \"backend/routes/couponRoutes.js\": \"\"\"const express = require('express');\r\nconst router = express.Router();\r\nconst couponController = require('../controllers/couponController');\r\n\r\nrouter.post('/validate', couponController.validateCoupons);\r\n\r\nmodule.exports = router;\r\n\"\"\",\r\n\r\n    \"backend/schema.sql\": \"\"\"CREATE EXTENSION IF NOT EXISTS \"pgcrypto\";\r\n\r\nCREATE TABLE coupons (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    code VARCHAR(50) UNIQUE NOT NULL,\r\n    discount_type VARCHAR(20) CHECK (discount_type IN ('PERCENTAGE','FLAT')),\r\n    discount_value NUMERIC(10,2) NOT NULL,\r\n    expiration_date TIMESTAMP NOT NULL,\r\n    usage_limit_per_user INTEGER DEFAULT 1,\r\n    is_active BOOLEAN DEFAULT TRUE\r\n);\r\n\r\nINSERT INTO coupons (code, discount_type, discount_value, expiration_date)\r\nVALUES \r\n('SAVE10', 'PERCENTAGE', 10, NOW() + INTERVAL '30 days'),\r\n('FLAT50', 'FLAT', 50, NOW() + INTERVAL '30 days');\r\n\"\"\",\r\n\r\n    \"backend/Dockerfile\": \"\"\"FROM node:18\r\n\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\n\r\nEXPOSE 5000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in backend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- FRONTEND ----------------\r\n\r\nfrontend_files = {\r\n    \"frontend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-frontend\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"react\": \"^18.3.1\",\r\n    \"react-dom\": \"^18.3.1\",\r\n    \"react-scripts\": \"5.0.1\"\r\n  },\r\n  \"scripts\": { \"start\": \"react-scripts start\" }\r\n}\"\"\",\r\n\r\n    \"frontend/src/index.js\": \"\"\"import React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport App from './App';\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(<App />);\r\n\"\"\",\r\n\r\n    \"frontend/src/App.js\": \"\"\"import React from 'react';\r\nimport Cart from './components/Cart';\r\n\r\nfunction App() {\r\n  return (\r\n    <div>\r\n      <h1>Promotions System</h1>\r\n      <Cart userId=\"demo-user\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/Cart.jsx\": \"\"\"import React, { useState } from 'react';\r\nimport CouponForm from './CouponForm';\r\n\r\nconst Cart = ({ userId }) => {\r\n  const [cartTotal, setCartTotal] = useState(200);\r\n\r\n  return (\r\n    <div>\r\n      <h2>Cart Total: ${cartTotal}</h2>\r\n      <CouponForm\r\n        userId={userId}\r\n        cartTotal={cartTotal}\r\n        onDiscountApplied={(newTotal) => setCartTotal(newTotal)}\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Cart;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/CouponForm.jsx\": \"\"\"import React, { useState } from 'react';\r\n\r\nconst CouponForm = ({ userId, cartTotal, onDiscountApplied }) => {\r\n  const [code, setCode] = useState('');\r\n\r\n  const applyCoupon = async () => {\r\n    const res = await fetch('http://localhost:5000/api/coupons/validate', {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({ userId, cartTotal, couponCodes: [code] })\r\n    });\r\n\r\n    const data = await res.json();\r\n    if (data.finalTotal) onDiscountApplied(data.finalTotal);\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <input value={code} onChange={(e)=>setCode(e.target.value)} placeholder=\"Enter code\"/>\r\n      <button onClick={applyCoupon}>Apply</button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CouponForm;\r\n\"\"\",\r\n\r\n    \"frontend/Dockerfile\": \"\"\"FROM node:18\r\n\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\n\r\nEXPOSE 3000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in frontend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- DOCKER COMPOSE ----------------\r\n\r\ndocker_compose = \"\"\"version: '3.8'\r\n\r\nservices:\r\n  db:\r\n    image: postgres:15\r\n    container_name: promotions-db\r\n    restart: always\r\n    environment:\r\n      POSTGRES_USER: postgres\r\n      POSTGRES_PASSWORD: postgres\r\n      POSTGRES_DB: promotionsdb\r\n    ports:\r\n      - \"5432:5432\"\r\n    volumes:\r\n      - db_data:/var/lib/postgresql/data\r\n      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql\r\n\r\n  backend:\r\n    build: ./backend\r\n    container_name: promotions-backend\r\n    restart: always\r\n    environment:\r\n      DB_HOST: db\r\n      DB_USER: postgres\r\n      DB_PASSWORD: postgres\r\n      DB_NAME: promotionsdb\r\n    ports:\r\n      - \"5000:5000\"\r\n    depends_on:\r\n      - db\r\n\r\n  frontend:\r\n    build: ./frontend\r\n    container_name: promotions-frontend\r\n    restart: always\r\n    ports:\r\n      - \"3000:3000\"\r\n    depends_on:\r\n      - backend\r\n\r\nvolumes:\r\n  db_data:\r\n\"\"\"\r\n\r\nwith open(os.path.join(BASE_DIR, \"docker-compose.yml\"), \"w\") as f:\r\n    f.write(docker_compose)\r\n\r\n# ---------------- ZIP ----------------\r\n\r\nzip_path = \"/mnt/data/ecommerce-promotions-docker.zip\"\r\nwith zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:\r\n    for root, dirs, files in os.walk(BASE_DIR):\r\n        for file in files:\r\n            file_path = os.path.join(root, file)\r\n            zipf.write(file_path, os.path.relpath(file_path, BASE_DIR))\r\n\r\nzip_path"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": false,
+                "weight": 1,
+                "metadata": {
+                    "finish_details": {
+                        "type": "stop",
+                        "stop_tokens": [
+                            200012
+                        ]
+                    },
+                    "is_complete": true,
+                    "citations": [],
+                    "content_references": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "request_id": "66e08361-f7f0-4d23-8593-8b9243a024b6",
+                    "message_type": "next",
+                    "turn_exchange_id": "afeceb96-bc02-4181-b3bf-11c91109a2d6",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "parent_id": "f90cc270-1991-40eb-90ae-94dfa6ffd5e0",
+                    "model_switcher_deny": [],
+                    "can_save": false
+                },
+                "recipient": "python",
+                "channel": "commentary"
+            },
+            "parent": "b3f80c2a-0931-4d6d-aeba-3823e2309549",
+            "children": [
+                "1994e1fa-c9d7-4172-8c30-7898ecf61b71"
+            ]
+        },
+        "1994e1fa-c9d7-4172-8c30-7898ecf61b71": {
+            "id": "1994e1fa-c9d7-4172-8c30-7898ecf61b71",
+            "message": {
+                "id": "1994e1fa-c9d7-4172-8c30-7898ecf61b71",
+                "author": {
+                    "role": "tool",
+                    "name": "python",
+                    "metadata": {}
+                },
+                "create_time": 1779019881.2624428,
+                "update_time": 1779019883.5091574,
+                "content": {
+                    "content_type": "execution_output",
+                    "text": "'/mnt/data/ecommerce-promotions-docker.zip'"
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "is_complete": true,
+                    "aggregate_result": {
+                        "status": "success",
+                        "run_id": "53834064-6482-4ddb-8da5-2fcd03b5b2ad",
+                        "start_time": 1779019881.2624428,
+                        "update_time": 1779019883.5091574,
+                        "code": "# Create Dockerized full project and zip it\r\n\r\nimport os\r\nimport zipfile\r\n\r\nBASE_DIR = \"/mnt/data/ecommerce-promotions-docker\"\r\nBACKEND_DIR = os.path.join(BASE_DIR, \"backend\")\r\nFRONTEND_DIR = os.path.join(BASE_DIR, \"frontend\")\r\n\r\nfolders = [\r\n    BACKEND_DIR,\r\n    os.path.join(BACKEND_DIR, \"controllers\"),\r\n    os.path.join(BACKEND_DIR, \"routes\"),\r\n    os.path.join(BACKEND_DIR, \"utils\"),\r\n    FRONTEND_DIR,\r\n    os.path.join(FRONTEND_DIR, \"src\"),\r\n    os.path.join(FRONTEND_DIR, \"src/components\"),\r\n]\r\n\r\nfor folder in folders:\r\n    os.makedirs(folder, exist_ok=True)\r\n\r\n# ---------------- BACKEND ----------------\r\n\r\nbackend_files = {\r\n    \"backend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-backend\",\r\n  \"version\": \"1.0.0\",\r\n  \"main\": \"server.js\",\r\n  \"scripts\": { \"start\": \"node server.js\" },\r\n  \"dependencies\": {\r\n    \"dotenv\": \"^16.0.0\",\r\n    \"express\": \"^4.18.2\",\r\n    \"pg\": \"^8.11.0\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"backend/server.js\": \"\"\"require('dotenv').config();\r\nconst express = require('express');\r\nconst pool = require('./db');\r\nconst couponRoutes = require('./routes/couponRoutes');\r\n\r\nconst app = express();\r\napp.use(express.json());\r\napp.use('/api/coupons', couponRoutes);\r\n\r\nconst PORT = process.env.PORT || 5000;\r\n\r\napp.listen(PORT, () => console.log(`Backend running on port ${PORT}`));\r\n\"\"\",\r\n\r\n    \"backend/db.js\": \"\"\"const { Pool } = require('pg');\r\n\r\nconst pool = new Pool({\r\n  host: process.env.DB_HOST,\r\n  user: process.env.DB_USER,\r\n  password: process.env.DB_PASSWORD,\r\n  database: process.env.DB_NAME,\r\n  port: 5432\r\n});\r\n\r\nmodule.exports = pool;\r\n\"\"\",\r\n\r\n    \"backend/utils/discountCalculator.js\": \"\"\"function applyDiscounts(cartTotal, coupons) {\r\n  let total = Number(cartTotal);\r\n\r\n  const percentageCoupons = coupons.filter(c => c.discount_type === 'PERCENTAGE');\r\n  const flatCoupons = coupons.filter(c => c.discount_type === 'FLAT');\r\n\r\n  percentageCoupons.forEach(coupon => {\r\n    total -= (total * coupon.discount_value) / 100;\r\n  });\r\n\r\n  flatCoupons.forEach(coupon => {\r\n    total -= coupon.discount_value;\r\n  });\r\n\r\n  total = Math.max(0, total);\r\n  return Number(total.toFixed(2));\r\n}\r\n\r\nmodule.exports = applyDiscounts;\r\n\"\"\",\r\n\r\n    \"backend/controllers/couponController.js\": \"\"\"const pool = require('../db');\r\nconst applyDiscounts = require('../utils/discountCalculator');\r\n\r\nexports.validateCoupons = async (req, res) => {\r\n  const { userId, cartTotal, couponCodes } = req.body;\r\n\r\n  if (!couponCodes || !couponCodes.length)\r\n    return res.status(400).json({ message: \"No coupons provided\" });\r\n\r\n  try {\r\n    const validCoupons = [];\r\n\r\n    for (let code of couponCodes) {\r\n      const result = await pool.query(\r\n        'SELECT * FROM coupons WHERE code=$1 AND is_active=true',\r\n        [code]\r\n      );\r\n\r\n      if (!result.rows.length) continue;\r\n\r\n      const coupon = result.rows[0];\r\n\r\n      if (new Date(coupon.expiration_date) < new Date()) continue;\r\n\r\n      validCoupons.push(coupon);\r\n    }\r\n\r\n    if (!validCoupons.length)\r\n      return res.status(400).json({ message: \"No valid coupons applied\" });\r\n\r\n    const finalTotal = applyDiscounts(cartTotal, validCoupons);\r\n\r\n    res.json({\r\n      originalTotal: cartTotal,\r\n      finalTotal,\r\n      appliedCoupons: validCoupons.map(c => c.code)\r\n    });\r\n\r\n  } catch (err) {\r\n    console.error(err);\r\n    res.status(500).json({ message: \"Server error\" });\r\n  }\r\n};\r\n\"\"\",\r\n\r\n    \"backend/routes/couponRoutes.js\": \"\"\"const express = require('express');\r\nconst router = express.Router();\r\nconst couponController = require('../controllers/couponController');\r\n\r\nrouter.post('/validate', couponController.validateCoupons);\r\n\r\nmodule.exports = router;\r\n\"\"\",\r\n\r\n    \"backend/schema.sql\": \"\"\"CREATE EXTENSION IF NOT EXISTS \"pgcrypto\";\r\n\r\nCREATE TABLE coupons (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    code VARCHAR(50) UNIQUE NOT NULL,\r\n    discount_type VARCHAR(20) CHECK (discount_type IN ('PERCENTAGE','FLAT')),\r\n    discount_value NUMERIC(10,2) NOT NULL,\r\n    expiration_date TIMESTAMP NOT NULL,\r\n    usage_limit_per_user INTEGER DEFAULT 1,\r\n    is_active BOOLEAN DEFAULT TRUE\r\n);\r\n\r\nINSERT INTO coupons (code, discount_type, discount_value, expiration_date)\r\nVALUES \r\n('SAVE10', 'PERCENTAGE', 10, NOW() + INTERVAL '30 days'),\r\n('FLAT50', 'FLAT', 50, NOW() + INTERVAL '30 days');\r\n\"\"\",\r\n\r\n    \"backend/Dockerfile\": \"\"\"FROM node:18\r\n\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\n\r\nEXPOSE 5000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in backend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- FRONTEND ----------------\r\n\r\nfrontend_files = {\r\n    \"frontend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-frontend\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"react\": \"^18.3.1\",\r\n    \"react-dom\": \"^18.3.1\",\r\n    \"react-scripts\": \"5.0.1\"\r\n  },\r\n  \"scripts\": { \"start\": \"react-scripts start\" }\r\n}\"\"\",\r\n\r\n    \"frontend/src/index.js\": \"\"\"import React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport App from './App';\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(<App />);\r\n\"\"\",\r\n\r\n    \"frontend/src/App.js\": \"\"\"import React from 'react';\r\nimport Cart from './components/Cart';\r\n\r\nfunction App() {\r\n  return (\r\n    <div>\r\n      <h1>Promotions System</h1>\r\n      <Cart userId=\"demo-user\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/Cart.jsx\": \"\"\"import React, { useState } from 'react';\r\nimport CouponForm from './CouponForm';\r\n\r\nconst Cart = ({ userId }) => {\r\n  const [cartTotal, setCartTotal] = useState(200);\r\n\r\n  return (\r\n    <div>\r\n      <h2>Cart Total: ${cartTotal}</h2>\r\n      <CouponForm\r\n        userId={userId}\r\n        cartTotal={cartTotal}\r\n        onDiscountApplied={(newTotal) => setCartTotal(newTotal)}\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Cart;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/CouponForm.jsx\": \"\"\"import React, { useState } from 'react';\r\n\r\nconst CouponForm = ({ userId, cartTotal, onDiscountApplied }) => {\r\n  const [code, setCode] = useState('');\r\n\r\n  const applyCoupon = async () => {\r\n    const res = await fetch('http://localhost:5000/api/coupons/validate', {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({ userId, cartTotal, couponCodes: [code] })\r\n    });\r\n\r\n    const data = await res.json();\r\n    if (data.finalTotal) onDiscountApplied(data.finalTotal);\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <input value={code} onChange={(e)=>setCode(e.target.value)} placeholder=\"Enter code\"/>\r\n      <button onClick={applyCoupon}>Apply</button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CouponForm;\r\n\"\"\",\r\n\r\n    \"frontend/Dockerfile\": \"\"\"FROM node:18\r\n\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\n\r\nEXPOSE 3000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in frontend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- DOCKER COMPOSE ----------------\r\n\r\ndocker_compose = \"\"\"version: '3.8'\r\n\r\nservices:\r\n  db:\r\n    image: postgres:15\r\n    container_name: promotions-db\r\n    restart: always\r\n    environment:\r\n      POSTGRES_USER: postgres\r\n      POSTGRES_PASSWORD: postgres\r\n      POSTGRES_DB: promotionsdb\r\n    ports:\r\n      - \"5432:5432\"\r\n    volumes:\r\n      - db_data:/var/lib/postgresql/data\r\n      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql\r\n\r\n  backend:\r\n    build: ./backend\r\n    container_name: promotions-backend\r\n    restart: always\r\n    environment:\r\n      DB_HOST: db\r\n      DB_USER: postgres\r\n      DB_PASSWORD: postgres\r\n      DB_NAME: promotionsdb\r\n    ports:\r\n      - \"5000:5000\"\r\n    depends_on:\r\n      - db\r\n\r\n  frontend:\r\n    build: ./frontend\r\n    container_name: promotions-frontend\r\n    restart: always\r\n    ports:\r\n      - \"3000:3000\"\r\n    depends_on:\r\n      - backend\r\n\r\nvolumes:\r\n  db_data:\r\n\"\"\"\r\n\r\nwith open(os.path.join(BASE_DIR, \"docker-compose.yml\"), \"w\") as f:\r\n    f.write(docker_compose)\r\n\r\n# ---------------- ZIP ----------------\r\n\r\nzip_path = \"/mnt/data/ecommerce-promotions-docker.zip\"\r\nwith zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:\r\n    for root, dirs, files in os.walk(BASE_DIR):\r\n        for file in files:\r\n            file_path = os.path.join(root, file)\r\n            zipf.write(file_path, os.path.relpath(file_path, BASE_DIR))\r\n\r\nzip_path",
+                        "end_time": 1779019883.5091574,
+                        "final_expression_output": "'/mnt/data/ecommerce-promotions-docker.zip'",
+                        "in_kernel_exception": null,
+                        "system_exception": null,
+                        "messages": [],
+                        "jupyter_messages": [
+                            {
+                                "msg_type": "status",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_5",
+                                    "version": "5.3"
+                                },
+                                "content": {
+                                    "execution_state": "busy"
+                                }
+                            },
+                            {
+                                "msg_type": "execute_input",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_5",
+                                    "version": "5.3"
+                                }
+                            },
+                            {
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_5",
+                                    "version": "5.3"
+                                },
+                                "msg_type": "execute_result",
+                                "content": {
+                                    "data": {
+                                        "text/plain": "'/mnt/data/ecommerce-promotions-docker.zip'"
+                                    }
+                                }
+                            },
+                            {
+                                "msg_type": "status",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_5",
+                                    "version": "5.3"
+                                },
+                                "content": {
+                                    "execution_state": "idle"
+                                }
+                            }
+                        ],
+                        "timeout_triggered": null
+                    },
+                    "request_id": "66e08361-f7f0-4d23-8593-8b9243a024b6",
+                    "message_type": "next",
+                    "turn_exchange_id": "afeceb96-bc02-4181-b3bf-11c91109a2d6",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "parent_id": "ff04f660-5b37-49b6-b386-0a680c794f95",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": "commentary"
+            },
+            "parent": "ff04f660-5b37-49b6-b386-0a680c794f95",
+            "children": [
+                "0659c9fb-2028-4013-857c-9189b2bbcb9b"
+            ]
+        },
+        "0659c9fb-2028-4013-857c-9189b2bbcb9b": {
+            "id": "0659c9fb-2028-4013-857c-9189b2bbcb9b",
+            "message": {
+                "id": "0659c9fb-2028-4013-857c-9189b2bbcb9b",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779019884.005436,
+                "update_time": 1779019955.917375,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "Your full **Docker-ready system** is finished ✅\n\nDownload here:\n\n👉 **[Download Docker Version (One-Command Startup)](sandbox:/mnt/data/ecommerce-promotions-docker.zip)**\n\n---\n\n# 🚀 How To Run (Very Easy)\n\n### 1️⃣ Install Docker Desktop\nDownload:\nhttps://www.docker.com/products/docker-desktop/\n\nInstall and open it.\n\n---\n\n### 2️⃣ Unzip the file\n\nOpen terminal inside the folder where `docker-compose.yml` exists.\n\n---\n\n### 3️⃣ Start Everything (ONE COMMAND)\n\n```bash\ndocker compose up --build\n```\n\nWait until you see:\n\n```\nBackend running on port 5000\n```\n\n---\n\n# 🌐 Open in Browser\n\nFrontend:\n```\nhttp://localhost:3000\n```\n\nBackend API:\n```\nhttp://localhost:5000\n```\n\n---\n\n# 🧪 Test Coupons\n\nUse:\n\n- `SAVE10`\n- `FLAT50`\n\n---\n\n# 🎉 That's It\n\nThis version automatically:\n\n- Starts PostgreSQL\n- Creates database\n- Creates tables\n- Inserts sample coupons\n- Starts backend\n- Starts frontend\n\nAll with one command.\n\n---\n\nIf you'd like next:\n\n- 🔐 Production-ready optimized Docker (Nginx + multi-stage builds)\n- 🌍 Deploy to cloud\n- 📊 Admin panel\n- 🏗 Enterprise architecture upgrade\n\nJust tell me."
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": true,
+                "weight": 1,
+                "metadata": {
+                    "finish_details": {
+                        "type": "stop",
+                        "stop_tokens": [
+                            200002
+                        ]
+                    },
+                    "is_complete": true,
+                    "citations": [],
+                    "content_references": [],
+                    "story_events": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "code_blocks": {
+                        "0": {
+                            "id": "nzix6i",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "1": {
+                            "id": "z17zh5",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "2": {
+                            "id": "inca0r",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "3": {
+                            "id": "lm0nc6",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        }
+                    },
+                    "search_result_groups": [],
+                    "request_id": "66e08361-f7f0-4d23-8593-8b9243a024b6",
+                    "message_type": "next",
+                    "turn_exchange_id": "afeceb96-bc02-4181-b3bf-11c91109a2d6",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "can_save": true,
+                    "parent_id": "1994e1fa-c9d7-4172-8c30-7898ecf61b71",
+                    "model_switcher_deny": []
+                },
+                "recipient": "all",
+                "channel": "final"
+            },
+            "parent": "1994e1fa-c9d7-4172-8c30-7898ecf61b71",
+            "children": [
+                "fd218231-acb8-430a-a0b8-433ce1b42699"
+            ]
+        },
+        "fd218231-acb8-430a-a0b8-433ce1b42699": {
+            "id": "fd218231-acb8-430a-a0b8-433ce1b42699",
+            "message": {
+                "id": "fd218231-acb8-430a-a0b8-433ce1b42699",
+                "author": {
+                    "role": "user",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779020352.77,
+                "update_time": 1779020374.919847,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "promotions-frontend  | > start\npromotions-frontend  | > react-scripts start Enable Watch   d Detach\npromotions-frontend  | \npromotions-frontend  | Could not find a required file.\npromotions-frontend  |   Name: index.html\npromotions-frontend  |   Searched in: /app/public\npromotions-frontend exited with code 1 (restarting)\npromotions-frontend  | \npromotions-frontend  | > start\npromotions-frontend  | > react-scripts start Enable Watch   d Detach\npromotions-frontend  | \npromotions-frontend  | Could not find a required file.\npromotions-frontend  |   Name: index.html\npromotions-frontend  |   Searched in: /app/public\npromotions-frontend exited with code 1 (restarting)"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "developer_mode_connector_ids": [],
+                    "selected_sources": [],
+                    "selected_github_repos": [],
+                    "serialization_metadata": {
+                        "custom_symbol_offsets": []
+                    },
+                    "request_id": "5bdaf833-7ed5-40fa-96ba-b2a50561816f",
+                    "message_source": null,
+                    "turn_exchange_id": "e792dd1d-1d58-4331-8421-706a35eb9437",
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": null
+            },
+            "parent": "0659c9fb-2028-4013-857c-9189b2bbcb9b",
+            "children": [
+                "c7edcab9-936b-4e93-83a5-b2dc36299170"
+            ]
+        },
+        "c7edcab9-936b-4e93-83a5-b2dc36299170": {
+            "id": "c7edcab9-936b-4e93-83a5-b2dc36299170",
+            "message": {
+                "id": "c7edcab9-936b-4e93-83a5-b2dc36299170",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779020354.638114,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "# Fix Docker project by adding required React public/index.html\r\nimport os\r\nimport zipfile\r\n\r\nBASE_DIR = \"/mnt/data/ecommerce-promotions-docker-fixed\"\r\nBACKEND_DIR = os.path.join(BASE_DIR, \"backend\")\r\nFRONTEND_DIR = os.path.join(BASE_DIR, \"frontend\")\r\n\r\nfolders = [\r\n    BACKEND_DIR,\r\n    os.path.join(BACKEND_DIR, \"controllers\"),\r\n    os.path.join(BACKEND_DIR, \"routes\"),\r\n    os.path.join(BACKEND_DIR, \"utils\"),\r\n    FRONTEND_DIR,\r\n    os.path.join(FRONTEND_DIR, \"src\"),\r\n    os.path.join(FRONTEND_DIR, \"src/components\"),\r\n    os.path.join(FRONTEND_DIR, \"public\"),\r\n]\r\n\r\nfor folder in folders:\r\n    os.makedirs(folder, exist_ok=True)\r\n\r\n# ---------------- BACKEND FILES ----------------\r\n\r\nbackend_files = {\r\n    \"backend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-backend\",\r\n  \"version\": \"1.0.0\",\r\n  \"main\": \"server.js\",\r\n  \"scripts\": { \"start\": \"node server.js\" },\r\n  \"dependencies\": {\r\n    \"express\": \"^4.18.2\",\r\n    \"pg\": \"^8.11.0\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"backend/server.js\": \"\"\"const express = require('express');\r\nconst pool = require('./db');\r\nconst couponRoutes = require('./routes/couponRoutes');\r\n\r\nconst app = express();\r\napp.use(express.json());\r\napp.use('/api/coupons', couponRoutes);\r\n\r\nconst PORT = 5000;\r\napp.listen(PORT, () => console.log(`Backend running on port ${PORT}`));\r\n\"\"\",\r\n\r\n    \"backend/db.js\": \"\"\"const { Pool } = require('pg');\r\n\r\nconst pool = new Pool({\r\n  host: process.env.DB_HOST,\r\n  user: process.env.DB_USER,\r\n  password: process.env.DB_PASSWORD,\r\n  database: process.env.DB_NAME,\r\n  port: 5432\r\n});\r\n\r\nmodule.exports = pool;\r\n\"\"\",\r\n\r\n    \"backend/utils/discountCalculator.js\": \"\"\"function applyDiscounts(cartTotal, coupons) {\r\n  let total = Number(cartTotal);\r\n\r\n  const percentageCoupons = coupons.filter(c => c.discount_type === 'PERCENTAGE');\r\n  const flatCoupons = coupons.filter(c => c.discount_type === 'FLAT');\r\n\r\n  percentageCoupons.forEach(coupon => {\r\n    total -= (total * coupon.discount_value) / 100;\r\n  });\r\n\r\n  flatCoupons.forEach(coupon => {\r\n    total -= coupon.discount_value;\r\n  });\r\n\r\n  total = Math.max(0, total);\r\n  return Number(total.toFixed(2));\r\n}\r\n\r\nmodule.exports = applyDiscounts;\r\n\"\"\",\r\n\r\n    \"backend/controllers/couponController.js\": \"\"\"const pool = require('../db');\r\nconst applyDiscounts = require('../utils/discountCalculator');\r\n\r\nexports.validateCoupons = async (req, res) => {\r\n  const { userId, cartTotal, couponCodes } = req.body;\r\n\r\n  if (!couponCodes || !couponCodes.length)\r\n    return res.status(400).json({ message: \"No coupons provided\" });\r\n\r\n  try {\r\n    const validCoupons = [];\r\n\r\n    for (let code of couponCodes) {\r\n      const result = await pool.query(\r\n        'SELECT * FROM coupons WHERE code=$1 AND is_active=true',\r\n        [code]\r\n      );\r\n\r\n      if (!result.rows.length) continue;\r\n\r\n      const coupon = result.rows[0];\r\n\r\n      if (new Date(coupon.expiration_date) < new Date()) continue;\r\n\r\n      validCoupons.push(coupon);\r\n    }\r\n\r\n    if (!validCoupons.length)\r\n      return res.status(400).json({ message: \"No valid coupons applied\" });\r\n\r\n    const finalTotal = applyDiscounts(cartTotal, validCoupons);\r\n\r\n    res.json({\r\n      originalTotal: cartTotal,\r\n      finalTotal,\r\n      appliedCoupons: validCoupons.map(c => c.code)\r\n    });\r\n\r\n  } catch (err) {\r\n    console.error(err);\r\n    res.status(500).json({ message: \"Server error\" });\r\n  }\r\n};\r\n\"\"\",\r\n\r\n    \"backend/routes/couponRoutes.js\": \"\"\"const express = require('express');\r\nconst router = express.Router();\r\nconst couponController = require('../controllers/couponController');\r\n\r\nrouter.post('/validate', couponController.validateCoupons);\r\n\r\nmodule.exports = router;\r\n\"\"\",\r\n\r\n    \"backend/schema.sql\": \"\"\"CREATE EXTENSION IF NOT EXISTS \"pgcrypto\";\r\n\r\nCREATE TABLE coupons (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    code VARCHAR(50) UNIQUE NOT NULL,\r\n    discount_type VARCHAR(20) CHECK (discount_type IN ('PERCENTAGE','FLAT')),\r\n    discount_value NUMERIC(10,2) NOT NULL,\r\n    expiration_date TIMESTAMP NOT NULL,\r\n    is_active BOOLEAN DEFAULT TRUE\r\n);\r\n\r\nINSERT INTO coupons (code, discount_type, discount_value, expiration_date)\r\nVALUES \r\n('SAVE10', 'PERCENTAGE', 10, NOW() + INTERVAL '30 days'),\r\n('FLAT50', 'FLAT', 50, NOW() + INTERVAL '30 days');\r\n\"\"\",\r\n\r\n    \"backend/Dockerfile\": \"\"\"FROM node:18\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\nEXPOSE 5000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in backend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- FRONTEND FILES ----------------\r\n\r\nfrontend_files = {\r\n    \"frontend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-frontend\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"react\": \"^18.3.1\",\r\n    \"react-dom\": \"^18.3.1\",\r\n    \"react-scripts\": \"5.0.1\"\r\n  },\r\n  \"scripts\": { \"start\": \"react-scripts start\" }\r\n}\"\"\",\r\n\r\n    \"frontend/public/index.html\": \"\"\"<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"utf-8\" />\r\n    <title>Promotions System</title>\r\n  </head>\r\n  <body>\r\n    <div id=\"root\"></div>\r\n  </body>\r\n</html>\r\n\"\"\",\r\n\r\n    \"frontend/src/index.js\": \"\"\"import React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport App from './App';\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(<App />);\r\n\"\"\",\r\n\r\n    \"frontend/src/App.js\": \"\"\"import React from 'react';\r\nimport Cart from './components/Cart';\r\n\r\nfunction App() {\r\n  return (\r\n    <div>\r\n      <h1>Promotions System</h1>\r\n      <Cart userId=\"demo-user\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/Cart.jsx\": \"\"\"import React, { useState } from 'react';\r\nimport CouponForm from './CouponForm';\r\n\r\nconst Cart = ({ userId }) => {\r\n  const [cartTotal, setCartTotal] = useState(200);\r\n\r\n  return (\r\n    <div>\r\n      <h2>Cart Total: ${cartTotal}</h2>\r\n      <CouponForm\r\n        userId={userId}\r\n        cartTotal={cartTotal}\r\n        onDiscountApplied={(newTotal) => setCartTotal(newTotal)}\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Cart;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/CouponForm.jsx\": \"\"\"import React, { useState } from 'react';\r\n\r\nconst CouponForm = ({ userId, cartTotal, onDiscountApplied }) => {\r\n  const [code, setCode] = useState('');\r\n\r\n  const applyCoupon = async () => {\r\n    const res = await fetch('http://localhost:5000/api/coupons/validate', {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({ userId, cartTotal, couponCodes: [code] })\r\n    });\r\n\r\n    const data = await res.json();\r\n    if (data.finalTotal !== undefined) onDiscountApplied(data.finalTotal);\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <input value={code} onChange={(e)=>setCode(e.target.value)} placeholder=\"Enter code\"/>\r\n      <button onClick={applyCoupon}>Apply</button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CouponForm;\r\n\"\"\",\r\n\r\n    \"frontend/Dockerfile\": \"\"\"FROM node:18\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\nEXPOSE 3000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in frontend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- DOCKER COMPOSE ----------------\r\n\r\ndocker_compose = \"\"\"version: '3.8'\r\n\r\nservices:\r\n  db:\r\n    image: postgres:15\r\n    container_name: promotions-db\r\n    restart: always\r\n    environment:\r\n      POSTGRES_USER: postgres\r\n      POSTGRES_PASSWORD: postgres\r\n      POSTGRES_DB: promotionsdb\r\n    ports:\r\n      - \"5432:5432\"\r\n    volumes:\r\n      - db_data:/var/lib/postgresql/data\r\n      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql\r\n\r\n  backend:\r\n    build: ./backend\r\n    container_name: promotions-backend\r\n    restart: always\r\n    environment:\r\n      DB_HOST: db\r\n      DB_USER: postgres\r\n      DB_PASSWORD: postgres\r\n      DB_NAME: promotionsdb\r\n    ports:\r\n      - \"5000:5000\"\r\n    depends_on:\r\n      - db\r\n\r\n  frontend:\r\n    build: ./frontend\r\n    container_name: promotions-frontend\r\n    restart: always\r\n    ports:\r\n      - \"3000:3000\"\r\n    depends_on:\r\n      - backend\r\n\r\nvolumes:\r\n  db_data:\r\n\"\"\"\r\n\r\nwith open(os.path.join(BASE_DIR, \"docker-compose.yml\"), \"w\") as f:\r\n    f.write(docker_compose)\r\n\r\n# ZIP FILE\r\nzip_path = \"/mnt/data/ecommerce-promotions-docker-fixed.zip\"\r\nwith zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:\r\n    for root, dirs, files in os.walk(BASE_DIR):\r\n        for file in files:\r\n            file_path = os.path.join(root, file)\r\n            zipf.write(file_path, os.path.relpath(file_path, BASE_DIR))\r\n\r\nzip_path"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": false,
+                "weight": 1,
+                "metadata": {
+                    "finish_details": {
+                        "type": "stop",
+                        "stop_tokens": [
+                            200012
+                        ]
+                    },
+                    "is_complete": true,
+                    "citations": [],
+                    "content_references": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "request_id": "5bdaf833-7ed5-40fa-96ba-b2a50561816f",
+                    "message_type": "next",
+                    "turn_exchange_id": "e792dd1d-1d58-4331-8421-706a35eb9437",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "parent_id": "bed6b4de-6da7-4671-a779-7d749591e1a5",
+                    "model_switcher_deny": [],
+                    "can_save": false
+                },
+                "recipient": "python",
+                "channel": "commentary"
+            },
+            "parent": "fd218231-acb8-430a-a0b8-433ce1b42699",
+            "children": [
+                "849b9399-2353-4b14-81b6-566ac6bbdc7c"
+            ]
+        },
+        "849b9399-2353-4b14-81b6-566ac6bbdc7c": {
+            "id": "849b9399-2353-4b14-81b6-566ac6bbdc7c",
+            "message": {
+                "id": "849b9399-2353-4b14-81b6-566ac6bbdc7c",
+                "author": {
+                    "role": "tool",
+                    "name": "python",
+                    "metadata": {}
+                },
+                "create_time": 1779020368.6420999,
+                "update_time": 1779020370.989815,
+                "content": {
+                    "content_type": "execution_output",
+                    "text": "'/mnt/data/ecommerce-promotions-docker-fixed.zip'"
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1,
+                "metadata": {
+                    "is_complete": true,
+                    "aggregate_result": {
+                        "status": "success",
+                        "run_id": "a94ab880-33e4-4771-b6d3-04aa4c96fff2",
+                        "start_time": 1779020368.6420999,
+                        "update_time": 1779020370.989815,
+                        "code": "# Fix Docker project by adding required React public/index.html\r\nimport os\r\nimport zipfile\r\n\r\nBASE_DIR = \"/mnt/data/ecommerce-promotions-docker-fixed\"\r\nBACKEND_DIR = os.path.join(BASE_DIR, \"backend\")\r\nFRONTEND_DIR = os.path.join(BASE_DIR, \"frontend\")\r\n\r\nfolders = [\r\n    BACKEND_DIR,\r\n    os.path.join(BACKEND_DIR, \"controllers\"),\r\n    os.path.join(BACKEND_DIR, \"routes\"),\r\n    os.path.join(BACKEND_DIR, \"utils\"),\r\n    FRONTEND_DIR,\r\n    os.path.join(FRONTEND_DIR, \"src\"),\r\n    os.path.join(FRONTEND_DIR, \"src/components\"),\r\n    os.path.join(FRONTEND_DIR, \"public\"),\r\n]\r\n\r\nfor folder in folders:\r\n    os.makedirs(folder, exist_ok=True)\r\n\r\n# ---------------- BACKEND FILES ----------------\r\n\r\nbackend_files = {\r\n    \"backend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-backend\",\r\n  \"version\": \"1.0.0\",\r\n  \"main\": \"server.js\",\r\n  \"scripts\": { \"start\": \"node server.js\" },\r\n  \"dependencies\": {\r\n    \"express\": \"^4.18.2\",\r\n    \"pg\": \"^8.11.0\"\r\n  }\r\n}\"\"\",\r\n\r\n    \"backend/server.js\": \"\"\"const express = require('express');\r\nconst pool = require('./db');\r\nconst couponRoutes = require('./routes/couponRoutes');\r\n\r\nconst app = express();\r\napp.use(express.json());\r\napp.use('/api/coupons', couponRoutes);\r\n\r\nconst PORT = 5000;\r\napp.listen(PORT, () => console.log(`Backend running on port ${PORT}`));\r\n\"\"\",\r\n\r\n    \"backend/db.js\": \"\"\"const { Pool } = require('pg');\r\n\r\nconst pool = new Pool({\r\n  host: process.env.DB_HOST,\r\n  user: process.env.DB_USER,\r\n  password: process.env.DB_PASSWORD,\r\n  database: process.env.DB_NAME,\r\n  port: 5432\r\n});\r\n\r\nmodule.exports = pool;\r\n\"\"\",\r\n\r\n    \"backend/utils/discountCalculator.js\": \"\"\"function applyDiscounts(cartTotal, coupons) {\r\n  let total = Number(cartTotal);\r\n\r\n  const percentageCoupons = coupons.filter(c => c.discount_type === 'PERCENTAGE');\r\n  const flatCoupons = coupons.filter(c => c.discount_type === 'FLAT');\r\n\r\n  percentageCoupons.forEach(coupon => {\r\n    total -= (total * coupon.discount_value) / 100;\r\n  });\r\n\r\n  flatCoupons.forEach(coupon => {\r\n    total -= coupon.discount_value;\r\n  });\r\n\r\n  total = Math.max(0, total);\r\n  return Number(total.toFixed(2));\r\n}\r\n\r\nmodule.exports = applyDiscounts;\r\n\"\"\",\r\n\r\n    \"backend/controllers/couponController.js\": \"\"\"const pool = require('../db');\r\nconst applyDiscounts = require('../utils/discountCalculator');\r\n\r\nexports.validateCoupons = async (req, res) => {\r\n  const { userId, cartTotal, couponCodes } = req.body;\r\n\r\n  if (!couponCodes || !couponCodes.length)\r\n    return res.status(400).json({ message: \"No coupons provided\" });\r\n\r\n  try {\r\n    const validCoupons = [];\r\n\r\n    for (let code of couponCodes) {\r\n      const result = await pool.query(\r\n        'SELECT * FROM coupons WHERE code=$1 AND is_active=true',\r\n        [code]\r\n      );\r\n\r\n      if (!result.rows.length) continue;\r\n\r\n      const coupon = result.rows[0];\r\n\r\n      if (new Date(coupon.expiration_date) < new Date()) continue;\r\n\r\n      validCoupons.push(coupon);\r\n    }\r\n\r\n    if (!validCoupons.length)\r\n      return res.status(400).json({ message: \"No valid coupons applied\" });\r\n\r\n    const finalTotal = applyDiscounts(cartTotal, validCoupons);\r\n\r\n    res.json({\r\n      originalTotal: cartTotal,\r\n      finalTotal,\r\n      appliedCoupons: validCoupons.map(c => c.code)\r\n    });\r\n\r\n  } catch (err) {\r\n    console.error(err);\r\n    res.status(500).json({ message: \"Server error\" });\r\n  }\r\n};\r\n\"\"\",\r\n\r\n    \"backend/routes/couponRoutes.js\": \"\"\"const express = require('express');\r\nconst router = express.Router();\r\nconst couponController = require('../controllers/couponController');\r\n\r\nrouter.post('/validate', couponController.validateCoupons);\r\n\r\nmodule.exports = router;\r\n\"\"\",\r\n\r\n    \"backend/schema.sql\": \"\"\"CREATE EXTENSION IF NOT EXISTS \"pgcrypto\";\r\n\r\nCREATE TABLE coupons (\r\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\r\n    code VARCHAR(50) UNIQUE NOT NULL,\r\n    discount_type VARCHAR(20) CHECK (discount_type IN ('PERCENTAGE','FLAT')),\r\n    discount_value NUMERIC(10,2) NOT NULL,\r\n    expiration_date TIMESTAMP NOT NULL,\r\n    is_active BOOLEAN DEFAULT TRUE\r\n);\r\n\r\nINSERT INTO coupons (code, discount_type, discount_value, expiration_date)\r\nVALUES \r\n('SAVE10', 'PERCENTAGE', 10, NOW() + INTERVAL '30 days'),\r\n('FLAT50', 'FLAT', 50, NOW() + INTERVAL '30 days');\r\n\"\"\",\r\n\r\n    \"backend/Dockerfile\": \"\"\"FROM node:18\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\nEXPOSE 5000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in backend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- FRONTEND FILES ----------------\r\n\r\nfrontend_files = {\r\n    \"frontend/package.json\": \"\"\"{\r\n  \"name\": \"promotions-frontend\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"react\": \"^18.3.1\",\r\n    \"react-dom\": \"^18.3.1\",\r\n    \"react-scripts\": \"5.0.1\"\r\n  },\r\n  \"scripts\": { \"start\": \"react-scripts start\" }\r\n}\"\"\",\r\n\r\n    \"frontend/public/index.html\": \"\"\"<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"utf-8\" />\r\n    <title>Promotions System</title>\r\n  </head>\r\n  <body>\r\n    <div id=\"root\"></div>\r\n  </body>\r\n</html>\r\n\"\"\",\r\n\r\n    \"frontend/src/index.js\": \"\"\"import React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport App from './App';\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(<App />);\r\n\"\"\",\r\n\r\n    \"frontend/src/App.js\": \"\"\"import React from 'react';\r\nimport Cart from './components/Cart';\r\n\r\nfunction App() {\r\n  return (\r\n    <div>\r\n      <h1>Promotions System</h1>\r\n      <Cart userId=\"demo-user\" />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/Cart.jsx\": \"\"\"import React, { useState } from 'react';\r\nimport CouponForm from './CouponForm';\r\n\r\nconst Cart = ({ userId }) => {\r\n  const [cartTotal, setCartTotal] = useState(200);\r\n\r\n  return (\r\n    <div>\r\n      <h2>Cart Total: ${cartTotal}</h2>\r\n      <CouponForm\r\n        userId={userId}\r\n        cartTotal={cartTotal}\r\n        onDiscountApplied={(newTotal) => setCartTotal(newTotal)}\r\n      />\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Cart;\r\n\"\"\",\r\n\r\n    \"frontend/src/components/CouponForm.jsx\": \"\"\"import React, { useState } from 'react';\r\n\r\nconst CouponForm = ({ userId, cartTotal, onDiscountApplied }) => {\r\n  const [code, setCode] = useState('');\r\n\r\n  const applyCoupon = async () => {\r\n    const res = await fetch('http://localhost:5000/api/coupons/validate', {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: JSON.stringify({ userId, cartTotal, couponCodes: [code] })\r\n    });\r\n\r\n    const data = await res.json();\r\n    if (data.finalTotal !== undefined) onDiscountApplied(data.finalTotal);\r\n  };\r\n\r\n  return (\r\n    <div>\r\n      <input value={code} onChange={(e)=>setCode(e.target.value)} placeholder=\"Enter code\"/>\r\n      <button onClick={applyCoupon}>Apply</button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default CouponForm;\r\n\"\"\",\r\n\r\n    \"frontend/Dockerfile\": \"\"\"FROM node:18\r\nWORKDIR /app\r\nCOPY package.json ./\r\nRUN npm install\r\nCOPY . .\r\nEXPOSE 3000\r\nCMD [\"npm\", \"start\"]\r\n\"\"\"\r\n}\r\n\r\nfor path, content in frontend_files.items():\r\n    full_path = os.path.join(BASE_DIR, path)\r\n    os.makedirs(os.path.dirname(full_path), exist_ok=True)\r\n    with open(full_path, \"w\") as f:\r\n        f.write(content)\r\n\r\n# ---------------- DOCKER COMPOSE ----------------\r\n\r\ndocker_compose = \"\"\"version: '3.8'\r\n\r\nservices:\r\n  db:\r\n    image: postgres:15\r\n    container_name: promotions-db\r\n    restart: always\r\n    environment:\r\n      POSTGRES_USER: postgres\r\n      POSTGRES_PASSWORD: postgres\r\n      POSTGRES_DB: promotionsdb\r\n    ports:\r\n      - \"5432:5432\"\r\n    volumes:\r\n      - db_data:/var/lib/postgresql/data\r\n      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql\r\n\r\n  backend:\r\n    build: ./backend\r\n    container_name: promotions-backend\r\n    restart: always\r\n    environment:\r\n      DB_HOST: db\r\n      DB_USER: postgres\r\n      DB_PASSWORD: postgres\r\n      DB_NAME: promotionsdb\r\n    ports:\r\n      - \"5000:5000\"\r\n    depends_on:\r\n      - db\r\n\r\n  frontend:\r\n    build: ./frontend\r\n    container_name: promotions-frontend\r\n    restart: always\r\n    ports:\r\n      - \"3000:3000\"\r\n    depends_on:\r\n      - backend\r\n\r\nvolumes:\r\n  db_data:\r\n\"\"\"\r\n\r\nwith open(os.path.join(BASE_DIR, \"docker-compose.yml\"), \"w\") as f:\r\n    f.write(docker_compose)\r\n\r\n# ZIP FILE\r\nzip_path = \"/mnt/data/ecommerce-promotions-docker-fixed.zip\"\r\nwith zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:\r\n    for root, dirs, files in os.walk(BASE_DIR):\r\n        for file in files:\r\n            file_path = os.path.join(root, file)\r\n            zipf.write(file_path, os.path.relpath(file_path, BASE_DIR))\r\n\r\nzip_path",
+                        "end_time": 1779020370.989815,
+                        "final_expression_output": "'/mnt/data/ecommerce-promotions-docker-fixed.zip'",
+                        "in_kernel_exception": null,
+                        "system_exception": null,
+                        "messages": [],
+                        "jupyter_messages": [
+                            {
+                                "msg_type": "status",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_6",
+                                    "version": "5.3"
+                                },
+                                "content": {
+                                    "execution_state": "busy"
+                                }
+                            },
+                            {
+                                "msg_type": "execute_input",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_6",
+                                    "version": "5.3"
+                                }
+                            },
+                            {
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_6",
+                                    "version": "5.3"
+                                },
+                                "msg_type": "execute_result",
+                                "content": {
+                                    "data": {
+                                        "text/plain": "'/mnt/data/ecommerce-promotions-docker-fixed.zip'"
+                                    }
+                                }
+                            },
+                            {
+                                "msg_type": "status",
+                                "parent_header": {
+                                    "msg_id": "96cbf5df-fff630bccfad5a13792467f1_200_6",
+                                    "version": "5.3"
+                                },
+                                "content": {
+                                    "execution_state": "idle"
+                                }
+                            }
+                        ],
+                        "timeout_triggered": null
+                    },
+                    "request_id": "5bdaf833-7ed5-40fa-96ba-b2a50561816f",
+                    "message_type": "next",
+                    "turn_exchange_id": "e792dd1d-1d58-4331-8421-706a35eb9437",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "parent_id": "c7edcab9-936b-4e93-83a5-b2dc36299170",
+                    "can_save": false
+                },
+                "recipient": "all",
+                "channel": "commentary"
+            },
+            "parent": "c7edcab9-936b-4e93-83a5-b2dc36299170",
+            "children": [
+                "9ad757c5-a45f-4336-8c65-0f6c7051a9c0"
+            ]
+        },
+        "9ad757c5-a45f-4336-8c65-0f6c7051a9c0": {
+            "id": "9ad757c5-a45f-4336-8c65-0f6c7051a9c0",
+            "message": {
+                "id": "9ad757c5-a45f-4336-8c65-0f6c7051a9c0",
+                "author": {
+                    "role": "assistant",
+                    "name": null,
+                    "metadata": {}
+                },
+                "create_time": 1779020371.551677,
+                "update_time": null,
+                "content": {
+                    "content_type": "text",
+                    "parts": [
+                        "Good catch 👌 — that error happened because React requires:\n\n```\nfrontend/public/index.html\n```\n\nThe previous ZIP was missing that file.\n\n---\n\n# ✅ Download the Fixed Version\n\n👉 **[Download Fixed Docker Version](sandbox:/mnt/data/ecommerce-promotions-docker-fixed.zip)**\n\n---\n\n# 🚀 How To Run (Clean Restart Recommended)\n\n1️⃣ Stop old containers:\n\n```bash\ndocker compose down -v\n```\n\n2️⃣ Unzip the new file  \n3️⃣ Open terminal inside the new folder  \n4️⃣ Run:\n\n```bash\ndocker compose up --build\n```\n\n---\n\n# 🌐 Open Browser\n\n```\nhttp://localhost:3000\n```\n\n---\n\n# 🧪 Test Coupons\n\nUse:\n\n- SAVE10  \n- FLAT50  \n\n---\n\nIf anything else breaks, paste the error and I’ll fix it immediately.\n\nYou're very close now 🚀"
+                    ]
+                },
+                "status": "finished_successfully",
+                "end_turn": true,
+                "weight": 1,
+                "metadata": {
+                    "finish_details": {
+                        "type": "stop",
+                        "stop_tokens": [
+                            200002
+                        ]
+                    },
+                    "is_complete": true,
+                    "citations": [],
+                    "content_references": [],
+                    "story_events": [],
+                    "resolved_model_slug": "gpt-5-2-instant",
+                    "gizmo_id": "g-p-6a053634c4308191b35782fadb612dee",
+                    "code_blocks": {
+                        "0": {
+                            "id": "fwg7qt",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "1": {
+                            "id": "8j4l0l",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "2": {
+                            "id": "u98bry",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        },
+                        "3": {
+                            "id": "4epv3r",
+                            "edited": false,
+                            "previewable": false,
+                            "preview_language": null
+                        }
+                    },
+                    "search_result_groups": [],
+                    "request_id": "5bdaf833-7ed5-40fa-96ba-b2a50561816f",
+                    "message_type": "next",
+                    "turn_exchange_id": "e792dd1d-1d58-4331-8421-706a35eb9437",
+                    "model_slug": "gpt-5-2-instant",
+                    "default_model_slug": "gpt-5-2-instant",
+                    "can_save": true,
+                    "parent_id": "849b9399-2353-4b14-81b6-566ac6bbdc7c",
+                    "model_switcher_deny": []
+                },
+                "recipient": "all",
+                "channel": "final"
+            },
+            "parent": "849b9399-2353-4b14-81b6-566ac6bbdc7c",
+            "children": []
+        }
+    },
+    "current_node": "9ad757c5-a45f-4336-8c65-0f6c7051a9c0"
+}
