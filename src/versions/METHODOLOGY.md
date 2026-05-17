@@ -39,7 +39,7 @@ The primary dataset is being expanded to **18 generated versions** organized as 
 
 The `01` versions form the initial baseline set. The `02` versions are repeat generations of the same domain-strategy combinations and are included to reduce single-run variance and make the comparison less dependent on one generated sample. Each version is evaluated against the same Acceptance Scenarios and Edge Cases for its domain. Results are reported both per version and, where applicable, aggregated by strategy across all completed runs.
 
-At the time of this methodology update, the second Basic Prompting run (`IMBP02`, `SCBP02`, and `PDBP02`) and the second Context Engineering runs for Inventory Management and Shopping Cart (`IMCE02` and `SCCE02`) have been generated and measured. The remaining `02` versions for Context Engineering and Specification-Driven Development are planned for the next evaluation pass and will be added using the same measurement procedure.
+At the time of this methodology update, the second Basic Prompting run (`IMBP02`, `SCBP02`, and `PDBP02`) and the second Context Engineering run (`IMCE02`, `SCCE02`, and `PDCE02`) have been generated and measured. The remaining `02` versions for Specification-Driven Development are planned for the next evaluation pass and will be added using the same measurement procedure.
 
 ### 2.2 Supplementary Repository Artifacts
 
@@ -130,6 +130,7 @@ The table below is updated progressively as each version in the 18-version datas
 | SCCE01  | CE       | 409           | 457            | 463                  |
 | SCCE02  | CE       | 65            | 70             | 508                  |
 | PDCE01  | CE       | 305           | 249            | 531                  |
+| PDCE02  | CE       | 95            | 78             | 479                  |
 | IMSD01  | SDD      | 398           | 318            | 296                  |
 | SCSD01  | SDD      | 208           | 988            | 353                  |
 | PDSD01  | SDD      | 296           | 171            | 170                  |

@@ -1,6 +1,6 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-17 (added SCCE02)
+> Last updated: 2026-05-17 (added PDCE02)
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -12,7 +12,7 @@
 
 ## 1. Unit Tests
 
-> Workflow run: [Unit Tests #25988768554](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25988768554)
+> Workflow run: [Unit Tests #25991127769](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127769)
 > Source: `test_report.md` in each version directory
 
 | Version | Feature                | Tool   | Passed | Failed | Total | Result                  | Failure Details                                           |
@@ -30,6 +30,7 @@
 | PDBP01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
 | PDBP02  | Promotions & Discounts | Jest   | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard |
 | PDCE01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
+| PDCE02  | Promotions & Discounts | node:test | 5   | 0      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure: usage limit not implemented |
 | PDSD01  | Promotions & Discounts | pytest | 18     | 0      | 18    | :white_check_mark: PASS | scenarios: 6, unit: 7, integration: 5                     |
 
 ### Test Summary by Strategy
@@ -37,7 +38,7 @@
 | Strategy                     | Passed | Failed | Total | Pass Rate |
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
-| **CE** (Context Engineering) | 25     | 5      | 30    | 83%       |
+| **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
 | **SD** (Spec-Driven Dev)     | 51     | 0      | 51    | 100%      |
 
 ---
@@ -64,6 +65,7 @@
 | PDBP01    | 8               | 1                  | 9                      | 1.30%        | 3                 |
 | PDBP02    | 6               | 3                  | 2                      | 0.00%        | 2                 |
 | PDCE01    | 6               | 16                 | 20                     | 0.00%        | 4                 |
+| PDCE02    | 9               | 0                  | 8                      | 0.00%        | 4                 |
 | PDSD01    | 5               | 6                  | 9                      | 0.00%        | 5                 |
 
 > CS and AG versions are excluded from this SonarQube summary to match the current workflow scope.
@@ -73,14 +75,14 @@
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications | Avg Security Hotspots |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- | --------------------- |
 | **BP** (Basic Prompting)     | 5.67         | 3.17            | 6.83                | 2.02%            | 1.33                  |
-| **CE** (Context Engineering) | 9.20         | 9.60            | 12.00               | 1.84%            | 4.00                  |
+| **CE** (Context Engineering) | 9.17         | 8.00            | 11.33               | 1.53%            | 4.00                  |
 | **SD** (Spec-Driven Dev)     | 6.33         | 6.67            | 9.67                | 8.20%            | 3.33                  |
 
 ---
 
 ## 3. CodeQL Static Analysis (SAST)
 
-> Workflow run: [CodeQL #25966745196](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25966745196)
+> Workflow run: [CodeQL #25991127757](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127757)
 > Security alerts: [Code Scanning Alerts](https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning)
 
 | Language              | Result                  |
@@ -105,6 +107,7 @@
 | PDBP01  | 0    | 0      | 0     | -                                      |
 | PDBP02  | 1    | 0      | 1     | Missing rate limiting                  |
 | PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
+| PDCE02  | 1    | 0      | 1     | Missing rate limiting                  |
 | PDSD01  | 0    | 0      | 0     | -                                      |
 
 
@@ -113,15 +116,15 @@
 | Strategy                     | Total Alerts | High | Medium |
 | ---------------------------- | ------------ | ---- | ------ |
 | **BP** (Basic Prompting)     | 6            | 6    | 0      |
-| **CE** (Context Engineering) | 18           | 16   | 2      |
+| **CE** (Context Engineering) | 19           | 17   | 2      |
 | **SD** (Spec-Driven Dev)     | 0            | 0    | 0      |
 
 ---
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #25989144704](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25989144704)
-> Result: :white_check_mark: **14/14 JOBS SCANNED**
+> Workflow run: [DAST #25991127771](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127771)
+> Result: :white_check_mark: **15/15 JOBS SCANNED**
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
@@ -133,6 +136,7 @@
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
 | PDBP02  | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration |
 | PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
+| PDCE02  | 0        | 10       | 57   | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable content + Cross-Domain Misconfiguration |
 | PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Information Leak [10009]   |
 | SCBP01  | 0        | 7        | 60   | Missing headers                                                                   |
 | SCBP02  | 0        | 5        | 62   | Storable and Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
@@ -140,9 +144,9 @@
 | SCCE02  | 0        | 11       | 56   | Missing headers + X-Powered-By leak + Suspicious comments + Cacheable content + Cross-Domain Misconfiguration |
 | SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attribute Missing [90003]                |
 
-### Common ZAP Warnings (across all versions)
+### Common ZAP Warnings (legacy 12-version baseline)
 
-| Warning                                            | Rule ID | Severity      | Affected (12 scanned)                      |
+| Warning                                            | Rule ID | Severity      | Affected (legacy 12 scanned)               |
 | -------------------------------------------------- | ------- | ------------- | ------------------------------------------ |
 | Missing Anti-clickjacking Header                   | 10020   | Medium        | 11/12                                      |
 | Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 11/12                                      |
@@ -162,7 +166,7 @@
 | Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
 | **BP** (Basic Prompting)     | 7.2          | 59.8     | 2/6 (PDBP01, PDBP02)     | 6/6 scanned                          |
-| **CE** (Context Engineering) | 7.6          | 59.4     | 2/5 (SCCE01, SCCE02)     | 5/5 scanned                          |
+| **CE** (Context Engineering) | 8.0          | 59.0     | 3/6 (SCCE01, SCCE02, PDCE02) | 6/6 scanned                       |
 | **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
 
 ---
@@ -185,6 +189,7 @@
 | PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 8 / 1 / 9                 | 1.30%        | 365           | 805            | 60.8         |
 | PDBP02    | ⚠️ 1/6 (CI, 5 fail)        | 1 high        | 0/5/62                | 6 / 3 / 2                 | 0.00%        | 93            | 81             | 23.3         |
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 249            | 43.6         |
+| PDCE02    | ⚠️ 5/6 (CI, 1 todo)        | 1 high        | 0/10/57               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
 | PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 5 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
 
 > ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
@@ -216,6 +221,7 @@
 | SCCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 3 | 3 | 463 |
 | SCCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 6 | 11 | 508 |
 | PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
+| PDCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 5 | 10 | 479 |
 | IMSD01  | SDD      | Codex CLI | N/A | 13 | 12 | 296 ⁴ |
 | SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |
 | PDSD01  | SDD      | Codex CLI | N/A | 14 | 13 | 170 ⁴ |
@@ -225,7 +231,7 @@
 | Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
 | **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
-| **CE** (Context Engineering) | 5 | 20 | 32 | 2,639 |
+| **CE** (Context Engineering) | 6 | 25 | 42 | 3,118 |
 | **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
@@ -246,6 +252,6 @@
 | CodeQL Workflow          | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml       |
 | DAST ZAP Workflow        | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml |
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
-| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25988768554           |
-| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25966745196           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25989144704           |
+| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127769           |
+| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127757           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127771           |
