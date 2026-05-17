@@ -47,32 +47,32 @@
 
 ### SonarQube Open Issues by Version
 
-| Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications |
-| --------- | --------------- | ------------------ | ---------------------- | ------------ |
-| IMBP01    | 3               | 3                  | 7                      | 6.10%        |
-| IMBP02    | 2               | 1                  | 1                      | 0.00%        |
-| IMCE01    | 7               | 19                 | 27                     | 0.00%        |
-| IMCE02    | 16              | 2                  | 1                      | 5.40%        |
-| IMSD01    | 7               | 12                 | 15                     | 2.70%        |
-| SCBP01    | 9               | 9                  | 20                     | 4.70%        |
-| SCBP02    | 6               | 2                  | 2                      | 0.00%        |
-| SCCE01    | 8               | 9                  | 11                     | 3.80%        |
-| SCSD01    | 7               | 0                  | 5                      | 21.90%       |
-| SCSD01_v2 | 7               | 4                  | 25                     | 0.00%        |
-| PDBP01    | 8               | 1                  | 9                      | 1.30%        |
-| PDBP02    | 6               | 3                  | 2                      | 0.00%        |
-| PDCE01    | 6               | 16                 | 20                     | 0.00%        |
-| PDSD01    | 5               | 6                  | 9                      | 0.00%        |
+| Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications | Security Hotspots |
+| --------- | --------------- | ------------------ | ---------------------- | ------------ | ----------------- |
+| IMBP01    | 3               | 3                  | 7                      | 6.10%        | 0                 |
+| IMBP02    | 2               | 1                  | 1                      | 0.00%        | 0                 |
+| IMCE01    | 7               | 19                 | 27                     | 0.00%        | 6                 |
+| IMCE02    | 16              | 2                  | 1                      | 5.40%        | 4                 |
+| IMSD01    | 7               | 12                 | 15                     | 2.70%        | 2                 |
+| SCBP01    | 9               | 9                  | 20                     | 4.70%        | 2                 |
+| SCBP02    | 6               | 2                  | 2                      | 0.00%        | 1                 |
+| SCCE01    | 8               | 9                  | 11                     | 3.80%        | 2                 |
+| SCSD01    | 7               | 0                  | 5                      | 21.90%       | 3                 |
+| SCSD01_v2 | 7               | 4                  | 25                     | 0.00%        | 4                 |
+| PDBP01    | 8               | 1                  | 9                      | 1.30%        | 3                 |
+| PDBP02    | 6               | 3                  | 2                      | 0.00%        | 2                 |
+| PDCE01    | 6               | 16                 | 20                     | 0.00%        | 4                 |
+| PDSD01    | 5               | 6                  | 9                      | 0.00%        | 5                 |
 
 > CS and AG versions are excluded from this SonarQube summary to match the current workflow scope.
 
 ### SonarQube Summary by Strategy
 
-| Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications |
-| ---------------------------- | ------------ | --------------- | ------------------- | ---------------- |
-| **BP** (Basic Prompting)     | 5.67         | 3.17            | 6.83                | 2.02%            |
-| **CE** (Context Engineering) | 9.25         | 11.5            | 14.75               | 2.30%            |
-| **SD** (Spec-Driven Dev)     | 6.33         | 6.67            | 9.67                | 8.20%            |
+| Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications | Avg Security Hotspots |
+| ---------------------------- | ------------ | --------------- | ------------------- | ---------------- | --------------------- |
+| **BP** (Basic Prompting)     | 5.67         | 3.17            | 6.83                | 2.02%            | 1.33                  |
+| **CE** (Context Engineering) | 9.25         | 11.5            | 14.75               | 2.30%            | 4.00                  |
+| **SD** (Spec-Driven Dev)     | 6.33         | 6.67            | 9.67                | 8.20%            | 3.33                  |
 
 ---
 
