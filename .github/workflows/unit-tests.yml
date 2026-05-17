@@ -175,7 +175,7 @@ jobs:
           DATABASE_URL: ${{ matrix.database_url }}
           NODE_ENV: test
         run: |
-          if npm pkg get scripts.test | grep -qv undefined; then
+          if [ "$(npm pkg get scripts.test)" != "{}" ]; then
             npm test
           else
             node --test tests/*.test.js
