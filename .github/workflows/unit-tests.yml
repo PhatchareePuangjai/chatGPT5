@@ -22,6 +22,7 @@ on:
       - 'src/versions/SCCE02/**'
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
+      - 'src/versions/PDCE02/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -43,6 +44,7 @@ on:
       - 'src/versions/SCCE02/**'
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
+      - 'src/versions/PDCE02/**'
   workflow_dispatch:
 
 jobs:
@@ -102,6 +104,12 @@ jobs:
             db_pass: ''
             db_name: ''
             database_url: ''
+          - version: PDCE02
+            path: src/versions/PDCE02/backend
+            db_user: postgres
+            db_pass: postgres
+            db_name: promotionsdb
+            database_url: postgres://postgres:postgres@localhost:5432/promotionsdb
 
     steps:
       - uses: actions/checkout@v4
