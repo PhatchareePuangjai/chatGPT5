@@ -37,3 +37,8 @@ Row-level locking during stock updates ensures only one concurrent update can cl
 
 This research intentionally avoids premature choices (ORM vs query builder) beyond what is needed
 to enforce correctness constraints from the spec (transactions + locking) and the constitution.
+
+## Baseline Measurements (Pending)
+
+- API latency (p95) for confirm/cancel: TODO (measure after wiring local dev + DB)
+- Payload sizes for SKU/alerts endpoints: TODO

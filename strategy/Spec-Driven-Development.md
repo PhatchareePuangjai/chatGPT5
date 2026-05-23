@@ -10,7 +10,7 @@
 ### Stage 1 — Constitution
 
 ```
-/speckit.constitution Create principles focused on code quality,
+$speckit-constitution Create principles focused on code quality,
 testing standards, user experience consistency,
 and performance requirements
 Stack: Node.js + Express (backend), React ^18.3.1, PostgreSQL (database)
@@ -31,7 +31,7 @@ Stack: Node.js + Express (backend), React ^18.3.1, PostgreSQL (database)
 ### Stage 3 — Spec
 
 ```
-/speckit.specify "Create a specification based on the requirements in scenarios_inventory.md"
+$speckit-specify "Create a specification based on the requirements in scenarios_inventory.md"
 ```
 
 ---
@@ -39,7 +39,7 @@ Stack: Node.js + Express (backend), React ^18.3.1, PostgreSQL (database)
 ### Stage 4 — Plan
 
 ```
-/speckit.plan
+$speckit-plan
 ```
 
 ---
@@ -47,7 +47,7 @@ Stack: Node.js + Express (backend), React ^18.3.1, PostgreSQL (database)
 ### Stage 5 — Task
 
 ```
-/speckit.tasks
+$speckit-tasks
 ```
 
 ---
@@ -55,5 +55,5 @@ Stack: Node.js + Express (backend), React ^18.3.1, PostgreSQL (database)
 ### Stage 6 — Implement
 
 ```
-/speckit.implement
+$speckit-implement
 ```
