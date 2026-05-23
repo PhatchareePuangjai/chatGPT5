@@ -31,8 +31,7 @@ Stack: Node.js + Express (backend), React ^18.3.1, PostgreSQL (database)
 ### Stage 3 — Spec
 
 ```
-/speckit.specify "Create a specification based on the
-requirements in scenarios_inventory.md"
+/speckit.specify "Create a specification based on the requirements in scenarios_inventory.md"
 ```
 
 ---
