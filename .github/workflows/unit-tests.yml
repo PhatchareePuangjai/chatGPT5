@@ -23,6 +23,7 @@ on:
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
       - 'src/versions/PDCE02/**'
+      - 'src/versions/IMSD02/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -45,6 +46,7 @@ on:
       - 'src/versions/PDBP02/**'
       - 'src/versions/IMCE02/**'
       - 'src/versions/PDCE02/**'
+      - 'src/versions/IMSD02/**'
   workflow_dispatch:
 
 jobs:
@@ -110,6 +112,12 @@ jobs:
             db_pass: postgres
             db_name: promotionsdb
             database_url: postgres://postgres:postgres@localhost:5432/promotionsdb
+          - version: IMSD02
+            path: src/versions/IMSD02/backend
+            db_user: imsd02
+            db_pass: imsd02
+            db_name: imsd02_test
+            database_url: postgresql://imsd02:imsd02@localhost:5432/imsd02_test
 
     steps:
       - uses: actions/checkout@v4
