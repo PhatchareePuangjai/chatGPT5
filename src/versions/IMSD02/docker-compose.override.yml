@@ -1,4 +1,11 @@
 services:
+  postgres:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U imsd02 -d imsd02"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   backend:
     build:
       context: ./backend
@@ -11,4 +18,5 @@ services:
       POSTGRES_USER: imsd02
       POSTGRES_PASSWORD: imsd02
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
