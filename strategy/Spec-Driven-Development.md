@@ -1,4 +1,5 @@
 # Spec-Driven Development — Initial Prompts (Codex CLI)
+# version: spec-kit.git@v0.8.13
 
 > Note for IS re-run: ระบุ tech stack เป็น **Node.js + React + PostgreSQL**
 > ให้ตรงกับ BP และ CE เพื่อควบคุมตัวแปร tech stack ไม่ให้กระทบผลเปรียบเทียบ
