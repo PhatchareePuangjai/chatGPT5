@@ -1,6 +1,6 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-17 (added PDCE02)
+> Last updated: 2026-05-23 (added IMSD02)
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -22,6 +22,7 @@
 | IMCE01  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | —                                                         |
 | IMCE02  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) |
 | IMSD01  | Inventory Management   | pytest | 17     | 0      | 17    | :white_check_mark: PASS | scenarios: 7, contract: 2, unit: 4, integration: 4        |
+| IMSD02  | Inventory Management   | vitest | 8      | 0      | 8     | :white_check_mark: PASS | unit: 2, integration: 6 (requires --maxWorkers=1)          |
 | SCBP01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
 | SCBP02  | Shopping Cart          | Jest   | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)        |
 | SCCE01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
@@ -39,7 +40,7 @@
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
-| **SD** (Spec-Driven Dev)     | 51     | 0      | 51    | 100%      |
+| **SD** (Spec-Driven Dev)     | 59     | 0      | 59    | 100%      |
 
 ---
 
@@ -56,6 +57,7 @@
 | IMCE01    | 7               | 19                 | 27                     | 0.00%        | 6                 |
 | IMCE02    | 16              | 2                  | 1                      | 5.40%        | 4                 |
 | IMSD01    | 7               | 12                 | 15                     | 2.70%        | 2                 |
+| IMSD02    | 5               | 0                  | 6                      | 13.20%       | 0                 |
 | SCBP01    | 9               | 9                  | 20                     | 4.70%        | 2                 |
 | SCBP02    | 6               | 2                  | 2                      | 0.00%        | 1                 |
 | SCCE01    | 8               | 9                  | 11                     | 3.80%        | 2                 |
@@ -76,7 +78,7 @@
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- | --------------------- |
 | **BP** (Basic Prompting)     | 5.67         | 3.17            | 6.83                | 2.02%            | 1.33                  |
 | **CE** (Context Engineering) | 9.17         | 8.00            | 11.33               | 1.53%            | 4.00                  |
-| **SD** (Spec-Driven Dev)     | 6.33         | 6.67            | 9.67                | 8.20%            | 3.33                  |
+| **SD** (Spec-Driven Dev)     | 6.00         | 4.50            | 8.75                | 9.45%            | 2.50                  |
 
 ---
 
@@ -99,6 +101,7 @@
 | IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
 | IMCE02  | 6    | 0      | 6     | Missing rate limiting                  |
 | IMSD01  | 0    | 0      | 0     | -                                      |
+| IMSD02  | 0    | 0      | 0     | -                                      |
 | SCBP01  | 0    | 0      | 0     | -                                      |
 | SCBP02  | 0    | 0      | 0     | -                                      |
 | SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
@@ -133,6 +136,7 @@
 | IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | IMCE02  | 0        | 5        | 62   | X-Powered-By leak                                                                 |
 | IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
+| IMSD02  | 0        | 4        | 63   | X-Powered-By leak [10037] + Cacheable Content [10049] + CSP failure [10055] + Permissions Policy [10063] |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
 | PDBP02  | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration |
 | PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
@@ -167,7 +171,7 @@
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
 | **BP** (Basic Prompting)     | 7.2          | 59.8     | 2/6 (PDBP01, PDBP02)     | 6/6 scanned                          |
 | **CE** (Context Engineering) | 8.0          | 59.0     | 3/6 (SCCE01, SCCE02, PDCE02) | 6/6 scanned                       |
-| **SD** (Spec-Driven Dev)     | 8.0          | 59.0     | 1/3 (PDSD01)             | 3/3 scanned                          |
+| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/4 (PDSD01)             | 4/4 scanned                          |
 
 ---
 
@@ -180,6 +184,7 @@
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 7 / 19 / 27               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMCE02    | :white_check_mark: 7/7     | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
 | IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 7 / 12 / 15               | 2.70%        | 398           | 318            | 15.9         |
+| IMSD02    | :white_check_mark: 8/8 ¹   | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.20%       | 622           | 304            | 29.6         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 358            | 67.7         |
 | SCBP02    | ⚠️ 4/5 (CI, 1 fail)        | 0 alerts      | 0/5/62                | 6 / 2 / 2                 | 0.00%        | 87            | 88             | 29.0         |
 | SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 8 / 9 / 11                | 3.80%        | 409           | 457            | 204.5        |
@@ -223,6 +228,7 @@
 | PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
 | PDCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 5 | 10 | 479 |
 | IMSD01  | SDD      | Codex CLI | N/A | 13 | 12 | 296 ⁴ |
+| IMSD02  | SDD      | Codex CLI | N/A | 14 | 12 | 337 ⁴ |
 | SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |
 | PDSD01  | SDD      | Codex CLI | N/A | 14 | 13 | 170 ⁴ |
 
@@ -232,7 +238,7 @@
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
 | **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
 | **CE** (Context Engineering) | 6 | 25 | 42 | 3,118 |
-| **SDD** (Spec-Driven Dev) | N/A | 50 | 45 | 819 ⁴ |
+| **SDD** (Spec-Driven Dev) | N/A | 64 | 57 | 1,156 ⁴ |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
