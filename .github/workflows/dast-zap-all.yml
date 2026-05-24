@@ -86,6 +86,10 @@ jobs:
             path: 'src/versions/IMSD02'
             port: '3000'
 
+          - version: 'SCSD02'
+            path: 'src/versions/SCSD02'
+            port: '3000'
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

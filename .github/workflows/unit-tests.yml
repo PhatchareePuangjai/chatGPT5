@@ -24,6 +24,7 @@ on:
       - 'src/versions/IMCE02/**'
       - 'src/versions/PDCE02/**'
       - 'src/versions/IMSD02/**'
+      - 'src/versions/SCSD02/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -47,6 +48,7 @@ on:
       - 'src/versions/IMCE02/**'
       - 'src/versions/PDCE02/**'
       - 'src/versions/IMSD02/**'
+      - 'src/versions/SCSD02/**'
   workflow_dispatch:
 
 jobs:
@@ -118,6 +120,18 @@ jobs:
             db_pass: imsd02
             db_name: imsd02_test
             database_url: postgresql://imsd02:imsd02@localhost:5432/imsd02_test
+          - version: SCSD02
+            path: src/versions/SCSD02/backend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
+          - version: SCSD02
+            path: src/versions/SCSD02/frontend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
 
     steps:
       - uses: actions/checkout@v4

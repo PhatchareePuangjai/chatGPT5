@@ -21,6 +21,7 @@ on:
       - 'src/versions/IMCE02/**'
       - 'src/versions/PDCE02/**'
       - 'src/versions/IMSD02/**'
+      - 'src/versions/SCSD02/**'
       - '.github/workflows/sonarqube.yml'
   pull_request:
     branches: [ "main" ]
@@ -42,6 +43,7 @@ on:
       - 'src/versions/IMCE02/**'
       - 'src/versions/PDCE02/**'
       - 'src/versions/IMSD02/**'
+      - 'src/versions/SCSD02/**'
       - '.github/workflows/sonarqube.yml'
   workflow_dispatch:
 
@@ -90,6 +92,8 @@ jobs:
             path: src/versions/PDCE02
           - version: IMSD02
             path: src/versions/IMSD02
+          - version: SCSD02
+            path: src/versions/SCSD02
 
     steps:
       - name: Checkout repository
