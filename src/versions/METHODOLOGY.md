@@ -39,7 +39,7 @@ The primary dataset is being expanded to **18 generated versions** organized as 
 
 The `01` versions form the initial baseline set. The `02` versions are repeat generations of the same domain-strategy combinations and are included to reduce single-run variance and make the comparison less dependent on one generated sample. Each version is evaluated against the same Acceptance Scenarios and Edge Cases for its domain. Results are reported both per version and, where applicable, aggregated by strategy across all completed runs.
 
-At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and Specification-Driven Development (`IMSD02`) have been generated and measured. The remaining SDD `02` versions (`SCSD02`, `PDSD02`) are planned for the next evaluation pass and will be added using the same measurement procedure.
+At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), all second-run versions for Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and the SDD second-run versions `IMSD02` and `SCSD02` have been generated and measured. The remaining SDD `02` version (`PDSD02`) is planned for the next evaluation pass and will be added using the same measurement procedure.
 
 ### 2.2 Supplementary Repository Artifacts
 
@@ -134,6 +134,7 @@ The table below is updated progressively as each version in the 18-version datas
 | IMSD01  | SDD      | 398           | 318            | 296                  |
 | IMSD02  | SDD      | 622           | 304            | 337                  |
 | SCSD01  | SDD      | 208           | 988            | 353                  |
+| SCSD02  | SDD      | 632           | 369            | 352                  |
 | PDSD01  | SDD      | 296           | 171            | 170                  |
 
 > ⁵ Backend LOC: counted from backend production source files (`.js` / `.py`) only, excluding `node_modules`, test files, and all frontend files (by folder: `frontend/`, `client/`, `public/`; by extension: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic).
@@ -172,7 +173,7 @@ For Basic Prompting and Context Engineering versions, the study uses conversatio
 
 ### 5.2 Specification Sources for SDD
 
-For SDD versions, the prompt equivalent is a structured specification package rather than a single conversational thread. The three SDD versions employ two different specification structures:
+For SDD versions, the prompt equivalent is a structured specification package rather than a single conversational thread. The SDD versions employ multiple specification structures:
 
 **IMSD01** uses a `.specify/` directory containing:
 
@@ -180,13 +181,14 @@ For SDD versions, the prompt equivalent is a structured specification package ra
 - `templates/` — structured templates for specs, plans, tasks, and checklists
 - `memory/constitution.md` — project constitution
 
-**SCSD01 and PDSD01** use `speckit.*` flat files:
+**SCSD01, SCSD02, and PDSD01** use `speckit.*`-style flat files or generated `specs/` packages:
 
 - `speckit.specify` — formal requirements specification
 - `speckit.constitution` — project constitution (SCSD01 only)
 - `speckit.plan` — implementation plan
 - `speckit.tasks` — task breakdown
 - `speckit.implement` — implementation guidance
+- `specs/<feature>/` — generated specification package used by SCSD02
 
 All SDD versions also include scenario definition files (`scenarios_inventory.md`, `scenarios_cart.md`, `scenarios_promotions.md`).
 
