@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Shopping Cart API
+  version: 1.0.0
+  description: Contract for updating quantities, merging duplicate SKUs, and saving items for later.
+paths:
+  /cart:
+    get:
+      summary: Get the current shopper cart
+      operationId: getCart
+      responses:
+        "200":
+          description: Current cart state
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartResponse"
+  /cart/items:
+    post:
+      summary: Add a product to the active cart or merge it into an existing active row
+      operationId: addCartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddCartItemRequest"
+      responses:
+        "200":
+          description: Updated cart state after add or merge
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartResponse"
+        "409":
+          description: Requested quantity exceeds available stock
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartErrorResponse"
+  /cart/items/{itemId}/quantity:
+    patch:
+      summary: Update quantity for an active cart item
+      operationId: updateCartItemQuantity
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateQuantityRequest"
+      responses:
+        "200":
+          description: Updated cart state after quantity change
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartResponse"
+        "409":
+          description: Requested quantity exceeds available stock
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartErrorResponse"
+  /cart/items/{itemId}/save-for-later:
+    post:
+      summary: Move an active cart item to saved items
+      operationId: saveCartItemForLater
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Updated cart state after moving item to saved items
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartResponse"
+components:
+  schemas:
+    AddCartItemRequest:
+      type: object
+      required:
+        - sku
+        - quantity
+      properties:
+        sku:
+          type: string
+          minLength: 1
+          examples:
+            - SKU-001
+        quantity:
+          type: integer
+          minimum: 1
+          examples:
+            - 2
+    UpdateQuantityRequest:
+      type: object
+      required:
+        - quantity
+      properties:
+        quantity:
+          type: integer
+          minimum: 1
+          examples:
+            - 3
+    CartResponse:
+      type: object
+      required:
+        - cart
+      properties:
+        cart:
+          $ref: "#/components/schemas/Cart"
+    CartErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+        - cart
+      properties:
+        code:
+          type: string
+          enum:
+            - INSUFFICIENT_STOCK
+        message:
+          type: string
+          examples:
+            - สินค้าไม่เพียงพอ
+        cart:
+          $ref: "#/components/schemas/Cart"
+    Cart:
+      type: object
+      required:
+        - id
+        - currency
+        - activeItems
+        - savedItems
+        - grandTotal
+        - itemCount
+      properties:
+        id:
+          type: string
+        currency:
+          type: string
+          examples:
+            - THB
+        activeItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/CartItem"
+        savedItems:
+          type: array
+          items:
+            $ref: "#/components/schemas/CartItem"
+        grandTotal:
+          $ref: "#/components/schemas/Money"
+        itemCount:
+          type: integer
+          minimum: 0
+    CartItem:
+      type: object
+      required:
+        - id
+        - sku
+        - name
+        - unitPrice
+        - quantity
+        - lineTotal
+        - status
+        - availableStock
+      properties:
+        id:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        unitPrice:
+          $ref: "#/components/schemas/Money"
+        quantity:
+          type: integer
+          minimum: 1
+        lineTotal:
+          $ref: "#/components/schemas/Money"
+        status:
+          type: string
+          enum:
+            - active
+            - saved
+        availableStock:
+          type: integer
+          minimum: 0
+    Money:
+      type: object
+      required:
+        - amount
+        - currency
+      properties:
+        amount:
+          type: string
+          pattern: "^\\d+\\.\\d{2}$"
+          examples:
+            - "59.97"
+        currency:
+          type: string
+          examples:
+            - THB
