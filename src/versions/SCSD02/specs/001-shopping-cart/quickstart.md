@@ -36,3 +36,7 @@ covered by automated tests and pass in CI, including:
   - add/merge
   - update quantity (including stock failure)
   - save for later
+
+## Verification Notes
+
+- 2026-05-24: Backend and frontend automated test suites executed successfully (`backend npm test`, `frontend npm test`).
