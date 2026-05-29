@@ -129,7 +129,7 @@
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #25991127771](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127771)
+> Workflow run: [DAST #26358177905](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26358177905)
 > Result: :white_check_mark: **15/15 JOBS SCANNED**
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
@@ -235,7 +235,7 @@
 | IMSD01  | SDD      | Codex CLI | N/A | 13 | 12 | 296 ⁴ |
 | IMSD02  | SDD      | Codex CLI | N/A | 14 | 12 | 337 ⁴ |
 | SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |
-| SCSD02  | SDD      | Codex CLI | 1 | 11 | 10 | 352 ⁴ |
+| SCSD02  | SDD      | Codex CLI | 1 | 11 | 10 | 346 ⁴ |
 | PDSD01  | SDD      | Codex CLI | N/A | 14 | 13 | 170 ⁴ |
 
 ### Interaction Summary by Strategy
@@ -244,13 +244,13 @@
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
 | **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
 | **CE** (Context Engineering) | 6 | 25 | 42 | 3,118 |
-| **SDD** (Spec-Driven Dev) | N/A | 75 | 67 | 1,508 ⁴ |
+| **SDD** (Spec-Driven Dev) | N/A | 75 | 67 | 1,502 ⁴ |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is counted:** user-side spec commands in `conversation_export.json` only.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is NOT counted:** AI-generated code responses, full conversation context sent per turn.
-> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 353 / 352 / 170) are a significant undercount and should not be compared directly with BP/CE token values.
+> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 353 / 346 / 170) are a significant undercount and should not be compared directly with BP/CE token values.
 
 ---
 
