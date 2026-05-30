@@ -14,6 +14,11 @@ Once code is implemented, the expected workflow is:
 3. Start backend and frontend dev servers
 4. Run tests (backend + frontend)
 
+## Current Scaffold Notes
+
+- Backend endpoints currently use demo cart subtotals (1,000 THB for apply-coupon, 2,000 THB for totals)
+  to keep the scaffold runnable before cart storage is implemented.
+
 ## Test Scenarios
 
 Use `scenarios_promotions.md` as the source of truth for acceptance scenarios and edge cases.
@@ -25,4 +30,3 @@ Key scenarios to verify:
 - One-time coupon reuse -> rejected, "คุณใช้สิทธิ์ครบแล้ว".
 - Order of operations -> percent first then fixed to produce 800 THB from 1,000 THB with 10% + 100 THB.
 - Negative total protection -> clamp to 0 THB.
-
