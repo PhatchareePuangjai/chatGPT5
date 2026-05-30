@@ -39,7 +39,7 @@ The primary dataset is being expanded to **18 generated versions** organized as 
 
 The `01` versions form the initial baseline set. The `02` versions are repeat generations of the same domain-strategy combinations and are included to reduce single-run variance and make the comparison less dependent on one generated sample. Each version is evaluated against the same Acceptance Scenarios and Edge Cases for its domain. Results are reported both per version and, where applicable, aggregated by strategy across all completed runs.
 
-At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), all second-run versions for Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and the SDD second-run versions `IMSD02` and `SCSD02` have been generated and measured. The remaining SDD `02` version (`PDSD02`) is planned for the next evaluation pass and will be added using the same measurement procedure.
+At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), all second-run versions for Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and all second-run versions for Specification-Driven Development (`IMSD02`, `SCSD02`, `PDSD02`) have been generated and measured. PDSD02 has complete test, static-analysis, LOC, and interaction data; its DAST run was attempted but did not produce ZAP metrics because the target application did not respond during the scan.
 
 ### 2.2 Supplementary Repository Artifacts
 
@@ -136,6 +136,7 @@ The table below is updated progressively as each version in the 18-version datas
 | SCSD01  | SDD      | 208           | 988            | 353                  |
 | SCSD02  | SDD      | 632           | 369            | 346                  |
 | PDSD01  | SDD      | 296           | 171            | 170                  |
+| PDSD02  | SDD      | 429           | 176            | 336                  |
 
 > ⁵ Backend LOC: counted from backend production source files (`.js` / `.py`) only, excluding `node_modules`, test files, and all frontend files (by folder: `frontend/`, `client/`, `public/`; by extension: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic).
 > ⁶ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js` in frontend folders; `.css` excluded). SonarQube and CodeQL scans include frontend code; this metric is provided for reference only.

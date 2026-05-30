@@ -1,6 +1,6 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-30 (added PDSD02)
+> Last updated: 2026-05-30 (verified PDSD02 against GitHub Actions, SonarCloud, and local artifacts)
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -12,8 +12,8 @@
 
 ## 1. Unit Tests
 
-> Workflow run: [Unit Tests #25991127769](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127769)
-> Source: `test_report.md` in each version directory
+> Workflow run checked: [Unit Tests #26674473336](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473336)
+> Source: `test_report.md` in each version directory. In run #26674473336, the PDSD02 unit-test jobs were present but skipped by the workflow path filter, so PDSD02 counts remain sourced from `src/versions/PDSD02/test_report.md`.
 
 | Version | Feature                | Tool   | Passed | Failed | Total | Result                  | Failure Details                                           |
 | ------- | ---------------------- | ------ | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------- |
@@ -132,8 +132,8 @@
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #26358177905](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26358177905)
-> Result: :white_check_mark: **15/15 JOBS SCANNED**
+> Workflow run checked: [DAST #26674473329](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473329)
+> Result: PDSD02 scan attempted but did not produce ZAP metrics because ZAP could not access `http://localhost:3000`; previous completed numeric rows remain unchanged.
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
@@ -148,7 +148,7 @@
 | PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDCE02  | 0        | 10       | 57   | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable content + Cross-Domain Misconfiguration |
 | PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Information Leak [10009]   |
-| PDSD02  | TBD      | TBD      | TBD  | TBD                                                                               |
+| PDSD02  | TBD      | TBD      | TBD  | Scan attempted in run #26674473329; ZAP failed before metrics (`localhost:3000` did not respond) |
 | SCBP01  | 0        | 7        | 60   | Missing headers                                                                   |
 | SCBP02  | 0        | 5        | 62   | Storable and Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
 | SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
@@ -179,7 +179,7 @@
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
 | **BP** (Basic Prompting)     | 7.2          | 59.8     | 2/6 (PDBP01, PDBP02)     | 6/6 scanned                          |
 | **CE** (Context Engineering) | 8.0          | 59.0     | 3/6 (SCCE01, SCCE02, PDCE02) | 6/6 scanned                       |
-| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/5 (PDSD01)             | 5/6 scanned (PDSD02 TBD)             |
+| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/5 (PDSD01)             | 5/6 scanned; PDSD02 attempted but no ZAP metrics |
 
 ---
 
@@ -205,7 +205,7 @@
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 249            | 43.6         |
 | PDCE02    | ⚠️ 5/6 (CI, 1 todo)        | 1 high        | 0/10/57               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
 | PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 5 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
-| PDSD02    | ⚠️ 8/9 (local, 1 fail)    | 0 alerts      | TBD                   | 1 / 0 / 13                | 0.00%        | 429           | 176            | 23.8         |
+| PDSD02    | ⚠️ 8/9 (local, 1 fail)    | 0 alerts      | TBD (scan failed before metrics) | 1 / 0 / 13                | 0.00%        | 429           | 176            | 23.8         |
 
 > ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
 > ² Backend LOC: counted from **backend production source files only** (`.py` / `.js`), excluding `node_modules`, `tests/`, test files (`test_*`, `*.test.js`, `*.spec.js`), and all frontend files (folders: `frontend/`, `client/`, `public/`; files: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.
@@ -256,7 +256,7 @@
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is counted:** user-side spec commands in `conversation_export.json` only.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is NOT counted:** AI-generated code responses, full conversation context sent per turn.
-> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 353 / 346 / 170) are a significant undercount and should not be compared directly with BP/CE token values.
+> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 353 / 346 / 170 / 336) are a significant undercount and should not be compared directly with BP/CE token values.
 
 ---
 
@@ -270,6 +270,6 @@
 | CodeQL Workflow          | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml       |
 | DAST ZAP Workflow        | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml |
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
-| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26357276752           |
+| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473336           |
 | Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26357276762           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26357276763           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473329           |
