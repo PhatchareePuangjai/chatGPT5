@@ -49,3 +49,11 @@ From `frontend/`:
 2. Race test: 5 concurrent deducts for last unit, confirm exactly one success and final on-hand 0.
 3. Deduct to cross threshold, confirm low-stock alert record exists.
 4. Restore stock on cancel/expire, confirm log entry exists.
+
+## Smoke Test Results
+
+Date: 2026-05-30
+
+- Frontend test suite: PASS (`frontend/`: `npm run test:ci`)
+- Backend TypeScript typecheck: PASS (`backend/`: `npm run typecheck`)
+- Backend integration tests: NOT RUN (requires a reachable PostgreSQL instance and `DATABASE_URL`)

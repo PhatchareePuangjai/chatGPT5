@@ -1,0 +1,33 @@
+{
+  "name": "imsd01-backend",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "node --loader ts-node/esm --enable-source-maps src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "migrate": "node --loader ts-node/esm --enable-source-maps src/scripts/migrate.ts",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.10",
+    "@types/pg": "^8.11.6",
+    "@types/supertest": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "eslint": "^8.57.0",
+    "supertest": "^7.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
+}
