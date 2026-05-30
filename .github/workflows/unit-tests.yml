@@ -25,6 +25,7 @@ on:
       - 'src/versions/PDCE02/**'
       - 'src/versions/IMSD02/**'
       - 'src/versions/SCSD02/**'
+      - 'src/versions/PDSD02/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -49,6 +50,7 @@ on:
       - 'src/versions/PDCE02/**'
       - 'src/versions/IMSD02/**'
       - 'src/versions/SCSD02/**'
+      - 'src/versions/PDSD02/**'
   workflow_dispatch:
 
 jobs:
@@ -128,6 +130,18 @@ jobs:
             database_url: ''
           - version: SCSD02
             path: src/versions/SCSD02/frontend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
+          - version: PDSD02
+            path: src/versions/PDSD02/backend
+            db_user: ''
+            db_pass: ''
+            db_name: ''
+            database_url: ''
+          - version: PDSD02
+            path: src/versions/PDSD02/frontend
             db_user: ''
             db_pass: ''
             db_name: ''

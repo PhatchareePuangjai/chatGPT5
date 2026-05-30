@@ -58,6 +58,10 @@ jobs:
             path: 'src/versions/PDSD01'
             port: '3000'
 
+          - version: 'PDSD02'
+            path: 'src/versions/PDSD02'
+            port: '3000'
+
           - version: 'IMBP02'
             path: 'src/versions/IMBP02/inventory-management-system'
             port: '3000'
