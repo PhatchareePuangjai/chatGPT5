@@ -1,6 +1,6 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-24 (added SCSD02)
+> Last updated: 2026-05-30 (added PDSD02)
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -34,6 +34,7 @@
 | PDCE01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
 | PDCE02  | Promotions & Discounts | node:test | 5   | 0      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure: usage limit not implemented |
 | PDSD01  | Promotions & Discounts | pytest | 18     | 0      | 18    | :white_check_mark: PASS | scenarios: 6, unit: 7, integration: 5                     |
+| PDSD02  | Promotions & Discounts | Jest   | 8      | 1      | 9     | ⚠️ PARTIAL              | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only |
 
 ### Test Summary by Strategy
 
@@ -41,7 +42,7 @@
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
-| **SD** (Spec-Driven Dev)     | 69     | 0      | 69    | 100%      |
+| **SD** (Spec-Driven Dev)     | 77     | 1      | 78    | 99%       |
 
 ---
 
@@ -71,6 +72,7 @@
 | PDCE01    | 6               | 16                 | 20                     | 0.00%        | 4                 |
 | PDCE02    | 9               | 0                  | 8                      | 0.00%        | 4                 |
 | PDSD01    | 5               | 6                  | 9                      | 0.00%        | 5                 |
+| PDSD02    | 1               | 0                  | 13                     | 0.00%        | 0                 |
 
 > CS and AG versions are excluded from this SonarQube summary to match the current workflow scope.
 
@@ -80,7 +82,7 @@
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- | --------------------- |
 | **BP** (Basic Prompting)     | 5.67         | 3.17            | 6.83                | 2.02%            | 1.33                  |
 | **CE** (Context Engineering) | 9.17         | 8.00            | 11.33               | 1.53%            | 4.00                  |
-| **SD** (Spec-Driven Dev)     | 5.00         | 3.60            | 10.80               | 7.56%            | 2.60                  |
+| **SD** (Spec-Driven Dev)     | 4.33         | 3.00            | 11.17               | 6.30%            | 2.17                  |
 
 ---
 
@@ -115,6 +117,7 @@
 | PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
 | PDCE02  | 1    | 0      | 1     | Missing rate limiting                  |
 | PDSD01  | 0    | 0      | 0     | -                                      |
+| PDSD02  | 0    | 0      | 0     | -                                      |
 
 
 ### CodeQL Alert Summary by Strategy
@@ -145,6 +148,7 @@
 | PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | PDCE02  | 0        | 10       | 57   | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable content + Cross-Domain Misconfiguration |
 | PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Information Leak [10009]   |
+| PDSD02  | TBD      | TBD      | TBD  | TBD                                                                               |
 | SCBP01  | 0        | 7        | 60   | Missing headers                                                                   |
 | SCBP02  | 0        | 5        | 62   | Storable and Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
 | SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
@@ -175,7 +179,7 @@
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
 | **BP** (Basic Prompting)     | 7.2          | 59.8     | 2/6 (PDBP01, PDBP02)     | 6/6 scanned                          |
 | **CE** (Context Engineering) | 8.0          | 59.0     | 3/6 (SCCE01, SCCE02, PDCE02) | 6/6 scanned                       |
-| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/5 (PDSD01)             | 5/5 scanned                          |
+| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/5 (PDSD01)             | 5/6 scanned (PDSD02 TBD)             |
 
 ---
 
@@ -201,6 +205,7 @@
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 249            | 43.6         |
 | PDCE02    | ⚠️ 5/6 (CI, 1 todo)        | 1 high        | 0/10/57               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
 | PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 5 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
+| PDSD02    | ⚠️ 8/9 (local, 1 fail)    | 0 alerts      | TBD                   | 1 / 0 / 13                | 0.00%        | 429           | 176            | 23.8         |
 
 > ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
 > ² Backend LOC: counted from **backend production source files only** (`.py` / `.js`), excluding `node_modules`, `tests/`, test files (`test_*`, `*.test.js`, `*.spec.js`), and all frontend files (folders: `frontend/`, `client/`, `public/`; files: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.
@@ -237,6 +242,7 @@
 | SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |
 | SCSD02  | SDD      | Codex CLI | 1 | 11 | 10 | 346 ⁴ |
 | PDSD01  | SDD      | Codex CLI | N/A | 14 | 13 | 170 ⁴ |
+| PDSD02  | SDD      | GPT-5 (gpt-5-2) | 1 | 10 | 9 | 336 ⁴ |
 
 ### Interaction Summary by Strategy
 
@@ -244,7 +250,7 @@
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
 | **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
 | **CE** (Context Engineering) | 6 | 25 | 42 | 3,118 |
-| **SDD** (Spec-Driven Dev) | N/A | 75 | 67 | 1,502 ⁴ |
+| **SDD** (Spec-Driven Dev) | N/A | 85 | 76 | 1,838 ⁴ |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
