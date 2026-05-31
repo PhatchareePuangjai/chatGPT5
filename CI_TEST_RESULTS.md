@@ -1,6 +1,6 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-30 (verified PDSD02 against GitHub Actions, SonarCloud, and local artifacts)
+> Last updated: 2026-05-31 (verified IMSD01 against GitHub Actions, CodeQL alerts, SonarCloud workflow status, DAST logs, and local artifacts)
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -12,8 +12,8 @@
 
 ## 1. Unit Tests
 
-> Workflow run checked: [Unit Tests #26674473336](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473336)
-> Source: `test_report.md` in each version directory. In run #26674473336, the PDSD02 unit-test jobs were present but skipped by the workflow path filter, so PDSD02 counts remain sourced from `src/versions/PDSD02/test_report.md`.
+> Workflow run checked: [Unit Tests #26698243740](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243740)
+> Source: `test_report.md` in each version directory. In run #26698243740, the IMSD01 unit-test job was present but skipped by the workflow path filter, so IMSD01 counts remain sourced from `src/versions/IMSD01/test_report.md`.
 
 | Version | Feature                | Tool   | Passed | Failed | Total | Result                  | Failure Details                                           |
 | ------- | ---------------------- | ------ | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------- |
@@ -21,7 +21,7 @@
 | IMBP02  | Inventory Management   | Jest   | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5` |
 | IMCE01  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | —                                                         |
 | IMCE02  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) |
-| IMSD01  | Inventory Management   | pytest | 17     | 0      | 17    | :white_check_mark: PASS | scenarios: 7, contract: 2, unit: 4, integration: 4        |
+| IMSD01  | Inventory Management   | vitest | 11     | 1      | 12    | ⚠️ PARTIAL              | Atomicity rollback test: HTTP 400 returned where 500 was expected |
 | IMSD02  | Inventory Management   | vitest | 8      | 0      | 8     | :white_check_mark: PASS | unit: 2, integration: 6 (requires --maxWorkers=1)          |
 | SCBP01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
 | SCBP02  | Shopping Cart          | Jest   | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)        |
@@ -42,13 +42,14 @@
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
-| **SD** (Spec-Driven Dev)     | 77     | 1      | 78    | 99%       |
+| **SD** (Spec-Driven Dev)     | 71     | 2      | 73    | 97%       |
 
 ---
 
 ## 2. SonarQube Static Analysis
 
 > SDD SonarQube values in this section were updated from the latest results in `Evaluating AI-Generated Code Quality from Basic Prompting to Spec-Driven Development - High-Quality Code (1).csv`.
+> IMSD01 SonarQube workflow run #26698243746 completed successfully; direct SonarCloud API verification returned HTTP 401 with the current local token, so the existing SonarQube metric values are retained.
 
 ### SonarQube Open Issues by Version
 
@@ -88,7 +89,7 @@
 
 ## 3. CodeQL Static Analysis (SAST)
 
-> Workflow run: [CodeQL #25991127757](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/25991127757)
+> Workflow run: [CodeQL #26698243747](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243747)
 > Security alerts: [Code Scanning Alerts](https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning)
 
 | Language              | Result                  |
@@ -104,7 +105,7 @@
 | IMBP02  | 0    | 0      | 0     | -                                      |
 | IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
 | IMCE02  | 6    | 0      | 6     | Missing rate limiting                  |
-| IMSD01  | 0    | 0      | 0     | -                                      |
+| IMSD01  | 1    | 0      | 1     | Missing rate limiting                  |
 | IMSD02  | 0    | 0      | 0     | -                                      |
 | SCBP01  | 0    | 0      | 0     | -                                      |
 | SCBP02  | 0    | 0      | 0     | -                                      |
@@ -126,14 +127,14 @@
 | ---------------------------- | ------------ | ---- | ------ |
 | **BP** (Basic Prompting)     | 6            | 6    | 0      |
 | **CE** (Context Engineering) | 19           | 17   | 2      |
-| **SD** (Spec-Driven Dev)     | 0            | 0    | 0      |
+| **SD** (Spec-Driven Dev)     | 1            | 1    | 0      |
 
 ---
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run checked: [DAST #26674473329](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473329)
-> Result: PDSD02 scan attempted but did not produce ZAP metrics because ZAP could not access `http://localhost:3000`; previous completed numeric rows remain unchanged.
+> Workflow run checked: [DAST #26698243741](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243741)
+> Result: IMSD01 scan attempted but did not produce ZAP metrics because the workflow tried to start from missing directory `src/versions/IMSD01/infrastructure`; previous completed numeric rows remain unchanged where no new metrics were produced.
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
 | ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
@@ -141,7 +142,7 @@
 | IMBP02  | 0        | 11       | 56   | Missing headers + Cross-Domain Misconfiguration + Permissions Policy              |
 | IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
 | IMCE02  | 0        | 5        | 62   | X-Powered-By leak                                                                 |
-| IMSD01  | 0        | 7        | 60   | Missing headers                                                                   |
+| IMSD01  | TBD      | TBD      | TBD  | Scan attempted in run #26698243741; failed before ZAP metrics (missing `infrastructure` directory) |
 | IMSD02  | 0        | 4        | 63   | X-Powered-By leak [10037] + Cacheable Content [10049] + CSP failure [10055] + Permissions Policy [10063] |
 | PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
 | PDBP02  | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration |
@@ -179,7 +180,7 @@
 | ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
 | **BP** (Basic Prompting)     | 7.2          | 59.8     | 2/6 (PDBP01, PDBP02)     | 6/6 scanned                          |
 | **CE** (Context Engineering) | 8.0          | 59.0     | 3/6 (SCCE01, SCCE02, PDCE02) | 6/6 scanned                       |
-| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/5 (PDSD01)             | 5/6 scanned; PDSD02 attempted but no ZAP metrics |
+| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/4 (PDSD01)             | 4/6 scanned; IMSD01 and PDSD02 attempted but no ZAP metrics |
 
 ---
 
@@ -191,7 +192,7 @@
 | IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/11/56               | 2 / 1 / 1                 | 0.00%        | 85            | 80             | 28.3         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 7 / 19 / 27               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMCE02    | :white_check_mark: 7/7     | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
-| IMSD01    | :white_check_mark: 17/17 ¹ | 0 alerts      | 0/7/60                | 7 / 12 / 15               | 2.70%        | 398           | 318            | 15.9         |
+| IMSD01    | ⚠️ 11/12 (local, 1 fail)   | 1 high        | TBD (scan failed before metrics) | 7 / 12 / 15               | 2.70%        | 398           | 318            | 15.9         |
 | IMSD02    | :white_check_mark: 8/8 ¹   | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.20%       | 622           | 304            | 29.6         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 358            | 67.7         |
 | SCBP02    | ⚠️ 4/5 (CI, 1 fail)        | 0 alerts      | 0/5/62                | 6 / 2 / 2                 | 0.00%        | 87            | 88             | 29.0         |
@@ -270,6 +271,6 @@
 | CodeQL Workflow          | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml       |
 | DAST ZAP Workflow        | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml |
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
-| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473336           |
-| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26357276762           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26674473329           |
+| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243740           |
+| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243747           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243741           |
