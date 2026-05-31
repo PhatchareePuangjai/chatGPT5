@@ -133,7 +133,7 @@
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run checked: [DAST #26698243741](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243741)
+> Workflow run checked: [DAST #26702431464](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26702431464)
 > Result: IMSD01 scan attempted but did not produce ZAP metrics because the workflow tried to start from missing directory `src/versions/IMSD01/infrastructure`; previous completed numeric rows remain unchanged where no new metrics were produced.
 
 | Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
@@ -192,7 +192,7 @@
 | IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/11/56               | 2 / 1 / 1                 | 0.00%        | 85            | 80             | 28.3         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 7 / 19 / 27               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMCE02    | :white_check_mark: 7/7     | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
-| IMSD01    | ⚠️ 11/12 (local, 1 fail)   | 1 high        | TBD (scan failed before metrics) | 7 / 12 / 15               | 2.70%        | 398           | 318            | 15.9         |
+| IMSD01    | ⚠️ 11/12 (local, 1 fail)   | 1 high        | TBD (scan failed before metrics) | 7 / 12 / 15               | 2.70%        | 469           | 396            | 24.7         |
 | IMSD02    | :white_check_mark: 8/8 ¹   | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.20%       | 622           | 304            | 29.6         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 358            | 67.7         |
 | SCBP02    | ⚠️ 4/5 (CI, 1 fail)        | 0 alerts      | 0/5/62                | 6 / 2 / 2                 | 0.00%        | 87            | 88             | 29.0         |
@@ -238,7 +238,7 @@
 | SCCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 6 | 11 | 508 |
 | PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
 | PDCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 5 | 10 | 479 |
-| IMSD01  | SDD      | Codex CLI | N/A | 13 | 12 | 296 ⁴ |
+| IMSD01  | SDD      | Codex CLI | N/A | 10 | 9  | 234 ⁴ |
 | IMSD02  | SDD      | Codex CLI | N/A | 14 | 12 | 337 ⁴ |
 | SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |
 | SCSD02  | SDD      | Codex CLI | 1 | 11 | 10 | 346 ⁴ |
@@ -251,7 +251,7 @@
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
 | **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
 | **CE** (Context Engineering) | 6 | 25 | 42 | 3,118 |
-| **SDD** (Spec-Driven Dev) | N/A | 85 | 76 | 1,838 ⁴ |
+| **SDD** (Spec-Driven Dev) | N/A | 82 | 73 | 1,776 ⁴ |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
