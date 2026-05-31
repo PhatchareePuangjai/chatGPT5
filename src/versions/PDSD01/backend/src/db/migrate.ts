@@ -1,5 +1,6 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { pool } from './index.js';
 
@@ -32,15 +33,20 @@ export async function applyMigrations(): Promise<void> {
     }
   }
 
-  await pool.end();
 }
 
 async function main() {
-  await applyMigrations();
+  try {
+    await applyMigrations();
+  } finally {
+    await pool.end();
+  }
 }
 
-main().catch((err) => {
-  // eslint-disable-next-line no-console
-  console.error(err);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error(err);
+    process.exitCode = 1;
+  });
+}

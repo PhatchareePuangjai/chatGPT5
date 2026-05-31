@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pdsd01-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pdsd01
+    ports:
+      - "5432:5432"
+    volumes:
+      - pdsd01_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pdsd01"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgres://postgres:postgres@db:5432/pdsd01
+      STORE_TIMEZONE: Asia/Bangkok
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "npm ci && npx --yes tsx src/db/migrate.ts && npx --yes tsx src/index.ts"
+
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    environment:
+      VITE_API_BASE_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0 --port 3000"
+
+volumes:
+  pdsd01_pgdata:

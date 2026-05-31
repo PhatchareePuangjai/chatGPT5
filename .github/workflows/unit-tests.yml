@@ -348,8 +348,8 @@ jobs:
             compose_path: src/versions/PDSD01
             test_path: src/versions/PDSD01/backend
             full_compose: false
-            database_url: postgres://promo:promo@localhost:5434/promotions
-            migrate_cmd: 'npm run db:migrate && npm run db:seed'
+            database_url: postgres://postgres:postgres@localhost:5432/pdsd01
+            migrate_cmd: ''
             node_options: ''
           - version: IMCE02
             compose_path: src/versions/IMCE02
