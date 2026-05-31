@@ -17,10 +17,14 @@ Use the acceptance scenarios in `specs/001-promotions-discounts/spec.md`:
 - Combined 10% + 100 THB on 1,000 THB → total 800 THB using (percent then fixed).
 - Prevent negative totals (e.g., 50 THB cart with 100 THB discount) → payable is 0 (or rejected per rule).
 
+Demo cart IDs used by the current scaffold UI:
+- `c1000` (1,000 THB)
+- `c2000` (2,000 THB)
+- `c50` (50 THB)
+
 ## What to Validate (Automated)
 
 - Unit tests for pricing math (stacking order, rounding, non-negative totals).
 - Integration tests for coupon eligibility (expiration, min spend, usage limit) using a real Postgres
   instance and seeded data.
 - E2E tests for the checkout UI flows that display discount lines and messages.
-
