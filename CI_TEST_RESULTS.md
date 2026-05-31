@@ -233,11 +233,11 @@
 | PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
 | PDBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 3 | 5 | 1,366 |
 | IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
-| IMCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 2 | 5 | 210 |
+| IMCE02  | CE       | GPT-5 (gpt-5-2) | 1 | 2 | 5 | 210 |
 | SCCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 3 | 3 | 463 |
-| SCCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 6 | 11 | 508 |
+| SCCE02  | CE       | GPT-5 (gpt-5-2) | 1 | 6 | 11 | 508 |
 | PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
-| PDCE02  | CE       | GPT-5 (gpt-5-2-instant) | 1 | 5 | 10 | 479 |
+| PDCE02  | CE       | GPT-5 (gpt-5-2) | 1 | 5 | 10 | 479 |
 | IMSD01  | SDD      | Codex CLI | N/A | 10 | 9  | 234 ⁴ |
 | IMSD02  | SDD      | Codex CLI | N/A | 14 | 12 | 337 ⁴ |
 | SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |

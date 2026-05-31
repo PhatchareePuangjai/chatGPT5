@@ -1,8 +1,8 @@
-# Specification Quality Checklist: Promotions and Discounts
+# Specification Quality Checklist: Promotions & Discounts
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning  
-**Created**: 2026-04-03  
-**Feature**: [spec.md](/Users/phatchareepuangjai/Documents/chat_gsheet_logger_python/src/versions/PDSD01/specs/001-promotions-spec/spec.md)
+**Purpose**: Validate specification completeness and quality before proceeding to planning
+**Created**: 2026-05-31
+**Feature**: `specs/001-promotions-discounts/spec.md`
 
 ## Content Quality
 
@@ -31,4 +31,5 @@
 
 ## Notes
 
-- No outstanding issues identified in this review.
+- Stacking order is specified by assumption and scenarios; validate with stakeholders early if rules
+  differ for your business.
