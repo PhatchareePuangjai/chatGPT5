@@ -121,7 +121,7 @@ jobs:
           echo "Waiting for application to be ready on port ${{ matrix.port }}..."
           timeout=300
           elapsed=0
-          until curl -sf http://localhost:${{ matrix.port }} --max-time 3 > /dev/null 2>&1; do
+          until curl -s http://localhost:${{ matrix.port }} --max-time 3 -o /dev/null; do
             if [ "$elapsed" -ge "$timeout" ]; then
               echo "Timeout: application did not respond on port ${{ matrix.port }} after ${timeout}s"
               docker compose logs
