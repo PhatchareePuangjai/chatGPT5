@@ -33,7 +33,7 @@
 | PDBP02 | Promotions & Discounts | Jest | 1 | 5 | 6 | ⚠️ PARTIAL | Missing min purchase, auto-discount, usage limit, ordering, negative total guard |
 | PDCE01 | Promotions & Discounts | Jest | 6 | 0 | 6 | :white_check_mark: PASS | — |
 | PDCE02 | Promotions & Discounts | node:test | 5 | 0 | 6 | ⚠️ PARTIAL | 1 TODO / expected failure: usage limit not implemented |
-| PDSD01 | Promotions & Discounts | vitest | 9 | 2 | 11 | ⚠️ PARTIAL | Coupon Validation (800 vs 900 — active promo applied before coupon); Expiration Date Check (EXPIRED coupon applied instead of rejected) |
+| PDSD01 | Promotions & Discounts | vitest | 11 | 0 | 11 | :white_check_mark: PASS | — |
 | PDSD02 | Promotions & Discounts | Jest | 8 | 1 | 9 | ⚠️ PARTIAL | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only |
 
 ### Test Summary by Strategy
@@ -42,7 +42,7 @@
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
-| **SD** (Spec-Driven Dev)     | 62     | 4      | 66    | 94%       |
+| **SD** (Spec-Driven Dev)     | 64     | 2      | 66    | 97%       |
 
 ---
 
@@ -120,7 +120,6 @@
 | PDSD01 | 0 | 2 | 2 | Prototype pollution (js/prototype-polluting-assignment) |
 | PDSD02 | 0 | 0 | 0 | - |
 
-
 ### CodeQL Alert Summary by Strategy
 
 | Strategy                     | Total Alerts | High | Medium |
@@ -159,20 +158,20 @@
 
 ### Common ZAP Warnings (legacy 12-version baseline)
 
-| Warning                                            | Rule ID | Severity      | Affected (legacy 12 scanned)               |
-| -------------------------------------------------- | ------- | ------------- | ------------------------------------------ |
-| Missing Anti-clickjacking Header                   | 10020   | Medium        | 11/12                                      |
-| Content Security Policy (CSP) Header Not Set       | 10038   | Medium        | 11/12                                      |
-| Cross-Origin-Embedder-Policy Header Missing        | 90004   | Low           | 11/12                                      |
-| Permissions Policy Header Not Set                  | 10063   | Low           | 12/12                                      |
-| X-Content-Type-Options Header Missing              | 10021   | Low           | 11/12                                      |
-| Modern Web Application                             | 10109   | Informational | 11/12                                      |
-| Storable but Non-Cacheable Content                 | 10049   | Informational | 7/12                                       |
-| Storable and Cacheable Content                     | 10049   | Informational | 4/12 (SCCE01, PDBP01, PDBP02, PDSD01)     |
-| Server Leaks Version Information                   | 10036   | Low           | 3/12 (SCCE01, PDBP01, PDSD01)             |
-| In Page Banner Information Leak                    | 10009   | Low           | 1/12 (PDSD01)                              |
-| Sub Resource Integrity Attribute Missing           | 90003   | Medium        | 1/12 (SCSD01)                              |
-| X-Powered-By Header Information Leak               | 10037   | Low           | 1/12 (PDBP02)                              |
+| Warning | Rule ID | Severity | Affected (legacy 12 scanned) |
+| --- | --- | --- | --- |
+| Missing Anti-clickjacking Header | 10020 | Medium | 11/12 |
+| Content Security Policy (CSP) Header Not Set | 10038 | Medium | 11/12 |
+| Cross-Origin-Embedder-Policy Header Missing | 90004 | Low | 11/12 |
+| Permissions Policy Header Not Set | 10063 | Low | 12/12 |
+| X-Content-Type-Options Header Missing | 10021 | Low | 11/12 |
+| Modern Web Application | 10109 | Informational | 11/12 |
+| Storable but Non-Cacheable Content | 10049 | Informational | 7/12 |
+| Storable and Cacheable Content | 10049 | Informational | 4/12 (SCCE01, PDBP01, PDBP02, PDSD01) |
+| Server Leaks Version Information | 10036 | Low | 3/12 (SCCE01, PDBP01, PDSD01) |
+| In Page Banner Information Leak | 10009 | Low | 1/12 (PDSD01) |
+| Sub Resource Integrity Attribute Missing | 90003 | Medium | 1/12 (SCSD01) |
+| X-Powered-By Header Information Leak | 10037 | Low | 1/12 (PDBP02) |
 
 ### DAST Summary by Strategy
 
@@ -186,27 +185,27 @@
 
 ## Overall Summary
 
-| Version   | Tests                      | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
-| --------- | -------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
-| IMBP01    | :white_check_mark: 7/7     | 5 high        | 0/7/60                | 3 / 3 / 7                 | 6.10%        | 251           | 404            | 62.8         |
-| IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/11/56               | 2 / 1 / 1                 | 0.00%        | 85            | 80             | 28.3         |
-| IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 7 / 19 / 27               | 0.00%        | 228           | 1,115          | 114.0        |
-| IMCE02    | :white_check_mark: 7/7     | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
-| IMSD01    | ⚠️ 11/12 (local, 1 fail)   | 1 high        | 0/7/60                | 7 / 12 / 15               | 2.70%        | 469           | 396            | 24.7         |
-| IMSD02    | :white_check_mark: 8/8 ¹   | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.20%       | 622           | 304            | 29.6         |
-| SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 358            | 67.7         |
-| SCBP02    | ⚠️ 4/5 (CI, 1 fail)        | 0 alerts      | 0/5/62                | 6 / 2 / 2                 | 0.00%        | 87            | 88             | 29.0         |
-| SCCE01    | :white_check_mark: 5/5     | 6 high        | 0/8/59                | 8 / 9 / 11                | 3.80%        | 409           | 457            | 204.5        |
-| SCCE02    | :x: 0/5 (local, 5 fail)   | 1 high        | 0/11/56               | 9 / 2 / 1                 | 0.00%        | 65            | 70             | 16.3         |
-| SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 7 / 0 / 5                 | 21.90%       | 208           | 988            | 34.7         |
-| SCSD02    | :white_check_mark: 10/10 ¹ | 0 alerts      | 0/7/60                | 1 / 0 / 19                | 0.00%        | 632           | 369            | 42.1         |
-| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | 0/7/60                | 7 / 4 / 25                | 0.00%        | 493           | 357            | 41.1         |
-| PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 8 / 1 / 9                 | 1.30%        | 365           | 805            | 60.8         |
-| PDBP02    | ⚠️ 1/6 (CI, 5 fail)        | 1 high        | 0/5/62                | 6 / 3 / 2                 | 0.00%        | 93            | 81             | 23.3         |
-| PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 249            | 43.6         |
-| PDCE02    | ⚠️ 5/6 (CI, 1 todo)        | 1 high        | 0/11/56               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
-| PDSD01    | ⚠️ 9/11 (2 fail)           | 0 high, 2 med | 0/7/60                | 5 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
-| PDSD02    | ⚠️ 8/9 (local, 1 fail)    | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 176            | 23.8         |
+| Version | Tests | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| IMBP01 | :white_check_mark: 7/7 | 5 high | 0/7/60 | 3 / 3 / 7 | 6.10% | 251 | 404 | 62.8 |
+| IMBP02 | ⚠️ 5/7 (local, 2 fail) | 0 alerts | 0/11/56 | 2 / 1 / 1 | 0.00% | 85 | 80 | 28.3 |
+| IMCE01 | :white_check_mark: 7/7 | 3 high, 1 med | 0/7/60 | 7 / 19 / 27 | 0.00% | 228 | 1,115 | 114.0 |
+| IMCE02 | :white_check_mark: 7/7 | 6 high | 0/5/62 | 16 / 2 / 1 | 5.40% | 58 | 60 | 58.0 |
+| IMSD01 | ⚠️ 11/12 (local, 1 fail) | 1 high | 0/7/60 | 7 / 12 / 15 | 2.70% | 469 | 396 | 24.7 |
+| IMSD02 | :white_check_mark: 8/8 ¹ | 0 alerts | 0/4/63 | 5 / 0 / 6 | 13.20% | 622 | 304 | 29.6 |
+| SCBP01 | :white_check_mark: 5/5 | 0 alerts | 0/7/60 | 9 / 9 / 20 | 4.70% | 406 | 358 | 67.7 |
+| SCBP02 | ⚠️ 4/5 (CI, 1 fail) | 0 alerts | 0/5/62 | 6 / 2 / 2 | 0.00% | 87 | 88 | 29.0 |
+| SCCE01 | :white_check_mark: 5/5 | 6 high | 0/8/59 | 8 / 9 / 11 | 3.80% | 409 | 457 | 204.5 |
+| SCCE02 | :x: 0/5 (local, 5 fail) | 1 high | 0/11/56 | 9 / 2 / 1 | 0.00% | 65 | 70 | 16.3 |
+| SCSD01 | :white_check_mark: 16/16 ¹ | 0 alerts | 0/8/59 | 7 / 0 / 5 | 21.90% | 208 | 988 | 34.7 |
+| SCSD02 | :white_check_mark: 10/10 ¹ | 0 alerts | 0/7/60 | 1 / 0 / 19 | 0.00% | 632 | 369 | 42.1 |
+| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts | 0/7/60 | 7 / 4 / 25 | 0.00% | 493 | 357 | 41.1 |
+| PDBP01 | :white_check_mark: 6/6 | 0 alerts | 0/8/59 | 8 / 1 / 9 | 1.30% | 365 | 805 | 60.8 |
+| PDBP02 | ⚠️ 1/6 (CI, 5 fail) | 1 high | 0/5/62 | 6 / 3 / 2 | 0.00% | 93 | 81 | 23.3 |
+| PDCE01 | :white_check_mark: 6/6 | 1 med | 0/7/60 | 6 / 16 / 20 | 0.00% | 305 | 249 | 43.6 |
+| PDCE02 | ⚠️ 5/6 (CI, 1 todo) | 1 high | 0/11/56 | 9 / 0 / 8 | 0.00% | 90 | 73 | 18.0 |
+| PDSD01 | :white_check_mark: 11/11 | 0 high, 2 med | 0/7/60 | 5 / 6 / 9 | 0.00% | 296 | 171 | 32.8 |
+| PDSD02 | ⚠️ 8/9 (local, 1 fail) | 0 alerts | 0/7/60 | 1 / 0 / 13 | 0.00% | 429 | 176 | 23.8 |
 
 > ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
 > ² Backend LOC: counted from **backend production source files only** (`.py` / `.js`), excluding `node_modules`, `tests/`, test files (`test_*`, `*.test.js`, `*.spec.js`), and all frontend files (folders: `frontend/`, `client/`, `public/`; files: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.

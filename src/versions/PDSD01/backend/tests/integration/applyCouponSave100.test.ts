@@ -1,14 +1,13 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { resetDb } from './dbHarness.js';
-import { seedCoupons, seedPromotions } from '../fixtures/seed.js';
+import { seedCoupons } from '../fixtures/seed.js';
 import { applyCouponToCart } from '../../src/services/coupons/applyCoupon.js';
 
 describe('apply coupon SAVE100', () => {
   beforeEach(async () => {
     await resetDb();
     await seedCoupons();
-    await seedPromotions();
   });
 
   it('reduces 1,000 THB cart to 900 THB and returns success message', async () => {

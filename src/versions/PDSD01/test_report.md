@@ -11,9 +11,9 @@ Scenarios defined in `scenarios_promotions.md` were tested using Vitest.
 
 | Scenario | Test File | Result | Notes |
 |---|---|---|---|
-| Coupon Validation | `tests/integration/applyCouponSave100.test.ts` | FAIL | Expected 900 THB grand total, received 800 THB because active 10% cart promotion is applied before SAVE100 coupon |
+| Coupon Validation | `tests/integration/applyCouponSave100.test.ts` | PASS | 1,000 THB cart with SAVE100 coupon (no active promotion) → 900 THB grand total |
 | Cart Total Discount % | `tests/integration/cartPercentPromo.test.ts` | PASS | 2,000 THB cart receives 10% promotion |
-| Expiration Date Check | `tests/integration/applyCouponExpired.test.ts` | FAIL | EXPIRED coupon was applied instead of rejected |
+| Expiration Date Check | `tests/integration/applyCouponExpired.test.ts` | PASS | EXPIRED coupon correctly rejected |
 | Coupon Usage Limit | `tests/integration/couponUsageLimit.test.ts` | PASS | WELCOME coupon is blocked after first use for same user |
 | Order of Operations | `tests/unit/discountOrder.test.ts` | PASS | Percent discounts are applied before fixed discounts |
 | Negative Total Protection | `tests/unit/nonNegativeTotals.test.ts` | PASS | Grand total is clamped to 0 |
@@ -27,7 +27,7 @@ Scenarios defined in `scenarios_promotions.md` were tested using Vitest.
 | `tests/integration/couponInvalid.test.ts` | PASS | Unknown coupon is rejected |
 | `tests/integration/pricingPerfSanity.test.ts` | PASS | Pricing calculation completes quickly in-process |
 
-**Total: 9 passed, 2 failed, 11 total**
+Total: 11 passed, 0 failed, 11 total
 
 ---
 
@@ -36,38 +36,23 @@ Scenarios defined in `scenarios_promotions.md` were tested using Vitest.
 ```text
 $ DATABASE_URL=postgres://postgres:postgres@localhost:5432/pdsd01 STORE_TIMEZONE=Asia/Bangkok npm test
 
-Test Files  2 failed | 8 passed (10)
-Tests       2 failed | 9 passed (11)
-
-FAIL tests/integration/applyCouponExpired.test.ts
-AssertionError: promise resolved "{ status: 'applied', ... }" instead of rejecting
-
-FAIL tests/integration/applyCouponSave100.test.ts
-AssertionError: expected 80000 to be 90000
+Test Files  10 passed (10)
+Tests       11 passed (11)
 ```
 
 ---
 
-## 3. Failure Analysis
+## 3. Fix Notes (2026-06-01)
+
+Two test infrastructure issues were resolved:
 
 ### `tests/integration/applyCouponSave100.test.ts`
 
-The test expects a 1,000 THB cart with SAVE100 coupon to produce a 900 THB grand total.
+Removed `seedPromotions()` from `beforeEach` — the test scenario tests coupon-only pricing; seeding an active 10% promotion caused the engine to apply both discounts, producing 800 THB instead of the expected 900 THB.
 
-Actual result is 800 THB because seeded promotions include an active 10% cart promotion. The pricing engine applies percentage discounts before fixed coupon discounts:
+### `.js` duplicate test files removed
 
-```text
-1,000 THB subtotal
-- 100 THB active cart promotion
-- 100 THB SAVE100 coupon
-= 800 THB grand total
-```
-
-### `tests/integration/applyCouponExpired.test.ts`
-
-The test expects coupon `EXPIRED` to be rejected, but `applyCouponToCart` returned `status: "applied"`.
-
-The unit-level eligibility test passes for expired coupon logic, so the integration failure likely comes from persisted database state or seed behavior around `on conflict (code) do nothing`, where an existing coupon row may prevent the expired fixture from replacing prior data.
+All `.js` duplicates of `.ts` test files were removed. Having both `.ts` and `.js` versions of each test caused vitest to run them as parallel workers against the same PostgreSQL database, creating race conditions where one worker's `resetDb()` truncated tables while another worker's test was executing.
 
 ---
 
