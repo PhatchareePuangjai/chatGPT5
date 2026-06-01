@@ -376,7 +376,10 @@ jobs:
       - name: Determine if should run
         id: should_run
         run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          if [ ! -d "${{ matrix.compose_path }}" ]; then
+            echo "run=false" >> $GITHUB_OUTPUT
+            echo "Skipping: ${{ matrix.compose_path }} does not exist"
+          elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "run=true" >> $GITHUB_OUTPUT
           elif [ "${{ steps.changes.outputs.src }}" == "true" ]; then
             echo "run=true" >> $GITHUB_OUTPUT
