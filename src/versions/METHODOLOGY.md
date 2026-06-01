@@ -133,7 +133,7 @@ The table below is updated progressively as each version in the 18-version datas
 | PDCE02  | CE       | 95            | 78             | 479                  |
 | IMSD01  | SDD      | 398           | 318            | 296                  |
 | IMSD02  | SDD      | 622           | 304            | 337                  |
-| SCSD01  | SDD      | 208           | 988            | 353                  |
+| SCSD01  | SDD      | 479           | 273            | 97                   |
 | SCSD02  | SDD      | 632           | 369            | 346                  |
 | PDSD01  | SDD      | 296           | 171            | 170                  |
 | PDSD02  | SDD      | 429           | 176            | 336                  |

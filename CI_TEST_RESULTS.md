@@ -1,6 +1,7 @@
 # CI/CD Test Results Summary
 
 > Last updated: 2026-06-01 (full recheck: Unit Tests #26735096014, SonarQube #26735096015, DAST #26735096020, CodeQL #26735096022; all 19 versions now scanned by DAST)
+> SCSD01 refresh 2026-06-01: Unit Tests #26764446595 (CI vitest 8/8), DAST #26763971867 (0/7/60). SonarQube metrics retained — local SONAR_TOKEN returned HTTP 401 (invalid).
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -27,7 +28,7 @@
 | SCBP02 | Shopping Cart | Jest | 4 | 1 | 5 | ⚠️ PARTIAL | No stock validation (Edge 1: add > stock accepted) |
 | SCCE01 | Shopping Cart | Jest | 5 | 0 | 5 | :white_check_mark: PASS | — |
 | SCCE02 | Shopping Cart | node:test | 0 | 5 | 5 | :x: FAIL | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented |
-| SCSD01 | Shopping Cart | pytest | 16 | 0 | 16 | :white_check_mark: PASS | scenarios: 5, unit: 8, integration: 3 |
+| SCSD01 | Shopping Cart | vitest | 8 | 0 | 8 | :white_check_mark: PASS | CI: integration/contract/unit (7 files, 8 tests) |
 | SCSD02 | Shopping Cart | vitest | 10 | 0 | 10 | :white_check_mark: PASS | backend: 8, frontend: 2 |
 | PDBP01 | Promotions & Discounts | Jest | 6 | 0 | 6 | :white_check_mark: PASS | — |
 | PDBP02 | Promotions & Discounts | Jest | 1 | 5 | 6 | ⚠️ PARTIAL | Missing min purchase, auto-discount, usage limit, ordering, negative total guard |
@@ -42,7 +43,7 @@
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
-| **SD** (Spec-Driven Dev)     | 64     | 2      | 66    | 97%       |
+| **SD** (Spec-Driven Dev)     | 56     | 2      | 58    | 97%       |
 
 ---
 
@@ -152,7 +153,7 @@
 | SCBP02 | 0 | 5 | 62 | X-Powered-By leak + Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
 | SCCE01 | 0 | 8 | 59 | Missing headers + Server version leak |
 | SCCE02 | 0 | 11 | 56 | Missing headers + X-Powered-By leak + Suspicious comments + Cacheable content + Cross-Domain Misconfiguration |
-| SCSD01 | 0 | 8 | 59 | Missing headers + Sub Resource Integrity Attribute Missing [90003] |
+| SCSD01 | 0 | 7 | 60 | Missing headers |
 | SCSD01_v2 | 0 | 7 | 60 | Missing headers |
 | SCSD02 | 0 | 7 | 60 | Missing headers |
 
@@ -179,7 +180,7 @@
 | --- | --- | --- | --- | --- |
 | **BP** (Basic Prompting) | 7.2 | 59.8 | 3/6 (IMBP02, PDBP01, PDBP02) | 6/6 scanned |
 | **CE** (Context Engineering) | 8.2 | 58.8 | 4/6 (IMCE02, SCCE01, SCCE02, PDCE02) | 6/6 scanned |
-| **SD** (Spec-Driven Dev) | 6.7 | 60.3 | 1/6 (IMSD02) | 6/6 scanned |
+| **SD** (Spec-Driven Dev) | 6.5 | 60.5 | 1/6 (IMSD02) | 6/6 scanned |
 
 ---
 
@@ -197,7 +198,7 @@
 | SCBP02 | ⚠️ 4/5 (CI, 1 fail) | 0 alerts | 0/5/62 | 6 / 2 / 2 | 0.00% | 87 | 88 | 29.0 |
 | SCCE01 | :white_check_mark: 5/5 | 6 high | 0/8/59 | 8 / 9 / 11 | 3.80% | 409 | 457 | 204.5 |
 | SCCE02 | :x: 0/5 (local, 5 fail) | 1 high | 0/11/56 | 9 / 2 / 1 | 0.00% | 65 | 70 | 16.3 |
-| SCSD01 | :white_check_mark: 16/16 ¹ | 0 alerts | 0/8/59 | 7 / 0 / 5 | 21.90% | 208 | 988 | 34.7 |
+| SCSD01 | :white_check_mark: 8/8 (CI) | 0 alerts | 0/7/60 | 7 / 0 / 5 | 21.90% | 479 | 273 | 26.6 |
 | SCSD02 | :white_check_mark: 10/10 ¹ | 0 alerts | 0/7/60 | 1 / 0 / 19 | 0.00% | 632 | 369 | 42.1 |
 | SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts | 0/7/60 | 7 / 4 / 25 | 0.00% | 493 | 357 | 41.1 |
 | PDBP01 | :white_check_mark: 6/6 | 0 alerts | 0/8/59 | 8 / 1 / 9 | 1.30% | 365 | 805 | 60.8 |
@@ -239,7 +240,7 @@
 | PDCE02  | CE       | GPT-5 (gpt-5-2) | 1 | 5 | 10 | 479 |
 | IMSD01  | SDD      | Codex CLI | N/A | 10 | 9  | 234 ⁴ |
 | IMSD02  | SDD      | Codex CLI | N/A | 14 | 12 | 337 ⁴ |
-| SCSD01  | SDD      | Codex CLI | N/A | 23 | 20 | 353 ⁴ |
+| SCSD01  | SDD      | Codex CLI | 1 | 7 | 6 | 97 ⁴ |
 | SCSD02  | SDD      | Codex CLI | 1 | 11 | 10 | 346 ⁴ |
 | PDSD01  | SDD      | Codex CLI | N/A | 14 | 13 | 170 ⁴ |
 | PDSD02  | SDD      | GPT-5 (gpt-5-2) | 1 | 10 | 9 | 336 ⁴ |
@@ -250,13 +251,13 @@
 | -------- | ------------------- | ---------------- | -------------- | -------------------- |
 | **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
 | **CE** (Context Engineering) | 6 | 25 | 42 | 3,118 |
-| **SDD** (Spec-Driven Dev) | N/A | 82 | 73 | 1,776 ⁴ |
+| **SDD** (Spec-Driven Dev) | N/A | 66 | 59 | 1,520 ⁴ |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is counted:** user-side spec commands in `conversation_export.json` only.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is NOT counted:** AI-generated code responses, full conversation context sent per turn.
-> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 353 / 346 / 170 / 336) are a significant undercount and should not be compared directly with BP/CE token values.
+> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 97 / 346 / 170 / 336) are a significant undercount and should not be compared directly with BP/CE token values.
 
 ---
 
