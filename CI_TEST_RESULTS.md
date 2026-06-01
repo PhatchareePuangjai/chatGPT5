@@ -1,6 +1,6 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-05-31 (verified IMSD01 against GitHub Actions, CodeQL alerts, SonarCloud workflow status, DAST logs, and local artifacts)
+> Last updated: 2026-06-01 (full recheck: Unit Tests #26735096014, SonarQube #26735096015, DAST #26735096020, CodeQL #26735096022; all 19 versions now scanned by DAST)
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -12,29 +12,29 @@
 
 ## 1. Unit Tests
 
-> Workflow run checked: [Unit Tests #26698243740](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243740)
-> Source: `test_report.md` in each version directory. In run #26698243740, the IMSD01 unit-test job was present but skipped by the workflow path filter, so IMSD01 counts remain sourced from `src/versions/IMSD01/test_report.md`.
+> Workflow run: [Unit Tests #26735096014](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014)
+> Note: most jobs skipped by path filter (only versions with changed files re-run); counts sourced from `test_report.md` per version for unchanged versions.
 
-| Version | Feature                | Tool   | Passed | Failed | Total | Result                  | Failure Details                                           |
-| ------- | ---------------------- | ------ | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------- |
-| IMBP01  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | —                                                         |
-| IMBP02  | Inventory Management   | Jest   | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5` |
-| IMCE01  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | —                                                         |
-| IMCE02  | Inventory Management   | Jest   | 7      | 0      | 7     | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) |
-| IMSD01  | Inventory Management   | vitest | 11     | 1      | 12    | ⚠️ PARTIAL              | Atomicity rollback test: HTTP 400 returned where 500 was expected |
-| IMSD02  | Inventory Management   | vitest | 8      | 0      | 8     | :white_check_mark: PASS | unit: 2, integration: 6 (requires --maxWorkers=1)          |
-| SCBP01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
-| SCBP02  | Shopping Cart          | Jest   | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)        |
-| SCCE01  | Shopping Cart          | Jest   | 5      | 0      | 5     | :white_check_mark: PASS | —                                                         |
-| SCCE02  | Shopping Cart          | node:test | 0   | 5      | 5     | :x: FAIL               | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented |
-| SCSD01  | Shopping Cart          | pytest | 16     | 0      | 16    | :white_check_mark: PASS | scenarios: 5, unit: 8, integration: 3                     |
-| SCSD02  | Shopping Cart          | vitest | 10     | 0      | 10    | :white_check_mark: PASS | backend: 8, frontend: 2                                   |
-| PDBP01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
-| PDBP02  | Promotions & Discounts | Jest   | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard |
-| PDCE01  | Promotions & Discounts | Jest   | 6      | 0      | 6     | :white_check_mark: PASS | —                                                         |
-| PDCE02  | Promotions & Discounts | node:test | 5   | 0      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure: usage limit not implemented |
-| PDSD01  | Promotions & Discounts | pytest | 18     | 0      | 18    | :white_check_mark: PASS | scenarios: 6, unit: 7, integration: 5                     |
-| PDSD02  | Promotions & Discounts | Jest   | 8      | 1      | 9     | ⚠️ PARTIAL              | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only |
+| Version | Feature | Tool | Passed | Failed | Total | Result | Failure Details |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| IMBP01 | Inventory Management | Jest | 7 | 0 | 7 | :white_check_mark: PASS | — |
+| IMBP02 | Inventory Management | Jest | 5 | 2 | 7 | ⚠️ PARTIAL | Restock 404 (not implemented); threshold `< 5` vs `<= 5` |
+| IMCE01 | Inventory Management | Jest | 7 | 0 | 7 | :white_check_mark: PASS | — |
+| IMCE02 | Inventory Management | Jest | 7 | 0 | 7 | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) |
+| IMSD01 | Inventory Management | vitest | 11 | 1 | 12 | ⚠️ PARTIAL | Atomicity rollback test: HTTP 400 returned where 500 was expected |
+| IMSD02 | Inventory Management | vitest | 8 | 0 | 8 | :white_check_mark: PASS | unit: 2, integration: 6 (requires --maxWorkers=1) |
+| SCBP01 | Shopping Cart | Jest | 5 | 0 | 5 | :white_check_mark: PASS | — |
+| SCBP02 | Shopping Cart | Jest | 4 | 1 | 5 | ⚠️ PARTIAL | No stock validation (Edge 1: add > stock accepted) |
+| SCCE01 | Shopping Cart | Jest | 5 | 0 | 5 | :white_check_mark: PASS | — |
+| SCCE02 | Shopping Cart | node:test | 0 | 5 | 5 | :x: FAIL | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented |
+| SCSD01 | Shopping Cart | pytest | 16 | 0 | 16 | :white_check_mark: PASS | scenarios: 5, unit: 8, integration: 3 |
+| SCSD02 | Shopping Cart | vitest | 10 | 0 | 10 | :white_check_mark: PASS | backend: 8, frontend: 2 |
+| PDBP01 | Promotions & Discounts | Jest | 6 | 0 | 6 | :white_check_mark: PASS | — |
+| PDBP02 | Promotions & Discounts | Jest | 1 | 5 | 6 | ⚠️ PARTIAL | Missing min purchase, auto-discount, usage limit, ordering, negative total guard |
+| PDCE01 | Promotions & Discounts | Jest | 6 | 0 | 6 | :white_check_mark: PASS | — |
+| PDCE02 | Promotions & Discounts | node:test | 5 | 0 | 6 | ⚠️ PARTIAL | 1 TODO / expected failure: usage limit not implemented |
+| PDSD01 | Promotions & Discounts | vitest | 9 | 2 | 11 | ⚠️ PARTIAL | Coupon Validation (800 vs 900 — active promo applied before coupon); Expiration Date Check (EXPIRED coupon applied instead of rejected) |
+| PDSD02 | Promotions & Discounts | Jest | 8 | 1 | 9 | ⚠️ PARTIAL | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only |
 
 ### Test Summary by Strategy
 
@@ -42,7 +42,7 @@
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
-| **SD** (Spec-Driven Dev)     | 71     | 2      | 73    | 97%       |
+| **SD** (Spec-Driven Dev)     | 62     | 4      | 66    | 94%       |
 
 ---
 
@@ -89,7 +89,7 @@
 
 ## 3. CodeQL Static Analysis (SAST)
 
-> Workflow run: [CodeQL #26698243747](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243747)
+> Workflow run: [CodeQL #26735096022](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096022)
 > Security alerts: [Code Scanning Alerts](https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning)
 
 | Language              | Result                  |
@@ -99,26 +99,26 @@
 
 ### Security Alerts by Version (Open)
 
-| Version | High | Medium | Total | Details                                |
-| ------- | ---- | ------ | ----- | -------------------------------------- |
-| IMBP01  | 5    | 0      | 5     | Missing rate limiting                  |
-| IMBP02  | 0    | 0      | 0     | -                                      |
-| IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS |
-| IMCE02  | 6    | 0      | 6     | Missing rate limiting                  |
-| IMSD01  | 1    | 0      | 1     | Missing rate limiting                  |
-| IMSD02  | 0    | 0      | 0     | -                                      |
-| SCBP01  | 0    | 0      | 0     | -                                      |
-| SCBP02  | 0    | 0      | 0     | -                                      |
-| SCCE01  | 6    | 0      | 6     | Missing rate limiting                  |
-| SCCE02  | 1    | 0      | 1     | Missing rate limiting                  |
-| SCSD01  | 0    | 0      | 0     | -                                      |
-| SCSD02  | 0    | 0      | 0     | -                                      |
-| PDBP01  | 0    | 0      | 0     | -                                      |
-| PDBP02  | 1    | 0      | 1     | Missing rate limiting                  |
-| PDCE01  | 0    | 1      | 1     | Permissive CORS configuration          |
-| PDCE02  | 1    | 0      | 1     | Missing rate limiting                  |
-| PDSD01  | 0    | 0      | 0     | -                                      |
-| PDSD02  | 0    | 0      | 0     | -                                      |
+| Version | High | Medium | Total | Details |
+| --- | --- | --- | --- | --- |
+| IMBP01 | 5 | 0 | 5 | Missing rate limiting |
+| IMBP02 | 0 | 0 | 0 | - |
+| IMCE01 | 3 | 1 | 4 | Missing rate limiting, Permissive CORS |
+| IMCE02 | 6 | 0 | 6 | Missing rate limiting |
+| IMSD01 | 1 | 0 | 1 | Missing rate limiting |
+| IMSD02 | 0 | 0 | 0 | - |
+| SCBP01 | 0 | 0 | 0 | - |
+| SCBP02 | 0 | 0 | 0 | - |
+| SCCE01 | 6 | 0 | 6 | Missing rate limiting |
+| SCCE02 | 1 | 0 | 1 | Missing rate limiting |
+| SCSD01 | 0 | 0 | 0 | - |
+| SCSD02 | 0 | 0 | 0 | - |
+| PDBP01 | 0 | 0 | 0 | - |
+| PDBP02 | 1 | 0 | 1 | Missing rate limiting |
+| PDCE01 | 0 | 1 | 1 | Permissive CORS configuration |
+| PDCE02 | 1 | 0 | 1 | Missing rate limiting |
+| PDSD01 | 0 | 2 | 2 | Prototype pollution (js/prototype-polluting-assignment) |
+| PDSD02 | 0 | 0 | 0 | - |
 
 
 ### CodeQL Alert Summary by Strategy
@@ -127,35 +127,35 @@
 | ---------------------------- | ------------ | ---- | ------ |
 | **BP** (Basic Prompting)     | 6            | 6    | 0      |
 | **CE** (Context Engineering) | 19           | 17   | 2      |
-| **SD** (Spec-Driven Dev)     | 1            | 1    | 0      |
+| **SD** (Spec-Driven Dev)     | 3            | 1    | 2      |
 
 ---
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run checked: [DAST #26702431464](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26702431464)
-> Result: IMSD01 scan attempted but did not produce ZAP metrics because the workflow tried to start from missing directory `src/versions/IMSD01/infrastructure`; previous completed numeric rows remain unchanged where no new metrics were produced.
+> Workflow run: [DAST #26735096020](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096020) — all 19 versions scanned successfully.
 
-| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                  |
-| ------- | -------- | -------- | ---- | --------------------------------------------------------------------------------- |
-| IMBP01  | 0        | 7        | 60   | Missing headers                                                                   |
-| IMBP02  | 0        | 11       | 56   | Missing headers + Cross-Domain Misconfiguration + Permissions Policy              |
-| IMCE01  | 0        | 7        | 60   | Missing headers                                                                   |
-| IMCE02  | 0        | 5        | 62   | X-Powered-By leak                                                                 |
-| IMSD01  | TBD      | TBD      | TBD  | Scan attempted in run #26698243741; failed before ZAP metrics (missing `infrastructure` directory) |
-| IMSD02  | 0        | 4        | 63   | X-Powered-By leak [10037] + Cacheable Content [10049] + CSP failure [10055] + Permissions Policy [10063] |
-| PDBP01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
-| PDBP02  | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration |
-| PDCE01  | 0        | 7        | 60   | Missing headers                                                                   |
-| PDCE02  | 0        | 10       | 57   | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable content + Cross-Domain Misconfiguration |
-| PDSD01  | 0        | 9        | 58   | Missing headers + Server version leak + In Page Banner Information Leak [10009]   |
-| PDSD02  | TBD      | TBD      | TBD  | Scan attempted in run #26674473329; ZAP failed before metrics (`localhost:3000` did not respond) |
-| SCBP01  | 0        | 7        | 60   | Missing headers                                                                   |
-| SCBP02  | 0        | 5        | 62   | Storable and Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
-| SCCE01  | 0        | 8        | 59   | Missing headers + Server version leak                                             |
-| SCCE02  | 0        | 11       | 56   | Missing headers + X-Powered-By leak + Suspicious comments + Cacheable content + Cross-Domain Misconfiguration |
-| SCSD01  | 0        | 8        | 59   | Missing headers + Sub Resource Integrity Attribute Missing [90003]                |
-| SCSD02  | 0        | 7        | 60   | Missing headers + CSP failure + cache headers + COEP + Permissions Policy         |
+| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings |
+| --- | --- | --- | --- | --- |
+| IMBP01 | 0 | 7 | 60 | Missing headers |
+| IMBP02 | 0 | 11 | 56 | Missing headers + Suspicious comments + X-Powered-By leak + CSP fallback + Cross-Domain Misconfiguration |
+| IMCE01 | 0 | 7 | 60 | Missing headers |
+| IMCE02 | 0 | 5 | 62 | X-Powered-By leak |
+| IMSD01 | 0 | 7 | 60 | Missing headers |
+| IMSD02 | 0 | 4 | 63 | X-Powered-By leak [10037] + Cacheable Content [10049] + CSP failure [10055] + Permissions Policy [10063] |
+| PDBP01 | 0 | 8 | 59 | Missing headers + Server version leak |
+| PDBP02 | 0 | 5 | 62 | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration |
+| PDCE01 | 0 | 7 | 60 | Missing headers |
+| PDCE02 | 0 | 11 | 56 | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable + CSP fallback + Cross-Domain Misconfiguration |
+| PDSD01 | 0 | 7 | 60 | Missing headers |
+| PDSD02 | 0 | 7 | 60 | Missing headers |
+| SCBP01 | 0 | 7 | 60 | Missing headers |
+| SCBP02 | 0 | 5 | 62 | X-Powered-By leak + Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
+| SCCE01 | 0 | 8 | 59 | Missing headers + Server version leak |
+| SCCE02 | 0 | 11 | 56 | Missing headers + X-Powered-By leak + Suspicious comments + Cacheable content + Cross-Domain Misconfiguration |
+| SCSD01 | 0 | 8 | 59 | Missing headers + Sub Resource Integrity Attribute Missing [90003] |
+| SCSD01_v2 | 0 | 7 | 60 | Missing headers |
+| SCSD02 | 0 | 7 | 60 | Missing headers |
 
 ### Common ZAP Warnings (legacy 12-version baseline)
 
@@ -176,11 +176,11 @@
 
 ### DAST Summary by Strategy
 
-| Strategy                     | Avg Warnings | Avg Pass | Server Leak              | Scan Status                          |
-| ---------------------------- | ------------ | -------- | ------------------------ | ------------------------------------ |
-| **BP** (Basic Prompting)     | 7.2          | 59.8     | 2/6 (PDBP01, PDBP02)     | 6/6 scanned                          |
-| **CE** (Context Engineering) | 8.0          | 59.0     | 3/6 (SCCE01, SCCE02, PDCE02) | 6/6 scanned                       |
-| **SD** (Spec-Driven Dev)     | 7.0          | 60.0     | 1/4 (PDSD01)             | 4/6 scanned; IMSD01 and PDSD02 attempted but no ZAP metrics |
+| Strategy | Avg Warnings | Avg Pass | Server Leak | Scan Status |
+| --- | --- | --- | --- | --- |
+| **BP** (Basic Prompting) | 7.2 | 59.8 | 3/6 (IMBP02, PDBP01, PDBP02) | 6/6 scanned |
+| **CE** (Context Engineering) | 8.2 | 58.8 | 4/6 (IMCE02, SCCE01, SCCE02, PDCE02) | 6/6 scanned |
+| **SD** (Spec-Driven Dev) | 6.7 | 60.3 | 1/6 (IMSD02) | 6/6 scanned |
 
 ---
 
@@ -192,7 +192,7 @@
 | IMBP02    | ⚠️ 5/7 (local, 2 fail)     | 0 alerts      | 0/11/56               | 2 / 1 / 1                 | 0.00%        | 85            | 80             | 28.3         |
 | IMCE01    | :white_check_mark: 7/7     | 3 high, 1 med | 0/7/60                | 7 / 19 / 27               | 0.00%        | 228           | 1,115          | 114.0        |
 | IMCE02    | :white_check_mark: 7/7     | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
-| IMSD01    | ⚠️ 11/12 (local, 1 fail)   | 1 high        | TBD (scan failed before metrics) | 7 / 12 / 15               | 2.70%        | 469           | 396            | 24.7         |
+| IMSD01    | ⚠️ 11/12 (local, 1 fail)   | 1 high        | 0/7/60                | 7 / 12 / 15               | 2.70%        | 469           | 396            | 24.7         |
 | IMSD02    | :white_check_mark: 8/8 ¹   | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.20%       | 622           | 304            | 29.6         |
 | SCBP01    | :white_check_mark: 5/5     | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 358            | 67.7         |
 | SCBP02    | ⚠️ 4/5 (CI, 1 fail)        | 0 alerts      | 0/5/62                | 6 / 2 / 2                 | 0.00%        | 87            | 88             | 29.0         |
@@ -200,13 +200,13 @@
 | SCCE02    | :x: 0/5 (local, 5 fail)   | 1 high        | 0/11/56               | 9 / 2 / 1                 | 0.00%        | 65            | 70             | 16.3         |
 | SCSD01    | :white_check_mark: 16/16 ¹ | 0 alerts      | 0/8/59                | 7 / 0 / 5                 | 21.90%       | 208           | 988            | 34.7         |
 | SCSD02    | :white_check_mark: 10/10 ¹ | 0 alerts      | 0/7/60                | 1 / 0 / 19                | 0.00%        | 632           | 369            | 42.1         |
-| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | —                     | 7 / 4 / 25                | 0.00%        | 493           | 357            | 41.1         |
+| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts      | 0/7/60                | 7 / 4 / 25                | 0.00%        | 493           | 357            | 41.1         |
 | PDBP01    | :white_check_mark: 6/6     | 0 alerts      | 0/8/59                | 8 / 1 / 9                 | 1.30%        | 365           | 805            | 60.8         |
 | PDBP02    | ⚠️ 1/6 (CI, 5 fail)        | 1 high        | 0/5/62                | 6 / 3 / 2                 | 0.00%        | 93            | 81             | 23.3         |
 | PDCE01    | :white_check_mark: 6/6     | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 249            | 43.6         |
-| PDCE02    | ⚠️ 5/6 (CI, 1 todo)        | 1 high        | 0/10/57               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
-| PDSD01    | :white_check_mark: 18/18 ¹ | 0 alerts      | 0/9/58                | 5 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
-| PDSD02    | ⚠️ 8/9 (local, 1 fail)    | 0 alerts      | TBD (scan failed before metrics) | 1 / 0 / 13                | 0.00%        | 429           | 176            | 23.8         |
+| PDCE02    | ⚠️ 5/6 (CI, 1 todo)        | 1 high        | 0/11/56               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
+| PDSD01    | ⚠️ 9/11 (2 fail)           | 0 high, 2 med | 0/7/60                | 5 / 6 / 9                 | 0.00%        | 296           | 171            | 32.8         |
+| PDSD02    | ⚠️ 8/9 (local, 1 fail)    | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 176            | 23.8         |
 
 > ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
 > ² Backend LOC: counted from **backend production source files only** (`.py` / `.js`), excluding `node_modules`, `tests/`, test files (`test_*`, `*.test.js`, `*.spec.js`), and all frontend files (folders: `frontend/`, `client/`, `public/`; files: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.
@@ -271,6 +271,7 @@
 | CodeQL Workflow          | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml       |
 | DAST ZAP Workflow        | https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml |
 | Security Alerts (CodeQL) | https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning             |
-| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243740           |
-| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243747           |
-| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26698243741           |
+| Latest Unit Tests Run    | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014           |
+| Latest SonarQube Run     | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096015           |
+| Latest DAST Run          | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096020           |
+| Latest CodeQL Run        | https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096022           |

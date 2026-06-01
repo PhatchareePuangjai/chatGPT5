@@ -39,7 +39,7 @@ The primary dataset is being expanded to **18 generated versions** organized as 
 
 The `01` versions form the initial baseline set. The `02` versions are repeat generations of the same domain-strategy combinations and are included to reduce single-run variance and make the comparison less dependent on one generated sample. Each version is evaluated against the same Acceptance Scenarios and Edge Cases for its domain. Results are reported both per version and, where applicable, aggregated by strategy across all completed runs.
 
-At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), all second-run versions for Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and all second-run versions for Specification-Driven Development (`IMSD02`, `SCSD02`, `PDSD02`) have been generated and measured. PDSD02 has complete test, static-analysis, LOC, and interaction data; its DAST run was attempted but did not produce ZAP metrics because the target application did not respond during the scan.
+At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), all second-run versions for Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and all second-run versions for Specification-Driven Development (`IMSD02`, `SCSD02`, `PDSD02`) have been generated and measured. All 18 core versions now have complete test, static-analysis, LOC, interaction, and DAST data. DAST CI issues (IMSD01 missing docker-compose, PDSD02 port mismatch, timing failures) were resolved on 2026-06-01; all 19 versions (including SCSD01_v2) are scanned in DAST run #26735096020.
 
 ### 2.2 Supplementary Repository Artifacts
 
