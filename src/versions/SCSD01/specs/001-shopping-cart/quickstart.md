@@ -14,12 +14,13 @@ the repository's actual scripts as they are added.
 
 ## Run Tests (Expected)
 
-Backend:
-1. Run unit tests (domain/services)
-2. Run integration tests (HTTP + DB)
+Backend (from `backend/`):
+1. Install dependencies: `npm install`
+2. Run tests: `npm test`
 
-Frontend:
-1. Run component/integration tests for cart flows
+Frontend (from `frontend/`):
+1. Install dependencies: `npm install`
+2. Run tests: `npm test`
 
 ## Manual Validation Checklist
 
@@ -31,4 +32,3 @@ Use the acceptance scenarios from `spec.md` and validate:
    message "สินค้าไม่เพียงพอ".
 4. Save for later moves item to saved list and reduces grand total.
 5. Money precision: 19.99 * 3 displays as 59.97 exactly (no artifacts).
-

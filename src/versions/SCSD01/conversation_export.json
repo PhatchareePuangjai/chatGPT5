@@ -1,0 +1,416 @@
+{
+  "title": "SCSD01 Shopping Cart (SpecKit + Docker)",
+  "create_time": 1780309306,
+  "update_time": 1780309306,
+  "moderation_results": [],
+  "plugin_ids": null,
+  "conversation_id": "019e8220-0cb8-7790-a140-527ab0e88988",
+  "conversation_template_id": null,
+  "gizmo_id": null,
+  "gizmo_type": null,
+  "is_archived": false,
+  "is_starred": null,
+  "safe_urls": [],
+  "blocked_urls": [],
+  "default_model_slug": null,
+  "atlas_mode_enabled": null,
+  "conversation_origin": "assistant_generated",
+  "is_read_only": null,
+  "voice": null,
+  "async_status": null,
+  "disabled_tool_ids": [],
+  "is_temporary_chat": null,
+  "is_do_not_remember": null,
+  "memory_scope": null,
+  "context_scopes": [],
+  "sugar_item_id": null,
+  "sugar_item_visible": false,
+  "pinned_time": null,
+  "is_study_mode": null,
+  "owner": null,
+  "mapping": {
+    "client-created-root": {
+      "id": "client-created-root",
+      "message": null,
+      "parent": null,
+      "children": [
+        "m0001"
+      ]
+    },
+    "m0001": {
+      "id": "m0001",
+      "message": {
+        "id": "m0001",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+  "update_time": 1780309887,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "List .agents/skills"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "client-created-root",
+      "children": [
+        "m0002"
+      ]
+    },
+    "m0002": {
+      "id": "m0002",
+      "message": {
+        "id": "m0002",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Listed available SpecKit skills under .agents/skills (speckit-constitution/specify/plan/tasks/implement, etc.)."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "m0001",
+      "children": [
+        "m0003"
+      ]
+    },
+    "m0003": {
+      "id": "m0003",
+      "message": {
+        "id": "m0003",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "$speckit-constitution Create principles focused on code quality, testing standards, user experience consistency, and performance requirements. Stack: Node.js + Express, React 18.3.1, PostgreSQL."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "m0002",
+      "children": [
+        "m0004"
+      ]
+    },
+    "m0004": {
+      "id": "m0004",
+      "message": {
+        "id": "m0004",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Created/updated .specify/memory/constitution.md with concrete principles (quality gates, tests required, UX consistency, performance budgets, observability) and synced templates."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "m0003",
+      "children": [
+        "m0005"
+      ]
+    },
+    "m0005": {
+      "id": "m0005",
+      "message": {
+        "id": "m0005",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "$speckit-specify Create a specification based on scenarios_cart.md"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "m0004",
+      "children": [
+        "m0006"
+      ]
+    },
+    "m0006": {
+      "id": "m0006",
+      "message": {
+        "id": "m0006",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Created specs/001-shopping-cart/spec.md and specs/001-shopping-cart/checklists/requirements.md from scenarios_cart.md (US1 quantity update, US2 merge, US3 save for later + edge cases)."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "m0005",
+      "children": [
+        "m0007"
+      ]
+    },
+    "m0007": {
+      "id": "m0007",
+      "message": {
+        "id": "m0007",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "$speckit-plan"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "m0006",
+      "children": [
+        "m0008"
+      ]
+    },
+    "m0008": {
+      "id": "m0008",
+      "message": {
+        "id": "m0008",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Generated specs/001-shopping-cart/plan.md plus research.md, data-model.md, contracts/cart-api.md, contracts/cart-ui.md, quickstart.md and updated AGENTS.md to point at the plan."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "m0007",
+      "children": [
+        "m0009"
+      ]
+    },
+    "m0009": {
+      "id": "m0009",
+      "message": {
+        "id": "m0009",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "$speckit-tasks"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "m0008",
+      "children": [
+        "m0010"
+      ]
+    },
+    "m0010": {
+      "id": "m0010",
+      "message": {
+        "id": "m0010",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Generated specs/001-shopping-cart/tasks.md with 51 tasks (setup + foundation + US1/US2/US3 + polish)."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "m0009",
+      "children": [
+        "m0011"
+      ]
+    },
+    "m0011": {
+      "id": "m0011",
+      "message": {
+        "id": "m0011",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "$speckit-implement"
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "m0010",
+      "children": [
+        "m0012"
+      ]
+    },
+    "m0012": {
+      "id": "m0012",
+      "message": {
+        "id": "m0012",
+        "author": {
+          "role": "assistant",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Implemented backend/frontend scaffolding, docker-compose, tests, and tooling; then installed deps and verified backend/frontend tests and lint pass. Added CORS middleware and docker port adjustments."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": true,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": "final"
+      },
+      "parent": "m0011",
+      "children": [
+        "m0013"
+      ]
+    },
+    "m0013": {
+      "id": "m0013",
+      "message": {
+        "id": "m0013",
+        "author": {
+          "role": "user",
+          "name": null,
+          "metadata": {}
+        },
+        "create_time": 1780309306,
+        "update_time": 1780309306,
+        "content": {
+          "content_type": "text",
+          "parts": [
+            "Asked how to export full conversations in conversation_export.json-style, and requested the assistant to create it."
+          ]
+        },
+        "status": "finished_successfully",
+        "end_turn": null,
+        "weight": 1,
+        "metadata": {},
+        "recipient": "all",
+        "channel": null
+      },
+      "parent": "m0012",
+      "children": []
+    }
+  }
+}
