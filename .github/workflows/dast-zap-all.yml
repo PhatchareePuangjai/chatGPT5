@@ -43,8 +43,8 @@ jobs:
             port: '5173'
             
           - version: 'IMSD01'
-            path: 'src/versions/IMSD01/infrastructure'
-            port: '5173'
+            path: 'src/versions/IMSD01'
+            port: '3000'
 
           - version: 'SCSD01'
             path: 'src/versions/SCSD01'
@@ -115,12 +115,23 @@ jobs:
           EOF
 
       - name: Start Application (${{ matrix.version }})
-        # แก้ไข: ระบุ path ตรงๆ จาก matrix โดยไม่ต้องมี ./ นำหน้า
         working-directory: ${{ matrix.path }}
         run: |
           docker compose up -d --build
-          echo "Waiting for application to initialize..."
-          sleep 60 
+          echo "Waiting for application to be ready on port ${{ matrix.port }}..."
+          timeout=300
+          elapsed=0
+          until curl -sf http://localhost:${{ matrix.port }} --max-time 3 > /dev/null 2>&1; do
+            if [ "$elapsed" -ge "$timeout" ]; then
+              echo "Timeout: application did not respond on port ${{ matrix.port }} after ${timeout}s"
+              docker compose logs
+              exit 1
+            fi
+            sleep 10
+            elapsed=$((elapsed + 10))
+            echo "Still waiting... (${elapsed}s / ${timeout}s)"
+          done
+          echo "Application is ready on port ${{ matrix.port }}!"
 
       - name: Set workspace permissions for ZAP
         run: |
