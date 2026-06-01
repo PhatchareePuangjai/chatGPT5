@@ -1,12 +1,10 @@
-import { beforeAll, afterAll } from 'vitest';
+import { beforeAll } from 'vitest';
 
-import { pool } from '../src/db/index.js';
 import { applyMigrations } from '../src/db/migrate.js';
 
 beforeAll(async () => {
   await applyMigrations();
 });
-
-afterAll(async () => {
-  await pool.end();
-});
+// pool.end() removed: with singleFork mode all files share one process,
+// calling pool.end() after the first file closes the pool for remaining files.
+// The fork process exits cleanly on its own, terminating all connections.
