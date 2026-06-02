@@ -204,11 +204,11 @@ jobs:
           DATABASE_URL: ${{ matrix.database_url }}
         run: |
           if [ -f "scripts/run-migrations.js" ]; then
-            npm run migrate || echo "Migration failed"
+            npm run migrate
           elif [ -f "src/db/migrate.js" ]; then
-            npm run db:migrate || echo "Migration failed"
+            npm run db:migrate
           elif [ -f "db/migrate.js" ]; then
-            npm run db:migrate || echo "Migration failed"
+            npm run db:migrate
           else
             echo "No migration script found"
           fi
@@ -216,7 +216,6 @@ jobs:
       - name: Run Tests
         if: steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.path }}
-        continue-on-error: true
         env:
           DATABASE_URL: ${{ matrix.database_url }}
           NODE_ENV: test
@@ -442,7 +441,6 @@ jobs:
       - name: Run Tests
         if: steps.should_run.outputs.run == 'true'
         working-directory: ${{ matrix.test_path }}
-        continue-on-error: true
         env:
           DATABASE_URL: ${{ matrix.database_url }}
           NODE_ENV: test
