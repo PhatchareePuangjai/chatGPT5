@@ -17,7 +17,7 @@ export function buildInventoryRoutes(pool: pg.Pool) {
       const out = await inventoryService(pool).deduct({ orderId, sku, quantity });
       respondOk(res, out);
     } catch (e: any) {
-      next(e instanceof HttpError ? e : new HttpError(400, "BAD_REQUEST", "Invalid request."));
+      next(e instanceof HttpError ? e : new HttpError(500, "INTERNAL_ERROR", "An unexpected error occurred."));
     }
   });
 
@@ -31,7 +31,7 @@ export function buildInventoryRoutes(pool: pg.Pool) {
       const out = await inventoryService(pool).restore({ orderId, sku, quantity, reason });
       respondOk(res, out);
     } catch (e: any) {
-      next(e instanceof HttpError ? e : new HttpError(400, "BAD_REQUEST", "Invalid request."));
+      next(e instanceof HttpError ? e : new HttpError(500, "INTERNAL_ERROR", "An unexpected error occurred."));
     }
   });
 
