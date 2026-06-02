@@ -1,7 +1,8 @@
 # CI/CD Test Results Summary
 
-> Last updated: 2026-06-01 (full recheck: Unit Tests #26735096014, SonarQube #26735096015, DAST #26735096020, CodeQL #26735096022; all 19 versions now scanned by DAST)
-> SCSD01 refresh 2026-06-01: Unit Tests #26764446595 (CI vitest 8/8), DAST #26763971867 (0/7/60). SonarQube metrics retained — local SONAR_TOKEN returned HTTP 401 (invalid).
+> Last updated: 2026-06-02 (Unit Tests rechecked against each version's `test_report.md`; SonarQube #26735096015, DAST #26765576209, CodeQL #26735096022; all 19 versions now scanned by DAST)
+> SCSD01 refresh 2026-06-01: Unit Tests #26764446595 (reference only; `test_report.md` is the Unit Tests source), DAST #26763971867 (0/7/60).
+> Full verification 2026-06-01 (all versions): CodeQL re-fetched (all match); DAST re-fetched from #26765576209 (PDCE02 0/11/56→0/10/57); SonarQube re-fetched from live API (Reliability corrected on 14 versions, IMSD02 Dup 13.20%→13.00%); Backend LOC recounted (SCSD01_v2 493→344, PDBP01 365→361, PDSD01 296→513); Frontend LOC recounted per footnote ³; tokens recounted (IMBP02/PDBP02 AI turns, IMSD01 227, PDSD01 9/9/301).
 > Repository: [PhatchareePuangjai/chatGPT5](https://github.com/PhatchareePuangjai/chatGPT5)
 > Actions: [All Workflows](https://github.com/PhatchareePuangjai/chatGPT5/actions)
 
@@ -13,67 +14,71 @@
 
 ## 1. Unit Tests
 
-> Workflow run: [Unit Tests #26735096014](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014)
-> Note: most jobs skipped by path filter (only versions with changed files re-run); counts sourced from `test_report.md` per version for unchanged versions.
+> Source policy: Unit Test counts are taken from each version's checked-in `test_report.md`, not GitHub Actions CI. The CI workflow is path-filtered and not all versions pass or rerun consistently, so it is not used as the source of truth for this section.
+> Reference CI run only: [Unit Tests #26735096014](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014).
+> Rechecked: 2026-06-02. Source path for each count is listed in the table.
 
-| Version | Feature | Tool | Passed | Failed | Total | Result | Failure Details |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| IMBP01 | Inventory Management | Jest | 7 | 0 | 7 | :white_check_mark: PASS | — |
-| IMBP02 | Inventory Management | Jest | 5 | 2 | 7 | ⚠️ PARTIAL | Restock 404 (not implemented); threshold `< 5` vs `<= 5` |
-| IMCE01 | Inventory Management | Jest | 7 | 0 | 7 | :white_check_mark: PASS | — |
-| IMCE02 | Inventory Management | Jest | 7 | 0 | 7 | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) |
-| IMSD01 | Inventory Management | vitest | 11 | 1 | 12 | ⚠️ PARTIAL | Atomicity rollback test: HTTP 400 returned where 500 was expected |
-| IMSD02 | Inventory Management | vitest | 8 | 0 | 8 | :white_check_mark: PASS | unit: 2, integration: 6 (requires --maxWorkers=1) |
-| SCBP01 | Shopping Cart | Jest | 5 | 0 | 5 | :white_check_mark: PASS | — |
-| SCBP02 | Shopping Cart | Jest | 4 | 1 | 5 | ⚠️ PARTIAL | No stock validation (Edge 1: add > stock accepted) |
-| SCCE01 | Shopping Cart | Jest | 5 | 0 | 5 | :white_check_mark: PASS | — |
-| SCCE02 | Shopping Cart | node:test | 0 | 5 | 5 | :x: FAIL | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented |
-| SCSD01 | Shopping Cart | vitest | 8 | 0 | 8 | :white_check_mark: PASS | CI: integration/contract/unit (7 files, 8 tests) |
-| SCSD02 | Shopping Cart | vitest | 10 | 0 | 10 | :white_check_mark: PASS | backend: 8, frontend: 2 |
-| PDBP01 | Promotions & Discounts | Jest | 6 | 0 | 6 | :white_check_mark: PASS | — |
-| PDBP02 | Promotions & Discounts | Jest | 1 | 5 | 6 | ⚠️ PARTIAL | Missing min purchase, auto-discount, usage limit, ordering, negative total guard |
-| PDCE01 | Promotions & Discounts | Jest | 6 | 0 | 6 | :white_check_mark: PASS | — |
-| PDCE02 | Promotions & Discounts | node:test | 5 | 0 | 6 | ⚠️ PARTIAL | 1 TODO / expected failure: usage limit not implemented |
-| PDSD01 | Promotions & Discounts | vitest | 11 | 0 | 11 | :white_check_mark: PASS | — |
-| PDSD02 | Promotions & Discounts | Jest | 8 | 1 | 9 | ⚠️ PARTIAL | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only |
+| Version   | Feature                | Tool      | Passed | Failed | Total | Result                  | Failure Details                                                                               | Source |
+| --------- | ---------------------- | --------- | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------------------------------------------- | ------ |
+| IMBP01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMBP01/online-shop-inventory/test_report.md` |
+| IMBP02    | Inventory Management   | Jest      | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5`                                      | `src/versions/IMBP02/test_report.md` |
+| IMCE01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMCE01/inventory-system/test_report.md` |
+| IMCE02    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) | `src/versions/IMCE02/test_report.md` |
+| IMSD01    | Inventory Management   | vitest    | 11     | 1      | 12    | ⚠️ PARTIAL              | Atomicity rollback test: HTTP 400 returned where 500 was expected                             | `src/versions/IMSD01/test_report.md` |
+| IMSD02    | Inventory Management   | vitest    | 8      | 0      | 8     | :white_check_mark: PASS | unit: 2, integration: 6 (requires `--maxWorkers=1`)                                           | `src/versions/IMSD02/test_report.md` |
+| SCBP01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCBP01/shopping-cart-app/test_report.md` |
+| SCBP02    | Shopping Cart          | Jest      | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)                                            | `src/versions/SCBP02/test_report.md` |
+| SCCE01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCCE01/shopping-cart/test_report.md` |
+| SCCE02    | Shopping Cart          | node:test | 0      | 5      | 5     | :x: FAIL                | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented    | `src/versions/SCCE02/test_report.md` |
+| SCSD01    | Shopping Cart          | vitest    | 8      | 0      | 8     | :white_check_mark: PASS | integration/contract/unit (7 files, 8 tests)                                                  | `src/versions/SCSD01/test_report.md` |
+| SCSD02    | Shopping Cart          | vitest    | 10     | 0      | 10    | :white_check_mark: PASS | backend: 8, frontend: 2                                                                       | `src/versions/SCSD02/test_report.md` |
+| SCSD01_v2 | Shopping Cart          | pytest    | 15     | 0      | 15    | :white_check_mark: PASS | scenario: 5, unit: 6, integration: 4; reproducibility version excluded from strategy summary   | `src/versions/SCSD01_v2/test_report.md` |
+| PDBP01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDBP01/promo-shop-plug-and-play/test_report.md` |
+| PDBP02    | Promotions & Discounts | Jest      | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard              | `src/versions/PDBP02/test_report.md` |
+| PDCE01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDCE01/promotions-discounts-system/test_report.md` |
+| PDCE02    | Promotions & Discounts | node:test | 5      | 1      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure counted as failed: usage limit not implemented                      | `src/versions/PDCE02/test_report.md` |
+| PDSD01    | Promotions & Discounts | vitest    | 11     | 0      | 11    | :white_check_mark: PASS | —                                                                                             | `src/versions/PDSD01/test_report.md` |
+| PDSD02    | Promotions & Discounts | Jest      | 8      | 1      | 9     | ⚠️ PARTIAL              | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only         | `src/versions/PDSD02/test_report.md` |
+
+> PDCE02 has `5 passed, 0 failed, 1 todo / expected failure` in `src/versions/PDCE02/test_report.md`; this summary counts the TODO / expected failure as 1 failed because the required usage-limit scenario was not implemented.
+> SCSD01_v2 is listed for completeness but is excluded from the strategy-level summary, as noted above.
 
 ### Test Summary by Strategy
 
 | Strategy                     | Passed | Failed | Total | Pass Rate |
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
-| **CE** (Context Engineering) | 30     | 5      | 36    | 83%       |
+| **CE** (Context Engineering) | 30     | 6      | 36    | 83%       |
 | **SD** (Spec-Driven Dev)     | 56     | 2      | 58    | 97%       |
 
 ---
 
 ## 2. SonarQube Static Analysis
 
-> SDD SonarQube values in this section were updated from the latest results in `Evaluating AI-Generated Code Quality from Basic Prompting to Spec-Driven Development - High-Quality Code (1).csv`.
-> IMSD01 SonarQube workflow run #26698243746 completed successfully; direct SonarCloud API verification returned HTTP 401 with the current local token, so the existing SonarQube metric values are retained.
+> Verified 2026-06-01 against the live SonarCloud API (`api/measures/component`, token validated) for all 19 versions. Reliability (bugs) values were corrected downward — earlier figures had been carried over from the `... High-Quality Code (1).csv` export and no longer matched the current SonarCloud state. Security, Maintainability, Duplications, and Security Hotspots matched the API (only IMSD02 Duplications adjusted 13.20% → 13.00%).
 
 ### SonarQube Open Issues by Version
 
 | Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications | Security Hotspots |
 | --------- | --------------- | ------------------ | ---------------------- | ------------ | ----------------- |
-| IMBP01    | 3               | 3                  | 7                      | 6.10%        | 0                 |
-| IMBP02    | 2               | 1                  | 1                      | 0.00%        | 0                 |
-| IMCE01    | 7               | 19                 | 27                     | 0.00%        | 6                 |
-| IMCE02    | 16              | 2                  | 1                      | 5.40%        | 4                 |
-| IMSD01    | 7               | 12                 | 15                     | 2.70%        | 2                 |
-| IMSD02    | 5               | 0                  | 6                      | 13.20%       | 2                 |
-| SCBP01    | 9               | 9                  | 20                     | 4.70%        | 2                 |
-| SCBP02    | 6               | 2                  | 2                      | 0.00%        | 1                 |
-| SCCE01    | 8               | 9                  | 11                     | 3.80%        | 2                 |
-| SCCE02    | 9               | 2                  | 1                      | 0.00%        | 4                 |
+| IMBP01    | 3               | 0                  | 7                      | 6.10%        | 0                 |
+| IMBP02    | 2               | 0                  | 1                      | 0.00%        | 0                 |
+| IMCE01    | 7               | 1                  | 27                     | 0.00%        | 6                 |
+| IMCE02    | 16              | 1                  | 1                      | 5.40%        | 4                 |
+| IMSD01    | 7               | 0                  | 15                     | 2.70%        | 2                 |
+| IMSD02    | 5               | 0                  | 6                      | 13.00%       | 2                 |
+| SCBP01    | 9               | 0                  | 20                     | 4.70%        | 2                 |
+| SCBP02    | 6               | 1                  | 2                      | 0.00%        | 1                 |
+| SCCE01    | 8               | 0                  | 11                     | 3.80%        | 2                 |
+| SCCE02    | 9               | 1                  | 1                      | 0.00%        | 4                 |
 | SCSD01    | 7               | 0                  | 5                      | 21.90%       | 3                 |
 | SCSD02    | 1               | 0                  | 19                     | 0.00%        | 1                 |
-| SCSD01_v2 | 7               | 4                  | 25                     | 0.00%        | 4                 |
-| PDBP01    | 8               | 1                  | 9                      | 1.30%        | 3                 |
-| PDBP02    | 6               | 3                  | 2                      | 0.00%        | 2                 |
-| PDCE01    | 6               | 16                 | 20                     | 0.00%        | 4                 |
+| SCSD01_v2 | 7               | 0                  | 25                     | 0.00%        | 4                 |
+| PDBP01    | 8               | 0                  | 9                      | 1.30%        | 3                 |
+| PDBP02    | 6               | 1                  | 2                      | 0.00%        | 2                 |
+| PDCE01    | 6               | 0                  | 20                     | 0.00%        | 4                 |
 | PDCE02    | 9               | 0                  | 8                      | 0.00%        | 4                 |
-| PDSD01    | 5               | 6                  | 9                      | 0.00%        | 5                 |
+| PDSD01    | 5               | 0                  | 9                      | 0.00%        | 5                 |
 | PDSD02    | 1               | 0                  | 13                     | 0.00%        | 0                 |
 
 > CS and AG versions are excluded from this SonarQube summary to match the current workflow scope.
@@ -82,9 +87,9 @@
 
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications | Avg Security Hotspots |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- | --------------------- |
-| **BP** (Basic Prompting)     | 5.67         | 3.17            | 6.83                | 2.02%            | 1.33                  |
-| **CE** (Context Engineering) | 9.17         | 8.00            | 11.33               | 1.53%            | 4.00                  |
-| **SD** (Spec-Driven Dev)     | 4.33         | 3.00            | 11.17               | 6.30%            | 2.17                  |
+| **BP** (Basic Prompting)     | 5.67         | 0.33            | 6.83                | 2.02%            | 1.33                  |
+| **CE** (Context Engineering) | 9.17         | 0.50            | 11.33               | 1.53%            | 4.00                  |
+| **SD** (Spec-Driven Dev)     | 4.33         | 0.00            | 11.17               | 6.27%            | 2.17                  |
 
 ---
 
@@ -100,26 +105,26 @@
 
 ### Security Alerts by Version (Open)
 
-| Version | High | Medium | Total | Details |
-| --- | --- | --- | --- | --- |
-| IMBP01 | 5 | 0 | 5 | Missing rate limiting |
-| IMBP02 | 0 | 0 | 0 | - |
-| IMCE01 | 3 | 1 | 4 | Missing rate limiting, Permissive CORS |
-| IMCE02 | 6 | 0 | 6 | Missing rate limiting |
-| IMSD01 | 1 | 0 | 1 | Missing rate limiting |
-| IMSD02 | 0 | 0 | 0 | - |
-| SCBP01 | 0 | 0 | 0 | - |
-| SCBP02 | 0 | 0 | 0 | - |
-| SCCE01 | 6 | 0 | 6 | Missing rate limiting |
-| SCCE02 | 1 | 0 | 1 | Missing rate limiting |
-| SCSD01 | 0 | 0 | 0 | - |
-| SCSD02 | 0 | 0 | 0 | - |
-| PDBP01 | 0 | 0 | 0 | - |
-| PDBP02 | 1 | 0 | 1 | Missing rate limiting |
-| PDCE01 | 0 | 1 | 1 | Permissive CORS configuration |
-| PDCE02 | 1 | 0 | 1 | Missing rate limiting |
-| PDSD01 | 0 | 2 | 2 | Prototype pollution (js/prototype-polluting-assignment) |
-| PDSD02 | 0 | 0 | 0 | - |
+| Version | High | Medium | Total | Details                                                 |
+| ------- | ---- | ------ | ----- | ------------------------------------------------------- |
+| IMBP01  | 5    | 0      | 5     | Missing rate limiting                                   |
+| IMBP02  | 0    | 0      | 0     | -                                                       |
+| IMCE01  | 3    | 1      | 4     | Missing rate limiting, Permissive CORS                  |
+| IMCE02  | 6    | 0      | 6     | Missing rate limiting                                   |
+| IMSD01  | 1    | 0      | 1     | Missing rate limiting                                   |
+| IMSD02  | 0    | 0      | 0     | -                                                       |
+| SCBP01  | 0    | 0      | 0     | -                                                       |
+| SCBP02  | 0    | 0      | 0     | -                                                       |
+| SCCE01  | 6    | 0      | 6     | Missing rate limiting                                   |
+| SCCE02  | 1    | 0      | 1     | Missing rate limiting                                   |
+| SCSD01  | 0    | 0      | 0     | -                                                       |
+| SCSD02  | 0    | 0      | 0     | -                                                       |
+| PDBP01  | 0    | 0      | 0     | -                                                       |
+| PDBP02  | 1    | 0      | 1     | Missing rate limiting                                   |
+| PDCE01  | 0    | 1      | 1     | Permissive CORS configuration                           |
+| PDCE02  | 1    | 0      | 1     | Missing rate limiting                                   |
+| PDSD01  | 0    | 2      | 2     | Prototype pollution (js/prototype-polluting-assignment) |
+| PDSD02  | 0    | 0      | 0     | -                                                       |
 
 ### CodeQL Alert Summary by Strategy
 
@@ -133,82 +138,82 @@
 
 ## 4. DAST Security Scan (ZAP)
 
-> Workflow run: [DAST #26735096020](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096020) — all 19 versions scanned successfully.
+> Workflow run: [DAST #26765576209](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26765576209) — all 19 versions scanned successfully (PDCE02 updated to 0/10/57 from this run).
 
-| Version | FAIL-NEW | WARN-NEW | PASS | Notable Warnings |
-| --- | --- | --- | --- | --- |
-| IMBP01 | 0 | 7 | 60 | Missing headers |
-| IMBP02 | 0 | 11 | 56 | Missing headers + Suspicious comments + X-Powered-By leak + CSP fallback + Cross-Domain Misconfiguration |
-| IMCE01 | 0 | 7 | 60 | Missing headers |
-| IMCE02 | 0 | 5 | 62 | X-Powered-By leak |
-| IMSD01 | 0 | 7 | 60 | Missing headers |
-| IMSD02 | 0 | 4 | 63 | X-Powered-By leak [10037] + Cacheable Content [10049] + CSP failure [10055] + Permissions Policy [10063] |
-| PDBP01 | 0 | 8 | 59 | Missing headers + Server version leak |
-| PDBP02 | 0 | 5 | 62 | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration |
-| PDCE01 | 0 | 7 | 60 | Missing headers |
-| PDCE02 | 0 | 11 | 56 | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable + CSP fallback + Cross-Domain Misconfiguration |
-| PDSD01 | 0 | 7 | 60 | Missing headers |
-| PDSD02 | 0 | 7 | 60 | Missing headers |
-| SCBP01 | 0 | 7 | 60 | Missing headers |
-| SCBP02 | 0 | 5 | 62 | X-Powered-By leak + Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
-| SCCE01 | 0 | 8 | 59 | Missing headers + Server version leak |
-| SCCE02 | 0 | 11 | 56 | Missing headers + X-Powered-By leak + Suspicious comments + Cacheable content + Cross-Domain Misconfiguration |
-| SCSD01 | 0 | 7 | 60 | Missing headers |
-| SCSD01_v2 | 0 | 7 | 60 | Missing headers |
-| SCSD02 | 0 | 7 | 60 | Missing headers |
+| Version   | FAIL-NEW | WARN-NEW | PASS | Notable Warnings                                                                                                                         |
+| --------- | -------- | -------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| IMBP01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| IMBP02    | 0        | 11       | 56   | Missing headers + Suspicious comments + X-Powered-By leak + CSP fallback + Cross-Domain Misconfiguration                                 |
+| IMCE01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| IMCE02    | 0        | 5        | 62   | X-Powered-By leak                                                                                                                        |
+| IMSD01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| IMSD02    | 0        | 4        | 63   | X-Powered-By leak [10037] + Cacheable Content [10049] + CSP failure [10055] + Permissions Policy [10063]                                 |
+| PDBP01    | 0        | 8        | 59   | Missing headers + Server version leak                                                                                                    |
+| PDBP02    | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration                                |
+| PDCE01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| PDCE02    | 0        | 10       | 57   | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable + CSP fallback + Cross-Domain Misconfiguration                     |
+| PDSD01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| PDSD02    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| SCBP01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| SCBP02    | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content [10049] + CSP Failure [10055] + Permissions Policy [10063] + Cross-Domain Misconfiguration [10098] |
+| SCCE01    | 0        | 8        | 59   | Missing headers + Server version leak                                                                                                    |
+| SCCE02    | 0        | 11       | 56   | Missing headers + X-Powered-By leak + Suspicious comments + Cacheable content + Cross-Domain Misconfiguration                            |
+| SCSD01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| SCSD01_v2 | 0        | 7        | 60   | Missing headers                                                                                                                          |
+| SCSD02    | 0        | 7        | 60   | Missing headers                                                                                                                          |
 
 ### Common ZAP Warnings (legacy 12-version baseline)
 
-| Warning | Rule ID | Severity | Affected (legacy 12 scanned) |
-| --- | --- | --- | --- |
-| Missing Anti-clickjacking Header | 10020 | Medium | 11/12 |
-| Content Security Policy (CSP) Header Not Set | 10038 | Medium | 11/12 |
-| Cross-Origin-Embedder-Policy Header Missing | 90004 | Low | 11/12 |
-| Permissions Policy Header Not Set | 10063 | Low | 12/12 |
-| X-Content-Type-Options Header Missing | 10021 | Low | 11/12 |
-| Modern Web Application | 10109 | Informational | 11/12 |
-| Storable but Non-Cacheable Content | 10049 | Informational | 7/12 |
-| Storable and Cacheable Content | 10049 | Informational | 4/12 (SCCE01, PDBP01, PDBP02, PDSD01) |
-| Server Leaks Version Information | 10036 | Low | 3/12 (SCCE01, PDBP01, PDSD01) |
-| In Page Banner Information Leak | 10009 | Low | 1/12 (PDSD01) |
-| Sub Resource Integrity Attribute Missing | 90003 | Medium | 1/12 (SCSD01) |
-| X-Powered-By Header Information Leak | 10037 | Low | 1/12 (PDBP02) |
+| Warning                                      | Rule ID | Severity      | Affected (legacy 12 scanned)          |
+| -------------------------------------------- | ------- | ------------- | ------------------------------------- |
+| Missing Anti-clickjacking Header             | 10020   | Medium        | 11/12                                 |
+| Content Security Policy (CSP) Header Not Set | 10038   | Medium        | 11/12                                 |
+| Cross-Origin-Embedder-Policy Header Missing  | 90004   | Low           | 11/12                                 |
+| Permissions Policy Header Not Set            | 10063   | Low           | 12/12                                 |
+| X-Content-Type-Options Header Missing        | 10021   | Low           | 11/12                                 |
+| Modern Web Application                       | 10109   | Informational | 11/12                                 |
+| Storable but Non-Cacheable Content           | 10049   | Informational | 7/12                                  |
+| Storable and Cacheable Content               | 10049   | Informational | 4/12 (SCCE01, PDBP01, PDBP02, PDSD01) |
+| Server Leaks Version Information             | 10036   | Low           | 3/12 (SCCE01, PDBP01, PDSD01)         |
+| In Page Banner Information Leak              | 10009   | Low           | 1/12 (PDSD01)                         |
+| Sub Resource Integrity Attribute Missing     | 90003   | Medium        | 1/12 (SCSD01)                         |
+| X-Powered-By Header Information Leak         | 10037   | Low           | 1/12 (PDBP02)                         |
 
 ### DAST Summary by Strategy
 
-| Strategy | Avg Warnings | Avg Pass | Server Leak | Scan Status |
-| --- | --- | --- | --- | --- |
-| **BP** (Basic Prompting) | 7.2 | 59.8 | 3/6 (IMBP02, PDBP01, PDBP02) | 6/6 scanned |
-| **CE** (Context Engineering) | 8.2 | 58.8 | 4/6 (IMCE02, SCCE01, SCCE02, PDCE02) | 6/6 scanned |
-| **SD** (Spec-Driven Dev) | 6.5 | 60.5 | 1/6 (IMSD02) | 6/6 scanned |
+| Strategy                     | Avg Warnings | Avg Pass | Server Leak  | Scan Status |
+| ---------------------------- | ------------ | -------- | ------------ | ----------- |
+| **BP** (Basic Prompting)     | 6.5          | 60.5     | 1/6 (PDBP01) | 6/6 scanned |
+| **CE** (Context Engineering) | 7.2          | 59.8     | 1/6 (SCCE01) | 6/6 scanned |
+| **SD** (Spec-Driven Dev)     | 6.4          | 60.6     | 0/7          | 7/7 scanned |
 
 ---
 
 ## Overall Summary
 
-| Version | Tests | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| IMBP01 | :white_check_mark: 7/7 | 5 high | 0/7/60 | 3 / 3 / 7 | 6.10% | 251 | 404 | 62.8 |
-| IMBP02 | ⚠️ 5/7 (local, 2 fail) | 0 alerts | 0/11/56 | 2 / 1 / 1 | 0.00% | 85 | 80 | 28.3 |
-| IMCE01 | :white_check_mark: 7/7 | 3 high, 1 med | 0/7/60 | 7 / 19 / 27 | 0.00% | 228 | 1,115 | 114.0 |
-| IMCE02 | :white_check_mark: 7/7 | 6 high | 0/5/62 | 16 / 2 / 1 | 5.40% | 58 | 60 | 58.0 |
-| IMSD01 | ⚠️ 11/12 (local, 1 fail) | 1 high | 0/7/60 | 7 / 12 / 15 | 2.70% | 469 | 396 | 24.7 |
-| IMSD02 | :white_check_mark: 8/8 ¹ | 0 alerts | 0/4/63 | 5 / 0 / 6 | 13.20% | 622 | 304 | 29.6 |
-| SCBP01 | :white_check_mark: 5/5 | 0 alerts | 0/7/60 | 9 / 9 / 20 | 4.70% | 406 | 358 | 67.7 |
-| SCBP02 | ⚠️ 4/5 (CI, 1 fail) | 0 alerts | 0/5/62 | 6 / 2 / 2 | 0.00% | 87 | 88 | 29.0 |
-| SCCE01 | :white_check_mark: 5/5 | 6 high | 0/8/59 | 8 / 9 / 11 | 3.80% | 409 | 457 | 204.5 |
-| SCCE02 | :x: 0/5 (local, 5 fail) | 1 high | 0/11/56 | 9 / 2 / 1 | 0.00% | 65 | 70 | 16.3 |
-| SCSD01 | :white_check_mark: 8/8 (CI) | 0 alerts | 0/7/60 | 7 / 0 / 5 | 21.90% | 479 | 273 | 26.6 |
-| SCSD02 | :white_check_mark: 10/10 ¹ | 0 alerts | 0/7/60 | 1 / 0 / 19 | 0.00% | 632 | 369 | 42.1 |
-| SCSD01_v2 | :white_check_mark: 15/15 ¹ | 0 alerts | 0/7/60 | 7 / 4 / 25 | 0.00% | 493 | 357 | 41.1 |
-| PDBP01 | :white_check_mark: 6/6 | 0 alerts | 0/8/59 | 8 / 1 / 9 | 1.30% | 365 | 805 | 60.8 |
-| PDBP02 | ⚠️ 1/6 (CI, 5 fail) | 1 high | 0/5/62 | 6 / 3 / 2 | 0.00% | 93 | 81 | 23.3 |
-| PDCE01 | :white_check_mark: 6/6 | 1 med | 0/7/60 | 6 / 16 / 20 | 0.00% | 305 | 249 | 43.6 |
-| PDCE02 | ⚠️ 5/6 (CI, 1 todo) | 1 high | 0/11/56 | 9 / 0 / 8 | 0.00% | 90 | 73 | 18.0 |
-| PDSD01 | :white_check_mark: 11/11 | 0 high, 2 med | 0/7/60 | 5 / 6 / 9 | 0.00% | 296 | 171 | 32.8 |
-| PDSD02 | ⚠️ 8/9 (local, 1 fail) | 0 alerts | 0/7/60 | 1 / 0 / 13 | 0.00% | 429 | 176 | 23.8 |
+| Version   | Tests                       | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
+| --------- | --------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
+| IMBP01    | :white_check_mark: 7/7      | 5 high        | 0/7/60                | 3 / 0 / 7                 | 6.10%        | 251           | 282            | 62.8         |
+| IMBP02    | ⚠️ 5/7 (test_report, 2 fail) | 0 alerts      | 0/11/56               | 2 / 0 / 1                 | 0.00%        | 85            | 80             | 28.3         |
+| IMCE01    | :white_check_mark: 7/7      | 3 high, 1 med | 0/7/60                | 7 / 1 / 27                | 0.00%        | 228           | 1,084          | 114.0        |
+| IMCE02    | :white_check_mark: 7/7      | 6 high        | 0/5/62                | 16 / 1 / 1                | 5.40%        | 58            | 60             | 58.0         |
+| IMSD01    | ⚠️ 11/12 (test_report, 1 fail) | 1 high        | 0/7/60                | 7 / 0 / 15                | 2.70%        | 469           | 409            | 24.7         |
+| IMSD02    | :white_check_mark: 8/8 ¹    | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.00%       | 622           | 316            | 29.6         |
+| SCBP01    | :white_check_mark: 5/5      | 0 alerts      | 0/7/60                | 9 / 0 / 20                | 4.70%        | 406           | 278            | 67.7         |
+| SCBP02    | ⚠️ 4/5 (test_report, 1 fail) | 0 alerts      | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 87            | 88             | 29.0         |
+| SCCE01    | :white_check_mark: 5/5      | 6 high        | 0/8/59                | 8 / 0 / 11                | 3.80%        | 409           | 366            | 204.5        |
+| SCCE02    | :x: 0/5 (test_report, 5 fail) | 1 high        | 0/11/56               | 9 / 1 / 1                 | 0.00%        | 65            | 70             | 16.3         |
+| SCSD01    | :white_check_mark: 8/8      | 0 alerts      | 0/7/60                | 7 / 0 / 5                 | 21.90%       | 479           | 273            | 26.6         |
+| SCSD02    | :white_check_mark: 10/10 ¹  | 0 alerts      | 0/7/60                | 1 / 0 / 19                | 0.00%        | 632           | 369            | 42.1         |
+| SCSD01_v2 | :white_check_mark: 15/15 ¹  | 0 alerts      | 0/7/60                | 7 / 0 / 25                | 0.00%        | 344           | 227            | 68.8         |
+| PDBP01    | :white_check_mark: 6/6      | 0 alerts      | 0/8/59                | 8 / 0 / 9                 | 1.30%        | 361           | 508            | 72.2         |
+| PDBP02    | ⚠️ 1/6 (test_report, 5 fail) | 1 high        | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 93            | 81             | 23.3         |
+| PDCE01    | :white_check_mark: 6/6      | 1 med         | 0/7/60                | 6 / 0 / 20                | 0.00%        | 305           | 239            | 43.6         |
+| PDCE02    | ⚠️ 5/6 (test_report, 1 todo counted as fail) | 1 high        | 0/10/57               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
+| PDSD01    | :white_check_mark: 11/11    | 0 high, 2 med | 0/7/60                | 5 / 0 / 9                 | 0.00%        | 513           | 236            | 23.3         |
+| PDSD02    | ⚠️ 8/9 (test_report, 1 fail) | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 189            | 23.8         |
 
-> ¹ Full test suite (scenario + unit + integration) from local verification on 2026-04-04 / 2026-04-05, reported using the document counting convention above. SonarQube values updated from CSV source.
+> ¹ Full test suite (scenario + unit + integration) from each version's `test_report.md`, reported using the document counting convention above. Unit Test counts in this table are sourced from `test_report.md`, not GitHub Actions CI.
 > ² Backend LOC: counted from **backend production source files only** (`.py` / `.js`), excluding `node_modules`, `tests/`, test files (`test_*`, `*.test.js`, `*.spec.js`), and all frontend files (folders: `frontend/`, `client/`, `public/`; files: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.
 > ³ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js` in `frontend/`, `client/`, or `public/` folders; `.css` excluded). IMBP02 has no dedicated frontend folder — value reflects only the `index.html` embedded UI. Note: SonarQube and CodeQL scans include frontend code; this metric is provided for completeness only.
 
@@ -217,6 +222,7 @@
 ## 5. Conversation & Interaction Effort
 
 > **Data sources:**
+>
 > - **BP / CE**: `chatgpt-export/.../conversations.json` — ChatGPT web interface exports (GPT-5 series)
 > - **SDD**: `conversation_export.json` — Codex CLI session export, partial log (user commands only; AI responses not captured in export)
 >
@@ -224,40 +230,40 @@
 
 ### Interaction Counts by Version
 
-| Version | Strategy | Model | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
-| ------- | -------- | ----- | ------------- | ---------- | -------- | -------------------- |
-| IMBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 4 | 7 | 341 |
-| IMBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 3 | 144 |
-| SCBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 5 | 5 | 836 |
-| SCBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 5 | 177 |
-| PDBP01  | BP       | GPT-5 (gpt-5-2) | 1 | 2 | 2 | 618 |
-| PDBP02  | BP       | GPT-5 (gpt-5-2) | 1 | 3 | 5 | 1,366 |
-| IMCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 8 | 12 | 927 |
-| IMCE02  | CE       | GPT-5 (gpt-5-2) | 1 | 2 | 5 | 210 |
-| SCCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 3 | 3 | 463 |
-| SCCE02  | CE       | GPT-5 (gpt-5-2) | 1 | 6 | 11 | 508 |
-| PDCE01  | CE       | GPT-5 (gpt-5-2) | 1 | 1 | 1 | 531 |
-| PDCE02  | CE       | GPT-5 (gpt-5-2) | 1 | 5 | 10 | 479 |
-| IMSD01  | SDD      | Codex CLI | N/A | 10 | 9  | 234 ⁴ |
-| IMSD02  | SDD      | Codex CLI | N/A | 14 | 12 | 337 ⁴ |
-| SCSD01  | SDD      | Codex CLI | 1 | 7 | 6 | 97 ⁴ |
-| SCSD02  | SDD      | Codex CLI | 1 | 11 | 10 | 346 ⁴ |
-| PDSD01  | SDD      | Codex CLI | N/A | 14 | 13 | 170 ⁴ |
-| PDSD02  | SDD      | GPT-5 (gpt-5-2) | 1 | 10 | 9 | 336 ⁴ |
+| Version | Strategy | Model           | Conversations | User Turns | AI Turns | User Prompt Tokens ³ |
+| ------- | -------- | --------------- | ------------- | ---------- | -------- | -------------------- |
+| IMBP01  | BP       | GPT-5 (gpt-5-2) | 1             | 4          | 7        | 341                  |
+| IMBP02  | BP       | GPT-5 (gpt-5-2) | 1             | 2          | 5        | 144                  |
+| SCBP01  | BP       | GPT-5 (gpt-5-2) | 1             | 5          | 5        | 836                  |
+| SCBP02  | BP       | GPT-5 (gpt-5-2) | 1             | 2          | 5        | 177                  |
+| PDBP01  | BP       | GPT-5 (gpt-5-2) | 1             | 2          | 2        | 618                  |
+| PDBP02  | BP       | GPT-5 (gpt-5-2) | 1             | 3          | 6        | 1,366                |
+| IMCE01  | CE       | GPT-5 (gpt-5-2) | 1             | 8          | 12       | 927                  |
+| IMCE02  | CE       | GPT-5 (gpt-5-2) | 1             | 2          | 5        | 210                  |
+| SCCE01  | CE       | GPT-5 (gpt-5-2) | 1             | 3          | 3        | 463                  |
+| SCCE02  | CE       | GPT-5 (gpt-5-2) | 1             | 6          | 11       | 508                  |
+| PDCE01  | CE       | GPT-5 (gpt-5-2) | 1             | 1          | 1        | 531                  |
+| PDCE02  | CE       | GPT-5 (gpt-5-2) | 1             | 5          | 10       | 479                  |
+| IMSD01  | SDD      | Codex CLI       | N/A           | 10         | 9        | 227 ⁴                |
+| IMSD02  | SDD      | Codex CLI       | N/A           | 14         | 12       | 337 ⁴                |
+| SCSD01  | SDD      | Codex CLI       | 1             | 7          | 6        | 97 ⁴                 |
+| SCSD02  | SDD      | Codex CLI       | 1             | 11         | 10       | 346 ⁴                |
+| PDSD01  | SDD      | Codex CLI       | N/A           | 9          | 9        | 301 ⁴                |
+| PDSD02  | SDD      | GPT-5 (gpt-5-2) | 1             | 10         | 9        | 336 ⁴                |
 
 ### Interaction Summary by Strategy
 
-| Strategy | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
-| -------- | ------------------- | ---------------- | -------------- | -------------------- |
-| **BP** (Basic Prompting) | 6 | 18 | 27 | 3,482 |
-| **CE** (Context Engineering) | 6 | 25 | 42 | 3,118 |
-| **SDD** (Spec-Driven Dev) | N/A | 66 | 59 | 1,520 ⁴ |
+| Strategy                     | Total Conversations | Total User Turns | Total AI Turns | User Prompt Tokens ³ |
+| ---------------------------- | ------------------- | ---------------- | -------------- | -------------------- |
+| **BP** (Basic Prompting)     | 6                   | 18               | 30             | 3,482                |
+| **CE** (Context Engineering) | 6                   | 25               | 42             | 3,118                |
+| **SDD** (Spec-Driven Dev)    | N/A                 | 61               | 55             | 1,644 ⁴              |
 
 > ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is counted:** user-side spec commands in `conversation_export.json` only.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is NOT counted:** AI-generated code responses, full conversation context sent per turn.
-> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 97 / 346 / 170 / 336) are a significant undercount and should not be compared directly with BP/CE token values.
+> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 97 / 346 / 301 / 336) are a significant undercount and should not be compared directly with BP/CE token values.
 
 ---
 
