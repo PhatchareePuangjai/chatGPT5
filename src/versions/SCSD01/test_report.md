@@ -14,18 +14,23 @@ Scenarios defined in `scenarios_cart.md` were tested using Vitest.
 | Update Item Quantity | `tests/integration/cart.updateQuantity.test.ts` | PASS | Recalculates line total and grand total |
 | Merge Items Logic | `tests/integration/cart.addItemMerge.test.ts` | PASS | Enforces stock limits and preserves state on rejection |
 | Save for Later | `tests/integration/cart.saveForLater.test.ts` | PASS | Removes item from active totals and places it in saved list |
+| Edge 1: Add More Than Stock | `tests/integration/cart.addItemMerge.test.ts` | PASS | Rejects cumulative quantity above stock and preserves the existing cart quantity |
 | Edge 2: Floating Point | `tests/unit/money.test.ts` | PASS | 19.99 × 3 = 59.97 verified via minor-unit integer arithmetic |
 
-### Additional Tests
+**Scenario Total: 5 passed, 0 failed, 5 total**
 
-| Test File | Result | Notes |
-|---|---|---|
-| `tests/unit/money.test.ts` | PASS | 100.00 × 3 = 300.00 verified |
-| `tests/contract/cart.addItemMerge.test.ts` | PASS | Merges duplicate SKU into single active line |
-| `tests/contract/cart.saveForLater.test.ts` | PASS | Moves active item to saved and returns updated totals |
-| `tests/contract/cart.updateQuantity.test.ts` | PASS | Updates quantity and returns updated cart view |
+> **Note — Scenario coverage combined in one test file:**
+> `tests/integration/cart.addItemMerge.test.ts` covers both Merge Items Logic and Edge 1) Add More Than Stock. These are counted as two scenario outcomes because both requirements are explicitly verified.
 
-Total: 8 passed, 0 failed, 8 total
+> **Note — Additional tests (not counted in scenario total):**
+> The following tests verify API response shape and an extra money precision case; they do not correspond to a scenario in `scenarios_cart.md`.
+>
+> | Test File | Result | Notes |
+> |---|---|---|
+> | `tests/unit/money.test.ts` (100.00 × 3 = 300.00) | PASS | Extra precision case beyond Edge 2 |
+> | `tests/contract/cart.addItemMerge.test.ts` | PASS | API response shape |
+> | `tests/contract/cart.saveForLater.test.ts` | PASS | API response shape |
+> | `tests/contract/cart.updateQuantity.test.ts` | PASS | API response shape |
 
 ---
 

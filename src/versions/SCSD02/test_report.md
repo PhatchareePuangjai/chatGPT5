@@ -15,24 +15,25 @@ All scenarios defined in `scenarios_cart.md` have been tested using Vitest.
 | `cartService.addItem` | ✅ PASS | Adds same SKU twice and merges into one active row with qty=3. |
 | `cartService.saveForLater` | ✅ PASS | Moves active item to saved list and excludes it from grand total. |
 | `cartService.addItem stock enforcement` | ✅ PASS | Rejects cumulative qty above stock with `Insufficient stock`; cart remains unchanged. |
-| `cartService.getCart` | ✅ PASS | Returns required cart contract fields. |
 
 ### Backend Unit Tests
 
 | Test | Result | Notes |
 |---|---|---|
-| `money parses and formats minor units deterministically` | ✅ PASS | `19.99` converts to `1999`; formatting returns `19.99`. |
 | `money multiplies using integers` | ✅ PASS | `19.99 * 3 = 5997` minor units / `59.97`. |
-| `cartTotals recomputes line totals and grand total` | ✅ PASS | Qty=3 at `100.00` totals to `30000` minor units. |
 
-### Frontend Tests
+**Total: 5 passed, 0 failed, 5 total**
 
-| Test | Result | Notes |
-|---|---|---|
-| `Cart totals UI (US1)` | ✅ PASS | Quantity update refreshes displayed grand total from `100.00` to `300.00`. |
-| `Save for later UI (US3)` | ✅ PASS | Save action moves item to saved list and updates total to `0.00`. |
-
-**Total: 10 passed, 0 failed**
+> **Note — Additional tests (not counted in scenario total):**
+> The following tests verify internal utility behaviour and UI rendering; they do not correspond directly to a scenario in `scenarios_cart.md`.
+>
+> | Test | Result | Notes |
+> |---|---|---|
+> | `cartService.getCart` | ✅ PASS | API response shape |
+> | `money parses and formats minor units deterministically` | ✅ PASS | Internal money formatting utility |
+> | `cartTotals recomputes line totals and grand total` | ✅ PASS | Internal totals utility |
+> | `Cart totals UI (US1)` | ✅ PASS | Frontend rendering (Scenario 1 covered by integration) |
+> | `Save for later UI (US3)` | ✅ PASS | Frontend rendering (Scenario 3 covered by integration) |
 
 ---
 

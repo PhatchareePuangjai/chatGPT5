@@ -18,20 +18,16 @@ All scenarios defined in `scenarios_promotions.md` have been tested using Jest.
 | **Edge 2) Order of Operations** | `unit/engine.orderOfOps.test.ts` | ✅ PASS | 1,000 THB with 10% promo + SAVE100 → (1000 − 100 − 100) = 800 THB |
 | **Edge 3) Negative Total Protection** | `unit/engine.nonNegative.test.ts` | ✅ PASS | 50 THB cart with 100 THB coupon → grandTotal clamped to 0 THB |
 
-### Contract Tests
+**Total: 5 passed, 1 failed, 6 total**
 
-| Test | Result | Notes |
-|---|---|---|
-| `contract/applyCoupon.contract.test.ts` | ✅ PASS | POST /checkout/apply-coupon returns `totals`, `discountLines`, `message` with correct types |
-| `contract/getTotals.contract.test.ts` | ✅ PASS | GET /checkout/totals returns `totals` and `discountLines` array |
-
-### Performance Test
-
-| Test | Result | Notes |
-|---|---|---|
-| `perf/engine.smoke.test.ts` | ✅ PASS | 5,000 iterations of `computeTotals` complete in < 2,000 ms |
-
-**Total: 8 passed, 1 failed, 9 total**
+> **Note — Additional tests (not counted in scenario total):**
+> The following tests verify API response shape and engine throughput; they do not correspond to a scenario in `scenarios_promotions.md`.
+>
+> | Test | Result | Notes |
+> |---|---|---|
+> | `contract/applyCoupon.contract.test.ts` | ✅ PASS | API response shape |
+> | `contract/getTotals.contract.test.ts` | ✅ PASS | API response shape |
+> | `perf/engine.smoke.test.ts` | ✅ PASS | Performance smoke test |
 
 ---
 

@@ -18,16 +18,17 @@ Scenarios defined in `scenarios_promotions.md` were tested using Vitest.
 | Order of Operations | `tests/unit/discountOrder.test.ts` | PASS | Percent discounts are applied before fixed discounts |
 | Negative Total Protection | `tests/unit/nonNegativeTotals.test.ts` | PASS | Grand total is clamped to 0 |
 
-### Additional Tests
+**Total: 6 passed, 0 failed, 6 total**
 
-| Test File | Result | Notes |
-|---|---|---|
-| `tests/unit/couponEligibility.test.ts` | PASS | Eligibility accepts valid coupon and rejects expired coupon at unit level |
-| `tests/unit/promotionPercent.test.ts` | PASS | Calculates 10% promotion correctly |
-| `tests/integration/couponInvalid.test.ts` | PASS | Unknown coupon is rejected |
-| `tests/integration/pricingPerfSanity.test.ts` | PASS | Pricing calculation completes quickly in-process |
-
-Total: 11 passed, 0 failed, 11 total
+> **Note — Additional tests (not counted in scenario total):**
+> The following tests verify eligibility rules, calculation correctness, error handling, and performance at a finer granularity; they do not correspond to a scenario in `scenarios_promotions.md`.
+>
+> | Test File | Result | Notes |
+> |---|---|---|
+> | `tests/unit/couponEligibility.test.ts` | PASS | Unit-level eligibility: valid coupon accepted + expired coupon rejected (2 cases) |
+> | `tests/unit/promotionPercent.test.ts` | PASS | Percentage promotion calculation unit test |
+> | `tests/integration/couponInvalid.test.ts` | PASS | Unknown coupon rejection |
+> | `tests/integration/pricingPerfSanity.test.ts` | PASS | Performance smoke test |
 
 ---
 

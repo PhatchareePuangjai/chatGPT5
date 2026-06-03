@@ -19,13 +19,6 @@ All scenarios defined in [`scenarios_inventory.md`](./scenarios_inventory.md) ha
 
 ---
 
-### Unit Tests
-
-| Test | Result | Notes |
-| --- | --- | --- |
-| `inventoryService rules > documents that oversell attempts are rejected without side effects` | ✅ PASS | Placeholder confirming unit suite presence; oversell behavior validated via integration tests. |
-| `lowStockAlertService idempotency > is covered by integration tests` | ✅ PASS | Placeholder confirming alert service coverage via integration tests. |
-
 ### Integration Tests
 
 | Test | Result | Notes |
@@ -37,7 +30,18 @@ All scenarios defined in [`scenarios_inventory.md`](./scenarios_inventory.md) ha
 | `atomicity: audit log failure rolls back stock > does not persist stock deduction when log insert fails` | ✅ PASS | `FORCE_INVENTORY_LOG_FAIL=1` causes 500; stock unchanged at 10, no logs. |
 | `oversell rejection > rejects when requested qty exceeds on-hand, with no changes` | ✅ PASS | qty=6 on stock=5 → 409 `INSUFFICIENT_STOCK`; stock unchanged, no logs. |
 
-**Total: 8 passed, 0 failed**
+**Scenario Total: 7 passed, 0 failed, 7 total**
+
+> **Note — Scenario coverage combined in one test file:**
+> The `low stock threshold boundary` integration test covers both Scenario 2) Low Stock Alert Trigger and Edge 4) Boundary Value. It is counted as two scenario outcomes because both scenario requirements are explicitly verified, but it is only one executable test file.
+
+> **Note — Additional tests (not counted in scenario total):**
+> These are placeholder tests that confirm coverage via integration tests; they do not correspond to a scenario in `scenarios_inventory.md`.
+>
+> | Test | Result |
+> |---|---|
+> | `inventoryService rules > documents that oversell attempts are rejected without side effects` | ✅ PASS |
+> | `lowStockAlertService idempotency > is covered by integration tests` | ✅ PASS |
 
 > **Note:** Integration tests require a running PostgreSQL instance and must run sequentially (`--maxWorkers=1`) to avoid parallel migration conflicts in the test database.
 
