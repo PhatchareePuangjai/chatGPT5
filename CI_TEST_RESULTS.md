@@ -1,5 +1,6 @@
 # CI/CD Test Results Summary
 
+> Last updated: 2026-06-03 (SD Unit Test counts updated to scenario-only; IMSD01 boundary tests merged and atomicity fixed)
 > Last updated: 2026-06-02 (Unit Tests rechecked against each version's `test_report.md`; SonarQube #26735096015, DAST #26765576209, CodeQL #26735096022; all 19 versions now scanned by DAST)
 > SCSD01 refresh 2026-06-01: Unit Tests #26764446595 (reference only; `test_report.md` is the Unit Tests source), DAST #26763971867 (0/7/60).
 > Full verification 2026-06-01 (all versions): CodeQL re-fetched (all match); DAST re-fetched from #26765576209 (PDCE02 0/11/56→0/10/57); SonarQube re-fetched from live API (Reliability corrected on 14 versions, IMSD02 Dup 13.20%→13.00%); Backend LOC recounted (SCSD01_v2 493→344, PDBP01 365→361, PDSD01 296→513); Frontend LOC recounted per footnote ³; tokens recounted (IMBP02/PDBP02 AI turns, IMSD01 227, PDSD01 9/9/301).
@@ -16,29 +17,29 @@
 
 > Source policy: Unit Test counts are taken from each version's checked-in `test_report.md`, not GitHub Actions CI. The CI workflow is path-filtered and not all versions pass or rerun consistently, so it is not used as the source of truth for this section.
 > Reference CI run only: [Unit Tests #26735096014](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014).
-> Rechecked: 2026-06-02. Source path for each count is listed in the table.
+> Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path for each count is listed in the table.
 
-| Version   | Feature                | Tool      | Passed | Failed | Total | Result                  | Failure Details                                                                               | Source |
-| --------- | ---------------------- | --------- | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------------------------------------------- | ------ |
-| IMBP01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMBP01/online-shop-inventory/test_report.md` |
-| IMBP02    | Inventory Management   | Jest      | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5`                                      | `src/versions/IMBP02/test_report.md` |
-| IMCE01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMCE01/inventory-system/test_report.md` |
-| IMCE02    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) | `src/versions/IMCE02/test_report.md` |
-| IMSD01    | Inventory Management   | vitest    | 11     | 1      | 12    | ⚠️ PARTIAL              | Atomicity rollback test: HTTP 400 returned where 500 was expected                             | `src/versions/IMSD01/test_report.md` |
-| IMSD02    | Inventory Management   | vitest    | 8      | 0      | 8     | :white_check_mark: PASS | unit: 2, integration: 6 (requires `--maxWorkers=1`)                                           | `src/versions/IMSD02/test_report.md` |
-| SCBP01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCBP01/shopping-cart-app/test_report.md` |
-| SCBP02    | Shopping Cart          | Jest      | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)                                            | `src/versions/SCBP02/test_report.md` |
-| SCCE01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCCE01/shopping-cart/test_report.md` |
-| SCCE02    | Shopping Cart          | node:test | 0      | 5      | 5     | :x: FAIL                | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented    | `src/versions/SCCE02/test_report.md` |
-| SCSD01    | Shopping Cart          | vitest    | 8      | 0      | 8     | :white_check_mark: PASS | integration/contract/unit (7 files, 8 tests)                                                  | `src/versions/SCSD01/test_report.md` |
-| SCSD02    | Shopping Cart          | vitest    | 10     | 0      | 10    | :white_check_mark: PASS | backend: 8, frontend: 2                                                                       | `src/versions/SCSD02/test_report.md` |
-| SCSD01_v2 | Shopping Cart          | pytest    | 15     | 0      | 15    | :white_check_mark: PASS | scenario: 5, unit: 6, integration: 4; reproducibility version excluded from strategy summary   | `src/versions/SCSD01_v2/test_report.md` |
-| PDBP01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDBP01/promo-shop-plug-and-play/test_report.md` |
-| PDBP02    | Promotions & Discounts | Jest      | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard              | `src/versions/PDBP02/test_report.md` |
+| Version   | Feature                | Tool      | Passed | Failed | Total | Result                  | Failure Details                                                                               | Source                                                           |
+| --------- | ---------------------- | --------- | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| IMBP01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMBP01/online-shop-inventory/test_report.md`       |
+| IMBP02    | Inventory Management   | Jest      | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5`                                      | `src/versions/IMBP02/test_report.md`                             |
+| IMCE01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMCE01/inventory-system/test_report.md`            |
+| IMCE02    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) | `src/versions/IMCE02/test_report.md`                             |
+| IMSD01    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | Boundary tests merged into one; atomicity fixed (HTTP 500)                                    | `src/versions/IMSD01/test_report.md`                             |
+| IMSD02    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | integration: 6 (requires `--maxWorkers=1`); 1 test covers Scenario 2 + Edge 4                | `src/versions/IMSD02/test_report.md`                             |
+| SCBP01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCBP01/shopping-cart-app/test_report.md`           |
+| SCBP02    | Shopping Cart          | Jest      | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)                                            | `src/versions/SCBP02/test_report.md`                             |
+| SCCE01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCCE01/shopping-cart/test_report.md`               |
+| SCCE02    | Shopping Cart          | node:test | 0      | 5      | 5     | :x: FAIL                | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented    | `src/versions/SCCE02/test_report.md`                             |
+| SCSD01    | Shopping Cart          | vitest    | 5      | 0      | 5     | :white_check_mark: PASS | 1 test covers Scenario 2 (Merge) + Edge 1 (Stock limit) combined                             | `src/versions/SCSD01/test_report.md`                             |
+| SCSD02    | Shopping Cart          | vitest    | 5      | 0      | 5     | :white_check_mark: PASS | backend integration + 1 unit (Edge 2 floating point)                                          | `src/versions/SCSD02/test_report.md`                             |
+| SCSD01_v2 | Shopping Cart          | pytest    | 15     | 0      | 15    | :white_check_mark: PASS | scenario: 5, unit: 6, integration: 4; reproducibility version excluded from strategy summary  | `src/versions/SCSD01_v2/test_report.md`                          |
+| PDBP01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDBP01/promo-shop-plug-and-play/test_report.md`    |
+| PDBP02    | Promotions & Discounts | Jest      | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard              | `src/versions/PDBP02/test_report.md`                             |
 | PDCE01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDCE01/promotions-discounts-system/test_report.md` |
-| PDCE02    | Promotions & Discounts | node:test | 5      | 1      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure counted as failed: usage limit not implemented                      | `src/versions/PDCE02/test_report.md` |
-| PDSD01    | Promotions & Discounts | vitest    | 11     | 0      | 11    | :white_check_mark: PASS | —                                                                                             | `src/versions/PDSD01/test_report.md` |
-| PDSD02    | Promotions & Discounts | Jest      | 8      | 1      | 9     | ⚠️ PARTIAL              | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only         | `src/versions/PDSD02/test_report.md` |
+| PDCE02    | Promotions & Discounts | node:test | 5      | 1      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure counted as failed: usage limit not implemented                      | `src/versions/PDCE02/test_report.md`                             |
+| PDSD01    | Promotions & Discounts | vitest    | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDSD01/test_report.md`                             |
+| PDSD02    | Promotions & Discounts | Jest      | 5      | 1      | 6     | ⚠️ PARTIAL              | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only         | `src/versions/PDSD02/test_report.md`                             |
 
 > PDCE02 has `5 passed, 0 failed, 1 todo / expected failure` in `src/versions/PDCE02/test_report.md`; this summary counts the TODO / expected failure as 1 failed because the required usage-limit scenario was not implemented.
 > SCSD01_v2 is listed for completeness but is excluded from the strategy-level summary, as noted above.
@@ -49,7 +50,7 @@
 | ---------------------------- | ------ | ------ | ----- | --------- |
 | **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
 | **CE** (Context Engineering) | 30     | 6      | 36    | 83%       |
-| **SD** (Spec-Driven Dev)     | 56     | 2      | 58    | 97%       |
+| **SD** (Spec-Driven Dev)     | 35     | 1      | 36    | 97%       |
 
 ---
 
@@ -191,29 +192,30 @@
 
 ## Overall Summary
 
-| Version   | Tests                       | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
-| --------- | --------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
-| IMBP01    | :white_check_mark: 7/7      | 5 high        | 0/7/60                | 3 / 0 / 7                 | 6.10%        | 251           | 282            | 62.8         |
-| IMBP02    | ⚠️ 5/7 (test_report, 2 fail) | 0 alerts      | 0/11/56               | 2 / 0 / 1                 | 0.00%        | 85            | 80             | 28.3         |
-| IMCE01    | :white_check_mark: 7/7      | 3 high, 1 med | 0/7/60                | 7 / 1 / 27                | 0.00%        | 228           | 1,084          | 114.0        |
-| IMCE02    | :white_check_mark: 7/7      | 6 high        | 0/5/62                | 16 / 1 / 1                | 5.40%        | 58            | 60             | 58.0         |
-| IMSD01    | ⚠️ 11/12 (test_report, 1 fail) | 1 high        | 0/7/60                | 7 / 0 / 15                | 2.70%        | 469           | 409            | 24.7         |
-| IMSD02    | :white_check_mark: 8/8 ¹    | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.00%       | 622           | 316            | 29.6         |
-| SCBP01    | :white_check_mark: 5/5      | 0 alerts      | 0/7/60                | 9 / 0 / 20                | 4.70%        | 406           | 278            | 67.7         |
-| SCBP02    | ⚠️ 4/5 (test_report, 1 fail) | 0 alerts      | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 87            | 88             | 29.0         |
-| SCCE01    | :white_check_mark: 5/5      | 6 high        | 0/8/59                | 8 / 0 / 11                | 3.80%        | 409           | 366            | 204.5        |
-| SCCE02    | :x: 0/5 (test_report, 5 fail) | 1 high        | 0/11/56               | 9 / 1 / 1                 | 0.00%        | 65            | 70             | 16.3         |
-| SCSD01    | :white_check_mark: 8/8      | 0 alerts      | 0/7/60                | 7 / 0 / 5                 | 21.90%       | 479           | 273            | 26.6         |
-| SCSD02    | :white_check_mark: 10/10 ¹  | 0 alerts      | 0/7/60                | 1 / 0 / 19                | 0.00%        | 632           | 369            | 42.1         |
-| SCSD01_v2 | :white_check_mark: 15/15 ¹  | 0 alerts      | 0/7/60                | 7 / 0 / 25                | 0.00%        | 344           | 227            | 68.8         |
-| PDBP01    | :white_check_mark: 6/6      | 0 alerts      | 0/8/59                | 8 / 0 / 9                 | 1.30%        | 361           | 508            | 72.2         |
-| PDBP02    | ⚠️ 1/6 (test_report, 5 fail) | 1 high        | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 93            | 81             | 23.3         |
-| PDCE01    | :white_check_mark: 6/6      | 1 med         | 0/7/60                | 6 / 0 / 20                | 0.00%        | 305           | 239            | 43.6         |
+| Version   | Tests                                        | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
+| --------- | -------------------------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
+| IMBP01    | :white_check_mark: 7/7                       | 5 high        | 0/7/60                | 3 / 0 / 7                 | 6.10%        | 251           | 282            | 62.8         |
+| IMBP02    | ⚠️ 5/7 (test_report, 2 fail)                 | 0 alerts      | 0/11/56               | 2 / 0 / 1                 | 0.00%        | 85            | 80             | 28.3         |
+| IMCE01    | :white_check_mark: 7/7                       | 3 high, 1 med | 0/7/60                | 7 / 1 / 27                | 0.00%        | 228           | 1,084          | 114.0        |
+| IMCE02    | :white_check_mark: 7/7                       | 6 high        | 0/5/62                | 16 / 1 / 1                | 5.40%        | 58            | 60             | 58.0         |
+| IMSD01    | :white_check_mark: 7/7                       | 1 high        | 0/7/60                | 7 / 0 / 15                | 2.70%        | 469           | 409            | 24.7         |
+| IMSD02    | :white_check_mark: 7/7                       | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.00%       | 622           | 316            | 29.6         |
+| SCBP01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 9 / 0 / 20                | 4.70%        | 406           | 278            | 67.7         |
+| SCBP02    | ⚠️ 4/5 (test_report, 1 fail)                 | 0 alerts      | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 87            | 88             | 29.0         |
+| SCCE01    | :white_check_mark: 5/5                       | 6 high        | 0/8/59                | 8 / 0 / 11                | 3.80%        | 409           | 366            | 204.5        |
+| SCCE02    | :x: 0/5 (test_report, 5 fail)                | 1 high        | 0/11/56               | 9 / 1 / 1                 | 0.00%        | 65            | 70             | 16.3         |
+| SCSD01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 7 / 0 / 5                 | 21.90%       | 479           | 273            | 26.6         |
+| SCSD02    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 1 / 0 / 19                | 0.00%        | 632           | 369            | 42.1         |
+| SCSD01_v2 | :white_check_mark: 15/15 ¹                   | 0 alerts      | 0/7/60                | 7 / 0 / 25                | 0.00%        | 344           | 227            | 68.8         |
+| PDBP01    | :white_check_mark: 6/6                       | 0 alerts      | 0/8/59                | 8 / 0 / 9                 | 1.30%        | 361           | 508            | 72.2         |
+| PDBP02    | ⚠️ 1/6 (test_report, 5 fail)                 | 1 high        | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 93            | 81             | 23.3         |
+| PDCE01    | :white_check_mark: 6/6                       | 1 med         | 0/7/60                | 6 / 0 / 20                | 0.00%        | 305           | 239            | 43.6         |
 | PDCE02    | ⚠️ 5/6 (test_report, 1 todo counted as fail) | 1 high        | 0/10/57               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
-| PDSD01    | :white_check_mark: 11/11    | 0 high, 2 med | 0/7/60                | 5 / 0 / 9                 | 0.00%        | 513           | 236            | 23.3         |
-| PDSD02    | ⚠️ 8/9 (test_report, 1 fail) | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 189            | 23.8         |
+| PDSD01    | :white_check_mark: 6/6                       | 0 high, 2 med | 0/7/60                | 5 / 0 / 9                 | 0.00%        | 513           | 236            | 23.3         |
+| PDSD02    | ⚠️ 5/6 (test_report, 1 fail)                 | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 189            | 23.8         |
 
 > ¹ Full test suite (scenario + unit + integration) from each version's `test_report.md`, reported using the document counting convention above. Unit Test counts in this table are sourced from `test_report.md`, not GitHub Actions CI.
+> Note: SD versions (IMSD01, IMSD02, SCSD01, SCSD02, PDSD01, PDSD02) are reported using scenario-only counts as of 2026-06-03; extra tests (contract, unit helpers, perf) are noted in each version's `test_report.md` but not counted here.
 > ² Backend LOC: counted from **backend production source files only** (`.py` / `.js`), excluding `node_modules`, `tests/`, test files (`test_*`, `*.test.js`, `*.spec.js`), and all frontend files (folders: `frontend/`, `client/`, `public/`; files: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.
 > ³ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js` in `frontend/`, `client/`, or `public/` folders; `.css` excluded). IMBP02 has no dedicated frontend folder — value reflects only the `index.html` embedded UI. Note: SonarQube and CodeQL scans include frontend code; this metric is provided for completeness only.
 
