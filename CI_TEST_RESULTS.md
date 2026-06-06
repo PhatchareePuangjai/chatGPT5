@@ -1,5 +1,6 @@
 # CI/CD Test Results Summary
 
+> Last updated: 2026-06-06 (SonarQube Reliability column re-fetched from live API after run #27056984423 — all 19 jobs passed)
 > Last updated: 2026-06-03 (SD Unit Test counts updated to scenario-only; IMSD01 boundary tests merged and atomicity fixed)
 > Last updated: 2026-06-02 (Unit Tests rechecked against each version's `test_report.md`; SonarQube #26735096015, DAST #26765576209, CodeQL #26735096022; all 19 versions now scanned by DAST)
 > SCSD01 refresh 2026-06-01: Unit Tests #26764446595 (reference only; `test_report.md` is the Unit Tests source), DAST #26763971867 (0/7/60).
@@ -83,30 +84,30 @@
 
 ## 2. SonarQube Static Analysis
 
-> Verified 2026-06-01 against the live SonarCloud API (`api/measures/component`, token validated) for all 19 versions. Reliability (bugs) values were corrected downward — earlier figures had been carried over from the `... High-Quality Code (1).csv` export and no longer matched the current SonarCloud state. Security, Maintainability, Duplications, and Security Hotspots matched the API (only IMSD02 Duplications adjusted 13.20% → 13.00%).
+> Re-verified 2026-06-06 against live SonarCloud API after run [#27056984423](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/27056984423) (all 19 jobs passed). Reliability column updated — previous values reflected old `bugs` metric; current values use `reliability_issues` (new SonarCloud metric that includes all reliability-severity levels). Security, Maintainability, Duplications, and Security Hotspots unchanged.
 
 ### SonarQube Open Issues by Version
 
 | Version   | Security (Open) | Reliability (Open) | Maintainability (Open) | Duplications | Security Hotspots |
 | --------- | --------------- | ------------------ | ---------------------- | ------------ | ----------------- |
-| IMBP01    | 3               | 0                  | 7                      | 6.10%        | 0                 |
-| IMBP02    | 2               | 0                  | 1                      | 0.00%        | 0                 |
-| IMCE01    | 7               | 1                  | 27                     | 0.00%        | 6                 |
-| IMCE02    | 16              | 1                  | 1                      | 5.40%        | 4                 |
-| IMSD01    | 7               | 0                  | 15                     | 2.70%        | 2                 |
+| IMBP01    | 3               | 3                  | 7                      | 6.10%        | 0                 |
+| IMBP02    | 2               | 1                  | 1                      | 0.00%        | 0                 |
+| IMCE01    | 7               | 19                 | 27                     | 0.00%        | 6                 |
+| IMCE02    | 16              | 2                  | 1                      | 5.40%        | 4                 |
+| IMSD01    | 7               | 12                 | 15                     | 2.70%        | 2                 |
 | IMSD02    | 5               | 0                  | 6                      | 13.00%       | 2                 |
-| SCBP01    | 9               | 0                  | 20                     | 4.70%        | 2                 |
-| SCBP02    | 6               | 1                  | 2                      | 0.00%        | 1                 |
-| SCCE01    | 8               | 0                  | 11                     | 3.80%        | 2                 |
-| SCCE02    | 9               | 1                  | 1                      | 0.00%        | 4                 |
+| SCBP01    | 9               | 9                  | 20                     | 4.70%        | 2                 |
+| SCBP02    | 6               | 2                  | 2                      | 0.00%        | 1                 |
+| SCCE01    | 8               | 9                  | 11                     | 3.80%        | 2                 |
+| SCCE02    | 9               | 2                  | 1                      | 0.00%        | 4                 |
 | SCSD01    | 7               | 0                  | 5                      | 21.90%       | 3                 |
-| SCSD02    | 1               | 0                  | 19                     | 0.00%        | 1                 |
-| SCSD01_v2 | 7               | 0                  | 25                     | 0.00%        | 4                 |
-| PDBP01    | 8               | 0                  | 9                      | 1.30%        | 3                 |
-| PDBP02    | 6               | 1                  | 2                      | 0.00%        | 2                 |
-| PDCE01    | 6               | 0                  | 20                     | 0.00%        | 4                 |
-| PDCE02    | 9               | 0                  | 8                      | 0.00%        | 4                 |
-| PDSD01    | 5               | 0                  | 9                      | 0.00%        | 5                 |
+| SCSD02    | 1               | 3                  | 19                     | 0.00%        | 1                 |
+| SCSD01_v2 | 7               | 4                  | 25                     | 0.00%        | 4                 |
+| PDBP01    | 8               | 1                  | 9                      | 1.30%        | 3                 |
+| PDBP02    | 6               | 3                  | 2                      | 0.00%        | 2                 |
+| PDCE01    | 6               | 16                 | 20                     | 0.00%        | 4                 |
+| PDCE02    | 9               | 4                  | 8                      | 0.00%        | 4                 |
+| PDSD01    | 5               | 6                  | 9                      | 0.00%        | 5                 |
 | PDSD02    | 1               | 0                  | 13                     | 0.00%        | 0                 |
 
 > CS and AG versions are excluded from this SonarQube summary to match the current workflow scope.
@@ -115,9 +116,9 @@
 
 | Strategy                     | Avg Security | Avg Reliability | Avg Maintainability | Avg Duplications | Avg Security Hotspots |
 | ---------------------------- | ------------ | --------------- | ------------------- | ---------------- | --------------------- |
-| **BP** (Basic Prompting)     | 5.67         | 0.33            | 6.83                | 2.02%            | 1.33                  |
-| **CE** (Context Engineering) | 9.17         | 0.50            | 11.33               | 1.53%            | 4.00                  |
-| **SD** (Spec-Driven Dev)     | 4.33         | 0.00            | 11.17               | 6.27%            | 2.17                  |
+| **BP** (Basic Prompting)     | 5.67         | 3.17            | 6.83                | 2.02%            | 1.33                  |
+| **CE** (Context Engineering) | 9.17         | 8.67            | 11.33               | 1.53%            | 4.00                  |
+| **SD** (Spec-Driven Dev)     | 4.33         | 3.50            | 11.17               | 6.27%            | 2.17                  |
 
 ---
 
@@ -221,24 +222,24 @@
 
 | Version   | Tests                                        | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
 | --------- | -------------------------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
-| IMBP01    | :white_check_mark: 7/7                       | 5 high        | 0/7/60                | 3 / 0 / 7                 | 6.10%        | 251           | 282            | 62.8         |
-| IMBP02    | ⚠️ 5/7 (test_report, 2 fail)                 | 0 alerts      | 0/11/56               | 2 / 0 / 1                 | 0.00%        | 85            | 80             | 28.3         |
-| IMCE01    | :white_check_mark: 7/7                       | 3 high, 1 med | 0/7/60                | 7 / 1 / 27                | 0.00%        | 228           | 1,084          | 114.0        |
-| IMCE02    | :white_check_mark: 7/7                       | 6 high        | 0/5/62                | 16 / 1 / 1                | 5.40%        | 58            | 60             | 58.0         |
-| IMSD01    | :white_check_mark: 7/7                       | 1 high        | 0/7/60                | 7 / 0 / 15                | 2.70%        | 469           | 409            | 24.7         |
+| IMBP01    | :white_check_mark: 7/7                       | 5 high        | 0/7/60                | 3 / 3 / 7                 | 6.10%        | 251           | 282            | 62.8         |
+| IMBP02    | ⚠️ 5/7 (test_report, 2 fail)                 | 0 alerts      | 0/11/56               | 2 / 1 / 1                 | 0.00%        | 85            | 80             | 28.3         |
+| IMCE01    | :white_check_mark: 7/7                       | 3 high, 1 med | 0/7/60                | 7 / 19 / 27               | 0.00%        | 228           | 1,084          | 114.0        |
+| IMCE02    | :white_check_mark: 7/7                       | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
+| IMSD01    | :white_check_mark: 7/7                       | 1 high        | 0/7/60                | 7 / 12 / 15               | 2.70%        | 469           | 409            | 24.7         |
 | IMSD02    | :white_check_mark: 7/7                       | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.00%       | 622           | 316            | 29.6         |
-| SCBP01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 9 / 0 / 20                | 4.70%        | 406           | 278            | 67.7         |
-| SCBP02    | ⚠️ 4/5 (test_report, 1 fail)                 | 0 alerts      | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 87            | 88             | 29.0         |
-| SCCE01    | :white_check_mark: 5/5                       | 6 high        | 0/8/59                | 8 / 0 / 11                | 3.80%        | 409           | 366            | 204.5        |
-| SCCE02    | :x: 0/5 (test_report, 5 fail)                | 1 high        | 0/11/56               | 9 / 1 / 1                 | 0.00%        | 65            | 70             | 16.3         |
+| SCBP01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 278            | 67.7         |
+| SCBP02    | ⚠️ 4/5 (test_report, 1 fail)                 | 0 alerts      | 0/5/62                | 6 / 2 / 2                 | 0.00%        | 87            | 88             | 29.0         |
+| SCCE01    | :white_check_mark: 5/5                       | 6 high        | 0/8/59                | 8 / 9 / 11                | 3.80%        | 409           | 366            | 204.5        |
+| SCCE02    | :x: 0/5 (test_report, 5 fail)                | 1 high        | 0/11/56               | 9 / 2 / 1                 | 0.00%        | 65            | 70             | 16.3         |
 | SCSD01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 7 / 0 / 5                 | 21.90%       | 479           | 273            | 26.6         |
-| SCSD02    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 1 / 0 / 19                | 0.00%        | 632           | 369            | 42.1         |
-| SCSD01_v2 | :white_check_mark: 15/15 ¹                   | 0 alerts      | 0/7/60                | 7 / 0 / 25                | 0.00%        | 344           | 227            | 68.8         |
-| PDBP01    | :white_check_mark: 6/6                       | 0 alerts      | 0/8/59                | 8 / 0 / 9                 | 1.30%        | 361           | 508            | 72.2         |
-| PDBP02    | ⚠️ 1/6 (test_report, 5 fail)                 | 1 high        | 0/5/62                | 6 / 1 / 2                 | 0.00%        | 93            | 81             | 23.3         |
-| PDCE01    | :white_check_mark: 6/6                       | 1 med         | 0/7/60                | 6 / 0 / 20                | 0.00%        | 305           | 239            | 43.6         |
-| PDCE02    | ⚠️ 5/6 (test_report, 1 todo counted as fail) | 1 high        | 0/10/57               | 9 / 0 / 8                 | 0.00%        | 90            | 73             | 18.0         |
-| PDSD01    | :white_check_mark: 6/6                       | 0 high, 2 med | 0/7/60                | 5 / 0 / 9                 | 0.00%        | 513           | 236            | 23.3         |
+| SCSD02    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 1 / 3 / 19                | 0.00%        | 632           | 369            | 42.1         |
+| SCSD01_v2 | :white_check_mark: 15/15 ¹                   | 0 alerts      | 0/7/60                | 7 / 4 / 25                | 0.00%        | 344           | 227            | 68.8         |
+| PDBP01    | :white_check_mark: 6/6                       | 0 alerts      | 0/8/59                | 8 / 1 / 9                 | 1.30%        | 361           | 508            | 72.2         |
+| PDBP02    | ⚠️ 1/6 (test_report, 5 fail)                 | 1 high        | 0/5/62                | 6 / 3 / 2                 | 0.00%        | 93            | 81             | 23.3         |
+| PDCE01    | :white_check_mark: 6/6                       | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 239            | 43.6         |
+| PDCE02    | ⚠️ 5/6 (test_report, 1 todo counted as fail) | 1 high        | 0/10/57               | 9 / 4 / 8                 | 0.00%        | 90            | 73             | 18.0         |
+| PDSD01    | :white_check_mark: 6/6                       | 0 high, 2 med | 0/7/60                | 5 / 6 / 9                 | 0.00%        | 513           | 236            | 23.3         |
 | PDSD02    | ⚠️ 5/6 (test_report, 1 fail)                 | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 189            | 23.8         |
 
 > ¹ Full test suite (scenario + unit + integration) from each version's `test_report.md`, reported using the document counting convention above. Unit Test counts in this table are sourced from `test_report.md`, not GitHub Actions CI.
