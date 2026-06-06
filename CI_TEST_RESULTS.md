@@ -13,7 +13,34 @@
 
 ---
 
-## 1. Unit Tests
+## 0. Version Index
+
+| Version   | Feature                | Methodology          | Scenarios File                                |
+| --------- | ---------------------- | -------------------- | --------------------------------------------- |
+| IMBP01    | Inventory Management   | Basic Prompting      | `src/versions/IMBP01/scenarios_inventory.md`  |
+| IMBP02    | Inventory Management   | Basic Prompting      | `src/versions/IMBP02/scenarios_inventory.md`  |
+| IMCE01    | Inventory Management   | Context Engineering  | `src/versions/IMCE01/scenarios_inventory.md`  |
+| IMCE02    | Inventory Management   | Context Engineering  | `src/versions/IMCE02/scenarios_inventory.md`  |
+| IMSD01    | Inventory Management   | Spec-Driven Dev      | `src/versions/IMSD01/scenarios_inventory.md`  |
+| IMSD02    | Inventory Management   | Spec-Driven Dev      | `src/versions/IMSD02/scenarios_inventory.md`  |
+| SCBP01    | Shopping Cart          | Basic Prompting      | `src/versions/SCBP01/scenarios_cart.md`       |
+| SCBP02    | Shopping Cart          | Basic Prompting      | `src/versions/SCBP02/scenarios_cart.md`       |
+| SCCE01    | Shopping Cart          | Context Engineering  | `src/versions/SCCE01/scenarios_cart.md`       |
+| SCCE02    | Shopping Cart          | Context Engineering  | `src/versions/SCCE02/scenarios_cart.md`       |
+| SCSD01    | Shopping Cart          | Spec-Driven Dev      | `src/versions/SCSD01/scenarios_cart.md`       |
+| SCSD02    | Shopping Cart          | Spec-Driven Dev      | `src/versions/SCSD02/scenarios_cart.md`       |
+| PDBP01    | Promotions & Discounts | Basic Prompting      | `src/versions/PDBP01/scenarios_promotions.md` |
+| PDBP02    | Promotions & Discounts | Basic Prompting      | `src/versions/PDBP02/scenarios_promotions.md` |
+| PDCE01    | Promotions & Discounts | Context Engineering  | `src/versions/PDCE01/scenarios_promotions.md` |
+| PDCE02    | Promotions & Discounts | Context Engineering  | `src/versions/PDCE02/scenarios_promotions.md` |
+| PDSD01    | Promotions & Discounts | Spec-Driven Dev      | `src/versions/PDSD01/scenarios_promotions.md` |
+| PDSD02    | Promotions & Discounts | Spec-Driven Dev      | `src/versions/PDSD02/scenarios_promotions.md` |
+
+> ¹ SCSD01_v2 is a reproducibility-only version (pytest); excluded from all strategy-level summaries.
+
+---
+
+## 1. Unit Tests (รวม passed = 28+30+35 = 93/108 = 86%)
 
 > Source policy: Unit Test counts are taken from each version's checked-in `test_report.md`, not GitHub Actions CI. The CI workflow is path-filtered and not all versions pass or rerun consistently, so it is not used as the source of truth for this section.
 > Reference CI run only: [Unit Tests #26735096014](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014).
@@ -24,14 +51,14 @@
 | IMBP01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMBP01/online-shop-inventory/test_report.md`       |
 | IMBP02    | Inventory Management   | Jest      | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5`                                      | `src/versions/IMBP02/test_report.md`                             |
 | IMCE01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMCE01/inventory-system/test_report.md`            |
-| IMCE02    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | Stock deduct/restore pass; InventoryLog & low-stock alert not implemented (noted in comments) | `src/versions/IMCE02/test_report.md`                             |
+| IMCE02    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | Tests scoped to implemented behavior only — InventoryLog & low-stock alert not implemented and not tested; Scenario 1/3 validate stock change only (no log assertion), Scenario 2 / Edge 4 (boundary ≤5) not covered | `src/versions/IMCE02/test_report.md`                             |
 | IMSD01    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | Boundary tests merged into one; atomicity fixed (HTTP 500)                                    | `src/versions/IMSD01/test_report.md`                             |
-| IMSD02    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | integration: 6 (requires `--maxWorkers=1`); 1 test covers Scenario 2 + Edge 4                | `src/versions/IMSD02/test_report.md`                             |
+| IMSD02    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | integration: 6 (requires `--maxWorkers=1`); 1 test covers Scenario 2 + Edge 4                 | `src/versions/IMSD02/test_report.md`                             |
 | SCBP01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCBP01/shopping-cart-app/test_report.md`           |
 | SCBP02    | Shopping Cart          | Jest      | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)                                            | `src/versions/SCBP02/test_report.md`                             |
 | SCCE01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCCE01/shopping-cart/test_report.md`               |
 | SCCE02    | Shopping Cart          | node:test | 0      | 5      | 5     | :x: FAIL                | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented    | `src/versions/SCCE02/test_report.md`                             |
-| SCSD01    | Shopping Cart          | vitest    | 5      | 0      | 5     | :white_check_mark: PASS | 1 test covers Scenario 2 (Merge) + Edge 1 (Stock limit) combined                             | `src/versions/SCSD01/test_report.md`                             |
+| SCSD01    | Shopping Cart          | vitest    | 5      | 0      | 5     | :white_check_mark: PASS | 1 test covers Scenario 2 (Merge) + Edge 1 (Stock limit) combined                              | `src/versions/SCSD01/test_report.md`                             |
 | SCSD02    | Shopping Cart          | vitest    | 5      | 0      | 5     | :white_check_mark: PASS | backend integration + 1 unit (Edge 2 floating point)                                          | `src/versions/SCSD02/test_report.md`                             |
 | SCSD01_v2 | Shopping Cart          | pytest    | 15     | 0      | 15    | :white_check_mark: PASS | scenario: 5, unit: 6, integration: 4; reproducibility version excluded from strategy summary  | `src/versions/SCSD01_v2/test_report.md`                          |
 | PDBP01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDBP01/promo-shop-plug-and-play/test_report.md`    |
