@@ -1,5 +1,6 @@
 # CI/CD Test Results Summary
 
+> Last updated: 2026-06-06 (DAST re-verified from run #27061024430 — PDCE02 updated 0/10/57→0/11/56; DAST strategy averages recalculated)
 > Last updated: 2026-06-06 (SonarQube Reliability column re-fetched from live API after run #27056984423 — all 19 jobs passed)
 > Last updated: 2026-06-03 (SD Unit Test counts updated to scenario-only; IMSD01 boundary tests merged and atomicity fixed)
 > Last updated: 2026-06-02 (Unit Tests rechecked against each version's `test_report.md`; SonarQube #26735096015, DAST #26765576209, CodeQL #26735096022; all 19 versions now scanned by DAST)
@@ -180,7 +181,7 @@
 | PDBP01    | 0        | 8        | 59   | Missing headers + Server version leak                                                                                                    |
 | PDBP02    | 0        | 5        | 62   | X-Powered-By leak + Cacheable Content + CSP fallback + Permissions Policy + Cross-Domain Misconfiguration                                |
 | PDCE01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
-| PDCE02    | 0        | 10       | 57   | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable + CSP fallback + Cross-Domain Misconfiguration                     |
+| PDCE02    | 0        | 11       | 56   | Missing headers + Suspicious comments + X-Powered-By leak + Cacheable + CSP fallback + Cross-Domain Misconfiguration                     |
 | PDSD01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
 | PDSD02    | 0        | 7        | 60   | Missing headers                                                                                                                          |
 | SCBP01    | 0        | 7        | 60   | Missing headers                                                                                                                          |
@@ -212,9 +213,9 @@
 
 | Strategy                     | Avg Warnings | Avg Pass | Server Leak  | Scan Status |
 | ---------------------------- | ------------ | -------- | ------------ | ----------- |
-| **BP** (Basic Prompting)     | 6.5          | 60.5     | 1/6 (PDBP01) | 6/6 scanned |
-| **CE** (Context Engineering) | 7.2          | 59.8     | 1/6 (SCCE01) | 6/6 scanned |
-| **SD** (Spec-Driven Dev)     | 6.4          | 60.6     | 0/7          | 7/7 scanned |
+| **BP** (Basic Prompting)     | 7.2          | 59.8     | 1/6 (PDBP01) | 6/6 scanned |
+| **CE** (Context Engineering) | 8.2          | 58.8     | 1/6 (SCCE01) | 6/6 scanned |
+| **SD** (Spec-Driven Dev)     | 6.5          | 60.5     | 0/6          | 6/6 scanned |
 
 ---
 
@@ -238,7 +239,7 @@
 | PDBP01    | :white_check_mark: 6/6                       | 0 alerts      | 0/8/59                | 8 / 1 / 9                 | 1.30%        | 361           | 508            | 72.2         |
 | PDBP02    | ⚠️ 1/6 (test_report, 5 fail)                 | 1 high        | 0/5/62                | 6 / 3 / 2                 | 0.00%        | 93            | 81             | 23.3         |
 | PDCE01    | :white_check_mark: 6/6                       | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 239            | 43.6         |
-| PDCE02    | ⚠️ 5/6 (test_report, 1 todo counted as fail) | 1 high        | 0/10/57               | 9 / 4 / 8                 | 0.00%        | 90            | 73             | 18.0         |
+| PDCE02    | ⚠️ 5/6 (test_report, 1 todo counted as fail) | 1 high        | 0/11/56               | 9 / 4 / 8                 | 0.00%        | 90            | 73             | 18.0         |
 | PDSD01    | :white_check_mark: 6/6                       | 0 high, 2 med | 0/7/60                | 5 / 6 / 9                 | 0.00%        | 513           | 236            | 23.3         |
 | PDSD02    | ⚠️ 5/6 (test_report, 1 fail)                 | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 189            | 23.8         |
 
