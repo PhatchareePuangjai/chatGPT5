@@ -29,7 +29,7 @@ This design enables interpretation of strategy effects while acknowledging task-
 
 ### 2.1 Core Comparative Dataset
 
-The primary dataset is being expanded to **18 generated versions** organized as a 3 × 3 × 2 design: three business domains, three development strategies, and two independent generation runs per domain-strategy pair. The first run uses the `01` suffix and the second run uses the `02` suffix.
+The primary dataset consists of **18 generated versions** organized as a 3 × 3 × 2 design: three business domains, three development strategies, and two independent generation runs per domain-strategy pair. The first run uses the `01` suffix and the second run uses the `02` suffix.
 
 | Domain               | Basic Prompting | Context Engineering | Specification-Driven Development |
 | -------------------- | --------------- | ------------------- | -------------------------------- |
@@ -39,7 +39,7 @@ The primary dataset is being expanded to **18 generated versions** organized as 
 
 The `01` versions form the initial baseline set. The `02` versions are repeat generations of the same domain-strategy combinations and are included to reduce single-run variance and make the comparison less dependent on one generated sample. Each version is evaluated against the same Acceptance Scenarios and Edge Cases for its domain. Results are reported both per version and, where applicable, aggregated by strategy across all completed runs.
 
-At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), all second-run versions for Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and all second-run versions for Specification-Driven Development (`IMSD02`, `SCSD02`, `PDSD02`) have been generated and measured. All 18 core versions now have complete test, static-analysis, LOC, interaction, and DAST data. DAST CI issues (IMSD01 missing docker-compose, PDSD02 port mismatch, timing failures) were resolved on 2026-06-01; all 19 versions (including SCSD01_v2) are scanned in DAST run #26735096020.
+At the time of this methodology update, all second-run versions for Basic Prompting (`IMBP02`, `SCBP02`, `PDBP02`), all second-run versions for Context Engineering (`IMCE02`, `SCCE02`, `PDCE02`), and all second-run versions for Specification-Driven Development (`IMSD02`, `SCSD02`, `PDSD02`) have been generated and measured. All 18 core versions now have complete test, static-analysis, LOC, interaction, and DAST data. DAST CI issues (IMSD01 missing docker-compose, PDSD02 port mismatch, timing failures) were resolved on 2026-06-01; all 19 versions (including SCSD01_v2) are scanned in the latest verified DAST run #27063935479 on 2026-06-06.
 
 ### 2.2 Supplementary Repository Artifacts
 
@@ -115,32 +115,32 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 
 **Per-version quantitative metrics:**
 
-The table below is updated progressively as each version in the 18-version dataset is generated and measured. Blank future rows are not included until source artifacts, tests, CI results, LOC counts, and interaction data are available.
+The table below reports the measured values for the completed 18-version dataset. Values follow the same counting convention used in `CI_TEST_RESULTS.md`.
 
 | Version | Strategy | Backend LOC ⁵ | Frontend LOC ⁶ | User Prompt Tokens ⁷ |
 | ------- | -------- | ------------- | -------------- | -------------------- |
-| IMBP01  | BP       | 251           | 404            | 341                  |
+| IMBP01  | BP       | 251           | 282            | 341                  |
 | IMBP02  | BP       | 85            | 80             | 144                  |
-| SCBP01  | BP       | 406           | 358            | 836                  |
+| SCBP01  | BP       | 406           | 278            | 836                  |
 | SCBP02  | BP       | 87            | 88             | 177                  |
-| PDBP01  | BP       | 365           | 805            | 618                  |
+| PDBP01  | BP       | 361           | 508            | 618                  |
 | PDBP02  | BP       | 93            | 81             | 1,366                |
-| IMCE01  | CE       | 228           | 1,115          | 927                  |
+| IMCE01  | CE       | 228           | 1,084          | 927                  |
 | IMCE02  | CE       | 58            | 60             | 210                  |
-| SCCE01  | CE       | 409           | 457            | 463                  |
+| SCCE01  | CE       | 409           | 366            | 463                  |
 | SCCE02  | CE       | 65            | 70             | 508                  |
-| PDCE01  | CE       | 305           | 249            | 531                  |
-| PDCE02  | CE       | 95            | 78             | 479                  |
-| IMSD01  | SDD      | 398           | 318            | 296                  |
-| IMSD02  | SDD      | 622           | 304            | 337                  |
+| PDCE01  | CE       | 305           | 239            | 531                  |
+| PDCE02  | CE       | 90            | 73             | 479                  |
+| IMSD01  | SDD      | 469           | 409            | 227                  |
+| IMSD02  | SDD      | 622           | 316            | 337                  |
 | SCSD01  | SDD      | 479           | 273            | 97                   |
 | SCSD02  | SDD      | 632           | 369            | 346                  |
-| PDSD01  | SDD      | 296           | 171            | 170                  |
-| PDSD02  | SDD      | 429           | 176            | 336                  |
+| PDSD01  | SDD      | 513           | 236            | 301                  |
+| PDSD02  | SDD      | 429           | 189            | 336                  |
 
-> ⁵ Backend LOC: counted from backend production source files (`.js` / `.py`) only, excluding `node_modules`, test files, and all frontend files (by folder: `frontend/`, `client/`, `public/`; by extension: `.html`, `.css`, `.jsx`, and client-side `.js` without server logic).
-> ⁶ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js` in frontend folders; `.css` excluded). SonarQube and CodeQL scans include frontend code; this metric is provided for reference only.
-> ⁷ Counted using tiktoken `cl100k_base` encoding (GPT-4/GPT-5 tokenizer) applied to all user-side prompt text. BP/CE source: `chatgpt-export/conversations.json`. SDD source: `conversation_export.json` — reflects spec commands only (e.g., `speckit-plan`, `speckit.implement`); actual token consumption is significantly higher as AI-generated code responses are not captured in the export.
+> ⁵ Backend LOC: counted from backend production source files only, excluding `node_modules`, `tests/`, test files, and all frontend files. JavaScript, Python, and TypeScript backend implementation files are counted when they contain server-side or business-logic code.
+> ⁶ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js`, and `.ts` in frontend folders; `.css` excluded). SonarQube and CodeQL scans include frontend code; this metric is provided for reference only.
+> ⁷ Counted using tiktoken `cl100k_base` encoding (GPT-4/GPT-5 tokenizer) applied to user-side prompt text only. BP/CE source artifacts are ChatGPT conversation exports; some are checked in as `conversation_export.json`, while older baseline exports are referenced from external `chatgpt-export/.../conversations.json` artifacts. SDD source: `conversation_export.json` and related spec-command logs where available. SDD token values reflect spec commands only; actual token consumption is significantly higher as AI-generated code responses and full context replay are not captured in the export.
 
 ## 4. Controlled Task Domains
 
@@ -165,7 +165,7 @@ Employing related domains ensures that the application family remains comparable
 
 ### 5.1 Prompt Sources for BP and CE
 
-For Basic Prompting and Context Engineering versions, the study uses conversation artifacts exported from ChatGPT, stored as `chatgpt-export/.../conversations.json` within each version directory. These exports preserve:
+For Basic Prompting and Context Engineering versions, the study uses conversation artifacts exported from ChatGPT. Depending on when the version was created, the source is either an external `chatgpt-export/.../conversations.json` artifact or a checked-in `conversation_export.json` file within the version directory. These exports preserve:
 
 - initial generation requests
 - follow-up clarification and refinement turns
@@ -176,24 +176,23 @@ For Basic Prompting and Context Engineering versions, the study uses conversatio
 
 For SDD versions, the prompt equivalent is a structured specification package rather than a single conversational thread. The SDD versions employ multiple specification structures:
 
-**IMSD01** uses a `.specify/` directory containing:
+**Directory-based Spec Kit artifacts** appear in `IMSD01`, `IMSD02`, `SCSD01`, `SCSD02`, `PDSD01`, and `PDSD02` and include:
 
-- `scripts/bash/` — setup and automation scripts (`setup-plan.sh`, `check-prerequisites.sh`, etc.)
 - `templates/` — structured templates for specs, plans, tasks, and checklists
 - `memory/constitution.md` — project constitution
+- `specs/<feature>/` — generated specification packages containing `spec.md`, `plan.md`, `tasks.md`, `data-model.md`, `research.md`, and `quickstart.md`
 
-**SCSD01, SCSD02, and PDSD01** use `speckit.*`-style flat files or generated `specs/` packages:
+**Flat `speckit.*` command artifacts**, where present in earlier SDD runs, include:
 
 - `speckit.specify` — formal requirements specification
-- `speckit.constitution` — project constitution (SCSD01 only)
+- `speckit.constitution` — project constitution
 - `speckit.plan` — implementation plan
 - `speckit.tasks` — task breakdown
 - `speckit.implement` — implementation guidance
-- `specs/<feature>/` — generated specification package used by SCSD02
 
 All SDD versions also include scenario definition files (`scenarios_inventory.md`, `scenarios_cart.md`, `scenarios_promotions.md`).
 
-> **Note:** The structural difference between IMSD01 (directory-based) and SCSD01/PDSD01 (flat-file-based) reflects an evolution in specification tooling during the study. Both approaches serve the same purpose — providing a structured specification package to the AI — but differ in file organization.
+> **Note:** The structural differences among SDD artifacts reflect an evolution in specification tooling during the study. Both flat-file and directory-based approaches serve the same purpose — providing a structured specification package to the AI — but differ in file organization.
 
 ### 5.3 Prompt and Specification Review Procedure
 
@@ -212,7 +211,7 @@ The study operationalizes code quality through four automated measurement layers
 
 ### 6.1 Functional Correctness
 
-**Instrument:** scenario-based automated tests (Jest for BP/CE versions; pytest for SDD versions)
+**Instrument:** scenario-based automated tests. BP and CE versions primarily use Jest or Node's built-in `node:test`; SDD versions primarily use Vitest or Jest. The reproducibility-only `SCSD01_v2` artifact uses pytest and is excluded from strategy-level summaries.
 
 Functional correctness is measured through acceptance-style tests aligned with each domain's scenario file. The test suites cover both standard flows and critical edge cases:
 
@@ -296,7 +295,7 @@ Accordingly:
 - **Coverage reporting gap:** Scanner-reported coverage is near zero for most versions even when external scenario tests exist, due to the tests running outside the instrumented build pipeline.
 - **Ecosystem limitation:** Findings are grounded in web-based e-commerce applications (Node.js + PostgreSQL + React) and may not generalize to other software domains or technology stacks.
 - **Repository scope asymmetry:** The repository contains additional artifacts beyond the primary 18-version comparison set, which may create an impression of broader coverage than the formal analysis supports.
-- **In-progress second-run dataset:** The 18-version design includes planned `02` reruns for every domain-strategy pair. Until all reruns are generated and measured, aggregate results should distinguish between completed versions and planned follow-up versions.
+- **Conversation export incompleteness:** Some prompt artifacts are partial exports or externally retained ChatGPT exports rather than complete checked-in transcripts, so interaction metrics should be interpreted as measured prompt effort rather than full API usage.
 
 ## 11. Methodological Summary
 
