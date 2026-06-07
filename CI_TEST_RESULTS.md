@@ -257,7 +257,7 @@
 > - **BP / CE**: `chatgpt-export/.../conversations.json` — ChatGPT web interface exports (GPT-5 series)
 > - **SDD**: `conversation_export.json` — Codex CLI session export, partial log (user commands only; AI responses not captured in export)
 >
-> **Note on token counts:** Conversations were conducted via web interfaces (not direct API), so actual API billing tokens were not recorded. `usage_json` in the Excel logs is `{}` (empty). User prompt tokens below are counted using **tiktoken `cl100k_base`** (GPT-4/GPT-5 tokenizer) applied to user-side text only. SDD values reflect spec commands only — actual AI token consumption is significantly higher.
+> **Note on token counts:** Conversations were conducted via web interfaces (not direct API), so actual API billing tokens were not recorded. `usage_json` in the Excel logs is `{}` (empty). User prompt tokens below are counted using **tiktoken `cl100k_base`** (GPT-4/GPT-5 tokenizer) applied to user-side text only. For BP/CE, the selected source is `conversations.json` when present, otherwise `conversation_export.json`; for SDD, the selected source is `conversation_export.json` plus related spec-command logs. SDD values reflect spec commands only — actual AI token consumption is significantly higher.
 
 ### Interaction Counts by Version
 
@@ -290,11 +290,11 @@
 | **CE** (Context Engineering) | 6                   | 25               | 42             | 3,118                |
 | **SDD** (Spec-Driven Dev)    | N/A                 | 61               | 55             | 1,644 ⁴              |
 
-> ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: `chatgpt-export/conversations.json` (BP/CE) and `conversation_export.json` (SDD).
+> ³ Counted using tiktoken `cl100k_base` encoding on user-side prompt text only. Source: selected conversation exports in each version directory (`conversations.json` when present, otherwise `conversation_export.json`) for BP/CE, and `conversation_export.json` plus related spec-command logs for SDD.
 > ⁴ SDD exports capture spec commands only (e.g., `speckit-plan`, `speckit.implement`). True token consumption is significantly higher as AI-generated code responses are not included in the export.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is counted:** user-side spec commands in `conversation_export.json` only.
 > &nbsp;&nbsp;&nbsp;&nbsp;**What is NOT counted:** AI-generated code responses, full conversation context sent per turn.
-> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (296 / 337 / 97 / 346 / 301 / 336) are a significant undercount and should not be compared directly with BP/CE token values.
+> &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (227 / 337 / 97 / 346 / 301 / 336) are a significant undercount and should not be compared directly with BP/CE token values.
 
 ---
 
