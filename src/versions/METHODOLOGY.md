@@ -115,32 +115,36 @@ Unlike BP and CE, the SDD approach does not rely on a single conversational prom
 
 **Per-version quantitative metrics:**
 
-The table below reports the measured values for the completed 18-version dataset. Values follow the same counting convention used in `CI_TEST_RESULTS.md`.
+The table below reports the measured values for the completed 18-version dataset. User prompt counts are recounted from the selected conversation source in each version directory.
 
-| Version | Strategy | Backend LOC ⁵ | Frontend LOC ⁶ | User Prompt Tokens ⁷ |
-| ------- | -------- | ------------- | -------------- | -------------------- |
-| IMBP01  | BP       | 251           | 282            | 341                  |
-| IMBP02  | BP       | 85            | 80             | 144                  |
-| SCBP01  | BP       | 406           | 278            | 836                  |
-| SCBP02  | BP       | 87            | 88             | 177                  |
-| PDBP01  | BP       | 361           | 508            | 618                  |
-| PDBP02  | BP       | 93            | 81             | 1,366                |
-| IMCE01  | CE       | 228           | 1,084          | 927                  |
-| IMCE02  | CE       | 58            | 60             | 210                  |
-| SCCE01  | CE       | 409           | 366            | 463                  |
-| SCCE02  | CE       | 65            | 70             | 508                  |
-| PDCE01  | CE       | 305           | 239            | 531                  |
-| PDCE02  | CE       | 90            | 73             | 479                  |
-| IMSD01  | SDD      | 469           | 409            | 227                  |
-| IMSD02  | SDD      | 622           | 316            | 337                  |
-| SCSD01  | SDD      | 479           | 273            | 97                   |
-| SCSD02  | SDD      | 632           | 369            | 346                  |
-| PDSD01  | SDD      | 513           | 236            | 301                  |
-| PDSD02  | SDD      | 429           | 189            | 336                  |
+| Version | Strategy | Backend LOC ⁵ | Frontend LOC ⁶ | User Prompts ⁷ | Initial Prompts ⁸ | Initial Prompt Words ⁹ | User Prompt Words ¹⁰ | User Prompt Tokens ¹¹ |
+| ------- | -------- | ------------- | -------------- | -------------- | ----------------- | ---------------------- | -------------------- | --------------------- |
+| IMBP01  | BP       | 251           | 282            | 5              | 1                 | 85                     | 361                  | 341                   |
+| IMBP02  | BP       | 85            | 80             | 2              | 1                 | 86                     | 113                  | 144                   |
+| SCBP01  | BP       | 406           | 278            | 6              | 1                 | 218                    | 708                  | 836                   |
+| SCBP02  | BP       | 87            | 88             | 2              | 1                 | 115                    | 142                  | 177                   |
+| PDBP01  | BP       | 361           | 508            | 2              | 1                 | 266                    | 473                  | 618                   |
+| PDBP02  | BP       | 93            | 81             | 3              | 1                 | 100                    | 393                  | 1,366                 |
+| IMCE01  | CE       | 228           | 1,084          | 8              | 1                 | 280                    | 651                  | 927                   |
+| IMCE02  | CE       | 58            | 60             | 2              | 1                 | 124                    | 135                  | 210                   |
+| SCCE01  | CE       | 409           | 366            | 3              | 1                 | 305                    | 314                  | 463                   |
+| SCCE02  | CE       | 65            | 70             | 6              | 1                 | 203                    | 315                  | 508                   |
+| PDCE01  | CE       | 305           | 239            | 1              | 1                 | 341                    | 341                  | 531                   |
+| PDCE02  | CE       | 90            | 73             | 5              | 1                 | 170                    | 298                  | 479                   |
+| IMSD01  | SDD      | 469           | 409            | 10             | 1                 | 40                     | 102                  | 227                   |
+| IMSD02  | SDD      | 622           | 316            | 14             | 1                 | 39                     | 168                  | 337                   |
+| SCSD01  | SDD      | 479           | 273            | 7              | 1                 | 2                      | 49                   | 97                    |
+| SCSD02  | SDD      | 632           | 369            | 11             | 1                 | 44                     | 131                  | 346                   |
+| PDSD01  | SDD      | 513           | 236            | 9              | 1                 | 46                     | 113                  | 301                   |
+| PDSD02  | SDD      | 429           | 189            | 10             | 1                 | 46                     | 138                  | 336                   |
 
 > ⁵ Backend LOC: counted from backend production source files only, excluding `node_modules`, `tests/`, test files, and all frontend files. JavaScript, Python, and TypeScript backend implementation files are counted when they contain server-side or business-logic code.
 > ⁶ Frontend LOC: counted from frontend source files (`.jsx`, `.tsx`, `.html`, `.js`, and `.ts` in frontend folders; `.css` excluded). SonarQube and CodeQL scans include frontend code; this metric is provided for reference only.
-> ⁷ Counted using tiktoken `cl100k_base` encoding (GPT-4/GPT-5 tokenizer) applied to user-side prompt text only. BP/CE source artifacts are ChatGPT conversation exports; some are checked in as `conversation_export.json`, while older baseline exports are referenced from external `chatgpt-export/.../conversations.json` artifacts. SDD source: `conversation_export.json` and related spec-command logs where available. SDD token values reflect spec commands only; actual token consumption is significantly higher as AI-generated code responses and full context replay are not captured in the export.
+> ⁷ User Prompts: counted as non-empty `user` role messages in each version's selected conversation source. Selection rule: use `conversations.json` when present; otherwise use `conversation_export.json`. If a selected export contains multiple conversations, all conversations in that file are included. Supported export shapes include ChatGPT `mapping` exports, `messages` arrays, and `conversation` arrays.
+> ⁸ Initial Prompts: counted as the first non-empty `user` role message in the selected conversation. If a source contains more than one conversation, the second conversation is treated as the primary one and the first conversation is ignored as imported context from another chat. `SCBP01` therefore counts from its second conversation only.
+> ⁹ Initial Prompt Words: counted from the initial prompt text using whitespace-separated word units.
+> ¹⁰ User Prompt Words: counted from the same selected user prompt text using whitespace-separated word units.
+> ¹¹ Counted using tiktoken `cl100k_base` encoding (GPT-4/GPT-5 tokenizer) applied to user-side prompt text only. BP/CE source artifacts are ChatGPT conversation exports checked in as either `conversations.json` or `conversation_export.json` within each version directory. SDD source: `conversation_export.json` and related spec-command logs where available. SDD token values reflect spec commands only; actual token consumption is significantly higher as AI-generated code responses and full context replay are not captured in the export.
 
 ## 4. Controlled Task Domains
 
@@ -165,7 +169,7 @@ Employing related domains ensures that the application family remains comparable
 
 ### 5.1 Prompt Sources for BP and CE
 
-For Basic Prompting and Context Engineering versions, the study uses conversation artifacts exported from ChatGPT. Depending on when the version was created, the source is either an external `chatgpt-export/.../conversations.json` artifact or a checked-in `conversation_export.json` file within the version directory. These exports preserve:
+For Basic Prompting and Context Engineering versions, the study uses conversation artifacts exported from ChatGPT and checked in within each version directory. The prompt-count source is selected deterministically: use `conversations.json` when present; otherwise use `conversation_export.json`. These exports preserve:
 
 - initial generation requests
 - follow-up clarification and refinement turns

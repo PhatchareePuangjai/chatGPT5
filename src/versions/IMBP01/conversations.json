@@ -1,0 +1,1440 @@
+[
+    {
+        "title": "Inventory Management Code",
+        "create_time": 1766285036.003257,
+        "update_time": 1766286151.033763,
+        "mapping": {
+            "client-created-root": {
+                "id": "client-created-root",
+                "message": null,
+                "parent": null,
+                "children": [
+                    "d4239bfc-f228-4cdd-9c54-ec9fd6981705"
+                ]
+            },
+            "d4239bfc-f228-4cdd-9c54-ec9fd6981705": {
+                "id": "d4239bfc-f228-4cdd-9c54-ec9fd6981705",
+                "message": {
+                    "id": "d4239bfc-f228-4cdd-9c54-ec9fd6981705",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": null,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 0.0,
+                    "metadata": {
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "client-created-root",
+                "children": [
+                    "3ef36623-b0de-41f9-92a9-11810e6c38b6"
+                ]
+            },
+            "3ef36623-b0de-41f9-92a9-11810e6c38b6": {
+                "id": "3ef36623-b0de-41f9-92a9-11810e6c38b6",
+                "message": {
+                    "id": "3ef36623-b0de-41f9-92a9-11810e6c38b6",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": null,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 0.0,
+                    "metadata": {
+                        "rebase_developer_message": true,
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "d4239bfc-f228-4cdd-9c54-ec9fd6981705",
+                "children": [
+                    "0005603c-d3c5-411d-a84d-c1baa73c4aa5"
+                ]
+            },
+            "0005603c-d3c5-411d-a84d-c1baa73c4aa5": {
+                "id": "0005603c-d3c5-411d-a84d-c1baa73c4aa5",
+                "message": {
+                    "id": "0005603c-d3c5-411d-a84d-c1baa73c4aa5",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": null,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "is_contextual_answers_system_message": true,
+                        "contextual_answers_message_type": "identity_prompt",
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "3ef36623-b0de-41f9-92a9-11810e6c38b6",
+                "children": [
+                    "4365df3e-62ea-4690-aa59-5f23e748c049"
+                ]
+            },
+            "4365df3e-62ea-4690-aa59-5f23e748c049": {
+                "id": "4365df3e-62ea-4690-aa59-5f23e748c049",
+                "message": {
+                    "id": "4365df3e-62ea-4690-aa59-5f23e748c049",
+                    "author": {
+                        "role": "user",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285034.722,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "I am building an e-commerce website. I need you to write code for the Inventory Management System. \n\nRequirements:\nBackend (Node.js): Create an API to handle stock updates. When a user buys an item, deduct the stock. If stock is low (less than 5), print a log message. Also, keep a history of stock changes.\n\nFrontend (React): Create a simple dashboard page to view current stock levels and a list of low-stock items. Please provide the code for both the backend controller and the frontend component."
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "developer_mode_connector_ids": [],
+                        "selected_sources": [],
+                        "selected_github_repos": [],
+                        "serialization_metadata": {
+                            "custom_symbol_offsets": []
+                        },
+                        "request_id": "7e771ab4-7d53-43bf-859d-df7945b5c192",
+                        "message_source": null,
+                        "turn_exchange_id": "219d4f30-3c20-4e3a-938a-5f9c9c1f213e"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "0005603c-d3c5-411d-a84d-c1baa73c4aa5",
+                "children": [
+                    "5bd5e712-d740-44cc-a93e-d8ca75c9ef5c"
+                ]
+            },
+            "5bd5e712-d740-44cc-a93e-d8ca75c9ef5c": {
+                "id": "5bd5e712-d740-44cc-a93e-d8ca75c9ef5c",
+                "message": {
+                    "id": "5bd5e712-d740-44cc-a93e-d8ca75c9ef5c",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285037.4983122,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 0.0,
+                    "metadata": {
+                        "rebase_developer_message": true,
+                        "request_id": "7e771ab4-7d53-43bf-859d-df7945b5c192",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "4365df3e-62ea-4690-aa59-5f23e748c049",
+                        "turn_exchange_id": "219d4f30-3c20-4e3a-938a-5f9c9c1f213e",
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "4365df3e-62ea-4690-aa59-5f23e748c049",
+                "children": [
+                    "e0d7393a-3be5-4123-8317-9de30c58ecd6"
+                ]
+            },
+            "e0d7393a-3be5-4123-8317-9de30c58ecd6": {
+                "id": "e0d7393a-3be5-4123-8317-9de30c58ecd6",
+                "message": {
+                    "id": "e0d7393a-3be5-4123-8317-9de30c58ecd6",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285037.5218332,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "is_contextual_answers_system_message": true,
+                        "is_visually_hidden_from_conversation": true,
+                        "command": "prompt",
+                        "contextual_answers_message_type": "sources_and_filters_prompt",
+                        "request_id": "7e771ab4-7d53-43bf-859d-df7945b5c192",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "5bd5e712-d740-44cc-a93e-d8ca75c9ef5c",
+                        "turn_exchange_id": "219d4f30-3c20-4e3a-938a-5f9c9c1f213e"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "5bd5e712-d740-44cc-a93e-d8ca75c9ef5c",
+                "children": [
+                    "9649b5b3-7a13-460c-90ad-9b6e5095f11a"
+                ]
+            },
+            "9649b5b3-7a13-460c-90ad-9b6e5095f11a": {
+                "id": "9649b5b3-7a13-460c-90ad-9b6e5095f11a",
+                "message": {
+                    "id": "9649b5b3-7a13-460c-90ad-9b6e5095f11a",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285037.5478768,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "7e771ab4-7d53-43bf-859d-df7945b5c192",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "e0d7393a-3be5-4123-8317-9de30c58ecd6",
+                        "turn_exchange_id": "219d4f30-3c20-4e3a-938a-5f9c9c1f213e"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "e0d7393a-3be5-4123-8317-9de30c58ecd6",
+                "children": [
+                    "6bc03e7a-e622-476e-b9b6-2a0a58938358"
+                ]
+            },
+            "6bc03e7a-e622-476e-b9b6-2a0a58938358": {
+                "id": "6bc03e7a-e622-476e-b9b6-2a0a58938358",
+                "message": {
+                    "id": "6bc03e7a-e622-476e-b9b6-2a0a58938358",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285037.094173,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "Below is a practical, minimal implementation that still covers your requirements:\n\n- **Backend (Node.js/Express + PostgreSQL)**  \n  - Deduct stock when a purchase happens\n  - **Concurrency-safe** (prevents negative stock under simultaneous buys)\n  - Logs when stock becomes **< 5**\n  - Keeps **history/audit log** of stock changes\n- **Frontend (React)**  \n  - Dashboard showing all stock\n  - Separate list of low-stock items\n\n---\n\n## Backend (Node.js) \u2014 Controller + routes + DB schema\n\n### 1) PostgreSQL schema (tables)\n```sql\n-- products table\nCREATE TABLE IF NOT EXISTS products (\n  id           BIGSERIAL PRIMARY KEY,\n  sku          TEXT UNIQUE NOT NULL,\n  name         TEXT NOT NULL,\n  stock        INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),\n  updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\n-- stock history/audit table\nCREATE TABLE IF NOT EXISTS stock_history (\n  id            BIGSERIAL PRIMARY KEY,\n  product_id    BIGINT NOT NULL REFERENCES products(id) ON DELETE CASCADE,\n  change_type   TEXT NOT NULL CHECK (change_type IN ('PURCHASE','ADJUSTMENT','RESTOCK')),\n  delta         INTEGER NOT NULL, -- negative for deduction, positive for restock\n  before_stock  INTEGER NOT NULL,\n  after_stock   INTEGER NOT NULL,\n  reason        TEXT,\n  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE INDEX IF NOT EXISTS idx_products_stock ON products(stock);\nCREATE INDEX IF NOT EXISTS idx_stock_history_product_id ON stock_history(product_id);\n```\n\n### 2) DB client (`db.js`)\n```js\n// db.js\nconst { Pool } = require(\"pg\");\n\nconst pool = new Pool({\n  connectionString: process.env.DATABASE_URL,\n  // ssl: { rejectUnauthorized: false }, // enable if needed on your host\n});\n\nmodule.exports = { pool };\n```\n\n### 3) Inventory controller (`inventoryController.js`)\n```js\n// inventoryController.js\nconst { pool } = require(\"./db\");\n\n/**\n * POST /api/inventory/purchase\n * body: { productId: number, quantity: number, orderId?: string }\n */\nasync function purchaseItem(req, res) {\n  const { productId, quantity, orderId } = req.body;\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    // Lock the row so concurrent purchases can\u2019t oversell\n    const productRes = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (productRes.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = productRes.rows[0];\n    const beforeStock = product.stock;\n\n    if (beforeStock < quantity) {\n      await client.query(\"ROLLBACK\");\n      return res.status(409).json({\n        error: \"Insufficient stock\",\n        available: beforeStock,\n        requested: quantity,\n      });\n    }\n\n    const afterStock = beforeStock - quantity;\n\n    await client.query(\n      `UPDATE products\n       SET stock = $1, updated_at = NOW()\n       WHERE id = $2`,\n      [afterStock, productId]\n    );\n\n    // History record (delta is negative for purchase)\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES\n         ($1, 'PURCHASE', $2, $3, $4, $5)`,\n      [\n        productId,\n        -quantity,\n        beforeStock,\n        afterStock,\n        orderId ? `orderId=${orderId}` : \"purchase\",\n      ]\n    );\n\n    await client.query(\"COMMIT\");\n\n    // Low stock logging requirement\n    if (afterStock < 5) {\n      console.log(`[LOW STOCK] productId=${productId} name=\"${product.name}\" stock=${afterStock}`);\n    }\n\n    return res.json({\n      ok: true,\n      productId,\n      beforeStock,\n      afterStock,\n      purchased: quantity,\n    });\n  } catch (err) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"purchaseItem error:\", err);\n    return res.status(500).json({ error: \"Internal server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n/**\n * GET /api/inventory/stock\n * Returns all products with current stock\n */\nasync function getStock(req, res) {\n  try {\n    const result = await pool.query(\n      `SELECT id, sku, name, stock, updated_at\n       FROM products\n       ORDER BY name ASC`\n    );\n    res.json({ items: result.rows });\n  } catch (err) {\n    console.error(\"getStock error:\", err);\n    res.status(500).json({ error: \"Internal server error\" });\n  }\n}\n\n/**\n * GET /api/inventory/low-stock?threshold=5\n * Returns products where stock < threshold (default 5)\n */\nasync function getLowStock(req, res) {\n  const thresholdRaw = req.query.threshold;\n  const threshold = thresholdRaw ? Number(thresholdRaw) : 5;\n\n  if (!Number.isFinite(threshold) || threshold < 0) {\n    return res.status(400).json({ error: \"threshold must be a non-negative number\" });\n  }\n\n  try {\n    const result = await pool.query(\n      `SELECT id, sku, name, stock, updated_at\n       FROM products\n       WHERE stock < $1\n       ORDER BY stock ASC, name ASC`,\n      [threshold]\n    );\n    res.json({ threshold, items: result.rows });\n  } catch (err) {\n    console.error(\"getLowStock error:\", err);\n    res.status(500).json({ error: \"Internal server error\" });\n  }\n}\n\n/**\n * GET /api/inventory/history/:productId\n * Stock change history for a product\n */\nasync function getStockHistory(req, res) {\n  const productId = Number(req.params.productId);\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n\n  try {\n    const result = await pool.query(\n      `SELECT id, change_type, delta, before_stock, after_stock, reason, created_at\n       FROM stock_history\n       WHERE product_id = $1\n       ORDER BY created_at DESC\n       LIMIT 200`,\n      [productId]\n    );\n    res.json({ productId, history: result.rows });\n  } catch (err) {\n    console.error(\"getStockHistory error:\", err);\n    res.status(500).json({ error: \"Internal server error\" });\n  }\n}\n\nmodule.exports = {\n  purchaseItem,\n  getStock,\n  getLowStock,\n  getStockHistory,\n};\n```\n\n### 4) Routes + app wiring (`routes.js`, `server.js`)\n```js\n// routes.js\nconst express = require(\"express\");\nconst {\n  purchaseItem,\n  getStock,\n  getLowStock,\n  getStockHistory,\n} = require(\"./inventoryController\");\n\nconst router = express.Router();\n\nrouter.get(\"/inventory/stock\", getStock);\nrouter.get(\"/inventory/low-stock\", getLowStock);\nrouter.get(\"/inventory/history/:productId\", getStockHistory);\nrouter.post(\"/inventory/purchase\", purchaseItem);\n\nmodule.exports = router;\n```\n\n```js\n// server.js\nrequire(\"dotenv\").config();\nconst express = require(\"express\");\nconst cors = require(\"cors\");\nconst routes = require(\"./routes\");\n\nconst app = express();\n\napp.use(cors());\napp.use(express.json());\napp.use(\"/api\", routes);\n\nconst port = process.env.PORT || 3001;\napp.listen(port, () => {\n  console.log(`Inventory API running on port ${port}`);\n});\n```\n\n**Test purchase**\n```bash\ncurl -X POST http://localhost:3001/api/inventory/purchase \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"productId\":1,\"quantity\":2,\"orderId\":\"ORD-1001\"}'\n```\n\n---\n\n## Frontend (React) \u2014 Dashboard component\n\nThis component fetches:\n- `/api/inventory/stock` (all items)\n- `/api/inventory/low-stock?threshold=5` (low-stock list)\n\n```jsx\nimport React, { useEffect, useMemo, useState } from \"react\";\n\nconst API_BASE = import.meta?.env?.VITE_API_BASE ?? \"http://localhost:3001/api\";\n\nfunction formatDate(iso) {\n  if (!iso) return \"-\";\n  const d = new Date(iso);\n  return isNaN(d.getTime()) ? \"-\" : d.toLocaleString();\n}\n\nexport default function InventoryDashboard() {\n  const [items, setItems] = useState([]);\n  const [lowStockItems, setLowStockItems] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [err, setErr] = useState(\"\");\n  const [search, setSearch] = useState(\"\");\n\n  async function load() {\n    setLoading(true);\n    setErr(\"\");\n\n    try {\n      const [stockRes, lowRes] = await Promise.all([\n        fetch(`${API_BASE}/inventory/stock`),\n        fetch(`${API_BASE}/inventory/low-stock?threshold=5`),\n      ]);\n\n      if (!stockRes.ok) throw new Error(`Stock request failed (${stockRes.status})`);\n      if (!lowRes.ok) throw new Error(`Low-stock request failed (${lowRes.status})`);\n\n      const stockJson = await stockRes.json();\n      const lowJson = await lowRes.json();\n\n      setItems(stockJson.items ?? []);\n      setLowStockItems(lowJson.items ?? []);\n    } catch (e) {\n      setErr(e?.message || \"Failed to load inventory\");\n    } finally {\n      setLoading(false);\n    }\n  }\n\n  useEffect(() => {\n    load();\n  }, []);\n\n  const filtered = useMemo(() => {\n    const q = search.trim().toLowerCase();\n    if (!q) return items;\n    return items.filter((p) => {\n      const sku = (p.sku || \"\").toLowerCase();\n      const name = (p.name || \"\").toLowerCase();\n      return sku.includes(q) || name.includes(q);\n    });\n  }, [items, search]);\n\n  return (\n    <div style={{ padding: 24, fontFamily: \"system-ui, -apple-system, Segoe UI, Roboto, Arial\" }}>\n      <div style={{ display: \"flex\", alignItems: \"center\", justifyContent: \"space-between\", gap: 12 }}>\n        <h2 style={{ margin: 0 }}>Inventory Dashboard</h2>\n        <button onClick={load} disabled={loading} style={{ padding: \"8px 12px\", cursor: \"pointer\" }}>\n          {loading ? \"Loading...\" : \"Refresh\"}\n        </button>\n      </div>\n\n      {err ? (\n        <div style={{ marginTop: 12, padding: 12, background: \"#ffecec\", border: \"1px solid #ffb3b3\" }}>\n          <strong>Error:</strong> {err}\n        </div>\n      ) : null}\n\n      <div style={{ marginTop: 16, display: \"flex\", gap: 12, alignItems: \"center\" }}>\n        <input\n          value={search}\n          onChange={(e) => setSearch(e.target.value)}\n          placeholder=\"Search by SKU or name...\"\n          style={{ flex: 1, padding: 10, borderRadius: 8, border: \"1px solid #ccc\" }}\n        />\n      </div>\n\n      <div style={{ marginTop: 18, display: \"grid\", gridTemplateColumns: \"1fr 1fr\", gap: 16 }}>\n        {/* Current Stock */}\n        <section style={{ padding: 16, border: \"1px solid #e5e5e5\", borderRadius: 12 }}>\n          <h3 style={{ marginTop: 0 }}>Current Stock</h3>\n          <div style={{ fontSize: 13, color: \"#555\", marginBottom: 10 }}>\n            Total products: <strong>{filtered.length}</strong>\n          </div>\n\n          <div style={{ overflow: \"auto\", maxHeight: 420 }}>\n            <table style={{ width: \"100%\", borderCollapse: \"collapse\" }}>\n              <thead>\n                <tr>\n                  <th style={{ textAlign: \"left\", padding: 8, borderBottom: \"1px solid #eee\" }}>SKU</th>\n                  <th style={{ textAlign: \"left\", padding: 8, borderBottom: \"1px solid #eee\" }}>Name</th>\n                  <th style={{ textAlign: \"right\", padding: 8, borderBottom: \"1px solid #eee\" }}>Stock</th>\n                  <th style={{ textAlign: \"left\", padding: 8, borderBottom: \"1px solid #eee\" }}>Updated</th>\n                </tr>\n              </thead>\n              <tbody>\n                {filtered.map((p) => (\n                  <tr key={p.id}>\n                    <td style={{ padding: 8, borderBottom: \"1px solid #f3f3f3\" }}>{p.sku}</td>\n                    <td style={{ padding: 8, borderBottom: \"1px solid #f3f3f3\" }}>{p.name}</td>\n                    <td style={{ padding: 8, borderBottom: \"1px solid #f3f3f3\", textAlign: \"right\" }}>\n                      <strong style={{ color: p.stock < 5 ? \"#b00020\" : \"inherit\" }}>{p.stock}</strong>\n                    </td>\n                    <td style={{ padding: 8, borderBottom: \"1px solid #f3f3f3\", color: \"#666\", fontSize: 12 }}>\n                      {formatDate(p.updated_at)}\n                    </td>\n                  </tr>\n                ))}\n                {!loading && filtered.length === 0 ? (\n                  <tr>\n                    <td colSpan={4} style={{ padding: 10, color: \"#777\" }}>\n                      No products found.\n                    </td>\n                  </tr>\n                ) : null}\n              </tbody>\n            </table>\n          </div>\n        </section>\n\n        {/* Low Stock */}\n        <section style={{ padding: 16, border: \"1px solid #e5e5e5\", borderRadius: 12 }}>\n          <h3 style={{ marginTop: 0 }}>Low-stock Items (stock &lt; 5)</h3>\n          <div style={{ fontSize: 13, color: \"#555\", marginBottom: 10 }}>\n            Count: <strong>{lowStockItems.length}</strong>\n          </div>\n\n          <div style={{ display: \"grid\", gap: 10 }}>\n            {lowStockItems.map((p) => (\n              <div\n                key={p.id}\n                style={{\n                  padding: 12,\n                  borderRadius: 10,\n                  border: \"1px solid #f0d0d0\",\n                  background: \"#fff7f7\",\n                  display: \"flex\",\n                  justifyContent: \"space-between\",\n                  gap: 12,\n                }}\n              >\n                <div>\n                  <div style={{ fontWeight: 700 }}>{p.name}</div>\n                  <div style={{ color: \"#666\", fontSize: 12 }}>SKU: {p.sku}</div>\n                  <div style={{ color: \"#666\", fontSize: 12 }}>Updated: {formatDate(p.updated_at)}</div>\n                </div>\n                <div style={{ fontWeight: 800, color: \"#b00020\", fontSize: 18 }}>{p.stock}</div>\n              </div>\n            ))}\n\n            {!loading && lowStockItems.length === 0 ? (\n              <div style={{ padding: 12, color: \"#555\", background: \"#f7fff7\", border: \"1px solid #d7f5d7\", borderRadius: 10 }}>\n                No low-stock items \ud83c\udf89\n              </div>\n            ) : null}\n          </div>\n        </section>\n      </div>\n    </div>\n  );\n}\n```\n\n**If you\u2019re using Create React App instead of Vite:** replace `import.meta.env...` with `process.env.REACT_APP_API_BASE`.\n\n---\n\nIf you want, I can also add:\n- an **\u201cAdjust stock\u201d** endpoint (manual restock/adjustment with history)\n- a **single endpoint** that returns both stock + low-stock in one call\n- pagination + sorting + basic auth for admin dashboard"
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 1.0,
+                    "metadata": {
+                        "citations": [],
+                        "content_references": [],
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "7e771ab4-7d53-43bf-859d-df7945b5c192",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "9649b5b3-7a13-460c-90ad-9b6e5095f11a",
+                        "turn_exchange_id": "219d4f30-3c20-4e3a-938a-5f9c9c1f213e"
+                    },
+                    "recipient": "all",
+                    "channel": "final"
+                },
+                "parent": "9649b5b3-7a13-460c-90ad-9b6e5095f11a",
+                "children": [
+                    "b836172b-c66b-4ec4-882f-e30661a4dfcb"
+                ]
+            },
+            "b836172b-c66b-4ec4-882f-e30661a4dfcb": {
+                "id": "b836172b-c66b-4ec4-882f-e30661a4dfcb",
+                "message": {
+                    "id": "b836172b-c66b-4ec4-882f-e30661a4dfcb",
+                    "author": {
+                        "role": "user",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285286.191,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "I want to build an online shop system for my inventory. Can you give me all the code for both the display page and the system behind it? I need to be able to add and subtract items when people buy them. Also, please tell me how to set up the database tables and how to start everything. I want a README file that explains how to run it because I don't know how to code."
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "developer_mode_connector_ids": [],
+                        "selected_sources": [],
+                        "selected_github_repos": [],
+                        "serialization_metadata": {
+                            "custom_symbol_offsets": []
+                        },
+                        "request_id": "ce39bda9-ff53-43c2-8c46-3ca8af3e5241",
+                        "message_source": null,
+                        "turn_exchange_id": "cd38b599-f0fc-4e87-bd72-fed16c0bd37a"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "6bc03e7a-e622-476e-b9b6-2a0a58938358",
+                "children": [
+                    "8acacf4a-606d-4a09-ba07-0421f691d437"
+                ]
+            },
+            "8acacf4a-606d-4a09-ba07-0421f691d437": {
+                "id": "8acacf4a-606d-4a09-ba07-0421f691d437",
+                "message": {
+                    "id": "8acacf4a-606d-4a09-ba07-0421f691d437",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285288.3857067,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 0.0,
+                    "metadata": {
+                        "rebase_developer_message": true,
+                        "request_id": "ce39bda9-ff53-43c2-8c46-3ca8af3e5241",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "b836172b-c66b-4ec4-882f-e30661a4dfcb",
+                        "turn_exchange_id": "cd38b599-f0fc-4e87-bd72-fed16c0bd37a",
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "b836172b-c66b-4ec4-882f-e30661a4dfcb",
+                "children": [
+                    "8a2be684-7d38-416f-866c-67003deba1fa"
+                ]
+            },
+            "8a2be684-7d38-416f-866c-67003deba1fa": {
+                "id": "8a2be684-7d38-416f-866c-67003deba1fa",
+                "message": {
+                    "id": "8a2be684-7d38-416f-866c-67003deba1fa",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285288.922272,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "thoughts",
+                        "thoughts": [],
+                        "source_analysis_msg_id": "17eaf973-3708-40ce-9895-2c1494ca1d9e"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "is_reasoning",
+                        "citations": [],
+                        "content_references": [],
+                        "classifier_response": "default",
+                        "skip_reasoning_title": "Skip",
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "ce39bda9-ff53-43c2-8c46-3ca8af3e5241",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "8acacf4a-606d-4a09-ba07-0421f691d437",
+                        "turn_exchange_id": "cd38b599-f0fc-4e87-bd72-fed16c0bd37a"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "8acacf4a-606d-4a09-ba07-0421f691d437",
+                "children": [
+                    "810edd74-5ff1-4953-b225-c368d753cecf"
+                ]
+            },
+            "810edd74-5ff1-4953-b225-c368d753cecf": {
+                "id": "810edd74-5ff1-4953-b225-c368d753cecf",
+                "message": {
+                    "id": "810edd74-5ff1-4953-b225-c368d753cecf",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285290.181097,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "reasoning_recap",
+                        "content": "Thought for a couple of seconds"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "reasoning_ended",
+                        "finished_duration_sec": 1,
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "ce39bda9-ff53-43c2-8c46-3ca8af3e5241",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "8a2be684-7d38-416f-866c-67003deba1fa",
+                        "turn_exchange_id": "cd38b599-f0fc-4e87-bd72-fed16c0bd37a"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "8a2be684-7d38-416f-866c-67003deba1fa",
+                "children": [
+                    "263a7b11-dc66-43a0-8c0b-aeabf2eaafbb"
+                ]
+            },
+            "263a7b11-dc66-43a0-8c0b-aeabf2eaafbb": {
+                "id": "263a7b11-dc66-43a0-8c0b-aeabf2eaafbb",
+                "message": {
+                    "id": "263a7b11-dc66-43a0-8c0b-aeabf2eaafbb",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285288.479336,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "Absolutely \u2014 here\u2019s a complete \u201csmall but real\u201d online shop + inventory system you can run locally without needing to write code.\n\nWhat you\u2019ll get:\n\n- **Backend (Node.js/Express + PostgreSQL)**\n  - Products list\n  - Buy product (subtract stock safely)\n  - Admin restock/add stock (increase stock)\n  - Low-stock list (stock < 5) + logs\n  - Stock change history (audit trail)\n- **Frontend (React)**\n  - **Shop page** (customers can buy)\n  - **Dashboard page** (see inventory + low stock + restock button)\n- **Database setup** (SQL included)\n- **Run instructions** in a **README**\n- **Docker Compose** so you can start everything with a few commands\n\n---\n\n# 1) Project structure\n\nCreate a folder named `online-shop-inventory/` with this layout:\n\n```\nonline-shop-inventory/\n  docker-compose.yml\n  README.md\n\n  backend/\n    package.json\n    server.js\n    db.js\n    routes.js\n    inventoryController.js\n    sql/\n      001_init.sql\n      002_seed.sql\n    .env.example\n\n  frontend/\n    package.json\n    vite.config.js\n    index.html\n    src/\n      main.jsx\n      App.jsx\n      api.js\n      pages/\n        Shop.jsx\n        Dashboard.jsx\n      styles.css\n```\n\n---\n\n# 2) Backend code (Node.js + Express)\n\n## `backend/package.json`\n```json\n{\n  \"name\": \"inventory-backend\",\n  \"version\": \"1.0.0\",\n  \"main\": \"server.js\",\n  \"type\": \"commonjs\",\n  \"scripts\": {\n    \"start\": \"node server.js\"\n  },\n  \"dependencies\": {\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^16.4.5\",\n    \"express\": \"^4.19.2\",\n    \"pg\": \"^8.12.0\"\n  }\n}\n```\n\n## `backend/.env.example`\n```bash\n# Copy this file to .env and set values if running backend without Docker\nPORT=3001\nDATABASE_URL=postgres://postgres:postgres@localhost:5432/shopdb\nLOW_STOCK_THRESHOLD=5\n```\n\n## `backend/db.js`\n```js\nconst { Pool } = require(\"pg\");\n\nconst pool = new Pool({\n  connectionString: process.env.DATABASE_URL\n});\n\nmodule.exports = { pool };\n```\n\n## `backend/inventoryController.js`\n```js\nconst { pool } = require(\"./db\");\n\nfunction threshold() {\n  const t = Number(process.env.LOW_STOCK_THRESHOLD ?? \"5\");\n  return Number.isFinite(t) ? t : 5;\n}\n\n// GET /api/products\nasync function listProducts(req, res) {\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       ORDER BY name ASC`\n    );\n    res.json({ items: r.rows });\n  } catch (e) {\n    console.error(\"listProducts:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// GET /api/low-stock\nasync function listLowStock(req, res) {\n  const t = threshold();\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       WHERE stock < $1\n       ORDER BY stock ASC, name ASC`,\n      [t]\n    );\n    res.json({ threshold: t, items: r.rows });\n  } catch (e) {\n    console.error(\"listLowStock:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// POST /api/purchase  body: { productId, quantity }\nasync function purchase(req, res) {\n  const { productId, quantity } = req.body;\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    // lock the product row to prevent overselling\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = product.stock;\n\n    if (before < quantity) {\n      await client.query(\"ROLLBACK\");\n      return res.status(409).json({\n        error: \"Not enough stock\",\n        available: before,\n        requested: quantity\n      });\n    }\n\n    const after = before - quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'PURCHASE', $2, $3, $4, $5)`,\n      [productId, -quantity, before, after, \"customer purchase\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    if (after < threshold()) {\n      console.log(`[LOW STOCK] productId=${productId} name=\"${product.name}\" stock=${after}`);\n    }\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"purchase:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// POST /api/restock  body: { productId, quantity }\nasync function restock(req, res) {\n  const { productId, quantity } = req.body;\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = product.stock;\n    const after = before + quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'RESTOCK', $2, $3, $4, $5)`,\n      [productId, quantity, before, after, \"admin restock\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"restock:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// GET /api/history/:productId\nasync function history(req, res) {\n  const productId = Number(req.params.productId);\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  try {\n    const r = await pool.query(\n      `SELECT id, change_type, delta, before_stock, after_stock, reason, created_at\n       FROM stock_history\n       WHERE product_id = $1\n       ORDER BY created_at DESC\n       LIMIT 200`,\n      [productId]\n    );\n    res.json({ productId, items: r.rows });\n  } catch (e) {\n    console.error(\"history:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\nmodule.exports = {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n};\n```\n\n## `backend/routes.js`\n```js\nconst express = require(\"express\");\nconst {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n} = require(\"./inventoryController\");\n\nconst router = express.Router();\n\nrouter.get(\"/products\", listProducts);\nrouter.get(\"/low-stock\", listLowStock);\nrouter.post(\"/purchase\", purchase);\nrouter.post(\"/restock\", restock);\nrouter.get(\"/history/:productId\", history);\n\nmodule.exports = router;\n```\n\n## `backend/server.js`\n```js\nrequire(\"dotenv\").config();\n\nconst express = require(\"express\");\nconst cors = require(\"cors\");\nconst routes = require(\"./routes\");\n\nconst app = express();\n\napp.use(cors());\napp.use(express.json());\n\napp.get(\"/health\", (req, res) => res.json({ ok: true }));\napp.use(\"/api\", routes);\n\nconst port = Number(process.env.PORT || 3001);\napp.listen(port, () => {\n  console.log(`Backend running on http://localhost:${port}`);\n});\n```\n\n### Database SQL\n\n## `backend/sql/001_init.sql`\n```sql\nCREATE TABLE IF NOT EXISTS products (\n  id           BIGSERIAL PRIMARY KEY,\n  sku          TEXT UNIQUE NOT NULL,\n  name         TEXT NOT NULL,\n  price_cents  INTEGER NOT NULL DEFAULT 0 CHECK (price_cents >= 0),\n  stock        INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),\n  updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE TABLE IF NOT EXISTS stock_history (\n  id            BIGSERIAL PRIMARY KEY,\n  product_id    BIGINT NOT NULL REFERENCES products(id) ON DELETE CASCADE,\n  change_type   TEXT NOT NULL CHECK (change_type IN ('PURCHASE','RESTOCK','ADJUSTMENT')),\n  delta         INTEGER NOT NULL,\n  before_stock  INTEGER NOT NULL,\n  after_stock   INTEGER NOT NULL,\n  reason        TEXT,\n  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE INDEX IF NOT EXISTS idx_products_stock ON products(stock);\nCREATE INDEX IF NOT EXISTS idx_stock_history_product ON stock_history(product_id);\n```\n\n## `backend/sql/002_seed.sql`\n```sql\nINSERT INTO products (sku, name, price_cents, stock)\nVALUES\n  ('SKU-TSHIRT', 'T-Shirt', 39900, 10),\n  ('SKU-MUG',    'Coffee Mug', 25000, 4),\n  ('SKU-HAT',    'Cap / Hat', 19900, 7)\nON CONFLICT (sku) DO NOTHING;\n```\n\n---\n\n# 3) Frontend code (React + Vite)\n\n## `frontend/package.json`\n```json\n{\n  \"name\": \"inventory-frontend\",\n  \"version\": \"1.0.0\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite --host 0.0.0.0 --port 5173\",\n    \"build\": \"vite build\",\n    \"preview\": \"vite preview --host 0.0.0.0 --port 5173\"\n  },\n  \"dependencies\": {\n    \"react\": \"^18.3.1\",\n    \"react-dom\": \"^18.3.1\"\n  },\n  \"devDependencies\": {\n    \"@vitejs/plugin-react\": \"^4.3.1\",\n    \"vite\": \"^5.4.8\"\n  }\n}\n```\n\n## `frontend/vite.config.js`\n```js\nimport { defineConfig } from \"vite\";\nimport react from \"@vitejs/plugin-react\";\n\nexport default defineConfig({\n  plugins: [react()],\n  server: {\n    port: 5173,\n    host: true\n  }\n});\n```\n\n## `frontend/index.html`\n```html\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Online Shop + Inventory</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>\n```\n\n## `frontend/src/main.jsx`\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./styles.css\";\n\nReactDOM.createRoot(document.getElementById(\"root\")).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);\n```\n\n## `frontend/src/api.js`\n```js\nconst API_BASE =\n  import.meta?.env?.VITE_API_BASE ?? \"http://localhost:3001\";\n\nexport async function apiGet(path) {\n  const res = await fetch(`${API_BASE}${path}`);\n  if (!res.ok) throw new Error(`GET ${path} failed (${res.status})`);\n  return res.json();\n}\n\nexport async function apiPost(path, body) {\n  const res = await fetch(`${API_BASE}${path}`, {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify(body ?? {})\n  });\n  const json = await res.json().catch(() => ({}));\n  if (!res.ok) {\n    throw new Error(json?.error || `POST ${path} failed (${res.status})`);\n  }\n  return json;\n}\n```\n\n## `frontend/src/App.jsx`\n```jsx\nimport React, { useState } from \"react\";\nimport Shop from \"./pages/Shop.jsx\";\nimport Dashboard from \"./pages/Dashboard.jsx\";\n\nexport default function App() {\n  const [page, setPage] = useState(\"shop\");\n\n  return (\n    <div className=\"container\">\n      <header className=\"header\">\n        <div>\n          <h1 className=\"title\">Online Shop + Inventory</h1>\n          <p className=\"subtitle\">Buy items (subtract stock) + restock in dashboard</p>\n        </div>\n\n        <nav className=\"nav\">\n          <button className={page === \"shop\" ? \"btn active\" : \"btn\"} onClick={() => setPage(\"shop\")}>\n            Shop\n          </button>\n          <button className={page === \"dashboard\" ? \"btn active\" : \"btn\"} onClick={() => setPage(\"dashboard\")}>\n            Dashboard\n          </button>\n        </nav>\n      </header>\n\n      {page === \"shop\" ? <Shop /> : <Dashboard />}\n    </div>\n  );\n}\n```\n\n## `frontend/src/pages/Shop.jsx`\n```jsx\nimport React, { useEffect, useMemo, useState } from \"react\";\nimport { apiGet, apiPost } from \"../api.js\";\n\nfunction money(cents) {\n  return (cents / 100).toLocaleString(undefined, { style: \"currency\", currency: \"THB\" });\n}\n\nexport default function Shop() {\n  const [items, setItems] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [msg, setMsg] = useState(\"\");\n  const [err, setErr] = useState(\"\");\n\n  async function load() {\n    setLoading(true);\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      const data = await apiGet(\"/api/products\");\n      setItems(data.items ?? []);\n    } catch (e) {\n      setErr(e.message || \"Failed to load products\");\n    } finally {\n      setLoading(false);\n    }\n  }\n\n  useEffect(() => {\n    load();\n  }, []);\n\n  const canBuy = useMemo(() => (p) => p.stock > 0, []);\n\n  async function buy(productId) {\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      await apiPost(\"/api/purchase\", { productId, quantity: 1 });\n      setMsg(\"Purchase successful! Stock updated.\");\n      await load();\n    } catch (e) {\n      setErr(e.message || \"Purchase failed\");\n    }\n  }\n\n  return (\n    <section className=\"card\">\n      <div className=\"row\">\n        <h2>Shop</h2>\n        <button className=\"btn\" onClick={load} disabled={loading}>\n          {loading ? \"Loading...\" : \"Refresh\"}\n        </button>\n      </div>\n\n      {err ? <div className=\"alert error\">{err}</div> : null}\n      {msg ? <div className=\"alert ok\">{msg}</div> : null}\n\n      <div className=\"grid\">\n        {items.map((p) => (\n          <div className=\"product\" key={p.id}>\n            <div className=\"productTop\">\n              <div>\n                <div className=\"productName\">{p.name}</div>\n                <div className=\"muted\">SKU: {p.sku}</div>\n              </div>\n              <div className={p.stock < 5 ? \"stock low\" : \"stock\"}>\n                Stock: <strong>{p.stock}</strong>\n              </div>\n            </div>\n\n            <div className=\"productBottom\">\n              <div className=\"price\">{money(p.price_cents)}</div>\n              <button\n                className=\"btn primary\"\n                onClick={() => buy(p.id)}\n                disabled={!canBuy(p)}\n                title={!canBuy(p) ? \"Out of stock\" : \"Buy 1 item\"}\n              >\n                Buy 1\n              </button>\n            </div>\n          </div>\n        ))}\n\n        {!loading && items.length === 0 ? <div className=\"muted\">No products found.</div> : null}\n      </div>\n    </section>\n  );\n}\n```\n\n## `frontend/src/pages/Dashboard.jsx`\n```jsx\nimport React, { useEffect, useState } from \"react\";\nimport { apiGet, apiPost } from \"../api.js\";\n\nfunction formatDate(iso) {\n  const d = new Date(iso);\n  return isNaN(d.getTime()) ? \"-\" : d.toLocaleString();\n}\n\nexport default function Dashboard() {\n  const [items, setItems] = useState([]);\n  const [low, setLow] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [msg, setMsg] = useState(\"\");\n  const [err, setErr] = useState(\"\");\n\n  async function load() {\n    setLoading(true);\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      const [all, lowStock] = await Promise.all([\n        apiGet(\"/api/products\"),\n        apiGet(\"/api/low-stock\")\n      ]);\n      setItems(all.items ?? []);\n      setLow(lowStock.items ?? []);\n    } catch (e) {\n      setErr(e.message || \"Failed to load dashboard\");\n    } finally {\n      setLoading(false);\n    }\n  }\n\n  useEffect(() => {\n    load();\n  }, []);\n\n  async function restock(productId) {\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      // add 5 units each time you click\n      await apiPost(\"/api/restock\", { productId, quantity: 5 });\n      setMsg(\"Restocked +5. Inventory updated.\");\n      await load();\n    } catch (e) {\n      setErr(e.message || \"Restock failed\");\n    }\n  }\n\n  return (\n    <section className=\"card\">\n      <div className=\"row\">\n        <h2>Inventory Dashboard</h2>\n        <button className=\"btn\" onClick={load} disabled={loading}>\n          {loading ? \"Loading...\" : \"Refresh\"}\n        </button>\n      </div>\n\n      {err ? <div className=\"alert error\">{err}</div> : null}\n      {msg ? <div className=\"alert ok\">{msg}</div> : null}\n\n      <div className=\"twoCol\">\n        <div>\n          <h3>All Stock</h3>\n          <div className=\"tableWrap\">\n            <table className=\"table\">\n              <thead>\n                <tr>\n                  <th>SKU</th>\n                  <th>Name</th>\n                  <th className=\"right\">Stock</th>\n                  <th>Updated</th>\n                  <th className=\"right\">Action</th>\n                </tr>\n              </thead>\n              <tbody>\n                {items.map((p) => (\n                  <tr key={p.id}>\n                    <td>{p.sku}</td>\n                    <td>{p.name}</td>\n                    <td className={p.stock < 5 ? \"right lowText\" : \"right\"}>\n                      <strong>{p.stock}</strong>\n                    </td>\n                    <td className=\"muted\">{formatDate(p.updated_at)}</td>\n                    <td className=\"right\">\n                      <button className=\"btn\" onClick={() => restock(p.id)}>\n                        Restock +5\n                      </button>\n                    </td>\n                  </tr>\n                ))}\n                {!loading && items.length === 0 ? (\n                  <tr>\n                    <td colSpan=\"5\" className=\"muted\">No products found.</td>\n                  </tr>\n                ) : null}\n              </tbody>\n            </table>\n          </div>\n        </div>\n\n        <div>\n          <h3>Low Stock (stock &lt; 5)</h3>\n          {low.length === 0 && !loading ? (\n            <div className=\"alert ok\">No low-stock items \ud83c\udf89</div>\n          ) : (\n            <div className=\"list\">\n              {low.map((p) => (\n                <div className=\"listItem\" key={p.id}>\n                  <div>\n                    <div className=\"productName\">{p.name}</div>\n                    <div className=\"muted\">SKU: {p.sku}</div>\n                  </div>\n                  <div className=\"lowBadge\">{p.stock}</div>\n                </div>\n              ))}\n            </div>\n          )}\n        </div>\n      </div>\n    </section>\n  );\n}\n```\n\n## `frontend/src/styles.css`\n```css\n:root {\n  --bg: #0b1220;\n  --card: #121c33;\n  --text: #e7ecff;\n  --muted: rgba(231, 236, 255, 0.72);\n  --border: rgba(231, 236, 255, 0.12);\n  --ok: #2ecc71;\n  --err: #ff5a5f;\n  --warn: #ffcc00;\n}\n\n* { box-sizing: border-box; }\nbody {\n  margin: 0;\n  background: radial-gradient(1200px 700px at 20% 0%, #16244a, var(--bg));\n  color: var(--text);\n  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;\n}\n\n.container { max-width: 1100px; margin: 0 auto; padding: 24px; }\n.header {\n  display: flex; align-items: center; justify-content: space-between;\n  gap: 16px; margin-bottom: 18px;\n}\n.title { margin: 0; font-size: 22px; }\n.subtitle { margin: 6px 0 0; color: var(--muted); font-size: 13px; }\n\n.nav { display: flex; gap: 10px; }\n.card {\n  background: rgba(18, 28, 51, 0.85);\n  border: 1px solid var(--border);\n  border-radius: 16px;\n  padding: 16px;\n  box-shadow: 0 10px 28px rgba(0,0,0,0.2);\n}\n\n.btn {\n  border: 1px solid var(--border);\n  background: transparent;\n  color: var(--text);\n  padding: 8px 12px;\n  border-radius: 12px;\n  cursor: pointer;\n}\n.btn:hover { border-color: rgba(231,236,255,0.24); }\n.btn:disabled { opacity: 0.6; cursor: not-allowed; }\n.btn.primary { background: rgba(46, 204, 113, 0.14); border-color: rgba(46, 204, 113, 0.35); }\n.btn.active { background: rgba(231,236,255,0.10); }\n\n.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }\n.muted { color: var(--muted); }\n.right { text-align: right; }\n\n.alert {\n  margin: 12px 0;\n  padding: 10px 12px;\n  border-radius: 12px;\n  border: 1px solid var(--border);\n}\n.alert.ok { border-color: rgba(46, 204, 113, 0.35); background: rgba(46, 204, 113, 0.10); }\n.alert.error { border-color: rgba(255, 90, 95, 0.5); background: rgba(255, 90, 95, 0.10); }\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 12px;\n}\n@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .header { flex-direction: column; align-items: flex-start; } }\n\n.product {\n  border: 1px solid var(--border);\n  border-radius: 16px;\n  padding: 12px;\n  background: rgba(255,255,255,0.03);\n}\n.productTop { display: flex; justify-content: space-between; gap: 10px; }\n.productName { font-weight: 800; }\n.stock { color: var(--muted); }\n.stock.low { color: var(--warn); }\n.productBottom { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }\n.price { font-weight: 800; }\n\n.twoCol {\n  display: grid;\n  grid-template-columns: 1.4fr 1fr;\n  gap: 16px;\n}\n@media (max-width: 900px) { .twoCol { grid-template-columns: 1fr; } }\n\n.tableWrap { overflow: auto; border-radius: 12px; border: 1px solid var(--border); }\n.table { width: 100%; border-collapse: collapse; min-width: 650px; }\n.table th, .table td { padding: 10px; border-bottom: 1px solid var(--border); }\n.lowText { color: var(--warn); }\n\n.list { display: grid; gap: 10px; }\n.listItem {\n  display: flex; justify-content: space-between; align-items: center;\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  padding: 10px 12px;\n  background: rgba(255,255,255,0.03);\n}\n.lowBadge {\n  min-width: 44px;\n  text-align: center;\n  padding: 6px 10px;\n  border-radius: 999px;\n  background: rgba(255, 204, 0, 0.16);\n  border: 1px solid rgba(255, 204, 0, 0.35);\n  font-weight: 900;\n}\n```\n\n---\n\n# 4) Docker Compose (starts database + backend + frontend)\n\n## `docker-compose.yml` (in project root)\n```yaml\nversion: \"3.9\"\n\nservices:\n  db:\n    image: postgres:16\n    container_name: shop_db\n    environment:\n      POSTGRES_USER: postgres\n      POSTGRES_PASSWORD: postgres\n      POSTGRES_DB: shopdb\n    ports:\n      - \"5432:5432\"\n    volumes:\n      - db_data:/var/lib/postgresql/data\n      - ./backend/sql:/docker-entrypoint-initdb.d\n\n  backend:\n    image: node:20\n    container_name: shop_backend\n    working_dir: /app\n    volumes:\n      - ./backend:/app\n    environment:\n      PORT: 3001\n      DATABASE_URL: postgres://postgres:postgres@db:5432/shopdb\n      LOW_STOCK_THRESHOLD: 5\n    depends_on:\n      - db\n    ports:\n      - \"3001:3001\"\n    command: sh -c \"npm install && npm start\"\n\n  frontend:\n    image: node:20\n    container_name: shop_frontend\n    working_dir: /app\n    volumes:\n      - ./frontend:/app\n    environment:\n      # frontend calls backend at http://localhost:3001 from your browser\n      VITE_API_BASE: http://localhost:3001\n    depends_on:\n      - backend\n    ports:\n      - \"5173:5173\"\n    command: sh -c \"npm install && npm run dev\"\n\nvolumes:\n  db_data:\n```\n\n---\n\n# 5) README (copy this into `README.md`)\n\n## `README.md`\n```md\n# Online Shop + Inventory System (Beginner Friendly)\n\nThis project is a simple online shop connected to an inventory system.\n\n\u2705 Customers can buy items (stock goes down)  \n\u2705 You can restock items (stock goes up)  \n\u2705 Low-stock items (stock < 5) are shown and backend prints a LOW STOCK log  \n\u2705 Stock change history is saved in the database\n\n---\n\n## What you need to install\n\n### Option A (Easiest): Docker Desktop\nInstall Docker Desktop:\n- Windows / Mac: Docker Desktop\n\nAfter installing, restart your computer if needed.\n\n### Option B (Advanced): Node.js + PostgreSQL manually\nNot recommended if you're not comfortable coding.\n\n---\n\n## How to start (Docker method)\n\n### 1) Download / create the project folder\nMake sure you have this structure:\n\nonline-shop-inventory/\n  docker-compose.yml\n  README.md\n  backend/\n  frontend/\n\n### 2) Start everything\nOpen a terminal in the project folder and run:\n\n```bash\ndocker compose up\n```\n\nThe first run can take a few minutes because it downloads images and installs packages.\n\n### 3) Open the website\n- Shop page (buy items): http://localhost:5173\n- Backend API health check: http://localhost:3001/health\n\n---\n\n## How to stop\nIn the terminal where Docker is running, press:\n\nCTRL + C\n\nThen run:\n\n```bash\ndocker compose down\n```\n\n---\n\n## Database tables (created automatically)\n\nWhen Docker starts the database for the first time, it automatically runs:\n\n- backend/sql/001_init.sql  (creates tables)\n- backend/sql/002_seed.sql  (adds example products)\n\nTables:\n- products (id, sku, name, price_cents, stock, updated_at)\n- stock_history (audit log of stock changes)\n\n---\n\n## What to click in the app\n\n### Shop tab\n- Click \"Buy 1\" to purchase a product.\n- If stock is 0, you cannot buy.\n- If stock becomes low, it will show as low.\n\n### Dashboard tab\n- View all current inventory.\n- See low-stock items.\n- Click \"Restock +5\" to add stock.\n\n---\n\n## API endpoints (for reference)\n\nBackend base URL: http://localhost:3001\n\n- GET  /api/products\n- GET  /api/low-stock\n- POST /api/purchase   body: { \"productId\": 1, \"quantity\": 1 }\n- POST /api/restock    body: { \"productId\": 1, \"quantity\": 5 }\n- GET  /api/history/:productId\n\n---\n\n## Troubleshooting\n\n### \"Port already in use\"\nSomething else is using ports 5173, 3001, or 5432.\n\nFix:\n- Close the other app, or\n- Change ports in docker-compose.yml\n\n### \"Database is empty\"\nIf you already started before and want fresh data:\n\n\u26a0\ufe0f This will delete your database data.\n\n```bash\ndocker compose down -v\ndocker compose up\n```\n\n---\n\n## Notes\nThis is a simple demo system.\nIn real businesses, you would add:\n- user login\n- payment gateway\n- admin authentication for restock\n- better product images, etc.\n```\n\n---\n\n## What you do next (simple steps)\n\n1. Create the folder `online-shop-inventory/`\n2. Create files exactly as above (copy/paste)\n3. In that folder, run:\n\n```bash\ndocker compose up\n```\n\n4. Open:\n\n**http://localhost:5173**\n\n---\n\nIf you want, tell me whether you\u2019re on **Windows or Mac**, and I\u2019ll tailor the \u201cclick-by-click\u201d instructions (where to open Terminal, how to paste commands, what to expect on screen)."
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 1.0,
+                    "metadata": {
+                        "citations": [],
+                        "content_references": [],
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "ce39bda9-ff53-43c2-8c46-3ca8af3e5241",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "810edd74-5ff1-4953-b225-c368d753cecf",
+                        "turn_exchange_id": "cd38b599-f0fc-4e87-bd72-fed16c0bd37a"
+                    },
+                    "recipient": "all",
+                    "channel": "final"
+                },
+                "parent": "810edd74-5ff1-4953-b225-c368d753cecf",
+                "children": [
+                    "a9f7e114-db99-4421-b66f-b6c3fe45ed8f"
+                ]
+            },
+            "a9f7e114-db99-4421-b66f-b6c3fe45ed8f": {
+                "id": "a9f7e114-db99-4421-b66f-b6c3fe45ed8f",
+                "message": {
+                    "id": "a9f7e114-db99-4421-b66f-b6c3fe45ed8f",
+                    "author": {
+                        "role": "user",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285456.965,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "I don't know how to copy all these code blocks into many files. It's too confusing. Can you put everything together into one link for me to download? Or can you use a 'Code Interpreter' or 'Advanced Data Analysis' tool to create a zip file for me so I can just download and run it on my computer?"
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "developer_mode_connector_ids": [],
+                        "selected_sources": [],
+                        "selected_github_repos": [],
+                        "serialization_metadata": {
+                            "custom_symbol_offsets": []
+                        },
+                        "request_id": "f123c923-df36-4098-8354-bbc02906f9d0",
+                        "message_source": null,
+                        "turn_exchange_id": "2b1b1133-6654-4bfd-b39a-664859b8d8f2"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "263a7b11-dc66-43a0-8c0b-aeabf2eaafbb",
+                "children": [
+                    "70663581-f297-468b-955b-b4673f1d47e6"
+                ]
+            },
+            "70663581-f297-468b-955b-b4673f1d47e6": {
+                "id": "70663581-f297-468b-955b-b4673f1d47e6",
+                "message": {
+                    "id": "70663581-f297-468b-955b-b4673f1d47e6",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285458.8174703,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 0.0,
+                    "metadata": {
+                        "rebase_developer_message": true,
+                        "request_id": "f123c923-df36-4098-8354-bbc02906f9d0",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "a9f7e114-db99-4421-b66f-b6c3fe45ed8f",
+                        "turn_exchange_id": "2b1b1133-6654-4bfd-b39a-664859b8d8f2",
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "a9f7e114-db99-4421-b66f-b6c3fe45ed8f",
+                "children": [
+                    "be4ce2fe-ff8e-4d2d-a1fb-209e775380c0"
+                ]
+            },
+            "be4ce2fe-ff8e-4d2d-a1fb-209e775380c0": {
+                "id": "be4ce2fe-ff8e-4d2d-a1fb-209e775380c0",
+                "message": {
+                    "id": "be4ce2fe-ff8e-4d2d-a1fb-209e775380c0",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285459.403228,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "thoughts",
+                        "thoughts": [],
+                        "source_analysis_msg_id": "3654bdba-d3ce-4497-92ae-0bff35e64635"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "is_reasoning",
+                        "citations": [],
+                        "content_references": [],
+                        "classifier_response": "default",
+                        "skip_reasoning_title": "Skip",
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "f123c923-df36-4098-8354-bbc02906f9d0",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "70663581-f297-468b-955b-b4673f1d47e6",
+                        "turn_exchange_id": "2b1b1133-6654-4bfd-b39a-664859b8d8f2"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "70663581-f297-468b-955b-b4673f1d47e6",
+                "children": [
+                    "b6b52a89-2e10-48a1-8df3-4cbcbda44a0e"
+                ]
+            },
+            "b6b52a89-2e10-48a1-8df3-4cbcbda44a0e": {
+                "id": "b6b52a89-2e10-48a1-8df3-4cbcbda44a0e",
+                "message": {
+                    "id": "b6b52a89-2e10-48a1-8df3-4cbcbda44a0e",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285460.285095,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "reasoning_recap",
+                        "content": "Thought for a second"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "reasoning_ended",
+                        "finished_duration_sec": 0,
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "f123c923-df36-4098-8354-bbc02906f9d0",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "be4ce2fe-ff8e-4d2d-a1fb-209e775380c0",
+                        "turn_exchange_id": "2b1b1133-6654-4bfd-b39a-664859b8d8f2"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "be4ce2fe-ff8e-4d2d-a1fb-209e775380c0",
+                "children": [
+                    "f59b5a34-6399-4ed5-b15d-157103397b99"
+                ]
+            },
+            "f59b5a34-6399-4ed5-b15d-157103397b99": {
+                "id": "f59b5a34-6399-4ed5-b15d-157103397b99",
+                "message": {
+                    "id": "f59b5a34-6399-4ed5-b15d-157103397b99",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285458.926443,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "import os, textwrap, zipfile, json, pathlib, shutil\n\nbase = pathlib.Path(\"/mnt/data/online-shop-inventory\")\nif base.exists():\n    shutil.rmtree(base)\nbase.mkdir(parents=True)\n\n# Root files\ndocker_compose = \"\"\"version: \"3.9\"\n\nservices:\n  db:\n    image: postgres:16\n    container_name: shop_db\n    environment:\n      POSTGRES_USER: postgres\n      POSTGRES_PASSWORD: postgres\n      POSTGRES_DB: shopdb\n    ports:\n      - \"5432:5432\"\n    volumes:\n      - db_data:/var/lib/postgresql/data\n      - ./backend/sql:/docker-entrypoint-initdb.d\n\n  backend:\n    image: node:20\n    container_name: shop_backend\n    working_dir: /app\n    volumes:\n      - ./backend:/app\n    environment:\n      PORT: 3001\n      DATABASE_URL: postgres://postgres:postgres@db:5432/shopdb\n      LOW_STOCK_THRESHOLD: 5\n    depends_on:\n      - db\n    ports:\n      - \"3001:3001\"\n    command: sh -c \"npm install && npm start\"\n\n  frontend:\n    image: node:20\n    container_name: shop_frontend\n    working_dir: /app\n    volumes:\n      - ./frontend:/app\n    environment:\n      VITE_API_BASE: http://localhost:3001\n    depends_on:\n      - backend\n    ports:\n      - \"5173:5173\"\n    command: sh -c \"npm install && npm run dev\"\n\nvolumes:\n  db_data:\n\"\"\"\n\nreadme = \"\"\"# Online Shop + Inventory System (Beginner Friendly)\n\nThis project is a simple online shop connected to an inventory system.\n\n\u2705 Customers can buy items (stock goes down)  \n\u2705 You can restock items (stock goes up)  \n\u2705 Low-stock items (stock < 5) are shown and backend prints a LOW STOCK log  \n\u2705 Stock change history is saved in the database  \n\n---\n\n## What you need to install\n\n### Easiest: Docker Desktop\nInstall Docker Desktop (Windows/Mac), then restart if needed.\n\n---\n\n## How to start (Docker)\n\n### 1) Open a terminal in this folder\nThis folder contains `docker-compose.yml`.\n\n### 2) Start everything\nRun:\n\n```bash\ndocker compose up\n```\n\nFirst run may take a few minutes.\n\n### 3) Open the website\n- Shop page: http://localhost:5173\n- Backend health check: http://localhost:3001/health\n\n---\n\n## How to stop\n\nPress **CTRL + C** in the terminal window, then run:\n\n```bash\ndocker compose down\n```\n\n---\n\n## Database tables (created automatically)\n\nWhen Docker starts the database for the first time, it automatically runs:\n\n- `backend/sql/001_init.sql`  (creates tables)\n- `backend/sql/002_seed.sql`  (adds example products)\n\nTables:\n- `products`\n- `stock_history`\n\n---\n\n## What to click in the app\n\n### Shop tab\n- Click **Buy 1** to purchase.\n- If stock is 0, you cannot buy.\n\n### Dashboard tab\n- View inventory.\n- See low-stock list.\n- Click **Restock +5** to add stock.\n\n---\n\n## Troubleshooting\n\n### \"Port already in use\"\nSomething else is using ports **5173**, **3001**, or **5432**.\n\nFix:\n- close the other app, or\n- change ports in `docker-compose.yml`\n\n### Reset database (deletes data!)\n```bash\ndocker compose down -v\ndocker compose up\n```\n\"\"\"\n\n(base / \"docker-compose.yml\").write_text(docker_compose, encoding=\"utf-8\")\n(base / \"README.md\").write_text(readme, encoding=\"utf-8\")\n\n# Backend files\nbackend = base / \"backend\"\n(backend / \"sql\").mkdir(parents=True)\n\nbackend_package = {\n  \"name\": \"inventory-backend\",\n  \"version\": \"1.0.0\",\n  \"main\": \"server.js\",\n  \"type\": \"commonjs\",\n  \"scripts\": {\"start\": \"node server.js\"},\n  \"dependencies\": {\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^16.4.5\",\n    \"express\": \"^4.19.2\",\n    \"pg\": \"^8.12.0\"\n  }\n}\n(backend / \"package.json\").write_text(json.dumps(backend_package, indent=2), encoding=\"utf-8\")\n\n(backend / \".env.example\").write_text(\n\"\"\"PORT=3001\nDATABASE_URL=postgres://postgres:postgres@localhost:5432/shopdb\nLOW_STOCK_THRESHOLD=5\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"db.js\").write_text(\n\"\"\"const { Pool } = require(\"pg\");\n\nconst pool = new Pool({\n  connectionString: process.env.DATABASE_URL\n});\n\nmodule.exports = { pool };\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"inventoryController.js\").write_text(\n\"\"\"const { pool } = require(\"./db\");\n\nfunction threshold() {\n  const t = Number(process.env.LOW_STOCK_THRESHOLD ?? \"5\");\n  return Number.isFinite(t) ? t : 5;\n}\n\n// GET /api/products\nasync function listProducts(req, res) {\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       ORDER BY name ASC`\n    );\n    res.json({ items: r.rows });\n  } catch (e) {\n    console.error(\"listProducts:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// GET /api/low-stock\nasync function listLowStock(req, res) {\n  const t = threshold();\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       WHERE stock < $1\n       ORDER BY stock ASC, name ASC`,\n      [t]\n    );\n    res.json({ threshold: t, items: r.rows });\n  } catch (e) {\n    console.error(\"listLowStock:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// POST /api/purchase  body: { productId, quantity }\nasync function purchase(req, res) {\n  const { productId, quantity } = req.body;\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    // lock the product row to prevent overselling\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = product.stock;\n\n    if (before < quantity) {\n      await client.query(\"ROLLBACK\");\n      return res.status(409).json({\n        error: \"Not enough stock\",\n        available: before,\n        requested: quantity\n      });\n    }\n\n    const after = before - quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'PURCHASE', $2, $3, $4, $5)`,\n      [productId, -quantity, before, after, \"customer purchase\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    if (after < threshold()) {\n      console.log(`[LOW STOCK] productId=${productId} name=\"${product.name}\" stock=${after}`);\n    }\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"purchase:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// POST /api/restock  body: { productId, quantity }\nasync function restock(req, res) {\n  const { productId, quantity } = req.body;\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = product.stock;\n    const after = before + quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'RESTOCK', $2, $3, $4, $5)`,\n      [productId, quantity, before, after, \"admin restock\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"restock:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// GET /api/history/:productId\nasync function history(req, res) {\n  const productId = Number(req.params.productId);\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  try {\n    const r = await pool.query(\n      `SELECT id, change_type, delta, before_stock, after_stock, reason, created_at\n       FROM stock_history\n       WHERE product_id = $1\n       ORDER BY created_at DESC\n       LIMIT 200`,\n      [productId]\n    );\n    res.json({ productId, items: r.rows });\n  } catch (e) {\n    console.error(\"history:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\nmodule.exports = {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n};\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"routes.js\").write_text(\n\"\"\"const express = require(\"express\");\nconst {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n} = require(\"./inventoryController\");\n\nconst router = express.Router();\n\nrouter.get(\"/products\", listProducts);\nrouter.get(\"/low-stock\", listLowStock);\nrouter.post(\"/purchase\", purchase);\nrouter.post(\"/restock\", restock);\nrouter.get(\"/history/:productId\", history);\n\nmodule.exports = router;\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"server.js\").write_text(\n\"\"\"require(\"dotenv\").config();\n\nconst express = require(\"express\");\nconst cors = require(\"cors\");\nconst routes = require(\"./routes\");\n\nconst app = express();\n\napp.use(cors());\napp.use(express.json());\n\napp.get(\"/health\", (req, res) => res.json({ ok: true }));\napp.use(\"/api\", routes);\n\nconst port = Number(process.env.PORT || 3001);\napp.listen(port, () => {\n  console.log(`Backend running on http://localhost:${port}`);\n});\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"sql\" / \"001_init.sql\").write_text(\n\"\"\"CREATE TABLE IF NOT EXISTS products (\n  id           BIGSERIAL PRIMARY KEY,\n  sku          TEXT UNIQUE NOT NULL,\n  name         TEXT NOT NULL,\n  price_cents  INTEGER NOT NULL DEFAULT 0 CHECK (price_cents >= 0),\n  stock        INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),\n  updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE TABLE IF NOT EXISTS stock_history (\n  id            BIGSERIAL PRIMARY KEY,\n  product_id    BIGINT NOT NULL REFERENCES products(id) ON DELETE CASCADE,\n  change_type   TEXT NOT NULL CHECK (change_type IN ('PURCHASE','RESTOCK','ADJUSTMENT')),\n  delta         INTEGER NOT NULL,\n  before_stock  INTEGER NOT NULL,\n  after_stock   INTEGER NOT NULL,\n  reason        TEXT,\n  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE INDEX IF NOT EXISTS idx_products_stock ON products(stock);\nCREATE INDEX IF NOT EXISTS idx_stock_history_product ON stock_history(product_id);\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"sql\" / \"002_seed.sql\").write_text(\n\"\"\"INSERT INTO products (sku, name, price_cents, stock)\nVALUES\n  ('SKU-TSHIRT', 'T-Shirt', 39900, 10),\n  ('SKU-MUG',    'Coffee Mug', 25000, 4),\n  ('SKU-HAT',    'Cap / Hat', 19900, 7)\nON CONFLICT (sku) DO NOTHING;\n\"\"\", encoding=\"utf-8\"\n)\n\n# Frontend files\nfrontend = base / \"frontend\"\n(frontend / \"src\" / \"pages\").mkdir(parents=True)\n\nfrontend_package = {\n  \"name\": \"inventory-frontend\",\n  \"version\": \"1.0.0\",\n  \"private\": True,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite --host 0.0.0.0 --port 5173\",\n    \"build\": \"vite build\",\n    \"preview\": \"vite preview --host 0.0.0.0 --port 5173\"\n  },\n  \"dependencies\": {\n    \"react\": \"^18.3.1\",\n    \"react-dom\": \"^18.3.1\"\n  },\n  \"devDependencies\": {\n    \"@vitejs/plugin-react\": \"^4.3.1\",\n    \"vite\": \"^5.4.8\"\n  }\n}\n(frontend / \"package.json\").write_text(json.dumps(frontend_package, indent=2), encoding=\"utf-8\")\n\n(frontend / \"vite.config.js\").write_text(\n\"\"\"import { defineConfig } from \"vite\";\nimport react from \"@vitejs/plugin-react\";\n\nexport default defineConfig({\n  plugins: [react()],\n  server: {\n    port: 5173,\n    host: true\n  }\n});\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"index.html\").write_text(\n\"\"\"<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Online Shop + Inventory</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"main.jsx\").write_text(\n\"\"\"import React from \"react\";\nimport ReactDOM from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./styles.css\";\n\nReactDOM.createRoot(document.getElementById(\"root\")).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"api.js\").write_text(\n\"\"\"const API_BASE =\n  import.meta?.env?.VITE_API_BASE ?? \"http://localhost:3001\";\n\nexport async function apiGet(path) {\n  const res = await fetch(`${API_BASE}${path}`);\n  if (!res.ok) throw new Error(`GET ${path} failed (${res.status})`);\n  return res.json();\n}\n\nexport async function apiPost(path, body) {\n  const res = await fetch(`${API_BASE}${path}`, {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify(body ?? {})\n  });\n  const json = await res.json().catch(() => ({}));\n  if (!res.ok) {\n    throw new Error(json?.error || `POST ${path} failed (${res.status})`);\n  }\n  return json;\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"App.jsx\").write_text(\n\"\"\"import React, { useState } from \"react\";\nimport Shop from \"./pages/Shop.jsx\";\nimport Dashboard from \"./pages/Dashboard.jsx\";\n\nexport default function App() {\n  const [page, setPage] = useState(\"shop\");\n\n  return (\n    <div className=\"container\">\n      <header className=\"header\">\n        <div>\n          <h1 className=\"title\">Online Shop + Inventory</h1>\n          <p className=\"subtitle\">Buy items (subtract stock) + restock in dashboard</p>\n        </div>\n\n        <nav className=\"nav\">\n          <button className={page === \"shop\" ? \"btn active\" : \"btn\"} onClick={() => setPage(\"shop\")}>\n            Shop\n          </button>\n          <button className={page === \"dashboard\" ? \"btn active\" : \"btn\"} onClick={() => setPage(\"dashboard\")}>\n            Dashboard\n          </button>\n        </nav>\n      </header>\n\n      {page === \"shop\" ? <Shop /> : <Dashboard />}\n    </div>\n  );\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"pages\" / \"Shop.jsx\").write_text(\n\"\"\"import React, { useEffect, useState } from \"react\";\nimport { apiGet, apiPost } from \"../api.js\";\n\nfunction money(cents) {\n  return (cents / 100).toLocaleString(undefined, { style: \"currency\", currency: \"THB\" });\n}\n\nexport default function Shop() {\n  const [items, setItems] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [msg, setMsg] = useState(\"\");\n  const [err, setErr] = useState(\"\");\n\n  async function load() {\n    setLoading(true);\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      const data = await apiGet(\"/api/products\");\n      setItems(data.items ?? []);\n    } catch (e) {\n      setErr(e.message || \"Failed to load products\");\n    } finally {\n      setLoading(false);\n    }\n  }\n\n  useEffect(() => {\n    load();\n  }, []);\n\n  async function buy(productId) {\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      await apiPost(\"/api/purchase\", { productId, quantity: 1 });\n      setMsg(\"Purchase successful! Stock updated.\");\n      await load();\n    } catch (e) {\n      setErr(e.message || \"Purchase failed\");\n    }\n  }\n\n  return (\n    <section className=\"card\">\n      <div className=\"row\">\n        <h2>Shop</h2>\n        <button className=\"btn\" onClick={load} disabled={loading}>\n          {loading ? \"Loading...\" : \"Refresh\"}\n        </button>\n      </div>\n\n      {err ? <div className=\"alert error\">{err}</div> : null}\n      {msg ? <div className=\"alert ok\">{msg}</div> : null}\n\n      <div className=\"grid\">\n        {items.map((p) => (\n          <div className=\"product\" key={p.id}>\n            <div className=\"productTop\">\n              <div>\n                <div className=\"productName\">{p.name}</div>\n                <div className=\"muted\">SKU: {p.sku}</div>\n              </div>\n              <div className={p.stock < 5 ? \"stock low\" : \"stock\"}>\n                Stock: <strong>{p.stock}</strong>\n              </div>\n            </div>\n\n            <div className=\"productBottom\">\n              <div className=\"price\">{money(p.price_cents)}</div>\n              <button\n                className=\"btn primary\"\n                onClick={() => buy(p.id)}\n                disabled={p.stock <= 0}\n                title={p.stock <= 0 ? \"Out of stock\" : \"Buy 1 item\"}\n              >\n                Buy 1\n              </button>\n            </div>\n          </div>\n        ))}\n\n        {!loading && items.length === 0 ? <div className=\"muted\">No products found.</div> : null}\n      </div>\n    </section>\n  );\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"pages\" / \"Dashboard.jsx\").write_text(\n\"\"\"import React, { useEffect, useState } from \"react\";\nimport { apiGet, apiPost } from \"../api.js\";\n\nfunction formatDate(iso) {\n  const d = new Date(iso);\n  return isNaN(d.getTime()) ? \"-\" : d.toLocaleString();\n}\n\nexport default function Dashboard() {\n  const [items, setItems] = useState([]);\n  const [low, setLow] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [msg, setMsg] = useState(\"\");\n  const [err, setErr] = useState(\"\");\n\n  async function load() {\n    setLoading(true);\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      const [all, lowStock] = await Promise.all([\n        apiGet(\"/api/products\"),\n        apiGet(\"/api/low-stock\")\n      ]);\n      setItems(all.items ?? []);\n      setLow(lowStock.items ?? []);\n    } catch (e) {\n      setErr(e.message || \"Failed to load dashboard\");\n    } finally {\n      setLoading(false);\n    }\n  }\n\n  useEffect(() => {\n    load();\n  }, []);\n\n  async function restock(productId) {\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      await apiPost(\"/api/restock\", { productId, quantity: 5 });\n      setMsg(\"Restocked +5. Inventory updated.\");\n      await load();\n    } catch (e) {\n      setErr(e.message || \"Restock failed\");\n    }\n  }\n\n  return (\n    <section className=\"card\">\n      <div className=\"row\">\n        <h2>Inventory Dashboard</h2>\n        <button className=\"btn\" onClick={load} disabled={loading}>\n          {loading ? \"Loading...\" : \"Refresh\"}\n        </button>\n      </div>\n\n      {err ? <div className=\"alert error\">{err}</div> : null}\n      {msg ? <div className=\"alert ok\">{msg}</div> : null}\n\n      <div className=\"twoCol\">\n        <div>\n          <h3>All Stock</h3>\n          <div className=\"tableWrap\">\n            <table className=\"table\">\n              <thead>\n                <tr>\n                  <th>SKU</th>\n                  <th>Name</th>\n                  <th className=\"right\">Stock</th>\n                  <th>Updated</th>\n                  <th className=\"right\">Action</th>\n                </tr>\n              </thead>\n              <tbody>\n                {items.map((p) => (\n                  <tr key={p.id}>\n                    <td>{p.sku}</td>\n                    <td>{p.name}</td>\n                    <td className={p.stock < 5 ? \"right lowText\" : \"right\"}>\n                      <strong>{p.stock}</strong>\n                    </td>\n                    <td className=\"muted\">{formatDate(p.updated_at)}</td>\n                    <td className=\"right\">\n                      <button className=\"btn\" onClick={() => restock(p.id)}>\n                        Restock +5\n                      </button>\n                    </td>\n                  </tr>\n                ))}\n                {!loading && items.length === 0 ? (\n                  <tr>\n                    <td colSpan=\"5\" className=\"muted\">No products found.</td>\n                  </tr>\n                ) : null}\n              </tbody>\n            </table>\n          </div>\n        </div>\n\n        <div>\n          <h3>Low Stock (stock &lt; 5)</h3>\n          {low.length === 0 && !loading ? (\n            <div className=\"alert ok\">No low-stock items \ud83c\udf89</div>\n          ) : (\n            <div className=\"list\">\n              {low.map((p) => (\n                <div className=\"listItem\" key={p.id}>\n                  <div>\n                    <div className=\"productName\">{p.name}</div>\n                    <div className=\"muted\">SKU: {p.sku}</div>\n                  </div>\n                  <div className=\"lowBadge\">{p.stock}</div>\n                </div>\n              ))}\n            </div>\n          )}\n        </div>\n      </div>\n    </section>\n  );\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"styles.css\").write_text(\n\"\"\"/* Simple dark UI */\n:root {\n  --bg: #0b1220;\n  --card: #121c33;\n  --text: #e7ecff;\n  --muted: rgba(231, 236, 255, 0.72);\n  --border: rgba(231, 236, 255, 0.12);\n  --ok: #2ecc71;\n  --err: #ff5a5f;\n  --warn: #ffcc00;\n}\n\n* { box-sizing: border-box; }\nbody {\n  margin: 0;\n  background: radial-gradient(1200px 700px at 20% 0%, #16244a, var(--bg));\n  color: var(--text);\n  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;\n}\n\n.container { max-width: 1100px; margin: 0 auto; padding: 24px; }\n.header {\n  display: flex; align-items: center; justify-content: space-between;\n  gap: 16px; margin-bottom: 18px;\n}\n.title { margin: 0; font-size: 22px; }\n.subtitle { margin: 6px 0 0; color: var(--muted); font-size: 13px; }\n\n.nav { display: flex; gap: 10px; }\n.card {\n  background: rgba(18, 28, 51, 0.85);\n  border: 1px solid var(--border);\n  border-radius: 16px;\n  padding: 16px;\n  box-shadow: 0 10px 28px rgba(0,0,0,0.2);\n}\n\n.btn {\n  border: 1px solid var(--border);\n  background: transparent;\n  color: var(--text);\n  padding: 8px 12px;\n  border-radius: 12px;\n  cursor: pointer;\n}\n.btn:hover { border-color: rgba(231,236,255,0.24); }\n.btn:disabled { opacity: 0.6; cursor: not-allowed; }\n.btn.primary { background: rgba(46, 204, 113, 0.14); border-color: rgba(46, 204, 113, 0.35); }\n.btn.active { background: rgba(231,236,255,0.10); }\n\n.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }\n.muted { color: var(--muted); }\n.right { text-align: right; }\n\n.alert {\n  margin: 12px 0;\n  padding: 10px 12px;\n  border-radius: 12px;\n  border: 1px solid var(--border);\n}\n.alert.ok { border-color: rgba(46, 204, 113, 0.35); background: rgba(46, 204, 113, 0.10); }\n.alert.error { border-color: rgba(255, 90, 95, 0.5); background: rgba(255, 90, 95, 0.10); }\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 12px;\n}\n@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .header { flex-direction: column; align-items: flex-start; } }\n\n.product {\n  border: 1px solid var(--border);\n  border-radius: 16px;\n  padding: 12px;\n  background: rgba(255,255,255,0.03);\n}\n.productTop { display: flex; justify-content: space-between; gap: 10px; }\n.productName { font-weight: 800; }\n.stock { color: var(--muted); }\n.stock.low { color: var(--warn); }\n.productBottom { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }\n.price { font-weight: 800; }\n\n.twoCol {\n  display: grid;\n  grid-template-columns: 1.4fr 1fr;\n  gap: 16px;\n}\n@media (max-width: 900px) { .twoCol { grid-template-columns: 1fr; } }\n\n.tableWrap { overflow: auto; border-radius: 12px; border: 1px solid var(--border); }\n.table { width: 100%; border-collapse: collapse; min-width: 650px; }\n.table th, .table td { padding: 10px; border-bottom: 1px solid var(--border); }\n.lowText { color: var(--warn); }\n\n.list { display: grid; gap: 10px; }\n.listItem {\n  display: flex; justify-content: space-between; align-items: center;\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  padding: 10px 12px;\n  background: rgba(255,255,255,0.03);\n}\n.lowBadge {\n  min-width: 44px;\n  text-align: center;\n  padding: 6px 10px;\n  border-radius: 999px;\n  background: rgba(255, 204, 0, 0.16);\n  border: 1px solid rgba(255, 204, 0, 0.35);\n  font-weight: 900;\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n# Zip it\nzip_path = pathlib.Path(\"/mnt/data/online-shop-inventory.zip\")\nif zip_path.exists():\n    zip_path.unlink()\n\nwith zipfile.ZipFile(zip_path, \"w\", compression=zipfile.ZIP_DEFLATED) as z:\n    for path in base.rglob(\"*\"):\n        if path.is_file():\n            z.write(path, arcname=str(path.relative_to(base.parent)))\n\nzip_path, base.exists(), sum(1 for _ in base.rglob(\"*\") if _.is_file())"
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "citations": [],
+                        "content_references": [],
+                        "request_id": "f123c923-df36-4098-8354-bbc02906f9d0",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "b6b52a89-2e10-48a1-8df3-4cbcbda44a0e",
+                        "turn_exchange_id": "2b1b1133-6654-4bfd-b39a-664859b8d8f2"
+                    },
+                    "recipient": "python",
+                    "channel": "commentary"
+                },
+                "parent": "b6b52a89-2e10-48a1-8df3-4cbcbda44a0e",
+                "children": [
+                    "4e04de2d-0c71-46f0-8a1d-23c59ba42b9c"
+                ]
+            },
+            "4e04de2d-0c71-46f0-8a1d-23c59ba42b9c": {
+                "id": "4e04de2d-0c71-46f0-8a1d-23c59ba42b9c",
+                "message": {
+                    "id": "4e04de2d-0c71-46f0-8a1d-23c59ba42b9c",
+                    "author": {
+                        "role": "tool",
+                        "name": "python",
+                        "metadata": {}
+                    },
+                    "create_time": 1766285509.8729434,
+                    "update_time": 1766285512.5593314,
+                    "content": {
+                        "content_type": "execution_output",
+                        "text": "(PosixPath('/mnt/data/online-shop-inventory.zip'), True, 19)"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "is_complete": true,
+                        "aggregate_result": {
+                            "status": "success",
+                            "run_id": "78032837-6959-4ca9-9e5a-59ecc9ff2b17",
+                            "start_time": 1766285509.8729434,
+                            "update_time": 1766285512.5593314,
+                            "code": "import os, textwrap, zipfile, json, pathlib, shutil\n\nbase = pathlib.Path(\"/mnt/data/online-shop-inventory\")\nif base.exists():\n    shutil.rmtree(base)\nbase.mkdir(parents=True)\n\n# Root files\ndocker_compose = \"\"\"version: \"3.9\"\n\nservices:\n  db:\n    image: postgres:16\n    container_name: shop_db\n    environment:\n      POSTGRES_USER: postgres\n      POSTGRES_PASSWORD: postgres\n      POSTGRES_DB: shopdb\n    ports:\n      - \"5432:5432\"\n    volumes:\n      - db_data:/var/lib/postgresql/data\n      - ./backend/sql:/docker-entrypoint-initdb.d\n\n  backend:\n    image: node:20\n    container_name: shop_backend\n    working_dir: /app\n    volumes:\n      - ./backend:/app\n    environment:\n      PORT: 3001\n      DATABASE_URL: postgres://postgres:postgres@db:5432/shopdb\n      LOW_STOCK_THRESHOLD: 5\n    depends_on:\n      - db\n    ports:\n      - \"3001:3001\"\n    command: sh -c \"npm install && npm start\"\n\n  frontend:\n    image: node:20\n    container_name: shop_frontend\n    working_dir: /app\n    volumes:\n      - ./frontend:/app\n    environment:\n      VITE_API_BASE: http://localhost:3001\n    depends_on:\n      - backend\n    ports:\n      - \"5173:5173\"\n    command: sh -c \"npm install && npm run dev\"\n\nvolumes:\n  db_data:\n\"\"\"\n\nreadme = \"\"\"# Online Shop + Inventory System (Beginner Friendly)\n\nThis project is a simple online shop connected to an inventory system.\n\n\u2705 Customers can buy items (stock goes down)  \n\u2705 You can restock items (stock goes up)  \n\u2705 Low-stock items (stock < 5) are shown and backend prints a LOW STOCK log  \n\u2705 Stock change history is saved in the database  \n\n---\n\n## What you need to install\n\n### Easiest: Docker Desktop\nInstall Docker Desktop (Windows/Mac), then restart if needed.\n\n---\n\n## How to start (Docker)\n\n### 1) Open a terminal in this folder\nThis folder contains `docker-compose.yml`.\n\n### 2) Start everything\nRun:\n\n```bash\ndocker compose up\n```\n\nFirst run may take a few minutes.\n\n### 3) Open the website\n- Shop page: http://localhost:5173\n- Backend health check: http://localhost:3001/health\n\n---\n\n## How to stop\n\nPress **CTRL + C** in the terminal window, then run:\n\n```bash\ndocker compose down\n```\n\n---\n\n## Database tables (created automatically)\n\nWhen Docker starts the database for the first time, it automatically runs:\n\n- `backend/sql/001_init.sql`  (creates tables)\n- `backend/sql/002_seed.sql`  (adds example products)\n\nTables:\n- `products`\n- `stock_history`\n\n---\n\n## What to click in the app\n\n### Shop tab\n- Click **Buy 1** to purchase.\n- If stock is 0, you cannot buy.\n\n### Dashboard tab\n- View inventory.\n- See low-stock list.\n- Click **Restock +5** to add stock.\n\n---\n\n## Troubleshooting\n\n### \"Port already in use\"\nSomething else is using ports **5173**, **3001**, or **5432**.\n\nFix:\n- close the other app, or\n- change ports in `docker-compose.yml`\n\n### Reset database (deletes data!)\n```bash\ndocker compose down -v\ndocker compose up\n```\n\"\"\"\n\n(base / \"docker-compose.yml\").write_text(docker_compose, encoding=\"utf-8\")\n(base / \"README.md\").write_text(readme, encoding=\"utf-8\")\n\n# Backend files\nbackend = base / \"backend\"\n(backend / \"sql\").mkdir(parents=True)\n\nbackend_package = {\n  \"name\": \"inventory-backend\",\n  \"version\": \"1.0.0\",\n  \"main\": \"server.js\",\n  \"type\": \"commonjs\",\n  \"scripts\": {\"start\": \"node server.js\"},\n  \"dependencies\": {\n    \"cors\": \"^2.8.5\",\n    \"dotenv\": \"^16.4.5\",\n    \"express\": \"^4.19.2\",\n    \"pg\": \"^8.12.0\"\n  }\n}\n(backend / \"package.json\").write_text(json.dumps(backend_package, indent=2), encoding=\"utf-8\")\n\n(backend / \".env.example\").write_text(\n\"\"\"PORT=3001\nDATABASE_URL=postgres://postgres:postgres@localhost:5432/shopdb\nLOW_STOCK_THRESHOLD=5\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"db.js\").write_text(\n\"\"\"const { Pool } = require(\"pg\");\n\nconst pool = new Pool({\n  connectionString: process.env.DATABASE_URL\n});\n\nmodule.exports = { pool };\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"inventoryController.js\").write_text(\n\"\"\"const { pool } = require(\"./db\");\n\nfunction threshold() {\n  const t = Number(process.env.LOW_STOCK_THRESHOLD ?? \"5\");\n  return Number.isFinite(t) ? t : 5;\n}\n\n// GET /api/products\nasync function listProducts(req, res) {\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       ORDER BY name ASC`\n    );\n    res.json({ items: r.rows });\n  } catch (e) {\n    console.error(\"listProducts:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// GET /api/low-stock\nasync function listLowStock(req, res) {\n  const t = threshold();\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       WHERE stock < $1\n       ORDER BY stock ASC, name ASC`,\n      [t]\n    );\n    res.json({ threshold: t, items: r.rows });\n  } catch (e) {\n    console.error(\"listLowStock:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// POST /api/purchase  body: { productId, quantity }\nasync function purchase(req, res) {\n  const { productId, quantity } = req.body;\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    // lock the product row to prevent overselling\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = product.stock;\n\n    if (before < quantity) {\n      await client.query(\"ROLLBACK\");\n      return res.status(409).json({\n        error: \"Not enough stock\",\n        available: before,\n        requested: quantity\n      });\n    }\n\n    const after = before - quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'PURCHASE', $2, $3, $4, $5)`,\n      [productId, -quantity, before, after, \"customer purchase\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    if (after < threshold()) {\n      console.log(`[LOW STOCK] productId=${productId} name=\"${product.name}\" stock=${after}`);\n    }\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"purchase:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// POST /api/restock  body: { productId, quantity }\nasync function restock(req, res) {\n  const { productId, quantity } = req.body;\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = product.stock;\n    const after = before + quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'RESTOCK', $2, $3, $4, $5)`,\n      [productId, quantity, before, after, \"admin restock\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"restock:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// GET /api/history/:productId\nasync function history(req, res) {\n  const productId = Number(req.params.productId);\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  try {\n    const r = await pool.query(\n      `SELECT id, change_type, delta, before_stock, after_stock, reason, created_at\n       FROM stock_history\n       WHERE product_id = $1\n       ORDER BY created_at DESC\n       LIMIT 200`,\n      [productId]\n    );\n    res.json({ productId, items: r.rows });\n  } catch (e) {\n    console.error(\"history:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\nmodule.exports = {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n};\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"routes.js\").write_text(\n\"\"\"const express = require(\"express\");\nconst {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n} = require(\"./inventoryController\");\n\nconst router = express.Router();\n\nrouter.get(\"/products\", listProducts);\nrouter.get(\"/low-stock\", listLowStock);\nrouter.post(\"/purchase\", purchase);\nrouter.post(\"/restock\", restock);\nrouter.get(\"/history/:productId\", history);\n\nmodule.exports = router;\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"server.js\").write_text(\n\"\"\"require(\"dotenv\").config();\n\nconst express = require(\"express\");\nconst cors = require(\"cors\");\nconst routes = require(\"./routes\");\n\nconst app = express();\n\napp.use(cors());\napp.use(express.json());\n\napp.get(\"/health\", (req, res) => res.json({ ok: true }));\napp.use(\"/api\", routes);\n\nconst port = Number(process.env.PORT || 3001);\napp.listen(port, () => {\n  console.log(`Backend running on http://localhost:${port}`);\n});\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"sql\" / \"001_init.sql\").write_text(\n\"\"\"CREATE TABLE IF NOT EXISTS products (\n  id           BIGSERIAL PRIMARY KEY,\n  sku          TEXT UNIQUE NOT NULL,\n  name         TEXT NOT NULL,\n  price_cents  INTEGER NOT NULL DEFAULT 0 CHECK (price_cents >= 0),\n  stock        INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),\n  updated_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE TABLE IF NOT EXISTS stock_history (\n  id            BIGSERIAL PRIMARY KEY,\n  product_id    BIGINT NOT NULL REFERENCES products(id) ON DELETE CASCADE,\n  change_type   TEXT NOT NULL CHECK (change_type IN ('PURCHASE','RESTOCK','ADJUSTMENT')),\n  delta         INTEGER NOT NULL,\n  before_stock  INTEGER NOT NULL,\n  after_stock   INTEGER NOT NULL,\n  reason        TEXT,\n  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()\n);\n\nCREATE INDEX IF NOT EXISTS idx_products_stock ON products(stock);\nCREATE INDEX IF NOT EXISTS idx_stock_history_product ON stock_history(product_id);\n\"\"\", encoding=\"utf-8\"\n)\n\n(backend / \"sql\" / \"002_seed.sql\").write_text(\n\"\"\"INSERT INTO products (sku, name, price_cents, stock)\nVALUES\n  ('SKU-TSHIRT', 'T-Shirt', 39900, 10),\n  ('SKU-MUG',    'Coffee Mug', 25000, 4),\n  ('SKU-HAT',    'Cap / Hat', 19900, 7)\nON CONFLICT (sku) DO NOTHING;\n\"\"\", encoding=\"utf-8\"\n)\n\n# Frontend files\nfrontend = base / \"frontend\"\n(frontend / \"src\" / \"pages\").mkdir(parents=True)\n\nfrontend_package = {\n  \"name\": \"inventory-frontend\",\n  \"version\": \"1.0.0\",\n  \"private\": True,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite --host 0.0.0.0 --port 5173\",\n    \"build\": \"vite build\",\n    \"preview\": \"vite preview --host 0.0.0.0 --port 5173\"\n  },\n  \"dependencies\": {\n    \"react\": \"^18.3.1\",\n    \"react-dom\": \"^18.3.1\"\n  },\n  \"devDependencies\": {\n    \"@vitejs/plugin-react\": \"^4.3.1\",\n    \"vite\": \"^5.4.8\"\n  }\n}\n(frontend / \"package.json\").write_text(json.dumps(frontend_package, indent=2), encoding=\"utf-8\")\n\n(frontend / \"vite.config.js\").write_text(\n\"\"\"import { defineConfig } from \"vite\";\nimport react from \"@vitejs/plugin-react\";\n\nexport default defineConfig({\n  plugins: [react()],\n  server: {\n    port: 5173,\n    host: true\n  }\n});\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"index.html\").write_text(\n\"\"\"<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Online Shop + Inventory</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"main.jsx\").write_text(\n\"\"\"import React from \"react\";\nimport ReactDOM from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./styles.css\";\n\nReactDOM.createRoot(document.getElementById(\"root\")).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"api.js\").write_text(\n\"\"\"const API_BASE =\n  import.meta?.env?.VITE_API_BASE ?? \"http://localhost:3001\";\n\nexport async function apiGet(path) {\n  const res = await fetch(`${API_BASE}${path}`);\n  if (!res.ok) throw new Error(`GET ${path} failed (${res.status})`);\n  return res.json();\n}\n\nexport async function apiPost(path, body) {\n  const res = await fetch(`${API_BASE}${path}`, {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify(body ?? {})\n  });\n  const json = await res.json().catch(() => ({}));\n  if (!res.ok) {\n    throw new Error(json?.error || `POST ${path} failed (${res.status})`);\n  }\n  return json;\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"App.jsx\").write_text(\n\"\"\"import React, { useState } from \"react\";\nimport Shop from \"./pages/Shop.jsx\";\nimport Dashboard from \"./pages/Dashboard.jsx\";\n\nexport default function App() {\n  const [page, setPage] = useState(\"shop\");\n\n  return (\n    <div className=\"container\">\n      <header className=\"header\">\n        <div>\n          <h1 className=\"title\">Online Shop + Inventory</h1>\n          <p className=\"subtitle\">Buy items (subtract stock) + restock in dashboard</p>\n        </div>\n\n        <nav className=\"nav\">\n          <button className={page === \"shop\" ? \"btn active\" : \"btn\"} onClick={() => setPage(\"shop\")}>\n            Shop\n          </button>\n          <button className={page === \"dashboard\" ? \"btn active\" : \"btn\"} onClick={() => setPage(\"dashboard\")}>\n            Dashboard\n          </button>\n        </nav>\n      </header>\n\n      {page === \"shop\" ? <Shop /> : <Dashboard />}\n    </div>\n  );\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"pages\" / \"Shop.jsx\").write_text(\n\"\"\"import React, { useEffect, useState } from \"react\";\nimport { apiGet, apiPost } from \"../api.js\";\n\nfunction money(cents) {\n  return (cents / 100).toLocaleString(undefined, { style: \"currency\", currency: \"THB\" });\n}\n\nexport default function Shop() {\n  const [items, setItems] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [msg, setMsg] = useState(\"\");\n  const [err, setErr] = useState(\"\");\n\n  async function load() {\n    setLoading(true);\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      const data = await apiGet(\"/api/products\");\n      setItems(data.items ?? []);\n    } catch (e) {\n      setErr(e.message || \"Failed to load products\");\n    } finally {\n      setLoading(false);\n    }\n  }\n\n  useEffect(() => {\n    load();\n  }, []);\n\n  async function buy(productId) {\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      await apiPost(\"/api/purchase\", { productId, quantity: 1 });\n      setMsg(\"Purchase successful! Stock updated.\");\n      await load();\n    } catch (e) {\n      setErr(e.message || \"Purchase failed\");\n    }\n  }\n\n  return (\n    <section className=\"card\">\n      <div className=\"row\">\n        <h2>Shop</h2>\n        <button className=\"btn\" onClick={load} disabled={loading}>\n          {loading ? \"Loading...\" : \"Refresh\"}\n        </button>\n      </div>\n\n      {err ? <div className=\"alert error\">{err}</div> : null}\n      {msg ? <div className=\"alert ok\">{msg}</div> : null}\n\n      <div className=\"grid\">\n        {items.map((p) => (\n          <div className=\"product\" key={p.id}>\n            <div className=\"productTop\">\n              <div>\n                <div className=\"productName\">{p.name}</div>\n                <div className=\"muted\">SKU: {p.sku}</div>\n              </div>\n              <div className={p.stock < 5 ? \"stock low\" : \"stock\"}>\n                Stock: <strong>{p.stock}</strong>\n              </div>\n            </div>\n\n            <div className=\"productBottom\">\n              <div className=\"price\">{money(p.price_cents)}</div>\n              <button\n                className=\"btn primary\"\n                onClick={() => buy(p.id)}\n                disabled={p.stock <= 0}\n                title={p.stock <= 0 ? \"Out of stock\" : \"Buy 1 item\"}\n              >\n                Buy 1\n              </button>\n            </div>\n          </div>\n        ))}\n\n        {!loading && items.length === 0 ? <div className=\"muted\">No products found.</div> : null}\n      </div>\n    </section>\n  );\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"pages\" / \"Dashboard.jsx\").write_text(\n\"\"\"import React, { useEffect, useState } from \"react\";\nimport { apiGet, apiPost } from \"../api.js\";\n\nfunction formatDate(iso) {\n  const d = new Date(iso);\n  return isNaN(d.getTime()) ? \"-\" : d.toLocaleString();\n}\n\nexport default function Dashboard() {\n  const [items, setItems] = useState([]);\n  const [low, setLow] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [msg, setMsg] = useState(\"\");\n  const [err, setErr] = useState(\"\");\n\n  async function load() {\n    setLoading(true);\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      const [all, lowStock] = await Promise.all([\n        apiGet(\"/api/products\"),\n        apiGet(\"/api/low-stock\")\n      ]);\n      setItems(all.items ?? []);\n      setLow(lowStock.items ?? []);\n    } catch (e) {\n      setErr(e.message || \"Failed to load dashboard\");\n    } finally {\n      setLoading(false);\n    }\n  }\n\n  useEffect(() => {\n    load();\n  }, []);\n\n  async function restock(productId) {\n    setErr(\"\");\n    setMsg(\"\");\n    try {\n      await apiPost(\"/api/restock\", { productId, quantity: 5 });\n      setMsg(\"Restocked +5. Inventory updated.\");\n      await load();\n    } catch (e) {\n      setErr(e.message || \"Restock failed\");\n    }\n  }\n\n  return (\n    <section className=\"card\">\n      <div className=\"row\">\n        <h2>Inventory Dashboard</h2>\n        <button className=\"btn\" onClick={load} disabled={loading}>\n          {loading ? \"Loading...\" : \"Refresh\"}\n        </button>\n      </div>\n\n      {err ? <div className=\"alert error\">{err}</div> : null}\n      {msg ? <div className=\"alert ok\">{msg}</div> : null}\n\n      <div className=\"twoCol\">\n        <div>\n          <h3>All Stock</h3>\n          <div className=\"tableWrap\">\n            <table className=\"table\">\n              <thead>\n                <tr>\n                  <th>SKU</th>\n                  <th>Name</th>\n                  <th className=\"right\">Stock</th>\n                  <th>Updated</th>\n                  <th className=\"right\">Action</th>\n                </tr>\n              </thead>\n              <tbody>\n                {items.map((p) => (\n                  <tr key={p.id}>\n                    <td>{p.sku}</td>\n                    <td>{p.name}</td>\n                    <td className={p.stock < 5 ? \"right lowText\" : \"right\"}>\n                      <strong>{p.stock}</strong>\n                    </td>\n                    <td className=\"muted\">{formatDate(p.updated_at)}</td>\n                    <td className=\"right\">\n                      <button className=\"btn\" onClick={() => restock(p.id)}>\n                        Restock +5\n                      </button>\n                    </td>\n                  </tr>\n                ))}\n                {!loading && items.length === 0 ? (\n                  <tr>\n                    <td colSpan=\"5\" className=\"muted\">No products found.</td>\n                  </tr>\n                ) : null}\n              </tbody>\n            </table>\n          </div>\n        </div>\n\n        <div>\n          <h3>Low Stock (stock &lt; 5)</h3>\n          {low.length === 0 && !loading ? (\n            <div className=\"alert ok\">No low-stock items \ud83c\udf89</div>\n          ) : (\n            <div className=\"list\">\n              {low.map((p) => (\n                <div className=\"listItem\" key={p.id}>\n                  <div>\n                    <div className=\"productName\">{p.name}</div>\n                    <div className=\"muted\">SKU: {p.sku}</div>\n                  </div>\n                  <div className=\"lowBadge\">{p.stock}</div>\n                </div>\n              ))}\n            </div>\n          )}\n        </div>\n      </div>\n    </section>\n  );\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n(frontend / \"src\" / \"styles.css\").write_text(\n\"\"\"/* Simple dark UI */\n:root {\n  --bg: #0b1220;\n  --card: #121c33;\n  --text: #e7ecff;\n  --muted: rgba(231, 236, 255, 0.72);\n  --border: rgba(231, 236, 255, 0.12);\n  --ok: #2ecc71;\n  --err: #ff5a5f;\n  --warn: #ffcc00;\n}\n\n* { box-sizing: border-box; }\nbody {\n  margin: 0;\n  background: radial-gradient(1200px 700px at 20% 0%, #16244a, var(--bg));\n  color: var(--text);\n  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;\n}\n\n.container { max-width: 1100px; margin: 0 auto; padding: 24px; }\n.header {\n  display: flex; align-items: center; justify-content: space-between;\n  gap: 16px; margin-bottom: 18px;\n}\n.title { margin: 0; font-size: 22px; }\n.subtitle { margin: 6px 0 0; color: var(--muted); font-size: 13px; }\n\n.nav { display: flex; gap: 10px; }\n.card {\n  background: rgba(18, 28, 51, 0.85);\n  border: 1px solid var(--border);\n  border-radius: 16px;\n  padding: 16px;\n  box-shadow: 0 10px 28px rgba(0,0,0,0.2);\n}\n\n.btn {\n  border: 1px solid var(--border);\n  background: transparent;\n  color: var(--text);\n  padding: 8px 12px;\n  border-radius: 12px;\n  cursor: pointer;\n}\n.btn:hover { border-color: rgba(231,236,255,0.24); }\n.btn:disabled { opacity: 0.6; cursor: not-allowed; }\n.btn.primary { background: rgba(46, 204, 113, 0.14); border-color: rgba(46, 204, 113, 0.35); }\n.btn.active { background: rgba(231,236,255,0.10); }\n\n.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }\n.muted { color: var(--muted); }\n.right { text-align: right; }\n\n.alert {\n  margin: 12px 0;\n  padding: 10px 12px;\n  border-radius: 12px;\n  border: 1px solid var(--border);\n}\n.alert.ok { border-color: rgba(46, 204, 113, 0.35); background: rgba(46, 204, 113, 0.10); }\n.alert.error { border-color: rgba(255, 90, 95, 0.5); background: rgba(255, 90, 95, 0.10); }\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 12px;\n}\n@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .header { flex-direction: column; align-items: flex-start; } }\n\n.product {\n  border: 1px solid var(--border);\n  border-radius: 16px;\n  padding: 12px;\n  background: rgba(255,255,255,0.03);\n}\n.productTop { display: flex; justify-content: space-between; gap: 10px; }\n.productName { font-weight: 800; }\n.stock { color: var(--muted); }\n.stock.low { color: var(--warn); }\n.productBottom { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }\n.price { font-weight: 800; }\n\n.twoCol {\n  display: grid;\n  grid-template-columns: 1.4fr 1fr;\n  gap: 16px;\n}\n@media (max-width: 900px) { .twoCol { grid-template-columns: 1fr; } }\n\n.tableWrap { overflow: auto; border-radius: 12px; border: 1px solid var(--border); }\n.table { width: 100%; border-collapse: collapse; min-width: 650px; }\n.table th, .table td { padding: 10px; border-bottom: 1px solid var(--border); }\n.lowText { color: var(--warn); }\n\n.list { display: grid; gap: 10px; }\n.listItem {\n  display: flex; justify-content: space-between; align-items: center;\n  border: 1px solid var(--border);\n  border-radius: 14px;\n  padding: 10px 12px;\n  background: rgba(255,255,255,0.03);\n}\n.lowBadge {\n  min-width: 44px;\n  text-align: center;\n  padding: 6px 10px;\n  border-radius: 999px;\n  background: rgba(255, 204, 0, 0.16);\n  border: 1px solid rgba(255, 204, 0, 0.35);\n  font-weight: 900;\n}\n\"\"\", encoding=\"utf-8\"\n)\n\n# Zip it\nzip_path = pathlib.Path(\"/mnt/data/online-shop-inventory.zip\")\nif zip_path.exists():\n    zip_path.unlink()\n\nwith zipfile.ZipFile(zip_path, \"w\", compression=zipfile.ZIP_DEFLATED) as z:\n    for path in base.rglob(\"*\"):\n        if path.is_file():\n            z.write(path, arcname=str(path.relative_to(base.parent)))\n\nzip_path, base.exists(), sum(1 for _ in base.rglob(\"*\") if _.is_file())",
+                            "end_time": 1766285512.5593314,
+                            "final_expression_output": "(PosixPath('/mnt/data/online-shop-inventory.zip'), True, 19)",
+                            "in_kernel_exception": null,
+                            "system_exception": null,
+                            "messages": [],
+                            "jupyter_messages": [
+                                {
+                                    "msg_type": "status",
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_2",
+                                        "version": "5.3"
+                                    },
+                                    "content": {
+                                        "execution_state": "busy"
+                                    }
+                                },
+                                {
+                                    "msg_type": "execute_input",
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_2",
+                                        "version": "5.3"
+                                    }
+                                },
+                                {
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_2",
+                                        "version": "5.3"
+                                    },
+                                    "msg_type": "execute_result",
+                                    "content": {
+                                        "data": {
+                                            "text/plain": "(PosixPath('/mnt/data/online-shop-inventory.zip'), True, 19)"
+                                        }
+                                    }
+                                },
+                                {
+                                    "msg_type": "status",
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_2",
+                                        "version": "5.3"
+                                    },
+                                    "content": {
+                                        "execution_state": "idle"
+                                    }
+                                }
+                            ],
+                            "timeout_triggered": null
+                        },
+                        "request_id": "f123c923-df36-4098-8354-bbc02906f9d0",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "f59b5a34-6399-4ed5-b15d-157103397b99",
+                        "turn_exchange_id": "2b1b1133-6654-4bfd-b39a-664859b8d8f2"
+                    },
+                    "recipient": "all",
+                    "channel": "commentary"
+                },
+                "parent": "f59b5a34-6399-4ed5-b15d-157103397b99",
+                "children": [
+                    "c28d8aa0-c76a-4184-a045-f43bb4fe02f8"
+                ]
+            },
+            "c28d8aa0-c76a-4184-a045-f43bb4fe02f8": {
+                "id": "c28d8aa0-c76a-4184-a045-f43bb4fe02f8",
+                "message": {
+                    "id": "c28d8aa0-c76a-4184-a045-f43bb4fe02f8",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766285512.575499,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "Yes \u2014 I created a ready-to-run ZIP for you.\n\n[Download the project ZIP](sandbox:/mnt/data/online-shop-inventory.zip)\n\n## How to run it (no coding needed)\n\n### 1) Install Docker Desktop\n- Install **Docker Desktop** on your computer (Windows or Mac)\n- Open Docker Desktop and make sure it\u2019s running\n\n### 2) Unzip the file\n- Unzip `online-shop-inventory.zip`\n- You\u2019ll get a folder named `online-shop-inventory`\n\n### 3) Start the system\nOpen **Terminal** (Mac) or **Command Prompt / PowerShell** (Windows), then:\n\n1. Go into the folder (you can drag the folder into the terminal to fill the path), then run:\n   ```bash\n   docker compose up\n   ```\n\n### 4) Open the website\n- Shop page: http://localhost:5173  \n- Backend check: http://localhost:3001/health  \n\n### 5) Stop it\nPress **CTRL + C** in the terminal, then run:\n```bash\ndocker compose down\n```\n\n---\n\nIf you tell me whether you\u2019re on **Mac** or **Windows**, I\u2019ll give you click-by-click instructions for opening the terminal and running the command."
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 1.0,
+                    "metadata": {
+                        "citations": [],
+                        "content_references": [],
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "f123c923-df36-4098-8354-bbc02906f9d0",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "4e04de2d-0c71-46f0-8a1d-23c59ba42b9c",
+                        "turn_exchange_id": "2b1b1133-6654-4bfd-b39a-664859b8d8f2"
+                    },
+                    "recipient": "all",
+                    "channel": "final"
+                },
+                "parent": "4e04de2d-0c71-46f0-8a1d-23c59ba42b9c",
+                "children": [
+                    "51919fda-7725-4cf6-97fc-d8731bc0b3b1",
+                    "98e26657-e254-471b-a547-a57641b607f6"
+                ]
+            },
+            "51919fda-7725-4cf6-97fc-d8731bc0b3b1": {
+                "id": "51919fda-7725-4cf6-97fc-d8731bc0b3b1",
+                "message": {
+                    "id": "51919fda-7725-4cf6-97fc-d8731bc0b3b1",
+                    "author": {
+                        "role": "user",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286073.609,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "I ran on Mac, I tried to run the code you gave me, but it's not working. I see a red box that says 'productId must be a positive integer' on the dashboard. I don't know what that means or how to fix it. Can you fix all the code so I can click the buttons without getting this error? Please give me the updated code that is ready to use."
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "developer_mode_connector_ids": [],
+                        "selected_sources": [],
+                        "selected_github_repos": [],
+                        "serialization_metadata": {
+                            "custom_symbol_offsets": []
+                        },
+                        "request_id": "d939a61f-e895-41c0-a747-9f500b1f76c3",
+                        "message_source": null,
+                        "turn_exchange_id": "c2809e7f-26dc-43e8-b31e-d13b78303c5b"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "c28d8aa0-c76a-4184-a045-f43bb4fe02f8",
+                "children": [
+                    "5f5b6546-e251-4c7f-bb87-ebcbbf5ef35b"
+                ]
+            },
+            "98e26657-e254-471b-a547-a57641b607f6": {
+                "id": "98e26657-e254-471b-a547-a57641b607f6",
+                "message": {
+                    "id": "98e26657-e254-471b-a547-a57641b607f6",
+                    "author": {
+                        "role": "user",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286113.434,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "I ran on Mac, I tried to run the code you gave me, but it's not working. I see a red box that says 'productId must be a positive integer' on the dashboard. I don't know what that means or how to fix it. Can you fix all the code so I can click the buttons without getting this error? Please give me the updated code that is ready to use."
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_source": null,
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "c28d8aa0-c76a-4184-a045-f43bb4fe02f8",
+                "children": [
+                    "2f619114-7099-419b-b587-67d8857d5716"
+                ]
+            },
+            "5f5b6546-e251-4c7f-bb87-ebcbbf5ef35b": {
+                "id": "5f5b6546-e251-4c7f-bb87-ebcbbf5ef35b",
+                "message": {
+                    "id": "5f5b6546-e251-4c7f-bb87-ebcbbf5ef35b",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286077.0243907,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 0.0,
+                    "metadata": {
+                        "rebase_developer_message": true,
+                        "request_id": "d939a61f-e895-41c0-a747-9f500b1f76c3",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "51919fda-7725-4cf6-97fc-d8731bc0b3b1",
+                        "turn_exchange_id": "c2809e7f-26dc-43e8-b31e-d13b78303c5b",
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "51919fda-7725-4cf6-97fc-d8731bc0b3b1",
+                "children": [
+                    "6b82baa7-60ec-4a2b-92e2-5ce150288763"
+                ]
+            },
+            "2f619114-7099-419b-b587-67d8857d5716": {
+                "id": "2f619114-7099-419b-b587-67d8857d5716",
+                "message": {
+                    "id": "2f619114-7099-419b-b587-67d8857d5716",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286116.6419616,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 0.0,
+                    "metadata": {
+                        "rebase_developer_message": true,
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "98e26657-e254-471b-a547-a57641b607f6",
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3",
+                        "is_visually_hidden_from_conversation": true
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "98e26657-e254-471b-a547-a57641b607f6",
+                "children": [
+                    "6ce489a1-a6f3-4dac-b465-73fa65af3839"
+                ]
+            },
+            "6b82baa7-60ec-4a2b-92e2-5ce150288763": {
+                "id": "6b82baa7-60ec-4a2b-92e2-5ce150288763",
+                "message": {
+                    "id": "6b82baa7-60ec-4a2b-92e2-5ce150288763",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286077.0321622,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "is_contextual_answers_system_message": true,
+                        "is_visually_hidden_from_conversation": true,
+                        "command": "prompt",
+                        "contextual_answers_message_type": "sources_and_filters_prompt",
+                        "request_id": "d939a61f-e895-41c0-a747-9f500b1f76c3",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "5f5b6546-e251-4c7f-bb87-ebcbbf5ef35b",
+                        "turn_exchange_id": "c2809e7f-26dc-43e8-b31e-d13b78303c5b"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "5f5b6546-e251-4c7f-bb87-ebcbbf5ef35b",
+                "children": [
+                    "5bd6a133-dfcb-43d9-a995-5e60fa149869"
+                ]
+            },
+            "6ce489a1-a6f3-4dac-b465-73fa65af3839": {
+                "id": "6ce489a1-a6f3-4dac-b465-73fa65af3839",
+                "message": {
+                    "id": "6ce489a1-a6f3-4dac-b465-73fa65af3839",
+                    "author": {
+                        "role": "system",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286116.6464796,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            ""
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "is_contextual_answers_system_message": true,
+                        "is_visually_hidden_from_conversation": true,
+                        "command": "prompt",
+                        "contextual_answers_message_type": "sources_and_filters_prompt",
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "2f619114-7099-419b-b587-67d8857d5716",
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "2f619114-7099-419b-b587-67d8857d5716",
+                "children": [
+                    "09a62aab-b63e-4843-9efc-5e54078704af"
+                ]
+            },
+            "5bd6a133-dfcb-43d9-a995-5e60fa149869": {
+                "id": "5bd6a133-dfcb-43d9-a995-5e60fa149869",
+                "message": {
+                    "id": "5bd6a133-dfcb-43d9-a995-5e60fa149869",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286077.652347,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "thoughts",
+                        "thoughts": [],
+                        "source_analysis_msg_id": "70cea9c8-a9e9-4aca-8333-391d805bc940"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "is_reasoning",
+                        "citations": [],
+                        "content_references": [],
+                        "classifier_response": "default",
+                        "skip_reasoning_title": "Skip",
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "d939a61f-e895-41c0-a747-9f500b1f76c3",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "6b82baa7-60ec-4a2b-92e2-5ce150288763",
+                        "turn_exchange_id": "c2809e7f-26dc-43e8-b31e-d13b78303c5b"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "6b82baa7-60ec-4a2b-92e2-5ce150288763",
+                "children": [
+                    "511b60e8-2ce7-40b1-99b8-a7f8ca75fcc3"
+                ]
+            },
+            "09a62aab-b63e-4843-9efc-5e54078704af": {
+                "id": "09a62aab-b63e-4843-9efc-5e54078704af",
+                "message": {
+                    "id": "09a62aab-b63e-4843-9efc-5e54078704af",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286116.650878,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "thoughts",
+                        "thoughts": [
+                            {
+                                "summary": "Thinking longer for a better answer",
+                                "content": "",
+                                "chunks": [],
+                                "finished": true
+                            }
+                        ],
+                        "source_analysis_msg_id": "20f8edec-9be6-496d-ae9c-56abb7490635"
+                    },
+                    "status": "in_progress",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "is_reasoning",
+                        "citations": [],
+                        "content_references": [],
+                        "classifier_response": "default",
+                        "skip_reasoning_title": "Skip",
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "6ce489a1-a6f3-4dac-b465-73fa65af3839",
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "6ce489a1-a6f3-4dac-b465-73fa65af3839",
+                "children": [
+                    "4033b83e-77cb-4fa8-ac19-0c3a01b46a10"
+                ]
+            },
+            "511b60e8-2ce7-40b1-99b8-a7f8ca75fcc3": {
+                "id": "511b60e8-2ce7-40b1-99b8-a7f8ca75fcc3",
+                "message": {
+                    "id": "511b60e8-2ce7-40b1-99b8-a7f8ca75fcc3",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286080.275809,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "reasoning_recap",
+                        "content": "Thought for a couple of seconds"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "reasoning_ended",
+                        "finished_duration_sec": 2,
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "d939a61f-e895-41c0-a747-9f500b1f76c3",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "5bd6a133-dfcb-43d9-a995-5e60fa149869",
+                        "turn_exchange_id": "c2809e7f-26dc-43e8-b31e-d13b78303c5b"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "5bd6a133-dfcb-43d9-a995-5e60fa149869",
+                "children": [
+                    "94943ae6-eb54-4b36-b74d-1775c741f627"
+                ]
+            },
+            "4033b83e-77cb-4fa8-ac19-0c3a01b46a10": {
+                "id": "4033b83e-77cb-4fa8-ac19-0c3a01b46a10",
+                "message": {
+                    "id": "4033b83e-77cb-4fa8-ac19-0c3a01b46a10",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286121.670284,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "reasoning_recap",
+                        "content": "Thought for 5s"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "reasoning_status": "reasoning_ended",
+                        "finished_duration_sec": 5,
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "09a62aab-b63e-4843-9efc-5e54078704af",
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3"
+                    },
+                    "recipient": "all",
+                    "channel": null
+                },
+                "parent": "09a62aab-b63e-4843-9efc-5e54078704af",
+                "children": [
+                    "52cba8b3-93a6-4547-a0e5-9aebdab079fd"
+                ]
+            },
+            "94943ae6-eb54-4b36-b74d-1775c741f627": {
+                "id": "94943ae6-eb54-4b36-b74d-1775c741f627",
+                "message": {
+                    "id": "94943ae6-eb54-4b36-b74d-1775c741f627",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286076.407756,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "import pathlib, zipfile, shutil, json, os, re\n\nbase = pathlib.Path(\"/mnt/data/online-shop-inventory\")\nzip_path = pathlib.Path(\"/mnt/data/online-shop-inventory.zip\")\n\n# If base doesn't exist (should), extract from zip to base for editing\nif not base.exists():\n    base.parent.mkdir(parents=True, exist_ok=True)\n    with zipfile.ZipFile(zip_path, \"r\") as z:\n        z.extractall(\"/mnt/data\")\n        \ncontroller_path = base / \"backend\" / \"inventoryController.js\"\ntext = controller_path.read_text(encoding=\"utf-8\")\n\n# Replace the strict integer checks blocks by a helper that normalizes ints (accept strings)\nnew_controller = \"\"\"const { pool } = require(\"./db\");\n\nfunction threshold() {\n  const t = Number(process.env.LOW_STOCK_THRESHOLD ?? \"5\");\n  return Number.isFinite(t) ? t : 5;\n}\n\n/**\n * Accepts numbers"
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "citations": [],
+                        "content_references": [],
+                        "request_id": "d939a61f-e895-41c0-a747-9f500b1f76c3",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "finish_details": {
+                            "type": "interrupted",
+                            "reason": "client_stopped"
+                        },
+                        "is_complete": true,
+                        "parent_id": "511b60e8-2ce7-40b1-99b8-a7f8ca75fcc3",
+                        "turn_exchange_id": "c2809e7f-26dc-43e8-b31e-d13b78303c5b"
+                    },
+                    "recipient": "python",
+                    "channel": "commentary"
+                },
+                "parent": "511b60e8-2ce7-40b1-99b8-a7f8ca75fcc3",
+                "children": []
+            },
+            "52cba8b3-93a6-4547-a0e5-9aebdab079fd": {
+                "id": "52cba8b3-93a6-4547-a0e5-9aebdab079fd",
+                "message": {
+                    "id": "52cba8b3-93a6-4547-a0e5-9aebdab079fd",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286116.05389,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "import pathlib, zipfile, shutil, json, os, re\n\nbase = pathlib.Path(\"/mnt/data/online-shop-inventory\")\nzip_path = pathlib.Path(\"/mnt/data/online-shop-inventory.zip\")\n\n# Load and patch inventoryController.js\ncontroller_path = base / \"backend\" / \"inventoryController.js\"\ntext = controller_path.read_text(encoding=\"utf-8\")\n\n# Replace purchase and restock handlers with versions that coerce inputs\nnew_text = \"\"\"const { pool } = require(\"./db\");\n\nfunction threshold() {\n  const t = Number(process.env.LOW_STOCK_THRESHOLD ?? \"5\");\n  return Number.isFinite(t) ? t : 5;\n}\n\nfunction toInt(value) {\n  const n = typeof value === \"number\" ? value : Number(value);\n  return Number.isFinite(n) ? Math.trunc(n) : NaN;\n}\n\n// GET /api/products\nasync function listProducts(req, res) {\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       ORDER BY name ASC`\n    );\n    res.json({ items: r.rows });\n  } catch (e) {\n    console.error(\"listProducts:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// GET /api/low-stock\nasync function listLowStock(req, res) {\n  const t = threshold();\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       WHERE stock < $1\n       ORDER BY stock ASC, name ASC`,\n      [t]\n    );\n    res.json({ threshold: t, items: r.rows });\n  } catch (e) {\n    console.error(\"listLowStock:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// POST /api/purchase  body: { productId, quantity }\nasync function purchase(req, res) {\n  const productId = toInt(req.body?.productId);\n  const quantity = toInt(req.body?.quantity);\n\n  // Accept numeric strings (e.g. \"1\") and enforce whole numbers\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    // lock the product row to prevent overselling\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = Number(product.stock);\n\n    if (before < quantity) {\n      await client.query(\"ROLLBACK\");\n      return res.status(409).json({\n        error: \"Not enough stock\",\n        available: before,\n        requested: quantity\n      });\n    }\n\n    const after = before - quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'PURCHASE', $2, $3, $4, $5)`,\n      [productId, -quantity, before, after, \"customer purchase\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    if (after < threshold()) {\n      console.log(`[LOW STOCK] productId=${productId} name=\"${product.name}\" stock=${after}`);\n    }\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"purchase:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// POST /api/restock  body: { productId, quantity }\nasync function restock(req, res) {\n  const productId = toInt(req.body?.productId);\n  const quantity = toInt(req.body?.quantity);\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = Number(product.stock);\n    const after = before + quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'RESTOCK', $2, $3, $4, $5)`,\n      [productId, quantity, before, after, \"admin restock\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"restock:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// GET /api/history/:productId\nasync function history(req, res) {\n  const productId = toInt(req.params.productId);\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  try {\n    const r = await pool.query(\n      `SELECT id, change_type, delta, before_stock, after_stock, reason, created_at\n       FROM stock_history\n       WHERE product_id = $1\n       ORDER BY created_at DESC\n       LIMIT 200`,\n      [productId]\n    );\n    res.json({ productId, items: r.rows });\n  } catch (e) {\n    console.error(\"history:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\nmodule.exports = {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n};\n\"\"\"\ncontroller_path.write_text(new_text, encoding=\"utf-8\")\n\n# Also patch frontend to ensure numeric productId in requests (belt & suspenders)\nshop_path = base / \"frontend\" / \"src\" / \"pages\" / \"Shop.jsx\"\ndash_path = base / \"frontend\" / \"src\" / \"pages\" / \"Dashboard.jsx\"\n\nshop = shop_path.read_text(encoding=\"utf-8\")\nshop = shop.replace(\"await apiPost(\\\"/api/purchase\\\", { productId, quantity: 1 });\",\n                    \"await apiPost(\\\"/api/purchase\\\", { productId: Number(productId), quantity: 1 });\")\nshop_path.write_text(shop, encoding=\"utf-8\")\n\ndash = dash_path.read_text(encoding=\"utf-8\")\ndash = dash.replace(\"await apiPost(\\\"/api/restock\\\", { productId, quantity: 5 });\",\n                    \"await apiPost(\\\"/api/restock\\\", { productId: Number(productId), quantity: 5 });\")\ndash_path.write_text(dash, encoding=\"utf-8\")\n\n# Update README with a small note about BIGINT ids\nreadme_path = base / \"README.md\"\nreadme = readme_path.read_text(encoding=\"utf-8\")\nnote = \"\\n\\n## Fix note (Dec 2025)\\nIf you previously saw an error like `productId must be a positive integer`, it was caused by the database returning BIGINT IDs as strings. This version accepts numeric strings and also converts IDs in the frontend.\\n\"\nif \"Fix note (Dec 2025)\" not in readme:\n    readme += note\nreadme_path.write_text(readme, encoding=\"utf-8\")\n\n# Re-zip\nif zip_path.exists():\n    zip_path.unlink()\n\nwith zipfile.ZipFile(zip_path, \"w\", compression=zipfile.ZIP_DEFLATED) as z:\n    for path in base.rglob(\"*\"):\n        if path.is_file():\n            z.write(path, arcname=str(path.relative_to(base.parent)))\n\nzip_path"
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": false,
+                    "weight": 1.0,
+                    "metadata": {
+                        "citations": [],
+                        "content_references": [],
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "4033b83e-77cb-4fa8-ac19-0c3a01b46a10",
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3"
+                    },
+                    "recipient": "python",
+                    "channel": "commentary"
+                },
+                "parent": "4033b83e-77cb-4fa8-ac19-0c3a01b46a10",
+                "children": [
+                    "deb21cfd-9659-4d61-8c74-4eb062c5b66e"
+                ]
+            },
+            "deb21cfd-9659-4d61-8c74-4eb062c5b66e": {
+                "id": "deb21cfd-9659-4d61-8c74-4eb062c5b66e",
+                "message": {
+                    "id": "deb21cfd-9659-4d61-8c74-4eb062c5b66e",
+                    "author": {
+                        "role": "tool",
+                        "name": "python",
+                        "metadata": {}
+                    },
+                    "create_time": 1766286141.4478881,
+                    "update_time": 1766286144.220408,
+                    "content": {
+                        "content_type": "execution_output",
+                        "text": "PosixPath('/mnt/data/online-shop-inventory.zip')"
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": null,
+                    "weight": 1.0,
+                    "metadata": {
+                        "is_complete": true,
+                        "aggregate_result": {
+                            "status": "success",
+                            "run_id": "b16dbe0f-f178-45cb-ba83-f5c83c9b3d55",
+                            "start_time": 1766286141.4478881,
+                            "update_time": 1766286144.220408,
+                            "code": "import pathlib, zipfile, shutil, json, os, re\n\nbase = pathlib.Path(\"/mnt/data/online-shop-inventory\")\nzip_path = pathlib.Path(\"/mnt/data/online-shop-inventory.zip\")\n\n# Load and patch inventoryController.js\ncontroller_path = base / \"backend\" / \"inventoryController.js\"\ntext = controller_path.read_text(encoding=\"utf-8\")\n\n# Replace purchase and restock handlers with versions that coerce inputs\nnew_text = \"\"\"const { pool } = require(\"./db\");\n\nfunction threshold() {\n  const t = Number(process.env.LOW_STOCK_THRESHOLD ?? \"5\");\n  return Number.isFinite(t) ? t : 5;\n}\n\nfunction toInt(value) {\n  const n = typeof value === \"number\" ? value : Number(value);\n  return Number.isFinite(n) ? Math.trunc(n) : NaN;\n}\n\n// GET /api/products\nasync function listProducts(req, res) {\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       ORDER BY name ASC`\n    );\n    res.json({ items: r.rows });\n  } catch (e) {\n    console.error(\"listProducts:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// GET /api/low-stock\nasync function listLowStock(req, res) {\n  const t = threshold();\n  try {\n    const r = await pool.query(\n      `SELECT id, sku, name, price_cents, stock, updated_at\n       FROM products\n       WHERE stock < $1\n       ORDER BY stock ASC, name ASC`,\n      [t]\n    );\n    res.json({ threshold: t, items: r.rows });\n  } catch (e) {\n    console.error(\"listLowStock:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\n// POST /api/purchase  body: { productId, quantity }\nasync function purchase(req, res) {\n  const productId = toInt(req.body?.productId);\n  const quantity = toInt(req.body?.quantity);\n\n  // Accept numeric strings (e.g. \"1\") and enforce whole numbers\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    // lock the product row to prevent overselling\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = Number(product.stock);\n\n    if (before < quantity) {\n      await client.query(\"ROLLBACK\");\n      return res.status(409).json({\n        error: \"Not enough stock\",\n        available: before,\n        requested: quantity\n      });\n    }\n\n    const after = before - quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'PURCHASE', $2, $3, $4, $5)`,\n      [productId, -quantity, before, after, \"customer purchase\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    if (after < threshold()) {\n      console.log(`[LOW STOCK] productId=${productId} name=\"${product.name}\" stock=${after}`);\n    }\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"purchase:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// POST /api/restock  body: { productId, quantity }\nasync function restock(req, res) {\n  const productId = toInt(req.body?.productId);\n  const quantity = toInt(req.body?.quantity);\n\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  if (!Number.isInteger(quantity) || quantity <= 0) {\n    return res.status(400).json({ error: \"quantity must be a positive integer\" });\n  }\n\n  const client = await pool.connect();\n  try {\n    await client.query(\"BEGIN\");\n\n    const pr = await client.query(\n      `SELECT id, name, stock\n       FROM products\n       WHERE id = $1\n       FOR UPDATE`,\n      [productId]\n    );\n\n    if (pr.rowCount === 0) {\n      await client.query(\"ROLLBACK\");\n      return res.status(404).json({ error: \"Product not found\" });\n    }\n\n    const product = pr.rows[0];\n    const before = Number(product.stock);\n    const after = before + quantity;\n\n    await client.query(\n      `UPDATE products SET stock = $1, updated_at = NOW() WHERE id = $2`,\n      [after, productId]\n    );\n\n    await client.query(\n      `INSERT INTO stock_history\n         (product_id, change_type, delta, before_stock, after_stock, reason)\n       VALUES ($1, 'RESTOCK', $2, $3, $4, $5)`,\n      [productId, quantity, before, after, \"admin restock\"]\n    );\n\n    await client.query(\"COMMIT\");\n\n    return res.json({ ok: true, productId, beforeStock: before, afterStock: after });\n  } catch (e) {\n    await client.query(\"ROLLBACK\");\n    console.error(\"restock:\", e);\n    return res.status(500).json({ error: \"Server error\" });\n  } finally {\n    client.release();\n  }\n}\n\n// GET /api/history/:productId\nasync function history(req, res) {\n  const productId = toInt(req.params.productId);\n  if (!Number.isInteger(productId) || productId <= 0) {\n    return res.status(400).json({ error: \"productId must be a positive integer\" });\n  }\n  try {\n    const r = await pool.query(\n      `SELECT id, change_type, delta, before_stock, after_stock, reason, created_at\n       FROM stock_history\n       WHERE product_id = $1\n       ORDER BY created_at DESC\n       LIMIT 200`,\n      [productId]\n    );\n    res.json({ productId, items: r.rows });\n  } catch (e) {\n    console.error(\"history:\", e);\n    res.status(500).json({ error: \"Server error\" });\n  }\n}\n\nmodule.exports = {\n  listProducts,\n  listLowStock,\n  purchase,\n  restock,\n  history\n};\n\"\"\"\ncontroller_path.write_text(new_text, encoding=\"utf-8\")\n\n# Also patch frontend to ensure numeric productId in requests (belt & suspenders)\nshop_path = base / \"frontend\" / \"src\" / \"pages\" / \"Shop.jsx\"\ndash_path = base / \"frontend\" / \"src\" / \"pages\" / \"Dashboard.jsx\"\n\nshop = shop_path.read_text(encoding=\"utf-8\")\nshop = shop.replace(\"await apiPost(\\\"/api/purchase\\\", { productId, quantity: 1 });\",\n                    \"await apiPost(\\\"/api/purchase\\\", { productId: Number(productId), quantity: 1 });\")\nshop_path.write_text(shop, encoding=\"utf-8\")\n\ndash = dash_path.read_text(encoding=\"utf-8\")\ndash = dash.replace(\"await apiPost(\\\"/api/restock\\\", { productId, quantity: 5 });\",\n                    \"await apiPost(\\\"/api/restock\\\", { productId: Number(productId), quantity: 5 });\")\ndash_path.write_text(dash, encoding=\"utf-8\")\n\n# Update README with a small note about BIGINT ids\nreadme_path = base / \"README.md\"\nreadme = readme_path.read_text(encoding=\"utf-8\")\nnote = \"\\n\\n## Fix note (Dec 2025)\\nIf you previously saw an error like `productId must be a positive integer`, it was caused by the database returning BIGINT IDs as strings. This version accepts numeric strings and also converts IDs in the frontend.\\n\"\nif \"Fix note (Dec 2025)\" not in readme:\n    readme += note\nreadme_path.write_text(readme, encoding=\"utf-8\")\n\n# Re-zip\nif zip_path.exists():\n    zip_path.unlink()\n\nwith zipfile.ZipFile(zip_path, \"w\", compression=zipfile.ZIP_DEFLATED) as z:\n    for path in base.rglob(\"*\"):\n        if path.is_file():\n            z.write(path, arcname=str(path.relative_to(base.parent)))\n\nzip_path",
+                            "end_time": 1766286144.220408,
+                            "final_expression_output": "PosixPath('/mnt/data/online-shop-inventory.zip')",
+                            "in_kernel_exception": null,
+                            "system_exception": null,
+                            "messages": [],
+                            "jupyter_messages": [
+                                {
+                                    "msg_type": "status",
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_3",
+                                        "version": "5.3"
+                                    },
+                                    "content": {
+                                        "execution_state": "busy"
+                                    }
+                                },
+                                {
+                                    "msg_type": "execute_input",
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_3",
+                                        "version": "5.3"
+                                    }
+                                },
+                                {
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_3",
+                                        "version": "5.3"
+                                    },
+                                    "msg_type": "execute_result",
+                                    "content": {
+                                        "data": {
+                                            "text/plain": "PosixPath('/mnt/data/online-shop-inventory.zip')"
+                                        }
+                                    }
+                                },
+                                {
+                                    "msg_type": "status",
+                                    "parent_header": {
+                                        "msg_id": "aac0b475-b4ddc9fc07b89574e0adce42_187_3",
+                                        "version": "5.3"
+                                    },
+                                    "content": {
+                                        "execution_state": "idle"
+                                    }
+                                }
+                            ],
+                            "timeout_triggered": null
+                        },
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_type": "next",
+                        "model_slug": "gpt-5-2",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "52cba8b3-93a6-4547-a0e5-9aebdab079fd",
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3"
+                    },
+                    "recipient": "all",
+                    "channel": "commentary"
+                },
+                "parent": "52cba8b3-93a6-4547-a0e5-9aebdab079fd",
+                "children": [
+                    "d4c67e99-293f-4ee3-82e1-5a95cfa3cc9b"
+                ]
+            },
+            "d4c67e99-293f-4ee3-82e1-5a95cfa3cc9b": {
+                "id": "d4c67e99-293f-4ee3-82e1-5a95cfa3cc9b",
+                "message": {
+                    "id": "d4c67e99-293f-4ee3-82e1-5a95cfa3cc9b",
+                    "author": {
+                        "role": "assistant",
+                        "name": null,
+                        "metadata": {}
+                    },
+                    "create_time": 1766286144.235053,
+                    "update_time": null,
+                    "content": {
+                        "content_type": "text",
+                        "parts": [
+                            "You ran into a very common Node.js + PostgreSQL issue:\n\n**PostgreSQL `BIGINT` IDs come back as strings** (like `\"1\"`), and my backend code was only accepting a real integer type \u2014 so it rejected `\"1\"` and showed: **\u201cproductId must be a positive integer\u201d**.\n\nI fixed it properly in **both places**:\n\n- **Backend** now accepts numeric strings and safely converts them to integers.\n- **Frontend** also converts IDs to `Number(...)` before sending requests.\n\nHere\u2019s the updated ready-to-use ZIP:\n\n[Download the updated project ZIP](sandbox:/mnt/data/online-shop-inventory.zip)\n\n## How to run (Mac)\n\n1) Unzip it  \n2) Open **Terminal** and go into the folder:\n```bash\ncd path/to/online-shop-inventory\n```\n\n3) Start:\n```bash\ndocker compose up\n```\n\n4) Open:\n- http://localhost:5173\n\n## If you already ran the old version\nSometimes Docker keeps the old containers running. Do this:\n\n1) Stop:\n```bash\ndocker compose down\n```\n\n2) Start again:\n```bash\ndocker compose up\n```\n\nNow the **Restock +5** and **Buy 1** buttons should work without that red error."
+                        ]
+                    },
+                    "status": "finished_successfully",
+                    "end_turn": true,
+                    "weight": 1.0,
+                    "metadata": {
+                        "citations": [],
+                        "content_references": [],
+                        "model_slug": "gpt-5-2-thinking",
+                        "request_id": "be3e0be5-8ec7-4107-bb76-396fb42af0fb",
+                        "message_type": "next",
+                        "default_model_slug": "gpt-5-2",
+                        "parent_id": "deb21cfd-9659-4d61-8c74-4eb062c5b66e",
+                        "turn_exchange_id": "a1e02e6a-44b7-40f2-a432-1744d9c033c3"
+                    },
+                    "recipient": "all",
+                    "channel": "final"
+                },
+                "parent": "deb21cfd-9659-4d61-8c74-4eb062c5b66e",
+                "children": []
+            }
+        },
+        "moderation_results": [],
+        "current_node": "d4c67e99-293f-4ee3-82e1-5a95cfa3cc9b",
+        "plugin_ids": null,
+        "conversation_id": "69475edd-9bd8-8323-88a2-3a0a62265ef5",
+        "conversation_template_id": null,
+        "gizmo_id": null,
+        "gizmo_type": null,
+        "is_archived": false,
+        "is_starred": null,
+        "safe_urls": [
+            "https://www.openai.com",
+            "https://docs.google.com/spreadsheets/d/1HmkfBJulhu50S6L9wuRsaVC9VL1LpbxpmgRzn33SxsQ/edit?gid=676408861#gid=676408861",
+            "https://github.com/my_company/my-private-repo/blob/main/examples/README.md",
+            "https://github.com/some_company/some-private-repo/blob/main/examples/README.md",
+            "https://www.notion.so/9162f50b62b080124ca4db47ba6f2e54",
+            "https://chatgpt.com/apps",
+            "https://docs.google.com/document/d/1WF0NB9fnxhDPEi_arGSp18Kev9KXdoX-IePIE8KJgCQ/edit?tab=t.0#heading=h.e3mmf6q9l82j",
+            "https://docs.google.com/document/d/1WF0NB9fnxhDPEi_arGSp18Kev9KXdoX-IePIE8KJgCQ"
+        ],
+        "blocked_urls": [],
+        "default_model_slug": "gpt-5-2",
+        "conversation_origin": null,
+        "is_read_only": null,
+        "voice": null,
+        "async_status": null,
+        "disabled_tool_ids": [],
+        "is_do_not_remember": false,
+        "memory_scope": "global_enabled",
+        "context_scopes": null,
+        "sugar_item_id": null,
+        "sugar_item_visible": false,
+        "pinned_time": null,
+        "is_study_mode": false,
+        "owner": null,
+        "id": "69475edd-9bd8-8323-88a2-3a0a62265ef5"
+    }
+]
