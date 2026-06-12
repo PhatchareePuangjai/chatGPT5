@@ -1,0 +1,1 @@
+/Users/phatchareepuangjai/Documents/learn/chatGPT5/src/versions/METHODOLOGY.md

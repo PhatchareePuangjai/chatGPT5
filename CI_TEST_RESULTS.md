@@ -280,7 +280,7 @@
 | SCSD01  | SDD      | Codex CLI       | 1             | 7          | 6        | 97 ⁴                 |
 | SCSD02  | SDD      | Codex CLI       | 1             | 11         | 10       | 346 ⁴                |
 | PDSD01  | SDD      | Codex CLI       | N/A           | 9          | 9        | 301 ⁴                |
-| PDSD02  | SDD      | GPT-5 (gpt-5-2) | 1             | 10         | 9        | 336 ⁴                |
+| PDSD02  | SDD      | Codex CLI       | 1             | 10         | 9        | 336 ⁴                |
 
 ### Interaction Summary by Strategy
 
