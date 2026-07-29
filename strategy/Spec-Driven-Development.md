@@ -3,7 +3,6 @@
 
 > Note for IS re-run: ระบุ tech stack เป็น **Node.js + React + PostgreSQL**
 > ให้ตรงกับ BP และ CE เพื่อควบคุมตัวแปร tech stack ไม่ให้กระทบผลเปรียบเทียบ
-> (ในเปเปอร์ SDD ใช้ Python + FastAPI ซึ่งทำให้ CodeQL results เทียบกันได้ยาก)
 
 ---
 
