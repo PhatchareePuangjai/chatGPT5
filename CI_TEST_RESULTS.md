@@ -1,4 +1,22 @@
-# CI/CD Test Results Summary
+    # CI/CD Test Results Summary
+
+> ## ⚠ 2026-08-09 — Test-suite equivalence remediation (IN PROGRESS)
+>
+> An audit found that the 18 versions were **not graded by an equivalent standard**. Several suites reported PASS while never asserting the "Expected Result" bullets required by `scenarios_*.md`, and three different test methodologies were in use (real Postgres / mocked DB / regex assertions over source text).
+>
+> **Grading rule now applied:** a scenario passes only if every Expected Result in `scenarios_*.md` is asserted and holds. A requirement the system does not implement counts as a failure.
+>
+> **Re-run and verified under the new rule (3 versions):**
+>
+> | Version | Was | Now | Change |
+> | ------- | --- | --- | ------ |
+> | IMBP01 | 7/7 | **6/7** | Edge 4 boundary: code uses `stock < 5`, scenario requires `≤ 5` |
+> | IMCE02 | 7/7 | **1/7** | No `inventory_log`, no alert mechanism, deduct API has no quantity param |
+> | PDCE01 | 6/6 | 6/6 | Suite rewritten from a mocked DB to real Postgres; result unchanged |
+>
+> **Not yet re-run (15 versions).** Their numbers below are carried over from the previous methodology and are provisional. Suites still needing rework: `SCCE02` (regex assertions over source text + mocked DB), `PDCE02` (mocked pool), `SCBP02` / `PDBP02` (in-memory app, no DB).
+>
+> Strategy totals below reflect the 3 verified changes and assume the remaining 15 are unchanged.
 
 > Last updated: 2026-06-06 (DAST re-verified from run #27061024430 — PDCE02 updated 0/10/57→0/11/56; DAST strategy averages recalculated)
 > Last updated: 2026-06-06 (SonarQube Reliability column re-fetched from live API after run #27056984423 — all 19 jobs passed)
@@ -42,7 +60,7 @@
 
 ---
 
-## 1. Unit Tests (รวม passed = 28+30+35 = 93/108 = 86%)
+## 1. Unit Tests (รวม passed = 27+24+35 = 86/108 = 80%)
 
 > Source policy: Unit Test counts are taken from each version's checked-in `test_report.md`, not GitHub Actions CI. The CI workflow is path-filtered and not all versions pass or rerun consistently, so it is not used as the source of truth for this section.
 > Reference CI run only: [Unit Tests #26735096014](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014).
@@ -50,10 +68,10 @@
 
 | Version   | Feature                | Tool      | Passed | Failed | Total | Result                  | Failure Details                                                                               | Source                                                           |
 | --------- | ---------------------- | --------- | ------ | ------ | ----- | ----------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| IMBP01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMBP01/online-shop-inventory/test_report.md`       |
+| IMBP01    | Inventory Management   | Jest      | 6      | 1      | 7     | ⚠️ PARTIAL              | Edge 4 boundary: code uses `stock < 5`, scenario requires `≤ 5` (re-run 2026-08-09)           | `src/versions/IMBP01/online-shop-inventory/test_report.md`       |
 | IMBP02    | Inventory Management   | Jest      | 5      | 2      | 7     | ⚠️ PARTIAL              | Restock 404 (not implemented); threshold `< 5` vs `<= 5`                                      | `src/versions/IMBP02/test_report.md`                             |
 | IMCE01    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | —                                                                                             | `src/versions/IMCE01/inventory-system/test_report.md`            |
-| IMCE02    | Inventory Management   | Jest      | 7      | 0      | 7     | :white_check_mark: PASS | Tests scoped to implemented behavior only — InventoryLog & low-stock alert not implemented and not tested; Scenario 1/3 validate stock change only (no log assertion), Scenario 2 / Edge 4 (boundary ≤5) not covered | `src/versions/IMCE02/test_report.md`                             |
+| IMCE02    | Inventory Management   | Jest      | 1      | 6      | 7     | :x: FAIL                | Re-run 2026-08-09 under equal-strictness rule. Only Edge 1 (race condition) passes. No `inventory_log` table (Scenario 1, 3, Edge 2), no low-stock alert mechanism (Scenario 2, Edge 4), deduct API takes no quantity param so a single 6-unit order cannot be expressed (Edge 3) | `src/versions/IMCE02/test_report.md`                             |
 | IMSD01    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | Boundary tests merged into one; atomicity fixed (HTTP 500)                                    | `src/versions/IMSD01/test_report.md`                             |
 | IMSD02    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | integration: 6 (requires `--maxWorkers=1`); 1 test covers Scenario 2 + Edge 4                 | `src/versions/IMSD02/test_report.md`                             |
 | SCBP01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCBP01/shopping-cart-app/test_report.md`           |
@@ -65,7 +83,7 @@
 | SCSD01_v2 | Shopping Cart          | pytest    | 15     | 0      | 15    | :white_check_mark: PASS | scenario: 5, unit: 6, integration: 4; reproducibility version excluded from strategy summary  | `src/versions/SCSD01_v2/test_report.md`                          |
 | PDBP01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDBP01/promo-shop-plug-and-play/test_report.md`    |
 | PDBP02    | Promotions & Discounts | Jest      | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard              | `src/versions/PDBP02/test_report.md`                             |
-| PDCE01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDCE01/promotions-discounts-system/test_report.md` |
+| PDCE01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | Suite rewritten 2026-08-09 from a mocked DB to real Postgres; result unchanged                | `src/versions/PDCE01/promotions-discounts-system/test_report.md` |
 | PDCE02    | Promotions & Discounts | node:test | 5      | 1      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure counted as failed: usage limit not implemented                      | `src/versions/PDCE02/test_report.md`                             |
 | PDSD01    | Promotions & Discounts | vitest    | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDSD01/test_report.md`                             |
 | PDSD02    | Promotions & Discounts | Jest      | 5      | 1      | 6     | ⚠️ PARTIAL              | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only         | `src/versions/PDSD02/test_report.md`                             |
@@ -77,9 +95,12 @@
 
 | Strategy                     | Passed | Failed | Total | Pass Rate |
 | ---------------------------- | ------ | ------ | ----- | --------- |
-| **BP** (Basic Prompting)     | 28     | 8      | 36    | 78%       |
-| **CE** (Context Engineering) | 30     | 6      | 36    | 83%       |
+| **BP** (Basic Prompting)     | 27     | 9      | 36    | 75%       |
+| **CE** (Context Engineering) | 24     | 12     | 36    | 67%       |
 | **SD** (Spec-Driven Dev)     | 35     | 1      | 36    | 97%       |
+
+> **Provisional.** Reflects the 3 versions re-run on 2026-08-09 (IMBP01 −1, IMCE02 −6); the other 15 versions are carried over unverified. Previous figures under the old, non-equivalent grading were BP 28/36 (78%), CE 30/36 (83%), SD 35/36 (97%).
+> Note the ordering change: CE is now **below** BP on functional correctness, which is consistent with CE also ranking worst in 4 of 5 SonarQube dimensions.
 
 ---
 
@@ -223,10 +244,10 @@
 
 | Version   | Tests                                        | CodeQL Alerts | DAST (FAIL/WARN/PASS) | SonarQube (Sec/Rel/Maint) | Duplications | Backend LOC ² | Frontend LOC ³ | Avg LOC/File |
 | --------- | -------------------------------------------- | ------------- | --------------------- | ------------------------- | ------------ | ------------- | -------------- | ------------ |
-| IMBP01    | :white_check_mark: 7/7                       | 5 high        | 0/7/60                | 3 / 3 / 7                 | 6.10%        | 251           | 282            | 62.8         |
+| IMBP01    | ⚠️ 6/7 (re-run, 1 fail)                      | 5 high        | 0/7/60                | 3 / 3 / 7                 | 6.10%        | 251           | 282            | 62.8         |
 | IMBP02    | ⚠️ 5/7 (test_report, 2 fail)                 | 0 alerts      | 0/11/56               | 2 / 1 / 1                 | 0.00%        | 85            | 80             | 28.3         |
 | IMCE01    | :white_check_mark: 7/7                       | 3 high, 1 med | 0/7/60                | 7 / 19 / 27               | 0.00%        | 228           | 1,084          | 114.0        |
-| IMCE02    | :white_check_mark: 7/7                       | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
+| IMCE02    | :x: 1/7 (re-run, 6 fail)                     | 6 high        | 0/5/62                | 16 / 2 / 1                | 5.40%        | 58            | 60             | 58.0         |
 | IMSD01    | :white_check_mark: 7/7                       | 1 high        | 0/7/60                | 7 / 12 / 15               | 2.70%        | 469           | 409            | 24.7         |
 | IMSD02    | :white_check_mark: 7/7                       | 0 alerts      | 0/4/63                | 5 / 0 / 6                 | 13.00%       | 622           | 316            | 29.6         |
 | SCBP01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 278            | 67.7         |

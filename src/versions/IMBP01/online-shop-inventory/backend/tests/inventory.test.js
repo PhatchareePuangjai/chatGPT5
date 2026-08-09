@@ -3,7 +3,8 @@ const app = require("../server");
 const { pool } = require("../db");
 
 // Ensure we connect to localhost for tests running on host
-process.env.DATABASE_URL = "postgres://postgres:postgres@localhost:5432/shopdb";
+process.env.DATABASE_URL =
+  process.env.DATABASE_URL || "postgres://postgres:postgres@localhost:5432/shopdb";
 
 describe("Inventory System Tests", () => {
   beforeAll(async () => {
@@ -103,9 +104,11 @@ describe("Inventory System Tests", () => {
 
     const { rows } = await pool.query("SELECT stock FROM products WHERE id=2");
     expect(rows[0].stock).toBe(4);
-    
-    // Note: We can't easily check console logs of the server process here since we are running it in-process.
-    // But we verified the logic executes.
+
+    // Scenario 2 requires an observable alert once stock <= threshold (4 <= 5).
+    // The observable alert surface in IMBP01 is GET /api/low-stock.
+    const lowStock = await request(app).get("/api/low-stock").expect(200);
+    expect(lowStock.body.items.find((p) => Number(p.id) === 2)).toBeDefined();
   });
 
   test("Test 3: Stock Restoration", async () => {
@@ -182,16 +185,23 @@ describe("Inventory System Tests", () => {
   });
 
   test("Edge Case 4: Boundary Value", async () => {
-    // SKU-006 has 7. Threshold 5.
-    
+    // SKU-006 has 7. Scenario threshold is <= 5.
+    const inLowStock = async () => {
+      const res = await request(app).get("/api/low-stock").expect(200);
+      return res.body.items.some((p) => Number(p.id) === 6);
+    };
+
     // 7 -> 6 (No alert)
     await request(app).post("/api/purchase").send({ productId: 6, quantity: 1 }).expect(200);
-    
-    // 6 -> 5 (Alert)
+    expect(await inLowStock()).toBe(false);
+
+    // 6 -> 5 (Alert required: 5 <= 5)
     await request(app).post("/api/purchase").send({ productId: 6, quantity: 1 }).expect(200);
-    
-    // 5 -> 4 (Alert)
+    expect(await inLowStock()).toBe(true);
+
+    // 5 -> 4 (Alert required)
     await request(app).post("/api/purchase").send({ productId: 6, quantity: 1 }).expect(200);
+    expect(await inLowStock()).toBe(true);
 
     const { rows } = await pool.query("SELECT stock FROM products WHERE id=6");
     expect(rows[0].stock).toBe(4);

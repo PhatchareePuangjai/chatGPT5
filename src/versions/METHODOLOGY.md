@@ -231,6 +231,8 @@ Functional correctness is measured through acceptance-style tests aligned with e
 
 Because each domain uses domain-specific scenarios, the suites are equivalent in intent rather than identical in implementation.
 
+**Grading rule (revised 2026-08-09).** A scenario counts as passed only when every "Expected Result" bullet stated for it in the domain's `scenarios_*.md` is asserted by the test and holds. A requirement the implementation does not provide counts as a failure rather than being scoped out of the assertion set. This rule was introduced after an audit found that suites were not equivalently strict: some versions asserted only the primary state change (for example, the resulting stock value) while omitting the accompanying audit-log or alert requirement, and were therefore recorded as passing despite the requirement being unmet. Under the revised rule the suites for `IMBP01` and `IMCE02` were re-graded, and the suite for `PDCE01` — which previously mocked the database layer and executed no SQL — was rewritten to run against a live PostgreSQL instance. Scenario definition files are byte-identical across all versions within a domain, so any remaining difference between versions reflects the implementation rather than the measurement.
+
 ### 6.2 Static Code Quality
 
 **Instrument:** SonarQube Community Edition

@@ -16,6 +16,10 @@ All scenarios defined in `scenarios_promotions.md` have been tested using Jest.
 | **Edge 2) Order of Operations** | ✅ PASS | Verified: (Original - 10%) - Fixed = Grand Total. |
 | **Edge 3) Negative Total Protection** | ✅ PASS | Grand Total capped at 0 when fixed discount > remaining total. |
 
+**Result: 6/6 passed.**
+
+> **Re-verified 2026-08-09.** The earlier suite `jest.mock()`ed the database layer and asserted against a hand-written in-memory fake, so no SQL was ever executed and the coupon fixtures it used (`SAVE100` with a 500 THB minimum, `DISCOUNT10`, `WELCOME`, `COMBO`) did not exist in the real schema, which seeds `SAVE100`, `SAVE10P`, `MIN500100`, `EXPIRED50`. The suite now runs against a real PostgreSQL instance with the scenario fixtures seeded into the `coupons` table, and additionally asserts that each discount is persisted (`GET /api/orders/:id`) rather than only echoed in the response. All six scenarios still pass — the result is unchanged, but it is now measured the same way as every other version.
+
 ---
 
 ## 2. Test Output

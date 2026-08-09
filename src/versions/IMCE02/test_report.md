@@ -9,15 +9,17 @@ All scenarios defined in `scenarios_inventory.md` have been tested using Jest + 
 
 | Scenario | Result | Notes |
 |---|---|---|
-| **1) Successful Stock Deduction** | ✅ PASS | Stock reduced from 10 → 8 (2 API calls). No `InventoryLog` implemented. |
-| **2) Low Stock Alert Trigger** | ⚠️ PARTIAL | Stock reduced correctly (6→4). No `low_stock_threshold` or alert mechanism. |
-| **3) Stock Restoration** | ⚠️ PARTIAL | Stock restored correctly (5→6). No `InventoryLog` implemented. |
-| **Edge 1) Race Condition** | ✅ PASS | 5 concurrent requests, only 1 success, 4 failures. `SELECT FOR UPDATE` works correctly. |
-| **Edge 2) Transaction Atomicity** | ⚠️ PARTIAL | Rollback on non-existent product verified. Full atomicity untestable (no `inventory_log` table). |
-| **Edge 3) Overselling Attempt** | ✅ PASS | Stock depleted to 0, 6th call rejected with 400 "Out of stock". |
-| **Edge 4) Boundary Value** | ⚠️ PARTIAL | Stock changes verified (7→6→5→4). Alert boundary untestable (no alert logic). |
+| **1) Successful Stock Deduction** | ❌ FAIL | Stock reduced 10 → 8 correctly, but Expected Result 2 requires an `InventoryLog` entry of type `SALE` (−2). No `inventory_log` table exists. |
+| **2) Low Stock Alert Trigger** | ❌ FAIL | Stock reduced 6 → 4 correctly, but Expected Result 2 requires an alert record or event once 4 ≤ 5. No alert mechanism exists. |
+| **3) Stock Restoration** | ❌ FAIL | Stock restored 5 → 6 correctly, but Expected Result 2 requires an `InventoryLog` entry of type `RESTOCK/RETURN` (+1). No `inventory_log` table exists. |
+| **Edge 1) Race Condition** | ✅ PASS | 5 concurrent requests, only 1 success, 4 failures, stock ends at 0. `SELECT ... FOR UPDATE` works correctly. |
+| **Edge 2) Transaction Atomicity** | ❌ FAIL | The scenario requires the stock update and the log write to be all-or-nothing. There is no log write to pair with the stock update. |
+| **Edge 3) Overselling Attempt** | ❌ FAIL | The scenario is a single order for 6 units against stock 5. `POST /api/stock/deduct/:id` takes no quantity parameter and always deducts 1, so the request is accepted (200) instead of rejected. |
+| **Edge 4) Boundary Value** | ❌ FAIL | Stock transitions 7→6→5→4 are correct, but no alert is raised at 5 or 4. No alert mechanism exists. |
 
-**Tests Passed: 7/7** — All tests pass because assertions are scoped to implemented behavior only. Missing features (InventoryLog, alerts) are documented as comments in the test file.
+**Result: 1/7 passed, 6 failed.**
+
+> **Re-graded 2026-08-09.** The earlier report recorded 7/7 on the basis that "assertions are scoped to implemented behavior only" — the unimplemented requirements were written as comments in the test file rather than asserted. Under the grading rule now applied to all 18 versions, a requirement the system does not implement counts as a failure, so those five requirements are asserted and fail. The underlying system is unchanged; only the measurement changed.
 
 ---
 

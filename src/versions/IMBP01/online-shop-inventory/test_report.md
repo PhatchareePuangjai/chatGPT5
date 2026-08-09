@@ -10,12 +10,16 @@ All scenarios defined in `scenarios.md` have been tested using Jest.
 | Scenario | Result | Notes |
 |---|---|---|
 | **1) Successful Stock Deduction** | ✅ PASS | Stock reduced correctly, Log created. |
-| **2) Low Stock Alert Trigger** | ✅ PASS | Stock reduced, Low stock threshold triggered. |
+| **2) Low Stock Alert Trigger** | ✅ PASS | Stock reduced to 4; product appears in `GET /api/low-stock`. |
 | **3) Stock Restoration** | ✅ PASS | Stock restored correctly via Restock API, Log created. |
 | **Edge 1) Race Condition** | ✅ PASS | 5 concurrent requests, only 1 success, 4 failures. Stock did not go negative. |
 | **Edge 2) Transaction Atomicity** | ✅ PASS | Verified rollback on DB error (simulated by dropping table). |
 | **Edge 3) Overselling Attempt** | ✅ PASS | Request for more than available stock rejected with 409. |
-| **Edge 4) Boundary Value** | ✅ PASS | Alert logic triggers correctly at threshold <= 5. |
+| **Edge 4) Boundary Value** | ❌ FAIL | At stock = 5 the product is not reported as low stock. `inventoryController.js` uses `stock < 5` (`listLowStock` and the purchase-time log) while the scenario requires `≤ 5`. Same defect as IMBP02. |
+
+**Result: 6/7 passed, 1 failed.**
+
+> **Re-graded 2026-08-09.** The earlier report recorded 7/7. Scenario 2 asserted only the resulting stock value and Edge 4 asserted only the final stock count, so neither checked whether an alert was actually raised — the boundary defect was therefore invisible. Both now assert the observable alert surface (`GET /api/low-stock`), matching the standard applied to every other version.
 
 ---
 
