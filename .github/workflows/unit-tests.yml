@@ -80,12 +80,9 @@ jobs:
             db_pass: inventory
             db_name: inventory
             database_url: postgresql://inventory:inventory@localhost:5432/inventory
-          - version: PDCE01
-            path: src/versions/PDCE01/promotions-discounts-system/backend
-            db_user: ''
-            db_pass: ''
-            db_name: ''
-            database_url: ''
+          # PDCE01 moved to the integration-test job below: its schema lives in
+          # db/init.sql and is applied by the Postgres image's initdb, which this
+          # job cannot do (it only looks for JS migration scripts).
           - version: IMBP02
             path: src/versions/IMBP02/inventory-management-system/backend
             db_user: ''
@@ -98,12 +95,16 @@ jobs:
             db_pass: ''
             db_name: ''
             database_url: ''
+          # SCCE02's tests/scenarios.test.js runs against a real database.
+          # backend/db.js hardcodes user/password/database (postgres/postgres/cartdb)
+          # and host 'db'; application code is not modified, so the host name is
+          # mapped to localhost in the "Map hostname 'db'" step below.
           - version: SCCE02
             path: src/versions/SCCE02/backend
-            db_user: ''
-            db_pass: ''
-            db_name: ''
-            database_url: ''
+            db_user: postgres
+            db_pass: postgres
+            db_name: cartdb
+            database_url: postgres://postgres:postgres@localhost:5432/cartdb
           - version: PDBP02
             path: src/versions/PDBP02/backend
             db_user: ''
@@ -212,6 +213,13 @@ jobs:
           else
             echo "No migration script found"
           fi
+
+      # SCCE02's backend/db.js hardcodes `host: 'db'` with no environment override.
+      # Application code is deliberately not modified, so resolve that name to the
+      # Postgres instance started above.
+      - name: Map hostname 'db' to localhost for SCCE02
+        if: steps.should_run.outputs.run == 'true' && matrix.version == 'SCCE02'
+        run: echo "127.0.0.1 db" | sudo tee -a /etc/hosts
 
       - name: Run Tests
         if: steps.should_run.outputs.run == 'true'
@@ -355,6 +363,15 @@ jobs:
             test_path: src/versions/IMCE02/backend/tests
             full_compose: false
             database_url: postgres://postgres:postgres@localhost:5432/inventory
+            migrate_cmd: ''
+            node_options: ''
+          # Runs here rather than in unit-test: the schema is db/init.sql, applied by
+          # the Postgres image's initdb when `docker compose up -d db` starts.
+          - version: PDCE01
+            compose_path: src/versions/PDCE01/promotions-discounts-system
+            test_path: src/versions/PDCE01/promotions-discounts-system/backend
+            full_compose: false
+            database_url: postgres://app:app@localhost:5432/promo
             migrate_cmd: ''
             node_options: ''
 

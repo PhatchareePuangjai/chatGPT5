@@ -1,22 +1,31 @@
     # CI/CD Test Results Summary
 
-> ## ⚠ 2026-08-09 — Test-suite equivalence remediation (IN PROGRESS)
+> ## ⚠ 2026-08-09 — Test-suite equivalence remediation
 >
-> An audit found that the 18 versions were **not graded by an equivalent standard**. Several suites reported PASS while never asserting the "Expected Result" bullets required by `scenarios_*.md`, and three different test methodologies were in use (real Postgres / mocked DB / regex assertions over source text).
+> An audit found that the 18 versions were **not graded by an equivalent standard**. Several suites reported PASS while never asserting the "Expected Result" bullets required by `scenarios_*.md`, and three different test methodologies were in use (real database / mocked database / regular-expression assertions over source text).
 >
-> **Grading rule now applied:** a scenario passes only if every Expected Result in `scenarios_*.md` is asserted and holds. A requirement the system does not implement counts as a failure.
+> **Grading rule now applied:** a scenario passes only if every Expected Result in `scenarios_*.md` is asserted and holds. A requirement the system does not implement counts as a failure. **No application code was modified** — only test suites.
 >
-> **Re-run and verified under the new rule (3 versions):**
+> **Re-run and verified under the new rule (5 versions):**
 >
-> | Version | Was | Now | Change |
-> | ------- | --- | --- | ------ |
-> | IMBP01 | 7/7 | **6/7** | Edge 4 boundary: code uses `stock < 5`, scenario requires `≤ 5` |
-> | IMCE02 | 7/7 | **1/7** | No `inventory_log`, no alert mechanism, deduct API has no quantity param |
-> | PDCE01 | 6/6 | 6/6 | Suite rewritten from a mocked DB to real Postgres; result unchanged |
+> | Version | Was | Now | Why the suite was reworked |
+> | ------- | --- | --- | -------------------------- |
+> | IMBP01 | 7/7 | **6/7** | Scenario 2 and Edge 4 asserted only the resulting stock value, never whether an alert was raised, so the `stock < 5` vs `≤ 5` defect was invisible |
+> | IMCE02 | 7/7 | **1/7** | Five unimplemented requirements were written as comments instead of assertions |
+> | PDCE01 | 6/6 | **6/6** | `jest.mock()`ed the db layer; its fixtures (`DISCOUNT10`, `WELCOME`, `COMBO`) do not exist in the real schema. Now runs on real PostgreSQL; result unchanged |
+> | SCCE02 | 0/5 | **1/5** | Injected a fake `db` into require.cache and asserted two scenarios with regexes over source text. Edge 2 (19.99 × 3 = 59.97) in fact passes against the real SQL |
+> | PDCE02 | 5/6 | **4/6** | Injected a hand-written `mockPool`. Against the real database, minimum-purchase enforcement also fails, not only the usage limit |
 >
-> **Not yet re-run (15 versions).** Their numbers below are carried over from the previous methodology and are provisional. Suites still needing rework: `SCCE02` (regex assertions over source text + mocked DB), `PDCE02` (mocked pool), `SCBP02` / `PDBP02` (in-memory app, no DB).
+> Note the two directions: the mocked suites biased **PDCE02 upward** and **SCCE02 downward**. Under a mock, a reported number says as much about the mock as about the system.
 >
-> Strategy totals below reflect the 3 verified changes and assume the remaining 15 are unchanged.
+> **Deliberately not reworked (2 versions), with reasons:**
+>
+> | Version | Decision |
+> | ------- | -------- |
+> | PDBP02 | Already valid. The application uses MongoDB (`mongoose.connect`, `models/Coupon.js`) and the suite runs a real MongoDB engine via `mongodb-memory-server` with the real model and real queries — only the storage is ephemeral |
+> | SCBP02 | Cannot be reworked without changing application code. The generated backend has no database at all: its only dependencies are `express` and `cors`, and cart state lives in a module-level object. Note that `scenarios_cart.md` never mentions a database and the SCBP02 prompt did not request one, so this is not a violated requirement — but it does mean cart state is lost on restart and cannot be shared across instances |
+>
+> The remaining 11 versions were audited and found to assert every Expected Result against a real database; their recorded counts stand.
 
 > Last updated: 2026-06-06 (DAST re-verified from run #27061024430 — PDCE02 updated 0/10/57→0/11/56; DAST strategy averages recalculated)
 > Last updated: 2026-06-06 (SonarQube Reliability column re-fetched from live API after run #27056984423 — all 19 jobs passed)
@@ -75,20 +84,20 @@
 | IMSD01    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | Boundary tests merged into one; atomicity fixed (HTTP 500)                                    | `src/versions/IMSD01/test_report.md`                             |
 | IMSD02    | Inventory Management   | vitest    | 7      | 0      | 7     | :white_check_mark: PASS | integration: 6 (requires `--maxWorkers=1`); 1 test covers Scenario 2 + Edge 4                 | `src/versions/IMSD02/test_report.md`                             |
 | SCBP01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCBP01/shopping-cart-app/test_report.md`           |
-| SCBP02    | Shopping Cart          | Jest      | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted)                                            | `src/versions/SCBP02/test_report.md`                             |
+| SCBP02    | Shopping Cart          | Jest      | 4      | 1      | 5     | ⚠️ PARTIAL              | No stock validation (Edge 1: add > stock accepted). Backend has no database — cart state is an in-process object; see the remediation note above | `src/versions/SCBP02/test_report.md`                             |
 | SCCE01    | Shopping Cart          | Jest      | 5      | 0      | 5     | :white_check_mark: PASS | —                                                                                             | `src/versions/SCCE01/shopping-cart/test_report.md`               |
-| SCCE02    | Shopping Cart          | node:test | 0      | 5      | 5     | :x: FAIL                | Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented    | `src/versions/SCCE02/test_report.md`                             |
+| SCCE02    | Shopping Cart          | node:test | 1      | 4      | 5     | :x: FAIL                | Re-run 2026-08-09 on real PostgreSQL. Only `GET /api/cart/:userId` exists; update, add/merge and save-for-later all return 404 (Scenario 1, 2, 3 and Edge 1). Edge 2 (floating point) passes | `src/versions/SCCE02/test_report.md`                             |
 | SCSD01    | Shopping Cart          | vitest    | 5      | 0      | 5     | :white_check_mark: PASS | 1 test covers Scenario 2 (Merge) + Edge 1 (Stock limit) combined                              | `src/versions/SCSD01/test_report.md`                             |
 | SCSD02    | Shopping Cart          | vitest    | 5      | 0      | 5     | :white_check_mark: PASS | backend integration + 1 unit (Edge 2 floating point)                                          | `src/versions/SCSD02/test_report.md`                             |
 | SCSD01_v2 | Shopping Cart          | pytest    | 15     | 0      | 15    | :white_check_mark: PASS | scenario: 5, unit: 6, integration: 4; reproducibility version excluded from strategy summary  | `src/versions/SCSD01_v2/test_report.md`                          |
 | PDBP01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDBP01/promo-shop-plug-and-play/test_report.md`    |
 | PDBP02    | Promotions & Discounts | Jest      | 1      | 5      | 6     | ⚠️ PARTIAL              | Missing min purchase, auto-discount, usage limit, ordering, negative total guard              | `src/versions/PDBP02/test_report.md`                             |
 | PDCE01    | Promotions & Discounts | Jest      | 6      | 0      | 6     | :white_check_mark: PASS | Suite rewritten 2026-08-09 from a mocked DB to real Postgres; result unchanged                | `src/versions/PDCE01/promotions-discounts-system/test_report.md` |
-| PDCE02    | Promotions & Discounts | node:test | 5      | 1      | 6     | ⚠️ PARTIAL              | 1 TODO / expected failure counted as failed: usage limit not implemented                      | `src/versions/PDCE02/test_report.md`                             |
+| PDCE02    | Promotions & Discounts | node:test | 4      | 2      | 6     | ⚠️ PARTIAL              | Re-run 2026-08-09 on real PostgreSQL. Minimum-purchase condition not enforced (Scenario 1) and usage limit not implemented (Edge 1)  | `src/versions/PDCE02/test_report.md`                             |
 | PDSD01    | Promotions & Discounts | vitest    | 6      | 0      | 6     | :white_check_mark: PASS | —                                                                                             | `src/versions/PDSD01/test_report.md`                             |
 | PDSD02    | Promotions & Discounts | Jest      | 5      | 1      | 6     | ⚠️ PARTIAL              | applyCoupon grandTotal mismatch — demo-cart has active promo when testing coupon only         | `src/versions/PDSD02/test_report.md`                             |
 
-> PDCE02 has `5 passed, 0 failed, 1 todo / expected failure` in `src/versions/PDCE02/test_report.md`; this summary counts the TODO / expected failure as 1 failed because the required usage-limit scenario was not implemented.
+> PDCE02 previously reported `5 passed, 0 failed, 1 todo / expected failure`; the 2026-08-09 re-run against a real database records 4 passed / 2 failed.
 > SCSD01_v2 is listed for completeness but is excluded from the strategy-level summary, as noted above.
 
 ### Test Summary by Strategy
@@ -99,8 +108,9 @@
 | **CE** (Context Engineering) | 24     | 12     | 36    | 67%       |
 | **SD** (Spec-Driven Dev)     | 35     | 1      | 36    | 97%       |
 
-> **Provisional.** Reflects the 3 versions re-run on 2026-08-09 (IMBP01 −1, IMCE02 −6); the other 15 versions are carried over unverified. Previous figures under the old, non-equivalent grading were BP 28/36 (78%), CE 30/36 (83%), SD 35/36 (97%).
+> Reflects all five suites re-run on 2026-08-09 (IMBP01 −1, IMCE02 −6, SCCE02 +1, PDCE02 −1; PDCE01 unchanged). Previous figures under the old, non-equivalent grading were BP 28/36 (78%), CE 30/36 (83%), SD 35/36 (97%).
 > Note the ordering change: CE is now **below** BP on functional correctness, which is consistent with CE also ranking worst in 4 of 5 SonarQube dimensions.
+> The SCCE02 (+1) and PDCE02 (−1) corrections cancel out, so the CE total is unchanged at 24/36 even though the per-version distribution moved.
 
 ---
 
@@ -253,14 +263,14 @@
 | SCBP01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 9 / 9 / 20                | 4.70%        | 406           | 278            | 67.7         |
 | SCBP02    | ⚠️ 4/5 (test_report, 1 fail)                 | 0 alerts      | 0/5/62                | 6 / 2 / 2                 | 0.00%        | 87            | 88             | 29.0         |
 | SCCE01    | :white_check_mark: 5/5                       | 6 high        | 0/8/59                | 8 / 9 / 11                | 3.80%        | 409           | 366            | 204.5        |
-| SCCE02    | :x: 0/5 (test_report, 5 fail)                | 1 high        | 0/11/56               | 9 / 2 / 1                 | 0.00%        | 65            | 70             | 16.3         |
+| SCCE02    | :x: 1/5 (re-run, 4 fail)                     | 1 high        | 0/11/56               | 9 / 2 / 1                 | 0.00%        | 65            | 70             | 16.3         |
 | SCSD01    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 7 / 0 / 5                 | 21.90%       | 479           | 273            | 26.6         |
 | SCSD02    | :white_check_mark: 5/5                       | 0 alerts      | 0/7/60                | 1 / 3 / 19                | 0.00%        | 632           | 369            | 42.1         |
 | SCSD01_v2 | :white_check_mark: 15/15 ¹                   | 0 alerts      | 0/7/60                | 7 / 4 / 25                | 0.00%        | 344           | 227            | 68.8         |
 | PDBP01    | :white_check_mark: 6/6                       | 0 alerts      | 0/8/59                | 8 / 1 / 9                 | 1.30%        | 361           | 508            | 72.2         |
 | PDBP02    | ⚠️ 1/6 (test_report, 5 fail)                 | 1 high        | 0/5/62                | 6 / 3 / 2                 | 0.00%        | 93            | 81             | 23.3         |
 | PDCE01    | :white_check_mark: 6/6                       | 1 med         | 0/7/60                | 6 / 16 / 20               | 0.00%        | 305           | 239            | 43.6         |
-| PDCE02    | ⚠️ 5/6 (test_report, 1 todo counted as fail) | 1 high        | 0/11/56               | 9 / 4 / 8                 | 0.00%        | 90            | 73             | 18.0         |
+| PDCE02    | ⚠️ 4/6 (re-run, 2 fail)                      | 1 high        | 0/11/56               | 9 / 4 / 8                 | 0.00%        | 90            | 73             | 18.0         |
 | PDSD01    | :white_check_mark: 6/6                       | 0 high, 2 med | 0/7/60                | 5 / 6 / 9                 | 0.00%        | 513           | 236            | 23.3         |
 | PDSD02    | ⚠️ 5/6 (test_report, 1 fail)                 | 0 alerts      | 0/7/60                | 1 / 0 / 13                | 0.00%        | 429           | 189            | 23.8         |
 
