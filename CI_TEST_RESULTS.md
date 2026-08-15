@@ -18,14 +18,21 @@
 >
 > Note the two directions: the mocked suites biased **PDCE02 upward** and **SCCE02 downward**. Under a mock, a reported number says as much about the mock as about the system.
 >
-> **Deliberately not reworked (2 versions), with reasons:**
+> **Deliberately not reworked (5 versions), with reasons:**
 >
 > | Version | Decision |
 > | ------- | -------- |
 > | PDBP02 | Already valid. The application uses MongoDB (`mongoose.connect`, `models/Coupon.js`) and the suite runs a real MongoDB engine via `mongodb-memory-server` with the real model and real queries — only the storage is ephemeral |
 > | SCBP02 | Cannot be reworked without changing application code. The generated backend has no database at all: its only dependencies are `express` and `cors`, and cart state lives in a module-level object. Note that `scenarios_cart.md` never mentions a database and the SCBP02 prompt did not request one, so this is not a violated requirement — but it does mean cart state is lost on restart and cannot be shared across instances |
+> | IMBP02 | Cannot be reworked without changing application code. The backend has no database layer: its only dependencies are `express`, `cors` and `uuid`, and the suite drives the app in-process via `jest.resetModules()` + `require('../server')`. Its counts therefore describe an in-memory system, not a persisted one |
+> | PDSD02 | Cannot be reworked without changing application code. Its only dependency is `express`; `withTestServer()` builds the app through `createTestApp()` in-process with no database |
+> | SCSD02 | `pg` is present in dependencies, but `src/index.ts` wires `InMemoryCartRepo` / `InMemoryProductRepo` (`src/db/repos/`) with the comment "wire a simple in-memory persistence layer so tests run without Postgres". Its 5/5 is achieved against those in-memory repositories, so by the same reasoning applied above it says as much about the repository stubs as about the system |
 >
-> The remaining 11 versions were audited and found to assert every Expected Result against a real database; their recorded counts stand.
+> The remaining 8 versions were audited and found to assert every Expected Result against a real database; their recorded counts stand.
+>
+> **CI verification (2026-08-15, run [#31857259269](https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/31857259269), PR [#578](https://github.com/PhatchareePuangjai/chatGPT5/pull/578)):** the reworked PDCE02 and SCCE02 suites were executed on GitHub Actions against a real PostgreSQL service and reproduced the counts recorded here exactly — PDCE02 `# pass 4 / # fail 2`, SCCE02 `# pass 1 / # fail 4`. Both jobs report `failure` at the job level because the scenarios genuinely fail, not because of a harness or connection error. PDCE01's job was **skipped** in that run (`dorny/paths-filter` found no changes under its path), so its 6/6 remains verified only from the local `test_report.md` run; re-verifying it on CI requires `workflow_dispatch`, which bypasses the paths filter.
+>
+> Note on provenance: CI unit-test results are **reference only**. Each version's `test_report.md` remains the source for the Unit Tests tables below, and the chart notebooks (`REPORTS/charts.ipynb`, `src/versions/_REPORTS/research_charts.ipynb`) carry those same counts as literal values — they read no data files.
 
 > Last updated: 2026-06-06 (DAST re-verified from run #27061024430 — PDCE02 updated 0/10/57→0/11/56; DAST strategy averages recalculated)
 > Last updated: 2026-06-06 (SonarQube Reliability column re-fetched from live API after run #27056984423 — all 19 jobs passed)
