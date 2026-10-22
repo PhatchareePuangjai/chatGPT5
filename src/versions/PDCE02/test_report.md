@@ -7,20 +7,22 @@
 
 All scenarios defined in `scenarios_promotions.md` have been tested using the Node.js built-in test runner (`node:test`).
 
-The tests use a mocked database layer so the implemented business logic can be verified without Docker/PostgreSQL. No production code was modified.
+The tests run against a real PostgreSQL instance. No production code was modified.
 
 ### Scenario Tests (`backend/tests/scenarios.test.js`)
 
 | Scenario | Result | Notes |
 |---|---|---|
-| **1) Coupon Validation** | PASS | SAVE100 applied through `POST /api/coupons/validate`, finalTotal = 900. |
-| **2) Cart Total Discount %** | PASS | DISCOUNT10 (10%) applied to 2000, finalTotal = 1800. |
-| **3) Expiration Date Check** | PASS | EXPIRED coupon rejected with `No valid coupons applied`; no recalculated total returned. |
-| **Edge 1) Coupon Usage Limit** | TODO / EXPECTED FAILURE | No usage history table, query, or endpoint exists for one-use-per-user enforcement in PDCE02. |
-| **Edge 2) Order of Operations** | PASS | Percentage discount applied before flat discount: `(1000 - 10%) - 100 = 800`. |
-| **Edge 3) Negative Total Protection** | PASS | `applyDiscounts` clamps totals below zero to 0. |
+| **1) Coupon Validation** | ❌ FAIL | SAVE100 does reduce 1000 → 900, but the scenario also requires the 500 minimum-purchase condition to be enforced. A 400 cart is still accepted (200 instead of 400): `coupons` has no minimum-purchase column and `validateCoupons` never checks one. |
+| **2) Cart Total Discount %** | ✅ PASS | DISCOUNT10 (10%) applied to 2000, finalTotal = 1800. |
+| **3) Expiration Date Check** | ✅ PASS | EXPIRED coupon rejected with `No valid coupons applied`; the total is unchanged. |
+| **Edge 1) Coupon Usage Limit** | ❌ FAIL | The same coupon can be applied twice by the same user. No usage-history table or lookup exists. |
+| **Edge 2) Order of Operations** | ✅ PASS | Percentage discount applied before flat discount: `(1000 - 10%) - 100 = 800`. |
+| **Edge 3) Negative Total Protection** | ✅ PASS | `applyDiscounts` clamps totals below zero to 0. |
 
-**Total: 5 passed, 0 failed, 1 todo / expected failure**
+**Total: 4 passed, 2 failed.**
+
+> **Re-graded 2026-08-09.** The earlier report recorded 5 passed / 1 todo. That suite injected a hand-written `mockPool` into `require.cache`, so the application's SQL never ran and the coupon fixtures were defined inside the test file. Against a real database, Scenario 1 also fails: the minimum-purchase requirement was never implemented, which the mock could not reveal because it returned whatever coupon row the test asked for. `db.js` already reads its connection settings from the environment, so no application code was changed — but it hardcodes port 5432, so the suite is executed inside the compose network.
 
 ---
 

@@ -1,109 +1,151 @@
+// Runs against a real PostgreSQL instance, matching every other version.
+//
+// The previous suite injected a fake `db` module into require.cache (so the
+// application's SQL never ran) and asserted two scenarios with regular
+// expressions over the source text of the route and controller files, which
+// passes whenever a matching string is present regardless of behaviour.
+//
+// No application code is modified. `db.js` hardcodes host 'db', so this suite
+// is executed inside the compose network where that name resolves. The schema
+// below is derived from the JOIN in `controllers/cartController.js`, because
+// the generated project ships no schema file of its own.
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
+const express = require("express");
+const request = require("supertest");
 
-const backendRoot = path.resolve(__dirname, "..");
-const routesSource = fs.readFileSync(path.join(backendRoot, "routes", "cartRoutes.js"), "utf8");
-const controllerSource = fs.readFileSync(
-  path.join(backendRoot, "controllers", "cartController.js"),
-  "utf8"
-);
+const pool = require("../db");
+const cartRoutes = require("../routes/cartRoutes");
 
-function loadControllerWithRows(rows) {
-  const dbPath = require.resolve("../db");
-  const controllerPath = require.resolve("../controllers/cartController");
+const app = express();
+app.use(express.json());
+app.use("/api/cart", cartRoutes);
 
-  delete require.cache[controllerPath];
-  require.cache[dbPath] = {
-    id: dbPath,
-    filename: dbPath,
-    loaded: true,
-    exports: {
-      query: async () => ({ rows }),
-    },
-  };
+const USER = "user-1";
 
-  return require("../controllers/cartController");
-}
-
-function createMockResponse() {
-  return {
-    statusCode: 200,
-    body: undefined,
-    status(code) {
-      this.statusCode = code;
-      return this;
-    },
-    json(payload) {
-      this.body = payload;
-      return this;
-    },
-  };
-}
-
-test("Route mapping: exposes GET /api/cart/:userId through cartRoutes", () => {
-  assert.match(routesSource, /router\.get\(['"]\/:userId['"],\s*controller\.getCart\)/);
+test.before(async () => {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS products (
+      id SERIAL PRIMARY KEY,
+      sku TEXT UNIQUE NOT NULL,
+      name TEXT NOT NULL,
+      price_cents INTEGER NOT NULL,
+      stock INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS carts (
+      id SERIAL PRIMARY KEY,
+      user_id TEXT NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS cart_items (
+      id SERIAL PRIMARY KEY,
+      cart_id INTEGER NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
+      product_id INTEGER NOT NULL REFERENCES products(id),
+      quantity INTEGER NOT NULL,
+      status TEXT NOT NULL DEFAULT 'ACTIVE'
+    );
+  `);
 });
 
-test("Scenario 1: update quantity to 3 should produce quantity 3 and 30000 cents line total", async () => {
-  const controller = loadControllerWithRows([
-    { id: 1, quantity: 3, status: "ACTIVE", name: "Product A", price_cents: 10000 },
-  ]);
-  const res = createMockResponse();
+test.beforeEach(async () => {
+  await pool.query("TRUNCATE cart_items, carts, products RESTART IDENTITY CASCADE");
+  await pool.query(`
+    INSERT INTO products (id, sku, name, price_cents, stock) VALUES
+    (1, 'SKU-001', 'Product A', 10000, 10),
+    (5, 'SKU-005', 'Product E', 5000, 5),
+    (6, 'SKU-006', 'Product F', 1999, 100)
+  `);
+  await pool.query("INSERT INTO carts (id, user_id) VALUES (1, $1)", [USER]);
+});
 
-  await controller.getCart({ params: { userId: "user-1" } }, res);
+test.after(async () => {
+  await pool.end();
+});
 
-  assert.equal(res.statusCode, 200);
-  assert.equal(res.body.items[0].quantity, 3);
-  assert.equal(res.body.items[0].lineTotal, 30000);
+const getCart = () => request(app).get(`/api/cart/${USER}`);
+
+// Scenario 1: Update Item Quantity -----------------------------------------
+test("Scenario 1: updating quantity to 3 gives line total 300.00 and grand total 300.00", async () => {
+  await pool.query(
+    "INSERT INTO cart_items (cart_id, product_id, quantity, status) VALUES (1, 1, 1, 'ACTIVE')"
+  );
+
+  // Expected Result 1: the user can change the quantity to 3.
+  const updated = await request(app)
+    .patch("/api/cart/items/SKU-001")
+    .send({ quantity: 3 });
+  assert.equal(updated.status, 200);
+
+  const res = await getCart();
+  assert.equal(res.status, 200);
+  const item = res.body.items.find((i) => i.name === "Product A");
+  assert.equal(item.quantity, 3);
+  assert.equal(item.lineTotal, 30000);
   assert.equal(res.body.totalCents, 30000);
 });
 
-test("Scenario 1 expected failure: backend should implement an update quantity endpoint", () => {
-  assert.match(routesSource, /router\.(patch|put)\(/);
-  assert.match(controllerSource, /(updateQuantity|updateCartItem|updateItem)/);
+// Scenario 2: Merge Items Logic --------------------------------------------
+test("Scenario 2: adding SKU-001 twice merges into one row of quantity 3", async () => {
+  const first = await request(app)
+    .post("/api/cart/items")
+    .send({ userId: USER, sku: "SKU-001", quantity: 1 });
+  assert.equal(first.status, 200);
+
+  const second = await request(app)
+    .post("/api/cart/items")
+    .send({ userId: USER, sku: "SKU-001", quantity: 2 });
+  assert.equal(second.status, 200);
+
+  const res = await getCart();
+  const rows = res.body.items.filter((i) => i.name === "Product A");
+  // Expected Result 1: no duplicate rows. Expected Result 2: 1 + 2 = 3.
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].quantity, 3);
 });
 
-test("Scenario 2 expected failure: backend should implement add-to-cart merge logic", () => {
-  assert.match(routesSource, /router\.post\(/);
-  assert.match(controllerSource, /(addToCart|addItem|merge)/);
-  assert.match(controllerSource, /(stock|quantity)/i);
-});
+// Scenario 3: Save for Later ------------------------------------------------
+test("Scenario 3: saving SKU-005 removes it from the active total and keeps it as SAVED", async () => {
+  await pool.query(
+    "INSERT INTO cart_items (cart_id, product_id, quantity, status) VALUES (1, 5, 1, 'ACTIVE')"
+  );
 
-test("Scenario 3: saved items should be excluded from active total but still returned", async () => {
-  const controller = loadControllerWithRows([
-    { id: 5, quantity: 1, status: "SAVED", name: "Product E", price_cents: 5000 },
-  ]);
-  const res = createMockResponse();
+  const saved = await request(app)
+    .post("/api/cart/items/SKU-005/save")
+    .send({ userId: USER });
+  assert.equal(saved.status, 200);
 
-  await controller.getCart({ params: { userId: "user-1" } }, res);
-
-  assert.equal(res.statusCode, 200);
-  assert.equal(res.body.items[0].status, "SAVED");
-  assert.equal(res.body.items[0].lineTotal, 5000);
+  const res = await getCart();
+  const item = res.body.items.find((i) => i.name === "Product E");
+  // Expected Result 3: the item moves to the Saved list.
+  assert.equal(item.status, "SAVED");
+  // Expected Result 2: the active total drops by its price.
   assert.equal(res.body.totalCents, 0);
 });
 
-test("Scenario 3 expected failure: backend should implement save-for-later endpoint", () => {
-  assert.match(routesSource, /save|later|saved|toggle/i);
-  assert.match(controllerSource, /(saveForLater|toggleSave|saveItem)/);
+// Edge 1: Add More Than Stock ----------------------------------------------
+test("Edge 1: adding 3 more of SKU-005 when 3 of 5 are in the cart is rejected", async () => {
+  await pool.query(
+    "INSERT INTO cart_items (cart_id, product_id, quantity, status) VALUES (1, 5, 3, 'ACTIVE')"
+  );
+
+  const res = await request(app)
+    .post("/api/cart/items")
+    .send({ userId: USER, sku: "SKU-005", quantity: 3 });
+
+  // Expected Result: rejected, and the cart stays at 3.
+  assert.equal(res.status, 409);
+
+  const cart = await getCart();
+  const item = cart.body.items.find((i) => i.name === "Product E");
+  assert.equal(item.quantity, 3);
 });
 
-test("Edge Case 1 expected failure: backend should reject current cart quantity plus new quantity beyond stock", () => {
-  assert.match(controllerSource, /stock/i);
-  assert.match(controllerSource, /(INSUFFICIENT_STOCK|สินค้าไม่เพียงพอ|not enough|exceed)/i);
-});
+// Edge 2: Floating Point Calculation ---------------------------------------
+test("Edge 2: 19.99 x 3 totals exactly 59.97", async () => {
+  await pool.query(
+    "INSERT INTO cart_items (cart_id, product_id, quantity, status) VALUES (1, 6, 3, 'ACTIVE')"
+  );
 
-test("Edge Case 2: floating point calculation should remain exact using integer cents", async () => {
-  const controller = loadControllerWithRows([
-    { id: 6, quantity: 3, status: "ACTIVE", name: "Product F", price_cents: 1999 },
-  ]);
-  const res = createMockResponse();
-
-  await controller.getCart({ params: { userId: "user-1" } }, res);
-
-  assert.equal(res.statusCode, 200);
-  assert.equal(res.body.items[0].lineTotal, 5997);
+  const res = await getCart();
+  assert.equal(res.status, 200);
   assert.equal(res.body.totalCents, 5997);
 });

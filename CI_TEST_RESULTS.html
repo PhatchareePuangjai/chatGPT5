@@ -27,22 +27,104 @@
     <body for="html-export">
       <div class="crossnote markdown-preview  ">
       
-<h1 id="cicd-test-results-summary">CI/CD Test Results Summary </h1>
+<pre><code># CI/CD Test Results Summary
+</code></pre>
 <blockquote>
-<p>Last updated: 2026-06-06 (DAST re-verified from run #27061024430 — PDCE02 updated 0/10/57→0/11/56; DAST strategy averages recalculated)<br>
-Last updated: 2026-06-06 (SonarQube Reliability column re-fetched from live API after run #27056984423 — all 19 jobs passed)<br>
-Last updated: 2026-06-03 (SD Unit Test counts updated to scenario-only; IMSD01 boundary tests merged and atomicity fixed)<br>
-Last updated: 2026-06-02 (Unit Tests rechecked against each version's <code>test_report.md</code>; SonarQube #26735096015, DAST #26765576209, CodeQL #26735096022; all 19 versions now scanned by DAST)<br>
-SCSD01 refresh 2026-06-01: Unit Tests #26764446595 (reference only; <code>test_report.md</code> is the Unit Tests source), DAST #26763971867 (0/7/60).<br>
-Full verification 2026-06-01 (all versions): CodeQL re-fetched (all match); DAST re-fetched from #26765576209 (PDCE02 0/11/56→0/10/57); SonarQube re-fetched from live API (Reliability corrected on 14 versions, IMSD02 Dup 13.20%→13.00%); Backend LOC recounted (SCSD01_v2 493→344, PDBP01 365→361, PDSD01 296→513); Frontend LOC recounted per footnote ³; tokens recounted (IMBP02/PDBP02 AI turns, IMSD01 227, PDSD01 9/9/301).<br>
-Repository: <a href="https://github.com/PhatchareePuangjai/chatGPT5">PhatchareePuangjai/chatGPT5</a><br>
+<h2 id="2026-08-09--test-suite-equivalence-remediation">⚠ 2026-08-09 — Test-suite equivalence remediation </h2>
+<p>An audit found that the 18 versions were <strong>not graded by an equivalent standard</strong>. Several suites reported PASS while never asserting the "Expected Result" bullets required by <code>scenarios_*.md</code>, and three different test methodologies were in use (real database / mocked database / regular-expression assertions over source text).</p>
+<p><strong>Grading rule now applied:</strong> a scenario passes only if every Expected Result in <code>scenarios_*.md</code> is asserted and holds. A requirement the system does not implement counts as a failure. <strong>No application code was modified</strong> — only test suites.</p>
+<p><strong>Re-run and verified under the new rule (5 versions):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Was</th>
+<th>Now</th>
+<th>Why the suite was reworked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMBP01</td>
+<td>7/7</td>
+<td><strong>6/7</strong></td>
+<td>Scenario 2 and Edge 4 asserted only the resulting stock value, never whether an alert was raised, so the <code>stock &lt; 5</code> vs <code>≤ 5</code> defect was invisible</td>
+</tr>
+<tr>
+<td>IMCE02</td>
+<td>7/7</td>
+<td><strong>1/7</strong></td>
+<td>Five unimplemented requirements were written as comments instead of assertions</td>
+</tr>
+<tr>
+<td>PDCE01</td>
+<td>6/6</td>
+<td><strong>6/6</strong></td>
+<td><code>jest.mock()</code>ed the db layer; its fixtures (<code>DISCOUNT10</code>, <code>WELCOME</code>, <code>COMBO</code>) do not exist in the real schema. Now runs on real PostgreSQL; result unchanged</td>
+</tr>
+<tr>
+<td>SCCE02</td>
+<td>0/5</td>
+<td><strong>1/5</strong></td>
+<td>Injected a fake <code>db</code> into require.cache and asserted two scenarios with regexes over source text. Edge 2 (19.99 × 3 = 59.97) in fact passes against the real SQL</td>
+</tr>
+<tr>
+<td>PDCE02</td>
+<td>5/6</td>
+<td><strong>4/6</strong></td>
+<td>Injected a hand-written <code>mockPool</code>. Against the real database, minimum-purchase enforcement also fails, not only the usage limit</td>
+</tr>
+</tbody>
+</table>
+<p>Note the two directions: the mocked suites biased <strong>PDCE02 upward</strong> and <strong>SCCE02 downward</strong>. Under a mock, a reported number says as much about the mock as about the system.</p>
+<p><strong>Deliberately not reworked (5 versions), with reasons:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDBP02</td>
+<td>Already valid. The application uses MongoDB (<code>mongoose.connect</code>, <code>models/Coupon.js</code>) and the suite runs a real MongoDB engine via <code>mongodb-memory-server</code> with the real model and real queries — only the storage is ephemeral</td>
+</tr>
+<tr>
+<td>SCBP02</td>
+<td>Cannot be reworked without changing application code. The generated backend has no database at all: its only dependencies are <code>express</code> and <code>cors</code>, and cart state lives in a module-level object. Note that <code>scenarios_cart.md</code> never mentions a database and the SCBP02 prompt did not request one, so this is not a violated requirement — but it does mean cart state is lost on restart and cannot be shared across instances</td>
+</tr>
+<tr>
+<td>IMBP02</td>
+<td>Cannot be reworked without changing application code. The backend has no database layer: its only dependencies are <code>express</code>, <code>cors</code> and <code>uuid</code>, and the suite drives the app in-process via <code>jest.resetModules()</code> + <code>require('../server')</code>. Its counts therefore describe an in-memory system, not a persisted one</td>
+</tr>
+<tr>
+<td>PDSD02</td>
+<td>Cannot be reworked without changing application code. Its only dependency is <code>express</code>; <code>withTestServer()</code> builds the app through <code>createTestApp()</code> in-process with no database</td>
+</tr>
+<tr>
+<td>SCSD02</td>
+<td><code>pg</code> is present in dependencies, but <code>src/index.ts</code> wires <code>InMemoryCartRepo</code> / <code>InMemoryProductRepo</code> (<code>src/db/repos/</code>) with the comment "wire a simple in-memory persistence layer so tests run without Postgres". Its 5/5 is achieved against those in-memory repositories, so by the same reasoning applied above it says as much about the repository stubs as about the system</td>
+</tr>
+</tbody>
+</table>
+<p>The remaining 8 versions were audited and found to assert every Expected Result against a real database; their recorded counts stand.</p>
+<p><strong>CI verification (2026-08-15, run <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/31857259269">#31857259269</a>, PR <a href="https://github.com/PhatchareePuangjai/chatGPT5/pull/578">#578</a>):</strong> the reworked PDCE02 and SCCE02 suites were executed on GitHub Actions against a real PostgreSQL service and reproduced the counts recorded here exactly — PDCE02 <code># pass 4 / # fail 2</code>, SCCE02 <code># pass 1 / # fail 4</code>. Both jobs report <code>failure</code> at the job level because the scenarios genuinely fail, not because of a harness or connection error. PDCE01's job was <strong>skipped</strong> in that run (<code>dorny/paths-filter</code> found no changes under its path), so its 6/6 remains verified only from the local <code>test_report.md</code> run; re-verifying it on CI requires <code>workflow_dispatch</code>, which bypasses the paths filter.</p>
+<p>Note on provenance: CI unit-test results are <strong>reference only</strong>. Each version's <code>test_report.md</code> remains the source for the Unit Tests tables below, and the chart notebooks (<code>REPORTS/charts.ipynb</code>, <code>src/versions/_REPORTS/research_charts.ipynb</code>) carry those same counts as literal values — they read no data files.</p>
+<p>Last updated: 2026-06-06 (DAST re-verified from run #27061024430 — PDCE02 updated 0/10/57→0/11/56; DAST strategy averages recalculated)
+Last updated: 2026-06-06 (SonarQube Reliability column re-fetched from live API after run #27056984423 — all 19 jobs passed)
+Last updated: 2026-06-03 (SD Unit Test counts updated to scenario-only; IMSD01 boundary tests merged and atomicity fixed)
+Last updated: 2026-06-02 (Unit Tests rechecked against each version's <code>test_report.md</code>; SonarQube #26735096015, DAST #26765576209, CodeQL #26735096022; all 19 versions now scanned by DAST)
+SCSD01 refresh 2026-06-01: Unit Tests #26764446595 (reference only; <code>test_report.md</code> is the Unit Tests source), DAST #26763971867 (0/7/60).
+Full verification 2026-06-01 (all versions): CodeQL re-fetched (all match); DAST re-fetched from #26765576209 (PDCE02 0/11/56→0/10/57); SonarQube re-fetched from live API (Reliability corrected on 14 versions, IMSD02 Dup 13.20%→13.00%); Backend LOC recounted (SCSD01_v2 493→344, PDBP01 365→361, PDSD01 296→513); Frontend LOC recounted per footnote ³; tokens recounted (IMBP02/PDBP02 AI turns, IMSD01 227, PDSD01 9/9/301).
+Repository: <a href="https://github.com/PhatchareePuangjai/chatGPT5">PhatchareePuangjai/chatGPT5</a>
 Actions: <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions">All Workflows</a></p>
 </blockquote>
-<hr>
+<hr />
 <blockquote>
 <p><strong>Note on SCSD01_v2:</strong> ปรากฏในตาราง version เพื่อความสมบูรณ์ของข้อมูล แต่<strong>ไม่รวมในทุก strategy-level summary</strong> เนื่องจากสร้างขึ้นเพื่อทดสอบ reproducibility เท่านั้น ไม่ได้เป็นส่วนหนึ่งของการวิเคราะห์เปรียบเทียบ</p>
 </blockquote>
-<hr>
+<hr />
 <h2 id="0-version-index">0. Version Index </h2>
 <table>
 <thead>
@@ -167,11 +249,11 @@ Actions: <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions">All Wo
 <blockquote>
 <p>¹ SCSD01_v2 is a reproducibility-only version (pytest); excluded from all strategy-level summaries.</p>
 </blockquote>
-<hr>
-<h2 id="1-unit-tests-รวม-passed--283035--93108--86">1. Unit Tests (รวม passed = 28+30+35 = 93/108 = 86%) </h2>
+<hr />
+<h2 id="1-unit-tests-รวม-passed--272435--86108--80">1. Unit Tests (รวม passed = 27+24+35 = 86/108 = 80%) </h2>
 <blockquote>
-<p>Source policy: Unit Test counts are taken from each version's checked-in <code>test_report.md</code>, not GitHub Actions CI. The CI workflow is path-filtered and not all versions pass or rerun consistently, so it is not used as the source of truth for this section.<br>
-Reference CI run only: <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014">Unit Tests #26735096014</a>.<br>
+<p>Source policy: Unit Test counts are taken from each version's checked-in <code>test_report.md</code>, not GitHub Actions CI. The CI workflow is path-filtered and not all versions pass or rerun consistently, so it is not used as the source of truth for this section.
+Reference CI run only: <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014">Unit Tests #26735096014</a>.
 Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path for each count is listed in the table.</p>
 </blockquote>
 <table>
@@ -193,11 +275,11 @@ Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path 
 <td>IMBP01</td>
 <td>Inventory Management</td>
 <td>Jest</td>
+<td>6</td>
+<td>1</td>
 <td>7</td>
-<td>0</td>
-<td>7</td>
-<td>✅ PASS</td>
-<td>—</td>
+<td>⚠️ PARTIAL</td>
+<td>Edge 4 boundary: code uses <code>stock &lt; 5</code>, scenario requires <code>≤ 5</code> (re-run 2026-08-09)</td>
 <td><code>src/versions/IMBP01/online-shop-inventory/test_report.md</code></td>
 </tr>
 <tr>
@@ -226,11 +308,11 @@ Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path 
 <td>IMCE02</td>
 <td>Inventory Management</td>
 <td>Jest</td>
+<td>1</td>
+<td>6</td>
 <td>7</td>
-<td>0</td>
-<td>7</td>
-<td>✅ PASS</td>
-<td>Tests scoped to implemented behavior only — InventoryLog &amp; low-stock alert not implemented and not tested; Scenario 1/3 validate stock change only (no log assertion), Scenario 2 / Edge 4 (boundary ≤5) not covered</td>
+<td>❌ FAIL</td>
+<td>Re-run 2026-08-09 under equal-strictness rule. Only Edge 1 (race condition) passes. No <code>inventory_log</code> table (Scenario 1, 3, Edge 2), no low-stock alert mechanism (Scenario 2, Edge 4), deduct API takes no quantity param so a single 6-unit order cannot be expressed (Edge 3)</td>
 <td><code>src/versions/IMCE02/test_report.md</code></td>
 </tr>
 <tr>
@@ -274,7 +356,7 @@ Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path 
 <td>1</td>
 <td>5</td>
 <td>⚠️ PARTIAL</td>
-<td>No stock validation (Edge 1: add &gt; stock accepted)</td>
+<td>No stock validation (Edge 1: add &gt; stock accepted). Backend has no database — cart state is an in-process object; see the remediation note above</td>
 <td><code>src/versions/SCBP02/test_report.md</code></td>
 </tr>
 <tr>
@@ -292,11 +374,11 @@ Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path 
 <td>SCCE02</td>
 <td>Shopping Cart</td>
 <td>node:test</td>
-<td>0</td>
-<td>5</td>
+<td>1</td>
+<td>4</td>
 <td>5</td>
 <td>❌ FAIL</td>
-<td>Missing add/update/save-for-later/stock-validation workflows; only GET cart is implemented</td>
+<td>Re-run 2026-08-09 on real PostgreSQL. Only <code>GET /api/cart/:userId</code> exists; update, add/merge and save-for-later all return 404 (Scenario 1, 2, 3 and Edge 1). Edge 2 (floating point) passes</td>
 <td><code>src/versions/SCCE02/test_report.md</code></td>
 </tr>
 <tr>
@@ -362,18 +444,18 @@ Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path 
 <td>0</td>
 <td>6</td>
 <td>✅ PASS</td>
-<td>—</td>
+<td>Suite rewritten 2026-08-09 from a mocked DB to real Postgres; result unchanged</td>
 <td><code>src/versions/PDCE01/promotions-discounts-system/test_report.md</code></td>
 </tr>
 <tr>
 <td>PDCE02</td>
 <td>Promotions &amp; Discounts</td>
 <td>node:test</td>
-<td>5</td>
-<td>1</td>
+<td>4</td>
+<td>2</td>
 <td>6</td>
 <td>⚠️ PARTIAL</td>
-<td>1 TODO / expected failure counted as failed: usage limit not implemented</td>
+<td>Re-run 2026-08-09 on real PostgreSQL. Minimum-purchase condition not enforced (Scenario 1) and usage limit not implemented (Edge 1)</td>
 <td><code>src/versions/PDCE02/test_report.md</code></td>
 </tr>
 <tr>
@@ -401,7 +483,7 @@ Rechecked: 2026-06-03 (SD versions updated to scenario-only count). Source path 
 </tbody>
 </table>
 <blockquote>
-<p>PDCE02 has <code>5 passed, 0 failed, 1 todo / expected failure</code> in <code>src/versions/PDCE02/test_report.md</code>; this summary counts the TODO / expected failure as 1 failed because the required usage-limit scenario was not implemented.<br>
+<p>PDCE02 previously reported <code>5 passed, 0 failed, 1 todo / expected failure</code>; the 2026-08-09 re-run against a real database records 4 passed / 2 failed.
 SCSD01_v2 is listed for completeness but is excluded from the strategy-level summary, as noted above.</p>
 </blockquote>
 <h3 id="test-summary-by-strategy">Test Summary by Strategy </h3>
@@ -418,17 +500,17 @@ SCSD01_v2 is listed for completeness but is excluded from the strategy-level sum
 <tbody>
 <tr>
 <td><strong>BP</strong> (Basic Prompting)</td>
-<td>28</td>
-<td>8</td>
+<td>27</td>
+<td>9</td>
 <td>36</td>
-<td>78%</td>
+<td>75%</td>
 </tr>
 <tr>
 <td><strong>CE</strong> (Context Engineering)</td>
-<td>30</td>
-<td>6</td>
+<td>24</td>
+<td>12</td>
 <td>36</td>
-<td>83%</td>
+<td>67%</td>
 </tr>
 <tr>
 <td><strong>SD</strong> (Spec-Driven Dev)</td>
@@ -439,7 +521,12 @@ SCSD01_v2 is listed for completeness but is excluded from the strategy-level sum
 </tr>
 </tbody>
 </table>
-<hr>
+<blockquote>
+<p>Reflects all five suites re-run on 2026-08-09 (IMBP01 −1, IMCE02 −6, SCCE02 +1, PDCE02 −1; PDCE01 unchanged). Previous figures under the old, non-equivalent grading were BP 28/36 (78%), CE 30/36 (83%), SD 35/36 (97%).
+Note the ordering change: CE is now <strong>below</strong> BP on functional correctness, which is consistent with CE also ranking worst in 4 of 5 SonarQube dimensions.
+The SCCE02 (+1) and PDCE02 (−1) corrections cancel out, so the CE total is unchanged at 24/36 even though the per-version distribution moved.</p>
+</blockquote>
+<hr />
 <h2 id="2-sonarqube-static-analysis">2. SonarQube Static Analysis </h2>
 <blockquote>
 <p>Re-verified 2026-06-06 against live SonarCloud API after run <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/27056984423">#27056984423</a> (all 19 jobs passed). Reliability column updated — previous values reflected old <code>bugs</code> metric; current values use <code>reliability_issues</code> (new SonarCloud metric that includes all reliability-severity levels). Security, Maintainability, Duplications, and Security Hotspots unchanged.</p>
@@ -653,10 +740,10 @@ SCSD01_v2 is listed for completeness but is excluded from the strategy-level sum
 </tr>
 </tbody>
 </table>
-<hr>
+<hr />
 <h2 id="3-codeql-static-analysis-sast">3. CodeQL Static Analysis (SAST) </h2>
 <blockquote>
-<p>Workflow run: <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096022">CodeQL #26735096022</a><br>
+<p>Workflow run: <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096022">CodeQL #26735096022</a>
 Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning">Code Scanning Alerts</a></p>
 </blockquote>
 <table>
@@ -848,7 +935,7 @@ Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/securit
 </tr>
 </tbody>
 </table>
-<hr>
+<hr />
 <h2 id="4-dast-security-scan-zap">4. DAST Security Scan (ZAP) </h2>
 <blockquote>
 <p>Workflow run: <a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26765576209">DAST #26765576209</a> — all 19 versions scanned successfully (PDCE02 updated to 0/10/57 from this run).</p>
@@ -1119,7 +1206,7 @@ Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/securit
 </tr>
 </tbody>
 </table>
-<hr>
+<hr />
 <h2 id="overall-summary">Overall Summary </h2>
 <table>
 <thead>
@@ -1138,7 +1225,7 @@ Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/securit
 <tbody>
 <tr>
 <td>IMBP01</td>
-<td>✅ 7/7</td>
+<td>⚠️ 6/7 (re-run, 1 fail)</td>
 <td>5 high</td>
 <td>0/7/60</td>
 <td>3 / 3 / 7</td>
@@ -1171,7 +1258,7 @@ Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/securit
 </tr>
 <tr>
 <td>IMCE02</td>
-<td>✅ 7/7</td>
+<td>❌ 1/7 (re-run, 6 fail)</td>
 <td>6 high</td>
 <td>0/5/62</td>
 <td>16 / 2 / 1</td>
@@ -1237,7 +1324,7 @@ Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/securit
 </tr>
 <tr>
 <td>SCCE02</td>
-<td>❌ 0/5 (test_report, 5 fail)</td>
+<td>❌ 1/5 (re-run, 4 fail)</td>
 <td>1 high</td>
 <td>0/11/56</td>
 <td>9 / 2 / 1</td>
@@ -1314,7 +1401,7 @@ Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/securit
 </tr>
 <tr>
 <td>PDCE02</td>
-<td>⚠️ 5/6 (test_report, 1 todo counted as fail)</td>
+<td>⚠️ 4/6 (re-run, 2 fail)</td>
 <td>1 high</td>
 <td>0/11/56</td>
 <td>9 / 4 / 8</td>
@@ -1348,12 +1435,12 @@ Security alerts: <a href="https://github.com/PhatchareePuangjai/chatGPT5/securit
 </tbody>
 </table>
 <blockquote>
-<p>¹ Full test suite (scenario + unit + integration) from each version's <code>test_report.md</code>, reported using the document counting convention above. Unit Test counts in this table are sourced from <code>test_report.md</code>, not GitHub Actions CI.<br>
-Note: SD versions (IMSD01, IMSD02, SCSD01, SCSD02, PDSD01, PDSD02) are reported using scenario-only counts as of 2026-06-03; extra tests (contract, unit helpers, perf) are noted in each version's <code>test_report.md</code> but not counted here.<br>
-² Backend LOC: counted from <strong>backend production source files only</strong> (<code>.py</code> / <code>.js</code>), excluding <code>node_modules</code>, <code>tests/</code>, test files (<code>test_*</code>, <code>*.test.js</code>, <code>*.spec.js</code>), and all frontend files (folders: <code>frontend/</code>, <code>client/</code>, <code>public/</code>; files: <code>.html</code>, <code>.css</code>, <code>.jsx</code>, and client-side <code>.js</code> without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.<br>
+<p>¹ Full test suite (scenario + unit + integration) from each version's <code>test_report.md</code>, reported using the document counting convention above. Unit Test counts in this table are sourced from <code>test_report.md</code>, not GitHub Actions CI.
+Note: SD versions (IMSD01, IMSD02, SCSD01, SCSD02, PDSD01, PDSD02) are reported using scenario-only counts as of 2026-06-03; extra tests (contract, unit helpers, perf) are noted in each version's <code>test_report.md</code> but not counted here.
+² Backend LOC: counted from <strong>backend production source files only</strong> (<code>.py</code> / <code>.js</code>), excluding <code>node_modules</code>, <code>tests/</code>, test files (<code>test_*</code>, <code>*.test.js</code>, <code>*.spec.js</code>), and all frontend files (folders: <code>frontend/</code>, <code>client/</code>, <code>public/</code>; files: <code>.html</code>, <code>.css</code>, <code>.jsx</code>, and client-side <code>.js</code> without server logic). Avg LOC/File = Backend LOC ÷ number of backend source files.
 ³ Frontend LOC: counted from frontend source files (<code>.jsx</code>, <code>.tsx</code>, <code>.html</code>, <code>.js</code> in <code>frontend/</code>, <code>client/</code>, or <code>public/</code> folders; <code>.css</code> excluded). IMBP02 has no dedicated frontend folder — value reflects only the <code>index.html</code> embedded UI. Note: SonarQube and CodeQL scans include frontend code; this metric is provided for completeness only.</p>
 </blockquote>
-<hr>
+<hr />
 <h2 id="5-conversation--interaction-effort">5. Conversation &amp; Interaction Effort </h2>
 <blockquote>
 <p><strong>Data sources:</strong></p>
@@ -1577,13 +1664,13 @@ Note: SD versions (IMSD01, IMSD02, SCSD01, SCSD02, PDSD01, PDSD02) are reported 
 </tbody>
 </table>
 <blockquote>
-<p>³ Counted using tiktoken <code>cl100k_base</code> encoding on user-side prompt text only. Source: selected conversation exports in each version directory (<code>conversations.json</code> when present, otherwise <code>conversation_export.json</code>) for BP/CE, and <code>conversation_export.json</code> plus related spec-command logs for SDD.<br>
-⁴ SDD exports capture spec commands only (e.g., <code>speckit-plan</code>, <code>speckit.implement</code>). True token consumption is significantly higher as AI-generated code responses are not included in the export.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>What is counted:</strong> user-side spec commands in <code>conversation_export.json</code> only.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>What is NOT counted:</strong> AI-generated code responses, full conversation context sent per turn.<br>
+<p>³ Counted using tiktoken <code>cl100k_base</code> encoding on user-side prompt text only. Source: selected conversation exports in each version directory (<code>conversations.json</code> when present, otherwise <code>conversation_export.json</code>) for BP/CE, and <code>conversation_export.json</code> plus related spec-command logs for SDD.
+⁴ SDD exports capture spec commands only (e.g., <code>speckit-plan</code>, <code>speckit.implement</code>). True token consumption is significantly higher as AI-generated code responses are not included in the export.
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>What is counted:</strong> user-side spec commands in <code>conversation_export.json</code> only.
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>What is NOT counted:</strong> AI-generated code responses, full conversation context sent per turn.
 &nbsp;&nbsp;&nbsp;&nbsp;→ SDD token values (227 / 337 / 97 / 346 / 301 / 336) are a significant undercount and should not be compared directly with BP/CE token values.</p>
 </blockquote>
-<hr>
+<hr />
 <h2 id="links">Links </h2>
 <table>
 <thead>
@@ -1595,43 +1682,43 @@ Note: SD versions (IMSD01, IMSD02, SCSD01, SCSD02, PDSD01, PDSD02) are reported 
 <tbody>
 <tr>
 <td>Repository</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5">https://github.com/PhatchareePuangjai/chatGPT5</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5</td>
 </tr>
 <tr>
 <td>All Actions</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions">https://github.com/PhatchareePuangjai/chatGPT5/actions</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions</td>
 </tr>
 <tr>
 <td>Unit Tests Workflow</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/unit-tests.yml">https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/unit-tests.yml</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/unit-tests.yml</td>
 </tr>
 <tr>
 <td>CodeQL Workflow</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml">https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/codeql.yml</td>
 </tr>
 <tr>
 <td>DAST ZAP Workflow</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml">https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions/workflows/dast-zap-all.yml</td>
 </tr>
 <tr>
 <td>Security Alerts (CodeQL)</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning">https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/security/code-scanning</td>
 </tr>
 <tr>
 <td>Latest Unit Tests Run</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014">https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096014</td>
 </tr>
 <tr>
 <td>Latest SonarQube Run</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096015">https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096015</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096015</td>
 </tr>
 <tr>
 <td>Latest DAST Run</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096020">https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096020</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096020</td>
 </tr>
 <tr>
 <td>Latest CodeQL Run</td>
-<td><a href="https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096022">https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096022</a></td>
+<td>https://github.com/PhatchareePuangjai/chatGPT5/actions/runs/26735096022</td>
 </tr>
 </tbody>
 </table>
